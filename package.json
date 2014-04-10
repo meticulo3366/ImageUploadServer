@@ -1,0 +1,25 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.7",
+    "jade": "*",
+    "mongoose": "*",
+    "sendgrid": "1.0.0-rc.1.0",
+    "passport": "0.2.0",
+    "passport-local": "0.1.6",
+    "passport-facebook": "*",
+    "bcrypt-nodejs": "0.0.3",
+    "crypto": "*",
+    "mongoose-validator": "0.2.2",
+    "connect-flash": "*",
+    "consolidate": "0.10.0",
+    "monq": "0.2.1",
+    "hbs": "~2.4.0",
+    "ejs": "~0.8.5"
+  }
+}

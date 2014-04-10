@@ -1,0 +1,1021 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PuneDabbawala.in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+
+  <body>
+
+    <div class="navigation"></div>    
+    <div class="page">
+           
+              <div class="col-md-12 admin-navbar"></div>
+              <div class="col-md-3 admin-right-navbar"></div>
+              <div class="col-md-9 admin-content"></div>
+    </div>
+
+  
+
+    <script type="text/x-template" id="navbar-template">
+      <div class = "navbar navbar-inverse navbar-static-top">
+      <div class="container">
+          <a href="#" class="navbar-brand">PuneDabbawala.in<br><small>eat your choice</small></a>    
+          <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>         
+        <div class="collapse navbar-collapse navHeaderCollapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class=""><a href="#">Home</a></li>
+              <li><a href="#new">Sign Up</a></li>  
+              <li><a href="#signin">Sign In</a></li>
+              <li><a href="#list">Contact us</a></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+
+    </script>
+
+    <script type="text/x-template" id="full-navbar-template">
+      <div class = "navbar navbar-inverse navbar-static-top">
+      <div class = "container">
+        <div class="navbar-header">
+          <a href="#" class = "navbar-brand">PuneDabbawala.in <br><small>eat your choice</small></a>
+
+          <button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+            <span class = "icon-bar"></span>
+            <span class = "icon-bar"></span>
+            <span class = "icon-bar"></span>
+          </button>
+        </div>
+
+        <div class = "collapse navbar-collapse navHeaderCollapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" class="logout">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    </script>
+
+
+    <script type="text/x-template" id="admin-navbar-template">
+
+      <div class = "navbar navbar-inverse navbar-static-top">
+        <div class = "container">
+          <div class="">
+            <ul class="nav navbar-nav navbar-left">
+                  <li class="active"><a href="#adminDashboard">Dabbawala</a></li>
+                  <button class="navbar-toggle" data-toggle="collapse" data-target=".asb">asb</button>
+                  <li><a href="#report">Report</a></li>  
+            </ul>
+          </div>
+        </div>  
+    </div>
+
+    </script>
+
+
+    <script type="text/x-template" id="admin-right-navbar-dabbawala-template">
+      <div class = "navbar navbar-inverse navbar-static-top">
+      
+            <ul class="nav nav-pills nav-stacked">
+                  <li class=""><a href="#adminDashboard">Add Dabbawala</a></li>
+                  <li><a href="#addTeam">Add Team</a></li>
+                  <li><a href="#addMenu">Add Menu</a></li>
+                  <br><br><br><br>
+            </ul>
+
+      </div>
+
+    </script>
+    <script type="text/x-template" id="admin-right-navbar-report-template">
+      <div class = "navbar navbar-inverse navbar-static-top">
+      
+            <ul class="nav nav-pills nav-stacked">
+                  <li class="active"><a href="#adminDashboard">customer</a></li>
+                  <li><a href="#addTeam">suppliers</a></li>
+                  <li><a href="#addMenu">location</a></li>
+                  <br><br><br><br>
+            </ul>
+
+      </div>
+
+    </script>
+
+    <script type="text/x-template" id="landing-template">
+      <div class="container">
+        <div class="row"> <br><br><br>         
+             <div class="input-group col-md-7 col-md-offset-3 divlocation"><br><br>
+
+                  <div class="input-group ">
+                      <select id="location" name="location" class="form-control ">
+                        <option>select location here</option>
+                        <option>Hadapsar</option>
+                        <option>Dange Chowk</option>
+                        <option>Shivaji Nagar</option>
+                        <option>Aundh</option>
+                      </select>
+                      <span class="input-group-btn">
+                          <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                      </span>
+                  </div>   
+                 <br><br>
+            </div>
+          </div>
+
+
+      </div>
+
+
+
+    </script>
+
+
+     
+    <script type="text/x-template" id="list-template">
+      <div class="container">
+              <div class="row">
+                <div class="col-md-2 col-md-offset-2">
+                  <a href="#mymodel" data-toggle="modal" class="btn btn-primary">Change Location</a>
+                  <div class="modal fade" id="mymodel" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          select location
+                        </div>
+                        <div class="modal-body">
+                           <div class="input-group">
+                              <select id="location" name="location" class="form-control">
+                                <option>select location here</option>
+                                <option>Hadapsar</option>
+                                <option>Dange Chowk</option>
+                                <option>Shivaji Nagar</option>
+                                <option>Aundh</option>
+                              </select>
+                              <span class="input-group-btn">
+                                  <button class="btn btn-primary">Search</button>
+                              </span>
+                          </div> 
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-md-offset-4">
+                  <a href="#checkout" class="btn btn-primary checkout">View Menu</a>
+                </div>
+              </div>
+              <br><br>
+
+          <div class="row">
+                  <div class="col-md-3">
+                          <div class="abc img-thumbnail">
+                                <div><img src="../images/a1.jpg" class="img-responsive listOfSupplier_img">
+                                </div>
+                                <div class="center-text">
+                                      <h4>Name of Supplier</h4>
+                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
+                                         Contact:968579545
+                                      </p>
+                                </div>
+                                <div class="lcb">
+                                      <input type="checkbox" id="listOfSupplier">
+                                </div> 
+                          </div>          
+                   </div>
+
+                   <div class="col-md-3">
+                          <div class="abc img-thumbnail">
+                                <div><img src="../images/a2.jpg" class="img-responsive listOfSupplier_img">
+                                </div>
+                                <div class="center-text">
+                                      <h4>Name of Supplier</h4>
+                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
+                                         Contact:968579545
+                                      </p>
+                                </div>
+                                <div class="lcb">
+                                      <input type="checkbox" id="listOfSupplier">
+                                </div> 
+                          </div>          
+                   </div>
+
+                   <div class="col-md-3">
+                          <div class="abc thumbnail">
+                                <div><img src="../images/a3.jpg" class="img-responsive listOfSupplier_img ">
+                                </div>
+                                <div class="center-text">
+                                      <h4>Name of Supplier</h4>
+                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
+                                         Contact:968579545
+                                      </p>
+                                </div>
+                                <div class="lcb">
+                                      <input type="checkbox" id="listOfSupplier">
+                                </div> 
+                          </div>          
+                   </div>
+
+                   <div class="col-md-3">
+                          <div class="abc thumbnail">
+                                <div><img src="../images/a4.jpg" class="img-responsive listOfSupplier_img ">
+                                </div>
+                                <div class="center-text">
+                                      <h4>Name of Supplier</h4>
+                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
+                                         Contact:968579545
+                                      </p>
+                                </div>
+                                <div class="lcb">
+                                      <input type="checkbox" id="listOfSupplier">
+                                </div> 
+                          </div>          
+                   </div>
+
+          </div>
+
+          <div class="row">
+                  <div class="col-md-3">
+                          <div class="abc thumbnail">
+                                <div><img src="../images/a3.jpg" class="img-responsive listOfSupplier_img">
+                                </div>
+                                <div class="">
+                                      <h4>Name of Supplier</h4>
+                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
+                                         Contact:968579545
+                                      </p>
+                                </div>
+                                <div class="lcb">
+                                      <input type="checkbox" id="listOfSupplier">
+                                </div> 
+                          </div>          
+                   </div>
+
+                   <div class="col-md-3">
+                          <div class="abc thumbnail">
+                                <div><img src="../images/a4.jpg" class="img-responsive listOfSupplier_img">
+                                </div>
+                                <div class="">
+                                      <h4>Name of Supplier</h4>
+                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
+                                         Contact:968579545
+                                      </p>
+                                </div>
+                                <div class="lcb">
+                                      <input type="checkbox" id="listOfSupplier">
+                                </div> 
+                          </div>          
+                   </div>
+
+                   <div class="col-md-3">
+                          <div class="abc thumbnail">
+                                <div><img src="../images/a1.jpg" class="img-responsive listOfSupplier_img">
+                                </div>
+                                <div class="">
+                                      <h4>Name of Supplier</h4>
+                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
+                                         Contact:968579545
+                                      </p>
+                                </div>
+                                <div class="lcb">
+                                      <input type="checkbox" id="listOfSupplier">
+                                </div> 
+                          </div>          
+                   </div>
+
+                   <div class="col-md-3">
+                          <div class="abc thumbnail">
+                                <div><img src="../images/a2.jpg" class="img-responsive listOfSupplier_img">
+                                </div>
+                                <div class="">
+                                      <h4>Name of Supplier</h4>
+                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
+                                         Contact:968579545
+                                      </p>
+                                </div>
+                                <div class="lcb">
+                                      <input type="checkbox" id="listOfSupplier">
+                                </div> 
+                          </div>          
+                   </div>
+
+
+
+
+
+
+          </div>
+    </div>    
+
+            
+
+    </script>
+
+
+    
+    <script type="text/x-template" id="create-user-template">
+    <div class="container">
+    <div class="well col-md-offset-3 col-md-6 signup" align="center">
+      
+      <h3 class="">Sign Up</h3>
+      <hr>
+      <div class=""> 
+          <form class="form-horizontal create-user-form">
+              
+              <div class="">
+              <div class="form-group col-md-6 col-md-offset-1">
+                
+                  <input type="text" class="form-control " id="firstName" name="firstName" placeholder="First Name" required>
+
+                
+              </div>
+              <div class="form-group col-md-6 col-md-offset-1">
+                
+                  <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
+                
+              </div>
+              </div>
+              <div class="form-group col-md-6 col-md-offset-1"> 
+                
+                  <input type="email" class="form-control " name="email" placeholder="Email Address" required>
+                
+              </div>
+              <div class=""><div class="form-group col-md-6 col-md-offset-1 "> 
+                
+                  <input type="password" class="form-control " id="password" name="password" placeholder="Password" required>
+                
+              </div>
+
+              <div class="form-group col-md-6 col-md-offset-1"> 
+                
+                  <input type="password" class="form-control " id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+                
+              </div></div>
+              
+
+              
+              <div class="form-group col-md-6 col-md-offset-1">
+                
+                  <input type="tel" class="form-control" id="contact" name="contactNumber" placeholder="Contact Number" required>
+                
+              </div>  
+
+              <div class="form-group col-md-6 col-md-offset-1"> 
+                
+                 <textarea class="form-control " name="" placeholder="Address 1" required row="2" cols="60"></textarea>
+
+                
+              </div>
+              <div class="form-group col-md-6 col-md-offset-1"> 
+                
+                 <textarea class="form-control " name="" placeholder="Address 2" required row="2" cols="60"></textarea>
+
+                
+              </div>
+
+
+              <div class="form-group col-md-4 col-md-offset-4">
+                  <button type="submit" class="btn btn-success">Sign Up</button>
+              </div>
+            </form>
+        </div>
+      </div>
+
+    </div>
+
+    </script>
+
+    <script type="text/x-template" id="login-user-template">
+
+      <div class="well col-md-offset-4 col-sm-4 signin">
+        <form class="form-horizontal login-user-form">
+
+          <h3 class="center-text">User Login</h3>
+
+          <hr/>
+          
+          <div class="center-text">
+            <a href="/users/fbauth" class="btn btn-primary">
+              Sign In With Facebook
+            </a> 
+          </div>
+          
+          <p class="center-text">OR</p>
+
+          <h5 class="red-text" id="error-message"></h5>
+          <div class="form-group"> 
+            <div>
+              <input type="email" class="form-control" name="email" placeholder="Email Address" >
+            </div>
+          </div>
+
+          <div class="form-group"> 
+            <div>
+              <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-success button-padding">Sign In</button>
+          </div>
+          
+
+          <h5>Dont have an account? <a href="#new"><u>Sign Up Here</u></a></h5>
+          <h5>Forgot Password?
+            <a href="/users/user#forgotpassword">
+              <u>Click Here</u>
+            </a>
+          </h5>
+        </form>
+      </center>
+    </script>
+
+    <script type="text/x-template" id="forgotPassword-template">
+        
+        <div class="jumbotron col-md-offset-2 col-sm-8">
+        <form class="form-horizontal forgetPassword-user-form">
+
+          <h2 class="center-text">Reset Password</h2>
+          <hr/>
+
+          <h5>Enter email address registered with the application and we will send you reset password instructions shortly:</h5>
+
+          <div class="form-group">            
+
+              <h5 class="red-text" id="forgot-password-error"></h5>
+              <input type="email" class="form-control " id="email" name="email" placeholder="Email Address">
+          </div>
+          
+          <div class="form-group ">          
+            <button type="submit" class="btn btn-success">Send Instructions</button>          
+          </div>
+        </form>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="checkout-template">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="nav nav-tabs">
+                      <li class="active"><a href="#breakfast" data-toggle="tab">Breakfast</a></li>
+                      <li><a href="#lunch" data-toggle="tab">Lunch</a></li>
+                      <li><a href="#dinner" data-toggle="tab">Dinner</a></li>
+                      
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="tab-content">
+
+                    <div class="tab-pane active" id="breakfast">
+                    <div class="table-responsive">
+                       <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>&nbsp</th>
+                              <th>Mon</th>
+                              <th>Tue</th>
+                              <th>Wed</th>
+                              <th>Thus</th>
+                              <th>Fri</th>
+                              <th>Sat</th>
+                              <th>Sun</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                          
+                              <tr>
+                                <td><h5>Name of Dabbawala</h5></td>
+                                <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                
+                              </tr>
+
+                               <tr>
+                                <td><h5>Name of Dabbawala</h5></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                
+                              </tr>
+                            
+                          </tbody>
+
+                      </table> 
+                      </div>
+                     
+          
+                    </div>
+
+                    <div class="tab-pane" id="lunch">..lunch.<br>                   
+                                            <div class="table-responsive">
+                       <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>&nbsp</th>
+                              <th>Mon</th>
+                              <th>Tue</th>
+                              <th>Wed</th>
+                              <th>Thus</th>
+                              <th>Fri</th>
+                              <th>Sat</th>
+                              <th>Sun</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                          
+                              <tr>
+                                <td><h5>Name of Dabbawala</h5></td>
+                                <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td class=""><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                
+                              </tr>
+
+                               <tr>
+                                <td><h5>Name of Dabbawala</h5></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                
+                              </tr>
+                            
+                          </tbody>
+
+                      </table> 
+                      </div>
+                  
+                    </div>
+
+                    <div class="tab-pane" id="dinner">.dinner..<br>
+                      <div class="table-responsive">
+                       <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>&nbsp</th>
+                              <th>Mon</th>
+                              <th>Tue</th>
+                              <th>Wed</th>
+                              <th>Thus</th>
+                              <th>Fri</th>
+                              <th>Sat</th>
+                              <th>Sun</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                          
+                              <tr>
+                                <td><h5>Name of Dabbawala</h5></td>
+                                <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td class=""><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                
+                              </tr>
+
+                               <tr>
+                                <td class=""><h5>Name of Dabbawala</h5></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                                
+                              </tr>
+                            
+                          </tbody>
+
+                      </table> 
+                    </div>
+                      
+                    </div>
+                     <div id="btnCheckin" style="display:none">   
+                                  <a href="#orderProcess" id="" class="btn btn-primary addTocart">AddToCart</a>
+                              </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+        $('input:checkbox').change(function () {
+                            if ($('input[type=checkbox]:checked').length > 0) {
+                                $('#btnCheckin').show();
+                            } else {
+                                $('#btnCheckin').hide();
+                            }
+                        });
+        </script>
+
+    </script>
+
+     <script type="text/x-template" id="order-detail-template">
+        
+                    <div class="table-responsive">
+                       <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Name of Dabbawala</th>
+                              <th>Meal Type</th>
+                              <th>Category</th>
+                              <th>Date</th>
+                              <th>Menu</th>
+                              <th>Price</th>
+                              <th>Delivry Address</th>
+                              <th>Option</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                          
+                              <tr>
+                                <td><h5>Uphar Restaurants</h5></td>
+                                <td>Dinner</td>
+                                <td>NonVeg</td>
+                                <td>12-7-2014</td>
+                                <td><div class="well menuItem">1-chapti 4<br>2-curd<br>3-rice<br>4-daal</td>
+                                <td>Rs. 60.00/-</td>
+                                <td>
+                                      <div class="input-group">
+                                        <select id="location" name="location" class="form-control">
+                                          <option>address-1</option>
+                                          <option>address-2</option>
+                                          <option>address-3</option>
+                                          <option>address-4</option>
+                                        </select>
+                                      </div>
+                                </td>
+                                <td><a title="Remove Item"><span class="glyphicon glyphicon-remove btn-remove"></span></a></td>                            
+                              </tr>
+                              <tr>
+                                <td><h5>Uphar Restaurants</h5></td>
+                                <td>Dinner</td>
+                                <td>NonVeg</td>
+                                <td>12-7-2014</td>
+                                <td><div class="well menuItem">1-chapti 4<br>2-curd<br>3-rice<br>4-daal</td>
+                                <td>Rs. 60.00/-</td>
+                                <td>
+                                      <div class="input-group">
+                                        <select id="location" name="location" class="form-control">
+                                          <option>address-1</option>
+                                          <option>address-2</option>
+                                          <option>address-3</option>
+                                          <option>address-4</option>
+                                        </select>
+                                      </div>
+                                </td>
+                                <td><a title="Remove Item"><span class="glyphicon glyphicon-remove btn-remove"></span></a></td>
+                                
+                                
+                              </tr>
+
+
+                               <tr>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  
+                              </tr>
+                            
+                          </tbody>
+
+                      </table>
+
+                      <div class="input-group pull-right">
+                          <a class="btn btn-primary">Confirm Order</a>
+                      </div>
+
+
+    </script>
+
+
+    <script type="text/x-template" id="homepage-template">
+        <h2>Home Page!</h2>
+    </script>
+
+    <script type="text/x-template" id="admin-dashboard-template">
+     <div class="container">
+          <div class="row">
+            
+            <div class="well col-md-6">
+            <h4 class="center-text">Add Dabbawala/Restaurant</h4>
+            <hr>
+            <form class="form-horizontal create-dabbawala-form ">
+
+              <div class="form-group">      
+                  <input type="text" class="form-control " id="name" name="name" placeholder="Name of Organization or Restaurants" required>
+              </div>
+
+              <div class="form-group"> 
+                  <input type="email" class="form-control " name="email" placeholder="Email Address" required>
+              </div>
+
+              
+              <div class="form-group ">
+                  <input type="tel" class="form-control" id="contact" name="contactNumber" placeholder="Contact Number" required>
+              </div>  
+
+
+              <div class="form-group">
+                 <textarea class="form-control " name="address" placeholder="Address " required row="2" cols="60"></textarea>
+              </div>
+              <div class="form-group">
+                 <select id="distributionAreas" name="distributionAreas" multiple class="form-control ">
+                        <option>[select Distribution Area]</option>
+                        <option>Hadapsar</option>
+                        <option>Dange Chowk</option>
+                        <option>Shivaji Nagar</option>
+                        <option>Aundh</option>
+                        <option>Aundh</option>
+                        <option>Aundh</option>
+                      </select>
+              </div>
+
+              
+
+              <div class="form-group">      
+                  <label class="col-sm-4">Category of food :</label>
+                  <div class="col-sm-2">
+                    <input type="checkbox" name="category"> Veg
+                  </div>
+                  <div class="col-sm-3">
+                    
+                    <input type="checkbox" name="category">Non Veg
+                  </div>
+                  <div class="col-sm-3">
+                    
+                    <input type="checkbox" name="category">Gujrati
+                  </div>         
+              </div>
+
+              <div class="form-group">
+                  <label class="col-sm-4">Order Type of food :</label>
+                  <div class="col-sm-2">
+                    <input type="checkbox" name="orderType">Daily 
+                  </div>
+                  <div class="col-sm-2">
+                    
+                    <input type="checkbox" name="orderType">Weekly
+                  </div>
+                  <div class="col-sm-2">
+                    
+                    <input type="checkbox" name="orderType">Monthly
+                  </div>                          
+              </div>
+
+              <div class="form-group">
+                  <label class="col-sm-4">Meal Type of food :</label>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="mealType">Breakfast 
+                  </div>
+                  <div class="col-sm-2">
+                    
+                    <input type="checkbox" name="mealType">Lunch
+                  </div>
+                  <div class="col-sm-3">
+                    
+                    <input type="checkbox" name="mealType">Dinner
+                  </div>                          
+              </div>
+
+              <div class="form-group">
+                  <label class="col-sm-4">Price of food :</label>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="price" id="priceWeekly">Weekly 
+                  </div>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="price" id="priceMonthly">Monthly
+                  </div                           
+              </div>
+              <div class="form-group"> 
+                  <div class="col-sm-4">
+                    <input type="number" name="priceWeeklyB" id="" placeholder="Weekly Breakfast price">
+                  </div>
+                  <div class="col-sm-4">
+                    <input type="number" name="priceWeeklyL" id="" placeholder="Weekly Lunch price">
+                  </div>   
+                  <div class="col-sm-4">
+                    <input type="number" name="priceWeeklyD" id="" placeholder="Weekly Dinner price">
+                  </div>                                            
+              </div>
+              <div class="form-group"> 
+                  <div class="col-sm-4">
+                    <input type="number" name="priceMonthlyB" id="" placeholder="Monthly Breakfast price">
+                  </div>
+                  <div class="col-sm-4">
+                    <input type="number" name="priceMonthlyL" id="" placeholder="Monthly Lunch price">
+                  </div>   
+                  <div class="col-sm-4">
+                    <input type="number" name="priceMonthlyD" id="" placeholder="Monthly Dinner price">
+                  </div>                                            
+              </div>
+              
+
+              <div class="form-group">
+                  <button type="submit" class="btn btn-success">Next</button>
+              </div>
+            </form>
+            </div>
+          </div>  
+        </div>
+       
+    </script>
+
+    
+    <script type="text/x-template" id="add-team-template">
+
+      <div class="container">
+          <div class="row">
+            
+            <div class="well col-md-6">
+            <h4 class="center-text">Add Team </h4>
+            <hr>
+            <form class="form-horizontal create-team-form ">
+
+              <div class="form-group">      
+                  <select id="dbw" name="dbw" class="form-control ">
+                        <option>select Dabbawala</option>
+                        {{#each dabbawalaList }}
+
+                          <option>{{this.name}}</option>
+                
+                        {{/each}}  
+                  </select>
+              </div>
+            
+              <div class="form-group">      
+                  <input type="text" class="form-control " id="firstName" name="firstName" placeholder="First Name" required>
+                  
+              </div>
+              <div class="form-group">      
+                  <input type="text" class="form-control " id="lastName" name="lastName" placeholder="Last Name" required>
+              </div>
+              <div class="form-group">      
+                  <input type="email" class="form-control " id="email" name="email" placeholder="Email" required>
+              </div>
+              <div class="form-group">      
+                  <input type="password" class="form-control " id="password" name="password" placeholder="Password" required>
+              </div>
+              <div class="form-group">      
+                  <input type="number" class="form-control " id="contactNumber" name="contactNumber" placeholder="Contact Number" required>
+              </div>
+               <div class="form-group">      
+                  <select id="role" name="role" class="form-control ">
+                        <option>Select Role</option>
+                        <option>Manager</option>
+                        <option>Sheff</option>
+                        <option>Delivry Boy</option>
+                  </select>
+              </div>
+            
+
+              <div class="form-group">
+                  <button type="submit" class="btn btn-success">Next</button>
+              </div>
+            </form>
+            </div>
+          </div>  
+        </div>
+
+    </script>
+
+
+    <script type="text/x-template" id="add-menu-template">
+      <div class="container">
+          <div class="row">
+            
+            <div class="well col-md-6">
+            <h4 class="center-text">Add Menu </h4>
+            <hr>
+            <form class="form-horizontal create-menu-form ">
+
+              <div class="form-group">      
+                  <select id="dbw" name="dbw" class="form-control ">
+                        <option>select Dabbawala</option>
+                        {{#each dabbawalaList }}
+
+                          <option>{{this.name}}</option>
+                
+                        {{/each}}  
+                  </select>
+              </div>
+
+
+              <div class="form-group">      
+                  <input type="text" class="form-control " id="name" name="name" placeholder="name of Item" required>
+              </div>
+
+              <div class="form-group">      
+                  <select id="category" name="category" class="form-control ">
+                        <option>select Category</option>
+                        <option>Veg</option>
+                        <option>NonVeg</option>
+                        <option>Jain</option>
+                        <option>Gujrati</option>
+                      </select>
+              </div>
+
+              <div class="form-group">
+                  <select id="mealType" name="mealType" class="form-control ">
+                        <option>select Meal Type</option>
+                        <option>Breakfast</option>
+                        <option>Lunch</option>
+                        <option>Dinner</option>
+                        <option>Snacks</option>
+                      </select>
+              </div>
+
+              <div class="form-group">      
+                  <input type="text" class="form-control " id="description" name="description" placeholder="Discription" required>
+              </div>
+
+              <div class="form-group">      
+                  <input type="text" class="form-control " id="ingredients" name="ingredients" placeholder="list of items" required>
+              </div>
+
+              <div class="form-group">      
+                  <input type="number" class="form-control " id="fullPrice" name="fullPrice" placeholder="full Price" required>
+              </div>
+
+              <div class="form-group">      
+                  <input type="number" class="form-control " id="discountedPrice" name="discountedPrice" placeholder="Discount Price" required>
+              </div>
+
+              <div class="form-group">
+                  <button type="submit" class="btn btn-success">Save</button>
+              </div>
+            </form>
+            </div>
+          </div>  
+        </div>
+
+       
+    </script>
+
+    
+    <script type="text/x-template" id="profile-template">
+        <h2>User Profile Page!</h2>
+    </script>
+
+
+    
+
+  
+     <!--  <script src = "http://code.jquery.com/jquery-1.10.2.min.js"></script>--> 
+    <script src= "/javascripts/lib/jquery.js"></script> 
+    <script src= "/javascripts/lib/handlebars-v1.3.0.js"></script>
+    <script src= "/javascripts/lib/underscore.js"></script>
+    <script src= "/javascripts/lib/backbone.js"></script>
+    <script src= "/javascripts/lib/bootstrap.min.js"></script>
+    <script src="/javascripts/backbone_utils.js"></script>
+    <script src="/javascripts/backbone/model.js"></script>
+    <script src="/javascripts/backbone/view.js"></script>
+    <script src="/javascripts/backbone/router.js"></script>
+    <script src="/javascripts/backbone/app.js"></script>
+  </body>
+</html>
