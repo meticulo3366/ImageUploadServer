@@ -15,16 +15,18 @@ module.exports = function(app) {
 
     dabbawala.create = function(req, res, next){
     var user = new Dabbawala(req.body);
-    // user.name= req.body.name;
-    // user.email= req.body.email;
-    // user.address= req.body.address;
-    // user.contactNumber= req.body.contactNumber;
-    // user.distributionAreas= req.body.distributionAreas;
-    // user.category= req.body.category;
-    // user.mealType= req.body.mealType;
+   /* user.price.weekly.breakfast= req.body.priceWeeklyB;
+    user.price.weekly.lunch= req.body.priceWeeklyL;
+    user.price.weekly.dinner= req.body.priceWeeklyD;
+
+    user.price.monthly.breakfast= req.body.priceMonthlyB;
+    user.price.monthly.lunch= req.body.priceMonthlyL;
+    user.price.monthly.dinner= req.body.priceMonthlyD;*/
+    
     user.save(function(err, user){
         if (err) { return next(err)};
         if(user) {
+          console.log('dabbawala saved'+user);
           var params = {
             to: user.email,
             message: config.email.message.buildConfirmationMessage(user.email, user.confirmationToken),
@@ -60,23 +62,38 @@ module.exports = function(app) {
       function(err,dabbawala){
         if(err){return next(err)}
         if(dabbawala){
+          var split= req.body.ingredients.split(',');
+
+          console.log(split);
           dabbawala.menu.push(
             {
+
               name:req.body.name,
               category: req.body.category,
               mealType: req.body.mealType,
               description: req.body.description,
-              ingredients: req.body.ingredients,
+              ingredients:split,
               fullPrice: req.body.fullPrice,
               discountedPrice: req.body.discountedPrice
           });
+
+          // var ingredients= req.body.ingredients;
+          // dabbawala.set(function (ingredients) {
+          //   var split = ingredients.split(','),
+          //   for (var i = 0; i < split.length; i++) {
+          //     dabbawala.menu.push({ingredients[i]:split[i]});
+          //   }
+          // });
+     
+
+      
 
           dabbawala.save(function(err,dabbawala){
             if(err){
 
             }
             else{
-              console.log('dabbawala menu saved'+ dabbawala);
+              console.log('dabbawala menu saved'+ dabbawala.menu);
               res.json(dabbawala);
             }
 

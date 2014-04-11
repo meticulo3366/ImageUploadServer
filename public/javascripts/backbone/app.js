@@ -83,7 +83,7 @@ $(function () {
   
   app.router.on('route:AddTeam',function () {
       var add = new app.AddTeamView();
-      //add.render();
+      add.render();
       fullnavbarView.render();
       adminnavbarView.render();
       adminrightnavbarView.render();
@@ -95,5 +95,14 @@ $(function () {
       adminnavbarView.render();
       adminrightnavbarView.render();
       });
+
+    app.router.on('route:dabbawalaList',function () {
+      var add = new app.DabbawalaListView();
+      add.render();
+      fullnavbarView.render();
+      adminnavbarView.render();
+      adminrightnavbarView.render();
+      });
+
   Backbone.history.start();
 });

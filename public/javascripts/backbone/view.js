@@ -201,7 +201,7 @@ app.AdminDashboardView =Backbone.View.extend({
 
         
               console.log('dabbawala saved:  '+dbw.name);
-              app.router.navigate('addTeam',{trigger: true});
+              app.router.navigate('dabbawalaList',{trigger: true});
             },
             error: function(model, response){
               if(_.isString(response.responseJSON.error)) {
@@ -410,7 +410,7 @@ app.AddTeamView =Backbone.View.extend({
                 app.View.close();
               
                 console.log('in saveTeam sucess');
-                app.router.navigate('addMenu',{trigger: true});
+                app.router.navigate('addTeam',{trigger: true});
             },
             error: function(model, response){
               console.log('in saveteam error');
@@ -461,15 +461,10 @@ app.AddMenuView =Backbone.View.extend({
                app.View.close();
 
               console.log('in saveMenu sucess');
-              app.router.navigate('addMenu',{trigger: true});
+              app.router.navigate('addTeam',{trigger: true});
             },
             error: function(model, response){
               console.log('in savemenu error');
-              console.log('errr in saving menu');
-              // if(_.isString(response.responseJSON.error)) {
-                
-              //   //document.getElementById('forgot-password-error').innerHTML = response.responseJSON.error;
-              // }      
             }
           });
           return false;
@@ -493,6 +488,44 @@ app.AdminNavbarView =Backbone.View.extend({
         }
          
     });
+app.AdminNavbarView =Backbone.View.extend({
+      el:'.admin-navbar',
+       tpl: Handlebars.compile(
+          document.getElementById('admin-navbar-template').innerHTML
+        ),
+        events: {
+             
+        },
+
+        initialize: function() {
+        
+        },
+        render: function () {
+          var that = this;
+          that.$el.html( that.tpl());
+        }
+         
+    });
+app.DabbawalaListView =Backbone.View.extend({
+      el:'.admin-content',
+       tpl: Handlebars.compile(
+          document.getElementById('dabbawala-list-template').innerHTML
+        ),
+        events: {
+             
+        },
+
+        initialize: function() {
+        
+        },
+        render: function () {
+          var that = this;
+          that.$el.html( that.tpl());
+        }
+         
+    });
+
+
 app.AdminRightNavbarDabbawalaView =Backbone.View.extend({
       el:'.admin-right-navbar',
        tpl: Handlebars.compile(

@@ -69,11 +69,10 @@
     <script type="text/x-template" id="admin-navbar-template">
 
       <div class = "navbar navbar-inverse navbar-static-top">
-        <div class = "container">
+        <div class = "">
           <div class="">
             <ul class="nav navbar-nav navbar-left">
                   <li class="active"><a href="#adminDashboard">Dabbawala</a></li>
-                  <button class="navbar-toggle" data-toggle="collapse" data-target=".asb">asb</button>
                   <li><a href="#report">Report</a></li>  
             </ul>
           </div>
@@ -762,107 +761,153 @@
 
 
               <div class="form-group">
-                 <textarea class="form-control " name="address" placeholder="Address " required row="2" cols="60"></textarea>
+                  <label class="col-sm-2">Address:</label>
+                  <div class="col-sm-3">
+                    <select id="address.city" name="address.city" class="form-control"  placeholder="enter your search Dabbawala">
+                          <option>[Select City]</option>
+                          <option>Pune</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-3">
+                    <select id="address.state" name="address.state"  class="form-control">
+                          <option>[Select State]</option>
+                          <option>Maharashtra</option> 
+                    </select>
+                  </div>
+                  <div class="col-sm-21">
+                    <input type="number" name="address.zipCode" value="" placeholder="zip code">
+                  </div>
+                  <input type="text" class="form-control " id="address.vicinity" name="address.vicinity" placeholder="House No.,Road/street" required>
+                
               </div>
               <div class="form-group">
-                 <select id="distributionAreas" name="distributionAreas" multiple class="form-control ">
+                 <select id="distributionAreas" name="distributionAreas" multiple size="1" class="form-control ">
                         <option>[select Distribution Area]</option>
                         <option>Hadapsar</option>
                         <option>Dange Chowk</option>
                         <option>Shivaji Nagar</option>
                         <option>Aundh</option>
-                        <option>Aundh</option>
-                        <option>Aundh</option>
+                        <option>Kondwa</option>
+                        <option>Camp</option>
                       </select>
               </div>
 
               
 
               <div class="form-group">      
-                  <label class="col-sm-4">Category of food :</label>
-                  <div class="col-sm-2">
-                    <input type="checkbox" name="category"> Veg
+                  <label class="col-sm-3">Category:</label>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="category" value="veg"> Veg
                   </div>
                   <div class="col-sm-3">
                     
-                    <input type="checkbox" name="category">Non Veg
+                    <input type="checkbox" name="category" value="nonVeg">Non Veg
                   </div>
                   <div class="col-sm-3">
                     
-                    <input type="checkbox" name="category">Gujrati
+                    <input type="checkbox" name="category" value="gujrati">Gujrati
                   </div>         
               </div>
 
               <div class="form-group">
-                  <label class="col-sm-4">Order Type of food :</label>
-                  <div class="col-sm-2">
-                    <input type="checkbox" name="orderType">Daily 
+                  <label class="col-sm-3">Order Type:</label>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="orderType" value="daily">Daily 
                   </div>
-                  <div class="col-sm-2">
+                  <div class="col-sm-3">
                     
-                    <input type="checkbox" name="orderType">Weekly
+                    <input type="checkbox" name="orderType" value="weekly">Weekly
                   </div>
-                  <div class="col-sm-2">
+                  <div class="col-sm-3">
                     
-                    <input type="checkbox" name="orderType">Monthly
+                    <input type="checkbox" name="orderType" value="monthly">Monthly
+                  </div>                          
+              </div>
+  
+              <div class="form-group">
+                  <label class="col-sm-3">Meal Type:</label>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="mealType" value='breakfast'>Breakfast 
+                  </div>
+                  <div class="col-sm-3">
+                    
+                    <input type="checkbox" name="mealType" value="lunch">Lunch
+                  </div>
+                  <div class="col-sm-3">
+                    
+                    <input type="checkbox" name="mealType" value="dinner">Dinner
                   </div>                          
               </div>
 
-              <div class="form-group">
-                  <label class="col-sm-4">Meal Type of food :</label>
-                  <div class="col-sm-3">
-                    <input type="checkbox" name="mealType">Breakfast 
+             <div class="form-group">
+                  <label class="col-sm-3">Price:</label>
+                  <div class="col-sm-3 cb-weekly">
+                    <input type="checkbox" name="priceWeekly" value="weekly">Weekly 
                   </div>
-                  <div class="col-sm-2">
+                  <div class="col-sm-3 cb-monthly">
                     
-                    <input type="checkbox" name="mealType">Lunch
+                    <input type="checkbox" name="priceMonthly" value="monthly">Monthly
                   </div>
                   <div class="col-sm-3">
                     
-                    <input type="checkbox" name="mealType">Dinner
+                    
                   </div>                          
               </div>
-
-              <div class="form-group">
-                  <label class="col-sm-4">Price of food :</label>
-                  <div class="col-sm-3">
-                    <input type="checkbox" name="price" id="priceWeekly">Weekly 
-                  </div>
-                  <div class="col-sm-3">
-                    <input type="checkbox" name="price" id="priceMonthly">Monthly
-                  </div                           
-              </div>
-              <div class="form-group"> 
+              
+              <div class="form-group" id="weekly" style="display:none"> 
                   <div class="col-sm-4">
-                    <input type="number" name="priceWeeklyB" id="" placeholder="Weekly Breakfast price">
+                    <input type="number" name="price.weekly.breakfast" id="" placeholder="Weekly Breakfast price">
                   </div>
                   <div class="col-sm-4">
-                    <input type="number" name="priceWeeklyL" id="" placeholder="Weekly Lunch price">
+                    <input type="number" name="price.weekly.lunch" id="" placeholder="Weekly Lunch price">
                   </div>   
                   <div class="col-sm-4">
-                    <input type="number" name="priceWeeklyD" id="" placeholder="Weekly Dinner price">
+                    <input type="number" name="price.weekly.dinner" id="" placeholder="Weekly Dinner price">
                   </div>                                            
               </div>
-              <div class="form-group"> 
+              
+              <div class="form-group" id="monthly" style="display:none"> 
                   <div class="col-sm-4">
-                    <input type="number" name="priceMonthlyB" id="" placeholder="Monthly Breakfast price">
+                    <input type="number" name="price.monthly.breakfast" id="" placeholder="Monthly Breakfast price">
                   </div>
                   <div class="col-sm-4">
-                    <input type="number" name="priceMonthlyL" id="" placeholder="Monthly Lunch price">
+                    <input type="number" name="price.monthly.lunch" id="" placeholder="Monthly Lunch price">
                   </div>   
                   <div class="col-sm-4">
-                    <input type="number" name="priceMonthlyD" id="" placeholder="Monthly Dinner price">
+                    <input type="number" name="price.monthly.dinner" id="" placeholder="Monthly Dinner price">
                   </div>                                            
               </div>
               
 
-              <div class="form-group">
+              <div class="form-group col-sm-3">
                   <button type="submit" class="btn btn-success">Next</button>
               </div>
             </form>
             </div>
           </div>  
         </div>
+
+        <script>
+                        
+              $('input[type=checkbox]', '.cb-weekly').on('change', function(e) {
+                  if (this.name === 'priceWeekly' && this.checked) {
+                    $('#weekly').show();
+                  } 
+                  else {
+                    $('#weekly').hide();
+                  }
+              });
+              $('input[type=checkbox]', '.cb-monthly').on('change', function(e) {
+                  if (this.name === 'priceMonthly' && this.checked) {
+                    $('#monthly').show();
+                  } 
+                  else {
+                    $('#monthly').hide();
+                  }
+              });
+                       
+        </script>
+
        
     </script>
 
@@ -908,7 +953,7 @@
                   <select id="role" name="role" class="form-control ">
                         <option>Select Role</option>
                         <option>Manager</option>
-                        <option>Sheff</option>
+                        <option>Shelf</option>
                         <option>Delivry Boy</option>
                   </select>
               </div>
@@ -945,29 +990,12 @@
                   </select>
               </div>
 
-
               <div class="form-group">      
-                  <input type="text" class="form-control " id="name" name="name" placeholder="name of Item" required>
+                  <input type="text" class="form-control " id="name" name="name" placeholder="name of Menu " required>
               </div>
 
               <div class="form-group">      
-                  <select id="category" name="category" class="form-control ">
-                        <option>select Category</option>
-                        <option>Veg</option>
-                        <option>NonVeg</option>
-                        <option>Jain</option>
-                        <option>Gujrati</option>
-                      </select>
-              </div>
-
-              <div class="form-group">
-                  <select id="mealType" name="mealType" class="form-control ">
-                        <option>select Meal Type</option>
-                        <option>Breakfast</option>
-                        <option>Lunch</option>
-                        <option>Dinner</option>
-                        <option>Snacks</option>
-                      </select>
+                  <input type="text" class="form-control " id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," required>
               </div>
 
               <div class="form-group">      
@@ -975,7 +1003,33 @@
               </div>
 
               <div class="form-group">      
-                  <input type="text" class="form-control " id="ingredients" name="ingredients" placeholder="list of items" required>
+                  <label class="col-sm-3">Category:</label>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="category" value="veg"> Veg
+                  </div>
+                  <div class="col-sm-3">
+                    
+                    <input type="checkbox" name="category" value="nonVeg">Non Veg
+                  </div>
+                  <div class="col-sm-3">
+                    
+                    <input type="checkbox" name="category" value="gujrati">Gujrati
+                  </div>         
+              </div>
+
+              <div class="form-group">
+                  <label class="col-sm-3">Meal Type:</label>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="mealType" value='breakfast'>Breakfast 
+                  </div>
+                  <div class="col-sm-3">
+                    
+                    <input type="checkbox" name="mealType" value="lunch">Lunch
+                  </div>
+                  <div class="col-sm-3">
+                    
+                    <input type="checkbox" name="mealType" value="dinner">Dinner
+                  </div>                          
               </div>
 
               <div class="form-group">      
@@ -995,6 +1049,10 @@
         </div>
 
        
+    </script>
+
+    <script type="text/x-template" id="dabbawala-list-template">
+        <h2>Udabbawala-list-template!</h2>
     </script>
 
     
