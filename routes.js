@@ -19,7 +19,7 @@ module.exports = function(app){
   app.get('/users/profile', passportConfig.isAuthenticated, rootController.userProfile);
   app.get('/users/homepage', passportConfig.isAuthenticated, rootController.homepage);
   
-  app.post('/users/create', userController.create1);
+  //app.post('/users/create', userController.create1);
   app.post('/users/authenticate', userController.authenticate);
   app.get('/users/fbauth', userController.startFbAuthentication);
   app.get('/users/fbAuthenticationComplete', userController.onFbAuthenticationComplete);
@@ -28,10 +28,11 @@ module.exports = function(app){
   app.get('/users/logout', userController.logout);
 
   app.post('/users',userController.create);
-  app.post('/admin/tiffinBoxSupplier',dabbawalaController.create);
-  app.get('/admin/tiffinBoxSupplier',dabbawalaController.read);
-  app.post('/admin/tiffinBoxSupplierMenu',dabbawalaController.createMenu);
-  app.post('/admin/tiffinBoxSupplierTeam',dabbawalaController.createTeam);
-  //app.post('',dabbawalaController.create);
-
+  app.post('/admin/tiffinBoxSupplier',passportConfig.ensureAdmin,dabbawalaController.create);
+  app.get('/admin/tiffinBoxSupplier',dabbawalaController.index);
+  app.get('/admin/tiffinBoxSupplier/:id',dabbawalaController.show);
+  app.post('/admin/tiffinBoxSupplierMenu',dabbawalaController.addMenu);
+  app.get('/admin/tiffinBoxSupplierMenu/:id',dabbawalaController.getMenu);
+  app.get('/tiffinBoxSupplier/:id/getTeam', dabbawalaController.getTeam);
+  
 };

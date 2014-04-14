@@ -3,14 +3,37 @@ var app = app || {};
 (function () {
 	'use strict';
 	app.User = Backbone.Model.extend({
-    url: '/users'
+
+    url: function() {
+      if(this.get('dabbawalaId')) {
+        return '/users?dabbawalaId=' + this.get('dabbawalaId');    
+      } else {
+        return '/users';  
+      };
+    }
+  });
+
+  app.addTiffinBoxSupplier = Backbone.Collection.extend({
+    url: function(){
+      return '/admin/tiffinBoxSupplier'
+    };
   });
 
   app.addTiffinBoxSupplier = Backbone.Model.extend({
-    url: '/admin/tiffinBoxSupplier'
+     url: function() {
+      if(this.get('id')) {
+        return '/admin/tiffinBoxSupplier/' + this.get('id');    
+      } else {
+        return '/admin/tiffinBoxSupplier/';  
+      };
+    }
   });
 
- 
+  app.TiffinboxSupplier = Backbone.Model.extend({
+    url:function() {
+      return '/tiffinBoxSupplier/' + this.get('id') + '/getTeam';
+    }
+  })
 
 
   app.addTiffinBoxSupplierMenu = Backbone.Model.extend({

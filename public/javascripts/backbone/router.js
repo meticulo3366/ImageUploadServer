@@ -18,7 +18,9 @@ var app = app || {};
       'addTeam': 'AddTeam',
       'addMenu': 'AddMenu',
       'report': 'report',
-      'dabbawalaList': 'dabbawalaList' 
+      'dabbawalaList': 'dabbawalaList',
+      'teamList': 'teamList',
+      'menuList': 'menuList' 
     }
   });  
 })();

@@ -97,3 +97,12 @@ exports.isAuthenticated = function(req, res, next) {
     res.redirect('/users/user#signin');
   }
 };
+
+
+exports.ensureAdmin = function(req, res, next) {
+  
+  if(req.user && req.user.role === 'admin')
+      next();
+  else
+      res.json(403, {error: 'Forbidden'});
+};

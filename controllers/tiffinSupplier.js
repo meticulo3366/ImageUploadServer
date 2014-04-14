@@ -7,65 +7,76 @@ var mongoose = require('mongoose')
   , util = require('../utils')
   , config = require('../config/config')
   , User = require('../models/User')
-  , Dabbawala = require('../models/TiffinboxSuppliers');
+  , TiffinboxSupplier = require('../models/TiffinboxSuppliers');
 
 module.exports = function(app) {
   
-  var dabbawala = {};
+  var tiffinboxSupplier = {};
 
-    dabbawala.create = function(req, res, next){
-    var user = new Dabbawala(req.body);
-   /* user.price.weekly.breakfast= req.body.priceWeeklyB;
-    user.price.weekly.lunch= req.body.priceWeeklyL;
-    user.price.weekly.dinner= req.body.priceWeeklyD;
-
-    user.price.monthly.breakfast= req.body.priceMonthlyB;
-    user.price.monthly.lunch= req.body.priceMonthlyL;
-    user.price.monthly.dinner= req.body.priceMonthlyD;*/
+    tiffinboxSupplier.create = function(req, res, next){
+    var tiffinboxSupplier = new TiffinboxSupplier(req.body);
+   
     
-    user.save(function(err, user){
+    tiffinboxSupplier.save(function(err, tiffinboxSupplier){
         if (err) { return next(err)};
-        if(user) {
-          console.log('dabbawala saved'+user);
-          var params = {
-            to: user.email,
-            message: config.email.message.buildConfirmationMessage(user.email, user.confirmationToken),
-            subject: config.email.subject.confirmationEmail
-          };
-          app.monq.sendEmail(params, function(err){
-            if(err) { return next(err);};
-          });
+        if(tiffinboxSupplier) {
+          console.log('dabbawala saved'+tiffinboxSupplier);
+          // var params = {
+          //   to: user.email,
+          //   message: config.email.message.buildConfirmationMessage(user.email, user.confirmationToken),
+          //   subject: config.email.subject.confirmationEmail
+          // };
+          // app.monq.sendEmail(params, function(err){
+          //   if(err) { return next(err);};
+          // });
 
-          req.flash('info', {msg: config.messages.confirmationMailSent});
-          return res.json(user);
+          // req.flash('info', {msg: config.messages.confirmationMailSent});
+          return res.json(tiffinboxSupplier);
         }
         else {
-          return res.status(500).json({error: 'Unable to add user!'});
+          return res.status(500).json({error: 'Unable to add TiffinboxSupplier!'});
         }
         
     });
   };
 
-  dabbawala.read = function(req, res, next){
-    Dabbawala.find({},function(err,dabbawalaList){
+  tiffinboxSupplier.index = function(req, res, next){
+    TiffinboxSupplier.find({},function(err,dabbawalaList){
     if (!err){
-      // res.render('user-list.ejs',{students:students});
       res.json(dabbawalaList);
     }
   });
   };
 
-  dabbawala.createMenu = function(req, res, next){
+  tiffinboxSupplier.show = function(req,res){
+    console.log('in show api'+req.params.id);
+  if(req.params.id){
+    console.log('true');
+    TiffinboxSupplier.findById(req.params.id,
+      function(err,tiffinboxSupplier){
+        console.log('in function');
+        if(!err){
+          console.log('in !err if');
+          res.json(tiffinboxSupplier);
+        }
+        else{
+          return res.status(404).json({error: 'Page Note Found!'});
+        }
+      });
+  }
+};
+
+  tiffinboxSupplier.addMenu = function(req, res, next){
     console.log('in Menu api'+req.body.dbw);
-    Dabbawala.findOne(
+    TiffinboxSupplier.findOne(
       {name:req.body.dbw},
-      function(err,dabbawala){
+      function(err,tiffinboxSupplier){
         if(err){return next(err)}
-        if(dabbawala){
+        if(tiffinboxSupplier){
           var split= req.body.ingredients.split(',');
 
           console.log(split);
-          dabbawala.menu.push(
+          tiffinboxSupplier.menu.push(
             {
 
               name:req.body.name,
@@ -77,24 +88,17 @@ module.exports = function(app) {
               discountedPrice: req.body.discountedPrice
           });
 
-          // var ingredients= req.body.ingredients;
-          // dabbawala.set(function (ingredients) {
-          //   var split = ingredients.split(','),
-          //   for (var i = 0; i < split.length; i++) {
-          //     dabbawala.menu.push({ingredients[i]:split[i]});
-          //   }
-          // });
-     
+         
 
       
 
-          dabbawala.save(function(err,dabbawala){
+          tiffinboxSupplier.save(function(err,tiffinboxSupplier){
             if(err){
 
             }
             else{
-              console.log('dabbawala menu saved'+ dabbawala.menu);
-              res.json(dabbawala);
+              console.log('dabbawala menu saved'+ tiffinboxSupplier.menu);
+              res.json(tiffinboxSupplier);
             }
 
           });
@@ -105,46 +109,48 @@ module.exports = function(app) {
 
   };
 
-  dabbawala.createTeam = function(req, res, next){
-    console.log('in createTeam api:'+req.body.dbw);
-    Dabbawala.findOne(
-      {name:req.body.dbw},
-      function(err,dabbawala){
-        if(err){return next(err)}
-        if(dabbawala){ 
-          var user = new User(req.body);
-          user.set('fullname', req.body.firstName + ' ' + req.body.lastName);
-          user.set('password', req.body.password);
-          user.tiffinboxSupplier= dabbawala._id;
-          user.save(function(err, user){
-            if (err) { return next(err)};
-                if(user) {
-                  console.log('team is saved'+user);
-                  dabbawala.team.push(user._id);
-                  dabbawala.save(function(err,dbw){
-                    if(!err){
-                      console.log('dabbawala updated with team'+dabbawala);
-                    }
-                  });
-                  return res.json(user); 
-                }
-                else {
-                  return res.status(500).json({error: 'Unable to add user!'});
-                }
-                
-            }); 
-        }  
+  tiffinboxSupplier.getTeam = function(req, res, next) {
+    console.log('in get team api');
+    //req.params.id - tiffinBoxSupplierId
+    TiffinboxSupplier.findById(req.params.id)
+      .populate('team')
+      .exec(function(err, tiffinBoxSupplier) {
 
-      }
-    );
+        if(err) { return next(err); };
 
+        if(tiffinBoxSupplier) {
+          console.log('team'+tiffinboxSupplier);
+          return res.json(tiffinBoxSupplier);
+        } else {
+          return res.json(404, {error: 'Tiffin box supplier not found!'});
+        }
 
+      });
   };
-
+ 
 
  
-  return dabbawala;
+
+tiffinboxSupplier.getMenu = function(req, res, next) {
+    console.log('in get Menu api');
+    //req.params.id - tiffinBoxSupplierId
+    TiffinboxSupplier.findById(req.params.id)
+      .exec(function(err, tiffinBoxSupplier) {
+
+        if(err) { return next(err); };
+
+        if(tiffinBoxSupplier) {
+          console.log('menu'+tiffinboxSupplier.menu);
+          return res.json(tiffinBoxSupplier);
+        } else {
+          return res.json(404, {error: 'Tiffin box supplier not found!'});
+        }
+
+      });
+  };
+ 
+
+ 
+  return tiffinboxSupplier;
 };
-
-
 

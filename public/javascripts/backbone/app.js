@@ -104,5 +104,21 @@ $(function () {
       adminrightnavbarView.render();
       });
 
+    app.router.on('route:teamList',function () {
+      var add = new app.TeamListView();
+      //add.render();
+      fullnavbarView.render();
+      adminnavbarView.render();
+      adminrightnavbarView.render();
+      });
+
+    app.router.on('route:menuList',function () {
+      var add = new app.MenuListView();
+      add.render();
+      fullnavbarView.render();
+      adminnavbarView.render();
+      adminrightnavbarView.render();
+      });
+
   Backbone.history.start();
 });

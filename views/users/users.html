@@ -628,10 +628,10 @@
                       
                     </div>
                      <div id="btnCheckin" style="display:none">   
-                                  <a href="#orderProcess" id="" class="btn btn-primary addTocart">AddToCart</a>
+                                  <a href="#orderProcess" id="" class="btn btn-primary addTocart">AddToBasket</a>
                               </div>
 
-                </div>
+                      </div>
 
             </div>
         </div>
@@ -880,7 +880,7 @@
               
 
               <div class="form-group col-sm-3">
-                  <button type="submit" class="btn btn-success">Next</button>
+                  <button type="submit" class="btn btn-success">Save</button>
               </div>
             </form>
             </div>
@@ -927,7 +927,7 @@
                         <option>select Dabbawala</option>
                         {{#each dabbawalaList }}
 
-                          <option>{{this.name}}</option>
+                          <option value="{{this._id}}">{{this.name}}</option>
                 
                         {{/each}}  
                   </select>
@@ -960,7 +960,7 @@
             
 
               <div class="form-group">
-                  <button type="submit" class="btn btn-success">Next</button>
+                  <button type="submit" class="btn btn-success">Save</button>
               </div>
             </form>
             </div>
@@ -1052,8 +1052,102 @@
     </script>
 
     <script type="text/x-template" id="dabbawala-list-template">
-        <h2>Udabbawala-list-template!</h2>
+        <h2>List of Dabbawala</h2>
+        <div class="table-responsive">
+                       <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Name of Restaurants</th>
+                              <th>Email</th>
+                              <th>Address</th>
+                              <th>Service Location</th>
+                              
+                            </tr>
+                          </thead>
+
+                          <tbody>
+
+                              {{#each dabbawalaList }}
+                                <tr>
+                                  <td>{{this.name}}</td>
+                                  <td>{{this.email}}</td> 
+                                  <td>{{this.address.vicinity}},{{this.address.city}},{{this.address.state}}</td>
+                                  <td>{{this.distributionAreas}}</td> 
+                                </tr>  
+                              {{/each}}
+                          </tbody>
+
+                      </table> 
+                    </div>
+
     </script>
+
+    <script type="text/x-template" id="team-list-template">
+        <h2>{{tiffinboxSupplier.name}} Team</h2>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>Name </th>
+                                <th>Email</th>
+                                <th>Contact</th>
+                                <th>Role</th>
+                                
+                                
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                            
+                                {{#each tiffinboxSupplier.team }}
+                                  <tr>
+                                    <td>{{this.name.first}}&nbsp {{this.name.last}}</td>
+                                    <td>{{this.email}}</td>
+                                    <td>{{this.contactNumber}}</td>
+                                    <td>{{this.role}}</td> 
+                                    
+                                  </tr>  
+                                {{/each}}
+                            </tbody>
+
+                        </table> 
+          </div>    
+    </script>
+
+    <script type="text/x-template" id="menu-list-template">
+        <h2>{{tiffinboxSupplier.name}} Menu</h2>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>Name </th>
+                                <th>Category</th>
+                                <th>Meal Type</th>
+                                <th>Items</th>
+                                <th>Price</th>
+                                
+                                
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                            
+                                {{#each tiffinboxSupplier.menu }}
+                                  <tr>
+                                    <td>{{this.name}}</td>
+                                    <td>{{this.category}}</td>
+                                    <td>{{this.mealType}}</td>
+                                    <td>{{this.ingredients}}</td>
+                                    <td>{{this.fullPrice}}</td> 
+                                    
+                                  </tr>  
+                                {{/each}}
+                            </tbody>
+
+                        </table> 
+          </div>    
+    </script>
+
 
     
     <script type="text/x-template" id="profile-template">

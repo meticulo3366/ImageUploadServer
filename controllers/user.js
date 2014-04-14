@@ -6,14 +6,55 @@ var mongoose = require('mongoose')
   , passport = require('passport')
   , util = require('../utils')
   , config = require('../config/config')
+  , TiffinSupplier = require('../models/TiffinboxSuppliers')
   , User = require('../models/User');
+
 
 module.exports = function(app) {
   
   var user = {};
 
-  user.create1 = function(req, res, next){
+  // user.create1 = function(req, res, next){
+    
+  //   var user = new User(req.body);
+  //   user.set('fullname', req.body.firstName + ' ' + req.body.lastName);
+  //   user.set('password', req.body.password);
+
+  //   user.confirmationToken = util.getRandomToken();
+
+  //   user.createdAt =
+  //   user.updatedAt =
+  //   user.confirmationTokenSentAt = new Date();
+    
+  //   user.loginIps.push(req.ip);
+
+  //   user.save(function(err, user){
+  //   if (err) { return next(err)};
+  //       if(user) {
+  //         var params = {
+  //           to: user.email,
+  //           message: config.email.message.buildConfirmationMessage(user.email, user.confirmationToken),
+  //           subject: config.email.subject.confirmationEmail
+  //         };
+  //         app.monq.sendEmail(params, function(err){
+  //           if(err) { return next(err);};
+  //         });
+
+  //         req.flash('info', {msg: config.messages.confirmationMailSent});
+  //         return res.json(user);
+  //       }
+  //       else {
+  //         return res.status(500).json({error: 'Unable to add user!'});
+  //       }
+        
+  //   });
+  // };
+
+    user.create = function(req, res, next){
+      console.log(req.query.dabbawalaId);
+    var isTiffinSupplierMember= false;
     var user = new User(req.body);
+    //user.set('name', req.body.firstName + ' ' + req.body.lastName);
     user.set('fullname', req.body.firstName + ' ' + req.body.lastName);
     user.set('password', req.body.password);
 
@@ -25,44 +66,30 @@ module.exports = function(app) {
     
     user.loginIps.push(req.ip);
 
-    user.save(function(err, user){
-    if (err) { return next(err)};
-        if(user) {
-          var params = {
-            to: user.email,
-            message: config.email.message.buildConfirmationMessage(user.email, user.confirmationToken),
-            subject: config.email.subject.confirmationEmail
-          };
-          app.monq.sendEmail(params, function(err){
-            if(err) { return next(err);};
-          });
-
-          req.flash('info', {msg: config.messages.confirmationMailSent});
-          return res.json(user);
-        }
-        else {
-          return res.status(500).json({error: 'Unable to add user!'});
-        }
-        
-    });
-  };
-
-    user.create = function(req, res, next){
-    var user = new User(req.body);
-    user.set('name', req.body.firstName + ' ' + req.body.lastName);
-    user.set('password', req.body.password);
-
-    user.confirmationToken = util.getRandomToken();
-
-    user.createdAt =
-    user.updatedAt =
-    user.confirmationTokenSentAt = new Date();
-    
-    user.loginIps.push(req.ip);
+    if(req.query.dabbawalaId){
+        console.log('tiffinboxSupplier id is'+ req.query.dabbawalaId);
+        isTiffinSupplierMember= true;
+        user.tiffinboxSupplier= req.query.dabbawalaId;
+    }
 
     user.save(function(err, user){
     if (err) { return next(err)};
-        if(user) {
+
+        if(user){
+
+          if(isTiffinSupplierMember){
+            TiffinSupplier.findById(req.query.dabbawalaId,
+              function(err,tiffinboxSupplier){
+                tiffinboxSupplier.team.push(user._id);
+                tiffinboxSupplier.save(function(err,tiffinboxSupplier){
+                  console.log('dabbawala updated with team'+tiffinboxSupplier.team);
+                    // Store
+                    //localStorage.setItem("tiffinboxSupplierId", tiffinboxSupplier._id)
+                    // Retrieve localStorage.getItem(tiffinboxSupplierId);
+              });
+            });
+          }
+
           var params = {
             to: user.email,
             message: config.email.message.buildConfirmationMessage(user.email, user.confirmationToken),
