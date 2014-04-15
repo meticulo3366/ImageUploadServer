@@ -83,12 +83,13 @@ app.SignInView =Backbone.View.extend({
           that.$el.html( that.tpl());
         },
           login: function(ev) {
+            console.log('in login f of Backbone');
           var loginDetails = $(ev.currentTarget).serializeObject();
           var userLogin = new app.UserLogin();
           userLogin.save(loginDetails, {
             success: function(user){
               window.localStorage.setItem('id', user.attributes._id);
-              
+              console.log('in login success')
               if(user.attributes.role === 'admin') {
                 app.router.navigate('adminDashboard', {trigger: true});
               } else {
@@ -162,10 +163,10 @@ app.HomepageView =Backbone.View.extend({
          
     });
 
-app.AdminDashboardView =Backbone.View.extend({
+app.addDabbawalaView =Backbone.View.extend({
       el:'.admin-content',
        tpl: Handlebars.compile(
-          document.getElementById('admin-dashboard-template').innerHTML
+          document.getElementById('add-dabbawala-template').innerHTML
         ),
         events: {
           'submit .create-dabbawala-form':'saveDabbawala'
@@ -510,10 +511,10 @@ app.AdminNavbarView =Backbone.View.extend({
          
     });
 
-app.DabbawalaListView =Backbone.View.extend({
+app.AdminDashboardView =Backbone.View.extend({
       el:'.admin-content',
        tpl: Handlebars.compile(
-          document.getElementById('dabbawala-list-template').innerHTML
+          document.getElementById('admin-dashboard-template').innerHTML
         ),
         events: {
              
@@ -538,6 +539,37 @@ app.DabbawalaListView =Backbone.View.extend({
         }
          
     });
+
+// app.DabbawalaListView =Backbone.View.extend({
+//       el:'.admin-content',
+//        tpl: Handlebars.compile(
+//           document.getElementById('dabbawala-list-template').innerHTML
+//         ),
+//         events: {
+             
+//         },
+
+//         initialize: function() {
+//           app.View= this;
+
+//           this.dabbawala = new app.addTiffinBoxSupplier();
+//           this.listenTo( this.dabbawala, 'sync', this.render,this);
+//           this.dabbawala.fetch();
+        
+//         },
+//         render: function () {
+//           var that = this;
+//           that.$el.html( that.tpl({
+//           dabbawalaList: that.dabbawala.toJSON()
+        
+         
+//     }));
+
+//         }
+         
+//     });
+
+
 app.TeamListView =Backbone.View.extend({
       el:'.admin-content',
        tpl: Handlebars.compile(
@@ -596,6 +628,36 @@ app.MenuListView =Backbone.View.extend({
          
     });
 
+app.SearchListView =Backbone.View.extend({
+      el:'.admin-content',
+       tpl: Handlebars.compile(
+          document.getElementById('search-dabbawala-template').innerHTML
+        ),
+        events: {
+             
+        },
+
+        initialize: function() {
+          app.View= this;
+
+          var query = $('#searchKey').val();
+          console.log('in searchList initialize '+query);
+          this.tiffinboxSupplier = new app.searchTiffinboxSupplier({query: query});
+          console.log(this.tiffinboxSupplier);
+          this.listenTo( this.tiffinboxSupplier, 'sync', this.render,this);
+          this.tiffinboxSupplier.fetch();
+
+        
+        },
+        render: function () {
+          console.log("In render: " + this.tiffinboxSupplier.toJSON());
+          var that = this;
+          that.$el.html( that.tpl({dabbawalaList: this.tiffinboxSupplier.toJSON()}));
+
+        }
+         
+    });
+
 
 
 
@@ -638,7 +700,21 @@ app.AdminRightNavbarReportView =Backbone.View.extend({
     });
 
 
-
+app.DeleteDabbawalaView= Backbone.View.extend({
+       el: '.admin-content',
+        render: function (options) {
+          console.log('in DeleteDabbawalaView');
+          var that = this;
+          var tiffinboxSupplier = new addTiffinBoxSupplier({id: options.id});
+          tiffinboxSupplier.destroy({
+            success: function (tiffinboxSupplier) {
+              console.log('in DeleteDabbawalaView success');
+              router.navigate('adminDashboard', {trigger:true});
+            }
+          });
+          return false;
+        }
+    });
 
 
 

@@ -148,7 +148,43 @@ tiffinboxSupplier.getMenu = function(req, res, next) {
 
       });
   };
- 
+
+  tiffinboxSupplier.search = function (req, res, next) {
+
+    var regex = { $regex: new RegExp(req.query.query, 'i')};
+    console.log('in search'+req.query.query);
+    var query = {$or: [
+      {name: regex}
+      ,{ditributionAreas: {$in: [regex]}}
+      ,{category: {$in: [regex]}}
+      ,{mealType: {$in: [regex]}}
+      ]};
+
+      console.log(query);
+
+    TiffinboxSupplier.find(query, function(err, tiffinBoxSuppliers) {
+
+      if(err) { return next(err); };
+      console.log(tiffinBoxSuppliers);
+      console.log('result'+tiffinBoxSuppliers);
+      res.json(tiffinBoxSuppliers);
+    });
+  };
+
+tiffinboxSupplier.delete = function (req, res, next) {
+    if(req.params.id){
+    console.log("ok");
+    TiffinboxSupplier.findById(req.params.id,
+      function(err,tiffinBoxSupplier){
+        if(!err){
+          tiffinBoxSupplier.remove();
+             res.json(tiffinBoxSupplier);
+          }
+      });
+  }
+   
+  };
+  
 
  
   return tiffinboxSupplier;

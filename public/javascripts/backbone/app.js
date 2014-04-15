@@ -46,7 +46,7 @@ $(function () {
     adminDashboardView.render();
     fullnavbarView.render();
     adminnavbarView.render();
-    adminrightnavbarView.render();
+   // adminrightnavbarView.render();
 
   });
 
@@ -96,8 +96,8 @@ $(function () {
       adminrightnavbarView.render();
       });
 
-    app.router.on('route:dabbawalaList',function () {
-      var add = new app.DabbawalaListView();
+    app.router.on('route:addDabbawala',function () {
+      var add = new app.addDabbawalaView();
       add.render();
       fullnavbarView.render();
       adminnavbarView.render();
@@ -118,6 +118,21 @@ $(function () {
       fullnavbarView.render();
       adminnavbarView.render();
       adminrightnavbarView.render();
+      });
+
+     app.router.on('route:search',function () {
+      var add = new app.SearchListView();
+      add.render();
+      fullnavbarView.render();
+      adminnavbarView.render();
+      //adminrightnavbarView.render();
+      });
+     app.router.on('route:delete',function (id) {
+      var add = new app.DeleteDabbawalaView();
+      add.render({id:id});
+      fullnavbarView.render();
+      adminnavbarView.render();
+      //adminrightnavbarView.render();
       });
 
   Backbone.history.start();

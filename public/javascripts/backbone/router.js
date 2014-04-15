@@ -18,9 +18,11 @@ var app = app || {};
       'addTeam': 'AddTeam',
       'addMenu': 'AddMenu',
       'report': 'report',
-      'dabbawalaList': 'dabbawalaList',
+      'addDabbawala': 'addDabbawala',
       'teamList': 'teamList',
-      'menuList': 'menuList' 
+      'menuList': 'menuList',
+      'search': 'search',
+      'delete/:id': 'delete' 
     }
   });  
 })();

@@ -13,11 +13,11 @@ var app = app || {};
     }
   });
 
-  app.addTiffinBoxSupplier = Backbone.Collection.extend({
-    url: function(){
-      return '/admin/tiffinBoxSupplier'
-    };
-  });
+  // app.TiffinBoxSuppliers = Backbone.Collection.extend({
+  //   url: function(){
+  //     return '/admin/tiffinBoxSupplier'
+  //   };
+  // });
 
   app.addTiffinBoxSupplier = Backbone.Model.extend({
      url: function() {
@@ -28,6 +28,12 @@ var app = app || {};
       };
     }
   });
+
+  app.searchTiffinboxSupplier = Backbone.Model.extend({
+    url:function() {
+      return '/tiffinBoxSupplier/search?query=' + this.get('query');
+    }
+  })
 
   app.TiffinboxSupplier = Backbone.Model.extend({
     url:function() {

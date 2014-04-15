@@ -31,6 +31,8 @@ module.exports = function(app){
   app.post('/admin/tiffinBoxSupplier',passportConfig.ensureAdmin,dabbawalaController.create);
   app.get('/admin/tiffinBoxSupplier',dabbawalaController.index);
   app.get('/admin/tiffinBoxSupplier/:id',dabbawalaController.show);
+  app.delete('/admin/tiffinBoxSupplier/:id',dabbawalaController.delete);
+  app.get('/tiffinBoxSupplier/search',dabbawalaController.search);
   app.post('/admin/tiffinBoxSupplierMenu',dabbawalaController.addMenu);
   app.get('/admin/tiffinBoxSupplierMenu/:id',dabbawalaController.getMenu);
   app.get('/tiffinBoxSupplier/:id/getTeam', dabbawalaController.getTeam);
