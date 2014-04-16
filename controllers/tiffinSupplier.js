@@ -157,7 +157,7 @@ tiffinboxSupplier.getMenu = function(req, res, next) {
     console.log('in search'+req.query.query);
     var query = {$or: [
       {name: regex}
-      ,{ditributionAreas: {$in: [new RegExp(req.query.query, 'i')]}}
+      ,{distributionAreas: {$in: [new RegExp(req.query.query, 'i')]}}
       ,{category: {$in: [new RegExp(req.query.query, 'i')]}}
       ,{mealType: {$in: [new RegExp(req.query.query, 'i')]}}
       ,{orderType: {$in: [new RegExp(req.query.query, 'i')]}}
