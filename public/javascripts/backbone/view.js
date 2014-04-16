@@ -350,17 +350,18 @@ app.FullNavbarView =Backbone.View.extend({
           that.$el.html( that.tpl());
         },
         logoutUser: function() {
-      var userLogout = new app.Logout();
-      userLogout.fetch({
-        success: function() {
-          app.router.navigate('signin', {trigger: true});
-        },
-        error: function(model, response) {
-       
+          var userLogout = new app.Logout();
+            userLogout.fetch({
+            success: function() {
+              app.router.navigate('signin', {trigger: true
+              });
+            },
+            error: function(model, response) {
+         
+            }
+          });
+          return false;
         }
-      });
-      return false;
-    }
          
     });
 
@@ -517,7 +518,7 @@ app.AdminDashboardView =Backbone.View.extend({
           document.getElementById('admin-dashboard-template').innerHTML
         ),
         events: {
-             
+             'click .search': 'searchResult'
         },
 
         initialize: function() {
@@ -530,14 +531,38 @@ app.AdminDashboardView =Backbone.View.extend({
         },
         render: function () {
           var that = this;
-          that.$el.html( that.tpl({
-          dabbawalaList: that.dabbawala.toJSON()
-        
-         
-    }));
+          that.$el.html( that.tpl({dabbawalaList: that.dabbawala.toJSON()}));
 
+        },
+
+        searchResult: function(ev){
+          var query = $('#searchKey').val();
+          console.log('in searchList initialize '+query);
+          this.tiffinboxSupplier = new app.searchTiffinboxSupplier({query: query});
+          //console.log(this.tiffinboxSupplier);
+          var that= this;
+          that.listenTo( that.tiffinboxSupplier, 'sync', that.render,that);
+          that.tiffinboxSupplier.fetch();
+          if(that.tiffinboxSupplier){
+          console.log('search result is : '+that.tiffinboxSupplier.toJSON());
+          console.log( that.tiffinboxSupplier.model.length);
+          var content= "";
+          var i;
+          for(i=0;i<that.tiffinboxSupplier.model.length;i++){
+            console.log('hi');
+            content+='<tr><td>'+that.tiffinboxSupplier.model[i].get('name')+'</td><td>'+that.tiffinboxSupplier.model[i].get('email')+'</td></tr>';
+            
+          }
+            $('.searchResultRow').append(content);
+            //$('.startTable').hide();
+            $('#startTable').hide();
+            $('.newTable').show();
+            }
+          
+        
         }
-         
+
+        
     });
 
 // app.DabbawalaListView =Backbone.View.extend({

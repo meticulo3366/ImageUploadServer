@@ -60,7 +60,8 @@ module.exports = function(app) {
           res.json(tiffinboxSupplier);
         }
         else{
-          return res.status(404).json({error: 'Page Note Found!'});
+          console.log(err);
+          return res.status(500).json({error: 'Page Note Found!'});
         }
       });
   }

@@ -14,8 +14,8 @@
     <div class="page">
            
               <div class="col-md-12 admin-navbar"></div>
-              <div class=" admin-right-navbar"></div>
-              <div class="col-md-10 col-md-offset-1 admin-content"></div>
+              <div class=" admin-right-navbar col-md-3 "></div>
+              <div class="admin-content col-md-offset-1"></div>
     </div>
 
   
@@ -72,7 +72,7 @@
         <div class = "">
           <div class="">
             <ul class="nav navbar-nav navbar-left">
-                  <li class="active"><a href="#adminDashboard">Dabbawala</a></li>
+                  <li class="active"><a href="#addDabbawala">Dabbawala</a></li>
                   <li><a href="#report">Report</a></li>  
             </ul>
           </div>
@@ -1047,13 +1047,13 @@
     </script>
 
     <script type="text/x-template" id="admin-dashboard-template">
-       <div class="container">
+      <div class="container">
         <div class="row">        
               <div class="input-group col-md-6 col-md-offset-2">
                   <div class="input-group ">
                       <input type="text" class="form-control " id="searchKey" name="searchKey" placeholder="Search by Restaraunts, location, menu, category" required>
                       <span class="input-group-btn">
-                          <a href="#search" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
+                          <button id="search" type="button" class="btn btn-primary search"><span class="glyphicon glyphicon-search"></span></button>
                       </span>
                   </div>   
               </div>
@@ -1062,8 +1062,35 @@
     
       
       <div class="table-responsive">
-      <h2>List of Dabbawala</h2>
-                       <table class="table table-bordered">
+        <h2>List of Dabbawala</h2>
+                      <div class="startTable" id="startTable"> 
+                        <table class="table table-bordered ">
+                            <thead>
+                              <tr>
+                                <th>Name of Restaurants</th>
+                                <th>Address</th>
+                                <th>Service Location</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+
+                                {{#each dabbawalaList }}
+                                  <tr>
+                                    <td>{{this.name}}</td> 
+                                    <td>{{this.address.vicinity}},{{this.address.city}},{{this.address.state}}</td>
+                                    <td>{{this.distributionAreas}}</td> 
+                                    <td><a href="#update/{{ this._id }}" class="btn btn-primary" id="">Edit</a>
+                                       <a href="#delete/{{ this._id }}" class="btn btn-danger" id="">Delete</a>
+                                    </td>
+                                  </tr>  
+                                {{/each}}
+                            </tbody>
+                          </table> 
+                        </div> 
+                  <div class="newTable" id="newTable"> 
+                    <table class="table table-bordered afterSearhTable" >
                           <thead>
                             <tr>
                               <th>Name of Restaurants</th>
@@ -1073,22 +1100,20 @@
                             </tr>
                           </thead>
 
-                          <tbody>
-
-                              {{#each dabbawalaList }}
-                                <tr>
-                                  <td>{{this.name}}</td> 
-                                  <td>{{this.address.vicinity}},{{this.address.city}},{{this.address.state}}</td>
-                                  <td>{{this.distributionAreas}}</td> 
-                                  <td><a href="#update/{{ this._id }}" class="btn btn-primary" id="">Edit</a>
-                                     <a href="#delete/{{ this._id }}" class="btn btn-danger" id="">Delete</a>
-                                  </td>
-                                </tr>  
-                              {{/each}}
+                          <tbody class="">
+                          <div class="searchResultRow"></div>
                           </tbody>
 
                       </table> 
                     </div>
+      </div>
+      <div class="pull-right"><a href="#addDabbawala" class="btn btn-primary" id="">Add New Dabbawala</a></div>  
+
+      <script>
+        $( document ).ready(function() {
+          $('.newTable').hide();
+        });
+      </script>
 
     </script>
 
