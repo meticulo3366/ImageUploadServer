@@ -28,13 +28,25 @@ module.exports = function(app){
   app.get('/users/logout', userController.logout);
 
   app.post('/users',userController.create);
-  app.post('/admin/tiffinBoxSupplier',passportConfig.ensureAdmin,dabbawalaController.create);
-  app.get('/admin/tiffinBoxSupplier',dabbawalaController.index);
-  app.get('/admin/tiffinBoxSupplier/:id',dabbawalaController.show);
-  app.delete('/admin/tiffinBoxSupplier/:id',dabbawalaController.delete);
+  app.post('/admin/tiffinBoxSupplier'
+    , passportConfig.isAuthenticated
+    , passportConfig.ensureAdmin
+    , dabbawalaController.create);
+  app.get('/admin/tiffinBoxSupplier', dabbawalaController.index);
+  app.get('/admin/tiffinBoxSupplier/:id', dabbawalaController.show);
+  app.delete('/admin/tiffinBoxSupplier/:id'
+    , passportConfig.isAuthenticated
+    , passportConfig.ensureAdmin
+    , dabbawalaController.delete);
   app.get('/tiffinBoxSupplier/search',dabbawalaController.search);
-  app.post('/admin/tiffinBoxSupplierMenu',dabbawalaController.addMenu);
+  app.post('/admin/tiffinBoxSupplierMenu'
+    , passportConfig.isAuthenticated
+    , passportConfig.ensureAdmin
+    , dabbawalaController.addMenu);
   app.get('/admin/tiffinBoxSupplierMenu/:id',dabbawalaController.getMenu);
-  app.get('/tiffinBoxSupplier/:id/getTeam', dabbawalaController.getTeam);
+  app.get('/tiffinBoxSupplier/:id/getTeam'
+    , passportConfig.isAuthenticated
+    , passportConfig.ensureAdmin
+    , dabbawalaController.getTeam);
   
 };
