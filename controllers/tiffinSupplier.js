@@ -151,13 +151,16 @@ tiffinboxSupplier.getMenu = function(req, res, next) {
 
   tiffinboxSupplier.search = function (req, res, next) {
 
+    //{ tags: { $in: [ /^be/, /^st/ ] } }
+
     var regex = { $regex: new RegExp(req.query.query, 'i')};
     console.log('in search'+req.query.query);
     var query = {$or: [
       {name: regex}
-      ,{ditributionAreas: {$in: [regex]}}
-      ,{category: {$in: [regex]}}
-      ,{mealType: {$in: [regex]}}
+      ,{ditributionAreas: {$in: [new RegExp(req.query.query, 'i')]}}
+      ,{category: {$in: [new RegExp(req.query.query, 'i')]}}
+      ,{mealType: {$in: [new RegExp(req.query.query, 'i')]}}
+      ,{orderType: {$in: [new RegExp(req.query.query, 'i')]}}
       ]};
 
       console.log(query);
