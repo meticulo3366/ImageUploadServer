@@ -45,10 +45,10 @@ module.exports = function(app){
     , passportConfig.isAuthenticated
     , passportConfig.ensureAdmin
     , dabbawalaController.addMenu);
-  app.get('/tiffinBoxSupplierMenu/:id',dabbawalaController.getMenu);
-  app.get('/tiffinBoxSupplier/:id/getTeam'
-    , passportConfig.isAuthenticated
-    , passportConfig.ensureAdmin
-    , dabbawalaController.getTeam);
+  //app.get('/tiffinBoxSupplierMenu/:id',dabbawalaController.getMenu);
+  // app.get('/tiffinBoxSupplier/:id/getTeam'
+  //   , passportConfig.isAuthenticated
+  //   , passportConfig.ensureAdmin
+  //   , dabbawalaController.getTeam);
   
 };
