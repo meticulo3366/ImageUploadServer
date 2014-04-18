@@ -542,22 +542,25 @@ app.AdminDashboardView =Backbone.View.extend({
           //console.log(this.tiffinboxSupplier);
           var that= this;
           that.listenTo( that.tiffinboxSupplier, 'sync', that.render,that);
-          that.tiffinboxSupplier.fetch();
-          if(that.tiffinboxSupplier){
-          console.log('search result is : '+that.tiffinboxSupplier.toJSON());
-          console.log( that.tiffinboxSupplier.model.length);
-          var content= "";
-          var i;
-          for(i=0;i<that.tiffinboxSupplier.model.length;i++){
-            console.log('hi');
-            content+='<tr><td>'+that.tiffinboxSupplier.model[i].get('name')+'</td><td>'+that.tiffinboxSupplier.model[i].get('email')+'</td></tr>';
-            
-          }
-            $('.searchResultRow').append(content);
-            //$('.startTable').hide();
-            $('#startTable').hide();
-            $('.newTable').show();
+          that.tiffinboxSupplier.fetch({
+            success: function(){
+                if(that.tiffinboxSupplier){
+                  console.log('search result is : '+that.tiffinboxSupplier.toJSON());
+                  //console.log( that.tiffinboxSupplier.model.length);
+                  var content= "";
+                  var i;
+                  for(i=0;that.tiffinboxSupplier;i++){
+                    console.log('hi');
+                  content+='<tr><td>'+that.tiffinboxSupplier.model[i].get('name')+'</td><td>'+that.tiffinboxSupplier.model[i].get('email')+'</td></tr>';
+                  }
+                  $('.searchResultRow').append(content);
+                  //$('.startTable').hide();
+                  $('#startTable').hide();
+                  $('.newTable').show();
+                }
             }
+          });
+         
           
         
         }
