@@ -152,13 +152,14 @@ tiffinboxSupplier.getMenu = function(req, res, next) {
 
   tiffinboxSupplier.search = function (req, res, next) {
 
-    var regex = { $regex: new RegExp(req.query.query, 'i')};
+    var regex = new RegExp(req.query.query, 'i');
     console.log('in search'+req.query.query);
     var query = {$or: [
-      {name: regex}
-      ,{ditributionAreas: {$in: [regex]}}
+      {name: { $regex: regex}}
+      ,{distributionAreas: {$in: [regex]}}
       ,{category: {$in: [regex]}}
       ,{mealType: {$in: [regex]}}
+      ,{orderType: {$in: [regex]}}
       ]};
 
       console.log(query);
@@ -167,7 +168,6 @@ tiffinboxSupplier.getMenu = function(req, res, next) {
 
       if(err) { return next(err); };
       console.log(tiffinBoxSuppliers);
-      console.log('result'+tiffinBoxSuppliers);
       res.json(tiffinBoxSuppliers);
     });
   };
