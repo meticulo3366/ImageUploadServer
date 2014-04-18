@@ -29,11 +29,7 @@ var app = app || {};
     }
   });
 
-  app.searchTiffinboxSupplier = Backbone.Model.extend({
-    url:function() {
-      return '/tiffinBoxSupplier/search?query=' + this.get('query');
-    }
-  })
+ 
 
   app.TiffinboxSupplier = Backbone.Model.extend({
     url:function() {

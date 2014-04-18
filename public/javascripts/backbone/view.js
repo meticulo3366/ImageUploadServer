@@ -541,27 +541,26 @@ app.AdminDashboardView =Backbone.View.extend({
           this.tiffinboxSupplier = new app.searchTiffinboxSupplier({query: query});
           //console.log(this.tiffinboxSupplier);
           var that= this;
-          that.listenTo( that.tiffinboxSupplier, 'sync', that.render,that);
           that.tiffinboxSupplier.fetch({
-            success: function(){
-                if(that.tiffinboxSupplier){
-                  console.log('search result is : '+that.tiffinboxSupplier.toJSON());
-                  //console.log( that.tiffinboxSupplier.model.length);
+            success: function(ev){
+              console.log('*****************tiff supp :');
+              console.log(that.tiffinboxSupplier);
+              console.log(that.tiffinboxSupplier.models.length);
+              
                   var content= "";
-                  var i;
-                  for(i=0;that.tiffinboxSupplier;i++){
-                    console.log('hi');
-                  content+='<tr><td>'+that.tiffinboxSupplier.model[i].get('name')+'</td><td>'+that.tiffinboxSupplier.model[i].get('email')+'</td></tr>';
+    
+                  for(var i=0;i<that.tiffinboxSupplier.models.length;i++){
+                    content+='<tr><td>'+that.tiffinboxSupplier.models[i].get('name')+'</td><td>'+that.tiffinboxSupplier.models[i].get('address')+'</td><td>'+that.tiffinboxSupplier.models[i].get('distributionAreas')+'</td><td><a href="#update/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-danger" id="">Edit</a><a href="#delete/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-primary" id="">Delete</a></td></tr>';
+                    
                   }
-                  $('.searchResultRow').append(content);
-                  //$('.startTable').hide();
-                  $('#startTable').hide();
+                  console.log(content);
+                  $('.afterSearhTable').append(content);
+                  $('.startTable').hide();
                   $('.newTable').show();
-                }
             }
           });
          
-          
+          return false;   
         
         }
 
