@@ -14,7 +14,8 @@
     <div class="page">
            
               <div class="col-md-12 admin-navbar"></div>
-              <div class=" admin-right-navbar col-md-3 "></div>
+
+              <div class=" admin-right-navbar col-md-12 "></div>
               <div class="admin-content col-md-offset-1"></div>
     </div>
 
@@ -85,11 +86,11 @@
     <script type="text/x-template" id="admin-right-navbar-dabbawala-template">
       <div class = "navbar navbar-inverse navbar-static-top">
       
-            <ul class="nav nav-pills nav-stacked">
+            <ul class="nav navbar-nav navbar-left">
                   <li class=""><a href="#addDabbawala">Add Dabbawala</a></li>
                   <li><a href="#addTeam">Add Team</a></li>
                   <li><a href="#addMenu">Add Menu</a></li>
-                  <br><br><br><br>
+                  
             </ul>
 
       </div>
@@ -1024,7 +1025,8 @@
                           </table> 
                         </div> 
                   <div class="newTable" id="newTable"> 
-                    <table class="table table-bordered afterSearhTable" >
+                    <table class="table table-bordered " >
+
                           <thead>
                             <tr>
                               <th>Name of Restaurants</th>
@@ -1033,6 +1035,9 @@
                               <th>Action</th>
                             </tr>
                           </thead>
+
+                          <tbody class="afterSearhTable"></tbody>
+
 
                       </table> 
                     </div>
@@ -1164,6 +1169,7 @@
     <script src= "/javascripts/lib/bootstrap.min.js"></script>
     <script src="/javascripts/backbone_utils.js"></script>
     <script src="/javascripts/backbone/model.js"></script>
+    <script src="/javascripts/backbone/collections.js"></script>
     <script src="/javascripts/backbone/view.js"></script>
     <script src="/javascripts/backbone/collections.js"></script>
     <script src="/javascripts/backbone/router.js"></script>

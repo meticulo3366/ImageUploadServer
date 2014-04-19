@@ -50,21 +50,22 @@ module.exports = function(app) {
 
   tiffinboxSupplier.show = function(req,res){
     console.log('in show api'+req.params.id);
-  if(req.params.id){
-    console.log('true');
-    TiffinboxSupplier.findById(req.params.id,
-      function(err,tiffinboxSupplier){
-        console.log('in function');
-        if(!err){
-          console.log('in !err if');
-          res.json(tiffinboxSupplier);
+    console.log('in get team api');
+    //req.params.id - tiffinBoxSupplierId
+    TiffinboxSupplier.findById(req.params.id)
+      .populate('team')
+      .exec(function(err, tiffinBoxSupplier) {
+
+        if(err) { return next(err); };
+
+        if(tiffinBoxSupplier) {
+          console.log('team'+tiffinboxSupplier);
+          return res.json(tiffinBoxSupplier);
+        } else {
+          return res.json(404, {error: 'Tiffin box supplier not found!'});
         }
-        else{
-          console.log(err);
-          return res.status(500).json({error: 'Page Note Found!'});
-        }
+
       });
-  }
 };
 
   tiffinboxSupplier.addMenu = function(req, res, next){
@@ -110,45 +111,45 @@ module.exports = function(app) {
 
   };
 
-  tiffinboxSupplier.getTeam = function(req, res, next) {
-    console.log('in get team api');
-    //req.params.id - tiffinBoxSupplierId
-    TiffinboxSupplier.findById(req.params.id)
-      .populate('team')
-      .exec(function(err, tiffinBoxSupplier) {
+  // tiffinboxSupplier.getTeam = function(req, res, next) {
+  //   console.log('in get team api');
+  //   //req.params.id - tiffinBoxSupplierId
+  //   TiffinboxSupplier.findById(req.params.id)
+  //     .populate('team')
+  //     .exec(function(err, tiffinBoxSupplier) {
 
-        if(err) { return next(err); };
+  //       if(err) { return next(err); };
 
-        if(tiffinBoxSupplier) {
-          console.log('team'+tiffinboxSupplier);
-          return res.json(tiffinBoxSupplier);
-        } else {
-          return res.json(404, {error: 'Tiffin box supplier not found!'});
-        }
+  //       if(tiffinBoxSupplier) {
+  //         console.log('team'+tiffinboxSupplier);
+  //         return res.json(tiffinBoxSupplier);
+  //       } else {
+  //         return res.json(404, {error: 'Tiffin box supplier not found!'});
+  //       }
 
-      });
-  };
+  //     });
+  // };
  
 
  
 
-tiffinboxSupplier.getMenu = function(req, res, next) {
-    console.log('in get Menu api');
-    //req.params.id - tiffinBoxSupplierId
-    TiffinboxSupplier.findById(req.params.id)
-      .exec(function(err, tiffinBoxSupplier) {
+// tiffinboxSupplier.getMenu = function(req, res, next) {
+//     console.log('in get Menu api');
+//     //req.params.id - tiffinBoxSupplierId
+//     TiffinboxSupplier.findById(req.params.id)
+//       .exec(function(err, tiffinBoxSupplier) {
 
-        if(err) { return next(err); };
+//         if(err) { return next(err); };
 
-        if(tiffinBoxSupplier) {
-          console.log('menu'+tiffinboxSupplier.menu);
-          return res.json(tiffinBoxSupplier);
-        } else {
-          return res.json(404, {error: 'Tiffin box supplier not found!'});
-        }
+//         if(tiffinBoxSupplier) {
+//           console.log('menu'+tiffinboxSupplier.menu);
+//           return res.json(tiffinBoxSupplier);
+//         } else {
+//           return res.json(404, {error: 'Tiffin box supplier not found!'});
+//         }
 
-      });
-  };
+//       });
+//   };
 
   tiffinboxSupplier.search = function (req, res, next) {
 
@@ -172,13 +173,13 @@ tiffinboxSupplier.getMenu = function(req, res, next) {
     });
   };
 
+
 tiffinboxSupplier.filter=function(req,res,next){
   console.log('In Filter function Server');
   console.log(req.body);
   res.json({name:NAme});
 }
  
-
 tiffinboxSupplier.delete = function (req, res, next) {
     if(req.params.id){
     console.log("ok");

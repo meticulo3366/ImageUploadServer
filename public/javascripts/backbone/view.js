@@ -195,6 +195,7 @@ app.addDabbawalaView =Backbone.View.extend({
         },
         saveDabbawala:function(ev){
           var dabbawalaDetails = $(ev.currentTarget).serializeObject();
+//************************
           var dabbawala = new app.addTiffinBoxSupplier();
 
           dabbawala.save(dabbawalaDetails, {
@@ -204,7 +205,7 @@ app.addDabbawalaView =Backbone.View.extend({
 
         
               console.log('dabbawala saved:  '+dbw.name);
-              app.router.navigate('dabbawalaList',{trigger: true});
+              app.router.navigate('adminDashboard',{trigger: true});
             },
             error: function(model, response){
               if(_.isString(response.responseJSON.error)) {
@@ -485,8 +486,7 @@ app.AddMenuView =Backbone.View.extend({
 
         },
         render: function () {
-          // var that = this;
-          // that.$el.html( that.tpl());
+  
           var that = this;
           that.$el.html( that.tpl({
           dabbawalaList: that.dabbawala.toJSON()
@@ -581,18 +581,18 @@ app.AdminDashboardView =Backbone.View.extend({
           var that= this;
           that.tiffinboxSupplier.fetch({
             success: function(ev){
-              //console.log('*****************tiff supp :');
+              console.log('*****************tiff supp :');
               console.log(that.tiffinboxSupplier);
               console.log(that.tiffinboxSupplier.models.length);
               
-                  var content= "";
+              var content= "";
     
-                  for(var i=0;i<that.tiffinboxSupplier.models.length;i++){
-                    content+='<tr><td>'+that.tiffinboxSupplier.models[i].get('name')+'</td><td>'+that.tiffinboxSupplier.models[i].get('address')+'</td><td>'+that.tiffinboxSupplier.models[i].get('distributionAreas')+'</td><td><a href="#update/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-danger" id="">Edit</a><a href="#delete/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-primary" id="">Delete</a></td></tr>';
-                    
-                  }
+              for(var i=0;i<that.tiffinboxSupplier.models.length;i++){
+                content+='<tr><td>'+that.tiffinboxSupplier.models[i].get('name')+'</td><td>'+that.tiffinboxSupplier.models[i].get('address')+'</td><td>'+that.tiffinboxSupplier.models[i].get('distributionAreas')+'</td><td><a href="#update/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-danger" id="">Edit</a><a href="#delete/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-primary" id="">Delete</a></td></tr>';
+              }
                   console.log(content);
-                  $('.afterSearhTable').append(content);
+                  //$('.afterSearhTable').innerHTML="W3Schools";
+                  $('.afterSearhTable').html(content);
                   $('.startTable').hide();
                   $('.newTable').show();
             }
@@ -648,7 +648,7 @@ app.TeamListView =Backbone.View.extend({
           app.View= this;
 
           var id = window.localStorage.getItem('tiffinboxSupplierId');
-          this.tiffinboxSupplier = new app.TiffinboxSupplier({id: id});
+          this.tiffinboxSupplier = new app.addTiffinBoxSupplier({id: id});
           this.listenTo( this.tiffinboxSupplier, 'sync', this.render,this);
           this.tiffinboxSupplier.fetch();
 
@@ -768,8 +768,9 @@ app.AdminRightNavbarReportView =Backbone.View.extend({
 app.DeleteDabbawalaView= Backbone.View.extend({
        el: '.admin-content',
         render: function (options) {
-          console.log('in DeleteDabbawalaView');
+          console.log('in DeleteDabbawalaView'+options.id);
           var that = this;
+          console.Log(options.id);
           var tiffinboxSupplier = new addTiffinBoxSupplier({id: options.id});
           tiffinboxSupplier.destroy({
             success: function (tiffinboxSupplier) {
