@@ -25,7 +25,10 @@ var orderSchema = mongoose.Schema({
     },
 
     date: Date,
-    mealAt: String, //enum ['breakfast', 'lunch', 'dinner', 'snacks']
+    mealAt: {
+      type: String
+      enum: ['breakfast', 'lunch', 'dinner', 'snacks']
+    },
     price: Number, //Daily will come from menu.price, monthly and weekly will come from dabbawala.price  
 
     deliveryAddress:{
