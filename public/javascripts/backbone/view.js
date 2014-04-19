@@ -18,7 +18,7 @@ app.LandingView =Backbone.View.extend({
           document.getElementById('landing-template').innerHTML
         ),
         events: {
-             
+             'click .consumerSearch' : 'storeQueryAndNavigate'
         },
 
         initialize: function() {
@@ -27,9 +27,17 @@ app.LandingView =Backbone.View.extend({
         render: function () {
           var that = this;
           that.$el.html( that.tpl());
+        },
+        storeQueryAndNavigate:function(){
+          var taht=this;
+          var query=document.getElementById('comsumerQuery').value;
+          localStorage.setItem("name", query);
+          app.router.navigate('list', {trigger: true});
+
+
         }
-         
     });
+       
 app.CreateUserView =Backbone.View.extend({
       el:'.page',
        tpl: Handlebars.compile(
@@ -188,6 +196,7 @@ app.addDabbawalaView =Backbone.View.extend({
         saveDabbawala:function(ev){
           var dabbawalaDetails = $(ev.currentTarget).serializeObject();
           var dabbawala = new app.addTiffinBoxSupplier();
+
           dabbawala.save(dabbawalaDetails, {
             success: function(dbw){
               if(app.View)
@@ -254,22 +263,51 @@ app.ProfileView =Backbone.View.extend({
           document.getElementById('list-template').innerHTML
         ),
         events: {
-             'click .chekout': 'checkout'
+             'click .chekout': 'checkout',
+             'click .newSearch' :  'search',
+             'submit .filer-search-form' : 'filterSearch'
         },
 
         initialize: function() {
-        
+          app.View=this;
         },
         render: function () {
           var that = this;
-          that.$el.html( that.tpl());
+          var query=localStorage.getItem("name");
+          this.tiffinboxSupplier = new app.searchTiffinboxSupplier({query: query});
+          that.tiffinboxSupplier.fetch({
+            success: function(ev){
+              that.$el.html( that.tpl({tiffinSupplers:that.tiffinboxSupplier.toJSON()}));
+            }          
+
+          });
         },
 
         checkout: function(ev){
            app.router.navigate('checkout', {trigger: true});
-        }
-         
+        },
+        search:function(){
+          console.log('In New Search');
+
+          var query=document.getElementById('newComsumerQuery').value;
+          localStorage.setItem("name", query);
+         //app.router.navigate('list', {trigger: true});
+          $('body').removeClass('modal-open');
+          $('.modal-backdrop').remove();
+         new app.ListSupplierView();
+         this.render();
+
+        },
+        filterSearch : function(ev){
+          var that=this;
+          var filterValue=$(ev.currentTarget).serializeObject();
+          var searchFilterResult=new app.SearchFilterResult();
+            alert('In Before');
+            console.log(filterValue);
+         return false;
+       }
     });
+      
 
   app.CheckoutView =Backbone.View.extend({
       el:'.page',
@@ -350,17 +388,18 @@ app.FullNavbarView =Backbone.View.extend({
           that.$el.html( that.tpl());
         },
         logoutUser: function() {
-      var userLogout = new app.Logout();
-      userLogout.fetch({
-        success: function() {
-          app.router.navigate('signin', {trigger: true});
-        },
-        error: function(model, response) {
-       
+          var userLogout = new app.Logout();
+            userLogout.fetch({
+            success: function() {
+              app.router.navigate('signin', {trigger: true
+              });
+            },
+            error: function(model, response) {
+         
+            }
+          });
+          return false;
         }
-      });
-      return false;
-    }
          
     });
 
@@ -517,7 +556,7 @@ app.AdminDashboardView =Backbone.View.extend({
           document.getElementById('admin-dashboard-template').innerHTML
         ),
         events: {
-             
+             'click .search': 'searchResult'
         },
 
         initialize: function() {
@@ -530,14 +569,40 @@ app.AdminDashboardView =Backbone.View.extend({
         },
         render: function () {
           var that = this;
-          that.$el.html( that.tpl({
-          dabbawalaList: that.dabbawala.toJSON()
-        
-         
-    }));
+          that.$el.html( that.tpl({dabbawalaList: that.dabbawala.toJSON()}));
 
-        }
+        },
+
+        searchResult: function(ev){
+          var query = $('#searchKey').val();
+          console.log('in searchList initialize '+query);
+          this.tiffinboxSupplier = new app.searchTiffinboxSupplier({query: query});
+          //console.log(this.tiffinboxSupplier);
+          var that= this;
+          that.tiffinboxSupplier.fetch({
+            success: function(ev){
+              //console.log('*****************tiff supp :');
+              console.log(that.tiffinboxSupplier);
+              console.log(that.tiffinboxSupplier.models.length);
+              
+                  var content= "";
+    
+                  for(var i=0;i<that.tiffinboxSupplier.models.length;i++){
+                    content+='<tr><td>'+that.tiffinboxSupplier.models[i].get('name')+'</td><td>'+that.tiffinboxSupplier.models[i].get('address')+'</td><td>'+that.tiffinboxSupplier.models[i].get('distributionAreas')+'</td><td><a href="#update/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-danger" id="">Edit</a><a href="#delete/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-primary" id="">Delete</a></td></tr>';
+                    
+                  }
+                  console.log(content);
+                  $('.afterSearhTable').append(content);
+                  $('.startTable').hide();
+                  $('.newTable').show();
+            }
+          });
          
+          return false;   
+        
+        }
+
+        
     });
 
 // app.DabbawalaListView =Backbone.View.extend({

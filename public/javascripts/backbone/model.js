@@ -22,18 +22,14 @@ var app = app || {};
   app.addTiffinBoxSupplier = Backbone.Model.extend({
      url: function() {
       if(this.get('id')) {
-        return '/admin/tiffinBoxSupplier/' + this.get('id');    
+        return '/tiffinBoxSupplier/' + this.get('id');    
       } else {
-        return '/admin/tiffinBoxSupplier/';  
+        return '/tiffinBoxSupplier/';  
       };
     }
   });
 
-  app.searchTiffinboxSupplier = Backbone.Model.extend({
-    url:function() {
-      return '/tiffinBoxSupplier/search?query=' + this.get('query');
-    }
-  })
+ 
 
   app.TiffinboxSupplier = Backbone.Model.extend({
     url:function() {
@@ -42,11 +38,14 @@ var app = app || {};
   })
 
 
+
+
+
   app.addTiffinBoxSupplierMenu = Backbone.Model.extend({
-    url: '/admin/tiffinBoxSupplierMenu'
+    url: '/tiffinBoxSupplierMenu'
   });
   app.addTiffinBoxSupplierTeam = Backbone.Model.extend({
-      url: '/admin/tiffinBoxSupplierTeam'
+      url: '/tiffinBoxSupplierTeam'
     });
 
 

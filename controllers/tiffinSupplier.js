@@ -60,7 +60,8 @@ module.exports = function(app) {
           res.json(tiffinboxSupplier);
         }
         else{
-          return res.status(404).json({error: 'Page Note Found!'});
+          console.log(err);
+          return res.status(500).json({error: 'Page Note Found!'});
         }
       });
   }
@@ -152,7 +153,7 @@ tiffinboxSupplier.getMenu = function(req, res, next) {
   tiffinboxSupplier.search = function (req, res, next) {
 
     var regex = new RegExp(req.query.query, 'i');
-    console.log('in search'+req.query.query);
+    //console.log('in search'+req.query.query);
     var query = {$or: [
       {name: { $regex: regex}}
       ,{distributionAreas: {$in: [regex]}}
@@ -161,15 +162,22 @@ tiffinboxSupplier.getMenu = function(req, res, next) {
       ,{orderType: {$in: [regex]}}
       ]};
 
-      console.log(query);
+      //console.log(query);
 
     TiffinboxSupplier.find(query, function(err, tiffinBoxSuppliers) {
 
       if(err) { return next(err); };
-      console.log(tiffinBoxSuppliers);
+      //console.log(tiffinBoxSuppliers);
       res.json(tiffinBoxSuppliers);
     });
   };
+
+tiffinboxSupplier.filter=function(req,res,next){
+  console.log('In Filter function Server');
+  console.log(req.body);
+  res.json({name:NAme});
+}
+ 
 
 tiffinboxSupplier.delete = function (req, res, next) {
     if(req.params.id){

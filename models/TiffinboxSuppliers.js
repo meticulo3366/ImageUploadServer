@@ -54,8 +54,6 @@ var tiffinboxsuppliersSchema = mongoose.Schema({
   }],
 
   menu: [{
-   menuId: String,
-
    name: String,
 
    category: [{
