@@ -589,7 +589,7 @@ app.AdminDashboardView =Backbone.View.extend({
               var content= "";
     
               for(var i=0;i<that.tiffinboxSupplier.models.length;i++){
-                content+='<tr><td>'+that.tiffinboxSupplier.models[i].get('name')+'</td><td>'+that.tiffinboxSupplier.models[i].get('address')+'</td><td>'+that.tiffinboxSupplier.models[i].get('distributionAreas')+'</td><td><a href="#update/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-danger" id="">Edit</a><a href="#delete/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-primary" id="">Delete</a></td></tr>';
+                content+='<tr><td>'+that.tiffinboxSupplier.models[i].get('name')+'</td><td>'+that.tiffinboxSupplier.models[i].get('address').vicinity+','+that.tiffinboxSupplier.models[i].get('address').city+','+that.tiffinboxSupplier.models[i].get('address').zipCode+'</td><td>'+that.tiffinboxSupplier.models[i].get('distributionAreas')+'</td><td><a href="#update/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-danger" id="">Edit</a><a href="#delete/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-primary" id="">Delete</a></td></tr>';
               }
                   console.log(content);
                   //$('.afterSearhTable').innerHTML="W3Schools";
