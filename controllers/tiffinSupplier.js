@@ -50,7 +50,6 @@ module.exports = function(app) {
 
   tiffinboxSupplier.show = function(req,res){
     console.log('in show api'+req.params.id);
-   
     console.log('in get team api');
     //req.params.id - tiffinBoxSupplierId
     TiffinboxSupplier.findById(req.params.id)
@@ -155,7 +154,7 @@ module.exports = function(app) {
   tiffinboxSupplier.search = function (req, res, next) {
 
     var regex = new RegExp(req.query.query, 'i');
-    console.log('in search'+req.query.query);
+    //console.log('in search'+req.query.query);
     var query = {$or: [
       {name: { $regex: regex}}
       ,{distributionAreas: {$in: [regex]}}
@@ -164,18 +163,23 @@ module.exports = function(app) {
       ,{orderType: {$in: [regex]}}
       ]};
 
-      console.log(query);
+      //console.log(query);
 
     TiffinboxSupplier.find(query, function(err, tiffinBoxSuppliers) {
 
       if(err) { return next(err); };
-      console.log(tiffinBoxSuppliers);
+      //console.log(tiffinBoxSuppliers);
       res.json(tiffinBoxSuppliers);
     });
   };
 
 
-
+tiffinboxSupplier.filter=function(req,res,next){
+  console.log('In Filter function Server');
+  console.log(req.body);
+  res.json({name:NAme});
+}
+ 
 tiffinboxSupplier.delete = function (req, res, next) {
     if(req.params.id){
     console.log("ok");

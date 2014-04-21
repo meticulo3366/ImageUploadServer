@@ -14,6 +14,7 @@
     <div class="page">
            
               <div class="col-md-12 admin-navbar"></div>
+
               <div class=" admin-right-navbar col-md-12 "></div>
               <div class="admin-content col-md-offset-1"></div>
     </div>
@@ -115,15 +116,10 @@
               <div class="input-group col-md-7 col-md-offset-3 divlocation"><br><br>
 
                   <div class="input-group ">
-                      <select id="location" name="location" class="form-control ">
-                        <option>select location here</option>
-                        <option>Hadapsar</option>
-                        <option>Dange Chowk</option>
-                        <option>Shivaji Nagar</option>
-                        <option>Aundh</option>
-                      </select>
+                      
+                      <input type="text" class="form-control" id="comsumerQuery"  placeholder="Entger Location or Name or Meal Type">
                       <span class="input-group-btn">
-                          <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                          <button type="button" class="btn btn-primary consumerSearch"><span class="glyphicon glyphicon-search"></span></button>
                       </span>
                   </div>   
                  <br><br>
@@ -136,181 +132,120 @@
      
     <script type="text/x-template" id="list-template">
       <div class="container">
-              <div class="row">
-                <div class="col-md-2 col-md-offset-2">
-                  <a href="#mymodel" data-toggle="modal" class="btn btn-primary">Change Location</a>
-                  <div class="modal fade" id="mymodel" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          select location
-                        </div>
-                        <div class="modal-body">
-                           <div class="input-group">
-                              <select id="location" name="location" class="form-control">
-                                <option>select location here</option>
-                                <option>Hadapsar</option>
-                                <option>Dange Chowk</option>
-                                <option>Shivaji Nagar</option>
-                                <option>Aundh</option>
-                              </select>
-                              <span class="input-group-btn">
-                                  <button class="btn btn-primary">Search</button>
-                              </span>
-                          </div> 
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></button>
-                        </div>
-                      </div>
+        <div class="row">
+          <div class="col-md-2 col-md-offset-2">
+            <a href="#mymodel" data-toggle="modal" class="btn btn-primary">Change Location</a>
+            <div class="modal fade" id="mymodel" role="dialog" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">select location</div>
+                    <div class="modal-body">
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Enter Location or Name or Meal Type" id="newComsumerQuery" >
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-primary newSearch" data-dismiss="modal" >Search</button>
+                        </span>
+                      </div> 
                     </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></button>
                   </div>
                 </div>
-                <div class="col-md-2 col-md-offset-4">
-                  <a href="#checkout" class="btn btn-primary checkout">View Menu</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 col-md-offset-4">
+            <a href="#checkout" class="btn btn-primary checkout">View Menu</a>
+        </div>
+        <br><br>
+
+        <div class="row">
+          <div class="col-sm-3">
+            <form class="form-horizontal filer-search-form">
+              <div class="panel panel-primary">
+                <div class="panel-body">
+                  <h3>Meal Type</h3>
+                  <div class="checkbox">
+                    <label>
+                     <input type="checkbox" value="Lunch" name="mealType">Lunch
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="Breakfast" name="mealType">Breakfast
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="Dinner" name="mealType">Dinner
+                    </label>
+                  </div>
+                  <hr>
+                  <h3>Category</h3>
+                  
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="Veg" name="category">Veg
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="Non-Veg" name="category">Non-Veg
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="Jain" name="category">Jain
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="Gujrati" name="category">Gujrati
+                    </label>
+                  </div>
+                  <hr>
+                  <h3>Order Type</h3>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="Weekly" name="orderType">Weekly
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="Daily" name="orderType">Daily
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="Monthly" name="orderType">Monthly
+                    </label>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Search</button>
                 </div>
               </div>
-              <br><br>
-
-          <div class="row">
-                  <div class="col-md-3">
-                          <div class="abc img-thumbnail">
-                                <div><img src="../images/a1.jpg" class="img-responsive listOfSupplier_img">
-                                </div>
-                                <div class="center-text">
-                                      <h4>Name of Supplier</h4>
-                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
-                                         Contact:968579545
-                                      </p>
-                                </div>
-                                <div class="lcb">
-                                      <input type="checkbox" id="listOfSupplier">
-                                </div> 
-                          </div>          
-                   </div>
-
-                   <div class="col-md-3">
-                          <div class="abc img-thumbnail">
-                                <div><img src="../images/a2.jpg" class="img-responsive listOfSupplier_img">
-                                </div>
-                                <div class="center-text">
-                                      <h4>Name of Supplier</h4>
-                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
-                                         Contact:968579545
-                                      </p>
-                                </div>
-                                <div class="lcb">
-                                      <input type="checkbox" id="listOfSupplier">
-                                </div> 
-                          </div>          
-                   </div>
-
-                   <div class="col-md-3">
-                          <div class="abc thumbnail">
-                                <div><img src="../images/a3.jpg" class="img-responsive listOfSupplier_img ">
-                                </div>
-                                <div class="center-text">
-                                      <h4>Name of Supplier</h4>
-                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
-                                         Contact:968579545
-                                      </p>
-                                </div>
-                                <div class="lcb">
-                                      <input type="checkbox" id="listOfSupplier">
-                                </div> 
-                          </div>          
-                   </div>
-
-                   <div class="col-md-3">
-                          <div class="abc thumbnail">
-                                <div><img src="../images/a4.jpg" class="img-responsive listOfSupplier_img ">
-                                </div>
-                                <div class="center-text">
-                                      <h4>Name of Supplier</h4>
-                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
-                                         Contact:968579545
-                                      </p>
-                                </div>
-                                <div class="lcb">
-                                      <input type="checkbox" id="listOfSupplier">
-                                </div> 
-                          </div>          
-                   </div>
-
+            </form>
           </div>
-
-          <div class="row">
-                  <div class="col-md-3">
-                          <div class="abc thumbnail">
-                                <div><img src="../images/a3.jpg" class="img-responsive listOfSupplier_img">
-                                </div>
-                                <div class="">
-                                      <h4>Name of Supplier</h4>
-                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
-                                         Contact:968579545
-                                      </p>
-                                </div>
-                                <div class="lcb">
-                                      <input type="checkbox" id="listOfSupplier">
-                                </div> 
-                          </div>          
-                   </div>
-
-                   <div class="col-md-3">
-                          <div class="abc thumbnail">
-                                <div><img src="../images/a4.jpg" class="img-responsive listOfSupplier_img">
-                                </div>
-                                <div class="">
-                                      <h4>Name of Supplier</h4>
-                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
-                                         Contact:968579545
-                                      </p>
-                                </div>
-                                <div class="lcb">
-                                      <input type="checkbox" id="listOfSupplier">
-                                </div> 
-                          </div>          
-                   </div>
-
-                   <div class="col-md-3">
-                          <div class="abc thumbnail">
-                                <div><img src="../images/a1.jpg" class="img-responsive listOfSupplier_img">
-                                </div>
-                                <div class="">
-                                      <h4>Name of Supplier</h4>
-                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
-                                         Contact:968579545
-                                      </p>
-                                </div>
-                                <div class="lcb">
-                                      <input type="checkbox" id="listOfSupplier">
-                                </div> 
-                          </div>          
-                   </div>
-
-                   <div class="col-md-3">
-                          <div class="abc thumbnail">
-                                <div><img src="../images/a2.jpg" class="img-responsive listOfSupplier_img">
-                                </div>
-                                <div class="">
-                                      <h4>Name of Supplier</h4>
-                                      <p>Address:near dange chowk,<br>mangal nagr,wakad road, pune.<br>
-                                         Contact:968579545
-                                      </p>
-                                </div>
-                                <div class="lcb">
-                                      <input type="checkbox" id="listOfSupplier">
-                                </div> 
-                          </div>          
-                   </div>
-
-
-
-
-
-
-          </div>
-    </div>    
+          <div class="col-sm-9">
+            {{#each tiffinSupplers}}
+              <div class="col-md-4">
+                <div class="abc img-thumbnail">
+                  <div><img src="../images/a1.jpg" class="img-responsive listOfSupplier_img">
+                  </div>
+                  <div class="center-text">
+                    <h4>{{this.name}}</h4>
+                    {{this.address.vicinity}}
+                    <br>{{this.address.city}},{{this.address.city}}<br>{{this.address.state}},{{this.address.zipCode}}                   
+                  </div>
+                  <div class="lcb">
+                    <input type="checkbox" id="listOfSupplier">
+                  </div> 
+                </div>          
+              </div>
+            {{/each}}
+          </div>          
+        </div>
+      </div>
+      
 
             
 
@@ -380,7 +315,7 @@
 
 
               <div class="form-group col-md-4 col-md-offset-4">
-                  <button type="submit" class="btn btn-success">Sign Up</button>
+                  <button type="button" class="btn btn-success">Sign Up</button>
               </div>
             </form>
         </div>
@@ -1091,6 +1026,7 @@
                         </div> 
                   <div class="newTable" id="newTable"> 
                     <table class="table table-bordered " >
+
                           <thead>
                             <tr>
                               <th>Name of Restaurants</th>
@@ -1099,7 +1035,9 @@
                               <th>Action</th>
                             </tr>
                           </thead>
+
                           <tbody class="afterSearhTable"></tbody>
+
 
                       </table> 
                     </div>
@@ -1233,6 +1171,7 @@
     <script src="/javascripts/backbone/model.js"></script>
     <script src="/javascripts/backbone/collections.js"></script>
     <script src="/javascripts/backbone/view.js"></script>
+    <script src="/javascripts/backbone/collections.js"></script>
     <script src="/javascripts/backbone/router.js"></script>
     <script src="/javascripts/backbone/app.js"></script>
   </body>

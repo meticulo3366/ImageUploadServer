@@ -29,7 +29,6 @@ var app = app || {};
   app.addTiffinBoxSupplierMenu = Backbone.Model.extend({
     url: '/tiffinBoxSupplierMenu'
   });
-
   // app.TiffinboxSupplier = Backbone.Model.extend({
   //   url:function() {
   //     return '/tiffinBoxSupplier/' + this.get('id') + '/getTeam';
@@ -52,7 +51,6 @@ var app = app || {};
   // app.addTiffinBoxSupplierTeam = Backbone.Model.extend({
   //     url: '/tiffinBoxSupplierTeam'
   //   });
-
 
   app.UserLogin = Backbone.Model.extend({
     url: '/users/authenticate'
