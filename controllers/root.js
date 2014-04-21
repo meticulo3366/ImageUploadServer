@@ -32,7 +32,7 @@ module.exports = function(app) {
   };
 
   root.adminDashboard = function(req, res) {
-    return res.render('users/users#adminDashboard');
+    return res.redirect('/#adminDashboard');
   };
 
 

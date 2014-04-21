@@ -6,108 +6,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/test.css">
+    <link rel="stylesheet" href="/stylesheets/header-color.css">
+
   </head>
 
   <body>
 
     <div class="navigation"></div>    
-    <div class="page">
-           
-              <div class="col-md-12 admin-navbar"></div>
-
-              <div class=" admin-right-navbar col-md-12 "></div>
-              <div class="admin-content col-md-offset-1"></div>
-    </div>
+    <div class="page"></div>
+    <div class="col-md-3 admin-navbar"></div>
+    <div class="admin-content col-md-9"></div>
 
   
 
     <script type="text/x-template" id="navbar-template">
-      <div class = "navbar navbar-inverse navbar-static-top">
-      <div class="container">
-          <a href="#" class="navbar-brand">PuneDabbawala.in<br><small>eat your choice</small></a>    
-          <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          </button>         
-        <div class="collapse navbar-collapse navHeaderCollapse">
-            <ul class="nav navbar-nav navbar-right">
-              <li class=""><a href="#">Home</a></li>
-              <li><a href="#new">Sign Up</a></li>  
-              <li><a href="#signin">Sign In</a></li>
-              <li><a href="#list">Contact us</a></li>
-            </ul>
+      <nav class="navbar navbar-default head_color" role="navigation>
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a href="#" class="navbar-brand">PuneDabbawala.in<br><small>eat your choice</small></a>    
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>         
+            <div class="collapse navbar-collapse navHeaderCollapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li class=""><a href="#">Home</a></li>
+                <li><a href="#new">Sign Up</a></li>  
+                <li><a href="#signin">Sign In</a></li>
+                <li><a href="#list">Contact us</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
-    </div>
-    </div>
-
+      </nav>
     </script>
 
     <script type="text/x-template" id="full-navbar-template">
       <div class = "navbar navbar-inverse navbar-static-top">
-      <div class = "container">
-        <div class="navbar-header">
-          <a href="#" class = "navbar-brand">PuneDabbawala.in <br><small>eat your choice</small></a>
+        <div class = "container">
+          <div class="navbar-header">
+            <a href="#" class = "navbar-brand">PuneDabbawala.in <br><small>eat your choice</small></a>
 
-          <button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
-            <span class = "icon-bar"></span>
-            <span class = "icon-bar"></span>
-            <span class = "icon-bar"></span>
-          </button>
-        </div>
+            <button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+              <span class = "icon-bar"></span>
+              <span class = "icon-bar"></span>
+              <span class = "icon-bar"></span>
+            </button>
+          </div>
 
-        <div class = "collapse navbar-collapse navHeaderCollapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" class="logout">Logout</a></li>
-          </ul>
+          <div class = "collapse navbar-collapse navHeaderCollapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#" class="logout">Logout</a></li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-
     </script>
 
 
     <script type="text/x-template" id="admin-navbar-template">
-
       <div class = "navbar navbar-inverse navbar-static-top">
-        <div class = "">
-          <div class="">
-            <ul class="nav navbar-nav navbar-left">
-                  <li class="active"><a href="#addDabbawala">Dabbawala</a></li>
-                  <li><a href="#report">Report</a></li>  
-            </ul>
-          </div>
-        </div>  
-    </div>
-
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a href="#adminDashboard">Dabbawala</a></li>
+          <li><a href="#report">Report</a></li>
+          <li><a href="#contact">Contact Us</a></li>           
+        </ul>
+      </div>
     </script>
 
 
     <script type="text/x-template" id="admin-right-navbar-dabbawala-template">
       <div class = "navbar navbar-inverse navbar-static-top">
-      
-            <ul class="nav navbar-nav navbar-left">
-                  <li class=""><a href="#addDabbawala">Add Dabbawala</a></li>
-                  <li><a href="#addTeam">Add Team</a></li>
-                  <li><a href="#addMenu">Add Menu</a></li>
-                  
-            </ul>
-
-      </div>
-
+        <ul class="nav nav-pills nav-stacked">
+          <li class=""><a href="#addDabbawala">Add Dabbawala</a></li>
+          <li><a href="#addTeam">Add Team</a></li>
+          <li><a href="#addMenu">Add Menu</a></li>           
+        </ul>
+      </div>  
     </script>
+
     <script type="text/x-template" id="admin-right-navbar-report-template">
       <div class = "navbar navbar-inverse navbar-static-top">
-      
-            <ul class="nav nav-pills nav-stacked">
-                  <li class="active"><a href="#adminDashboard">customer</a></li>
-                  <li><a href="#addTeam">suppliers</a></li>
-                  <li><a href="#addMenu">location</a></li>
-                  <br><br><br><br>
-            </ul>
-
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a href="#adminDashboard">customer</a></li>
+          <li><a href="#addTeam">suppliers</a></li>
+          <li><a href="#addMenu">location</a></li>
+          <br><br><br><br>
+        </ul>
       </div>
-
     </script>
 
     <script type="text/x-template" id="landing-template">
@@ -400,8 +388,7 @@
                     <ul class="nav nav-tabs">
                       <li class="active"><a href="#breakfast" data-toggle="tab">Breakfast</a></li>
                       <li><a href="#lunch" data-toggle="tab">Lunch</a></li>
-                      <li><a href="#dinner" data-toggle="tab">Dinner</a></li>
-                      
+                      <li><a href="#dinner" data-toggle="tab">Dinner</a></li> 
                     </ul>
                 </div>
             </div>
@@ -694,13 +681,13 @@
                   <label class="col-sm-2">Address:</label>
                   <div class="col-sm-3">
                     <select id="address.city" name="address.city" class="form-control"  placeholder="enter your search Dabbawala">
-                          <option>[Select City]</option>
+                          <option value="">[Select City]</option>
                           <option>Pune</option>
                     </select>
                   </div>
                   <div class="col-sm-3">
                     <select id="address.state" name="address.state"  class="form-control">
-                          <option>[Select State]</option>
+                          <option value="">[Select State]</option>
                           <option>Maharashtra</option> 
                     </select>
                   </div>
@@ -712,7 +699,7 @@
               </div>
               <div class="form-group">
                  <select id="distributionAreas" name="distributionAreas" multiple size="1" class="form-control ">
-                        <option>[select Distribution Area]</option>
+                        <option value="">[select Distribution Area]</option>
                         <option>Hadapsar</option>
                         <option>Dange Chowk</option>
                         <option>Shivaji Nagar</option>
@@ -854,7 +841,7 @@
 
               <div class="form-group">      
                   <select id="dbw" name="dbw" class="form-control ">
-                        <option>select Dabbawala</option>
+                        <option value="">select Dabbawala</option>
                         {{#each dabbawalaList }}
 
                           <option value="{{this._id}}">{{this.name}}</option>
@@ -881,7 +868,7 @@
               </div>
                <div class="form-group">      
                   <select id="role" name="role" class="form-control ">
-                        <option>Select Role</option>
+                        <option value="">Select Role</option>
                         <option>Manager</option>
                         <option>Shelf</option>
                         <option>Delivry Boy</option>
@@ -1016,7 +1003,7 @@
                                     <td>{{this.name}}</td> 
                                     <td>{{this.address.vicinity}},{{this.address.city}},{{this.address.state}}</td>
                                     <td>{{this.distributionAreas}}</td> 
-                                    <td><a href="#update/{{ this._id }}" class="btn btn-primary" id="">Edit</a>
+                                    <td><a href="#edit/{{ this._id }}" class="btn btn-primary" id="">Edit</a>
                                        <a href="#delete/{{ this._id }}" class="btn btn-danger" id="">Delete</a>
                                     </td>
                                   </tr>  
@@ -1151,10 +1138,234 @@
           </div>    
     </script>
 
+    <script type="text/x-template" id="edit-dabbawala-template">
+      
+      <div class=" well">
+        <div class="row">
+          <h4 class="center-text">{{tiffinboxSupplier.name}}'s Alter Page</h4>
+          <div class="col-md-12">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#addDabbawala-t" data-toggle="tab">Edit Basic Information</a></li>
+              <li><a href="#addTeam-t" data-toggle="tab">Team</a></li>
+              <li><a href="#addMenu-t" data-toggle="tab">Menu</a></li> 
+            </ul>
+          </div>
+        </div>
 
+        <div class="row">
+          <div class="tab-content">
+            <div class="tab-pane active col-md-10 well" id="addDabbawala-t">
+              <form class="form-horizontal create-dabbawala-form ">
+                <div class="form-group">      
+                  <input type="text" class="form-control " id="name" name="name" value="{{tiffinboxSupplier.name}}" required>
+                </div>
+
+                <div class="form-group"> 
+                  <input type="email" class="form-control " name="email" value="{{tiffinboxSupplier.email}}" required>
+                </div>
+
+                <div class="form-group ">
+                  <input type="tel" class="form-control" id="contact" name="contactNumber" value="{{tiffinboxSupplier.contactNumber}}" required>
+                </div>  
+
+                <div class="form-group">
+                  <label class="col-sm-2">Address:</label>
+                  <div class="col-sm-3">
+                    <select id="address.city" name="address.city" class="form-control"  placeholder="enter your search Dabbawala">
+                          <option value="">{{tiffinboxSupplier.address.city}}</option>
+                          <option value="Pune">Pune</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-3">
+                    <select id="address.state" name="address.state"  class="form-control">
+                          <option value="">{{tiffinboxSupplier.address.state}}</option>
+                          <option value="Maharashtra">Maharashtra</option> 
+                    </select>
+                  </div>
+                  <div class="col-sm-2">
+                    <input type="number" name="address.zipCode" value="{{tiffinboxSupplier.address.zipCode}}">
+                  </div>
+                  <input type="text" class="form-control " id="address.vicinity" name="address.vicinity" value="{{tiffinboxSupplier.address.vicinity}}" required>
+                </div>
+                <div class="form-group">
+                  <select id="distributionAreas" name="distributionAreas" multiple size="1" class="form-control">
+                        <option value="{tiffinboxSupplier.distributionAreas}}"></option>
+                        <option>Hadapsar</option>
+                        <option>Dange Chowk</option>
+                        <option>Shivaji Nagar</option>
+                        <option>Aundh</option>
+                        <option>Kondwa</option>
+                        <option>Camp</option>
+                  </select>
+                </div>
+                <div class="form-group">      
+                  <label class="col-sm-3">Category:</label>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="category" value="veg"> Veg
+                  </div>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="category" value="nonVeg">Non Veg
+                  </div>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="category" value="gujrati">Gujrati
+                  </div>         
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3">Order Type:</label>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="orderType" value="daily">Daily 
+                  </div>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="orderType" value="weekly">Weekly
+                  </div>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="orderType" value="monthly">Monthly
+                  </div>                          
+                </div>
+  
+                <div class="form-group">
+                  <label class="col-sm-3">Meal Type:</label>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="mealType" value='breakfast'>Breakfast 
+                  </div>
+                  <div class="col-sm-3">
+                    <input type="checkbox" name="mealType" value="lunch">Lunch
+                  </div>
+                  <div class="col-sm-3"
+                    <input type="checkbox" name="mealType" value="dinner">Dinner
+                  </div>                          
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3">Price:</label>
+                  <div class="col-sm-3 cb-weekly">
+                    <input type="checkbox" name="priceWeekly" value="weekly">Weekly 
+                  </div>
+                  <div class="col-sm-3 cb-monthly">
+                    <input type="checkbox" name="priceMonthly" value="monthly">Monthly
+                  </div>
+                  <div class="col-sm-3">
+
+                  </div>                          
+                </div>
+              
+                <div class="form-group" id="weekly" style="display:none"> 
+                  <div class="col-sm-4">
+                    <input type="number" name="price.weekly.breakfast" id="" placeholder="Weekly Breakfast price">
+                  </div>
+                  <div class="col-sm-4">
+                    <input type="number" name="price.weekly.lunch" id="" placeholder="Weekly Lunch price">
+                  </div>   
+                  <div class="col-sm-4">
+                    <input type="number" name="price.weekly.dinner" id="" placeholder="Weekly Dinner price">
+                  </div>                                            
+                </div>
+              
+                <div class="form-group" id="monthly" style="display:none"> 
+                  <div class="col-sm-4">
+                    <input type="number" name="price.monthly.breakfast" id="" placeholder="Monthly Breakfast price">
+                  </div>
+                  <div class="col-sm-4">
+                    <input type="number" name="price.monthly.lunch" id="" placeholder="Monthly Lunch price">
+                  </div>   
+                  <div class="col-sm-4">
+                    <input type="number" name="price.monthly.dinner" id="" placeholder="Monthly Dinner price">
+                  </div>                                            
+                </div>
+              
+                <div class="form-group col-sm-3">
+                  <button type="submit" class="btn btn-success">Update</button>
+                  <input type="hidden" value="{{tiffinboxSupplier._id}}">
+                </div>
+              </form>
+              <div class="pull-right"><a href="#addDabbawala" class="btn btn-primary" id="">Add New Dabbawala</a></div>                   
+            </div>
+
+            <div class="tab-pane col-md-10 well" id="addTeam-t">
+              <div class="table-responsive ">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Name </th>
+                      <th>Email</th>
+                      <th>Contact</th>
+                      <th>Role</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>                            
+                    {{#each tiffinboxSupplier.team }}
+                      <tr>
+                        <td>{{this.name.first}}&nbsp {{this.name.last}}</td>
+                        <td>{{this.email}}</td>
+                        <td>{{this.contactNumber}}</td>
+                        <td>{{this.role}}</td>
+                        <td><a href="editTeam/{{this._id}}" class="btn btn-primary">Edit</a><a href="deleteTeam/{{this._id}}" class="btn btn-danger">Delete</a></td> 
+                      </tr>  
+                    {{/each}}
+                  </tbody>
+                </table> 
+              </div>
+              <div class="pull-right"><a href="#addTeam" class="btn btn-primary" id="">Add New Team</a></div>                      
+            </div>
+
+            <div class="tab-pane col-md-10 well" id="addMenu-t">
+              <div class="table-responsive well">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Name </th>
+                      <th>Category</th>
+                      <th>Meal Type</th>
+                      <th>Items</th>  
+                      <th>Price</th>
+                      <th>Action</th>                      
+                    </tr>
+                  </thead>
+                  <tbody>            
+                    {{#each tiffinboxSupplier.menu }}
+                      <tr>
+                        <td>{{this.name}}</td>
+                        <td>{{this.category}}</td>
+                        <td>{{this.mealType}}</td>
+                        <td>{{this.ingredients}}</td>
+                        <td>{{this.fullPrice}}</td>
+                        <td><a href="editMenu/{{this._id}}" class="btn btn-primary">Edit</a><a href="deleteMenu/{{this._id}}" class="btn btn-danger">Delete</a></td>                                                            
+                      </tr>  
+                    {{/each}}
+                  </tbody>
+                </table>
+                <div class="pull-right"><a href="#addMenu" class="btn btn-primary" id="">Add New Menu</a></div>                 
+              </div>
+
+            </div>        
+          </div>
+        </div>
+      </div>
+      <script>                  
+              $('input[type=checkbox]', '.cb-weekly').on('change', function(e) {
+                  if (this.name === 'priceWeekly' && this.checked) {
+                    $('#weekly').show();
+                  } 
+                  else {
+                    $('#weekly').hide();
+                  }
+              });
+              $('input[type=checkbox]', '.cb-monthly').on('change', function(e) {
+                  if (this.name === 'priceMonthly' && this.checked) {
+                    $('#monthly').show();
+                  } 
+                  else {
+                    $('#monthly').hide();
+                  }
+              });              
+        </script>
+    </script>
     
     <script type="text/x-template" id="profile-template">
-        <h2>User Profile Page!</h2>
+      <h2>User Profile Page!</h2>
     </script>
 
 

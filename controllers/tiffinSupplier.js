@@ -193,6 +193,24 @@ tiffinboxSupplier.delete = function (req, res, next) {
   }
    
   };
+
+  tiffinboxSupplier.update = function (req, res, next) {
+    if(req.params.id){
+    console.log("in update api");
+    TiffinboxSupplier.findById(req.params.id,
+      function(err,tiffinBoxSupplier){
+        if(!err){
+          tiffinboxSupplier=req.body;
+          tiffinBoxSupplier.save(function(err){
+            if (!err) {
+              res.json(tiffinBoxSupplier);
+            };    
+          });   
+        }
+      });
+  }
+   
+  };
   
 
  

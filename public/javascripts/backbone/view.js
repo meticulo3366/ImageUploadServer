@@ -532,24 +532,25 @@ app.AdminNavbarView =Backbone.View.extend({
         }
          
     });
-app.AdminNavbarView =Backbone.View.extend({
-      el:'.admin-navbar',
-       tpl: Handlebars.compile(
-          document.getElementById('admin-navbar-template').innerHTML
-        ),
-        events: {
-             
-        },
 
-        initialize: function() {
+// app.AdminNavbarView =Backbone.View.extend({
+//       el:'.admin-navbar',
+//        tpl: Handlebars.compile(
+//           document.getElementById('admin-navbar-template').innerHTML
+//         ),
+//         events: {
+             
+//         },
+
+//         initialize: function() {
         
-        },
-        render: function () {
-          var that = this;
-          that.$el.html( that.tpl());
-        }
+//         },
+//         render: function () {
+//           var that = this;
+//           that.$el.html( that.tpl());
+//         }
          
-    });
+//     });
 
 app.AdminDashboardView =Backbone.View.extend({
       el:'.admin-content',
@@ -688,6 +689,7 @@ app.MenuListView =Backbone.View.extend({
         render: function () {
          
           var that = this;
+          console.log();
           that.$el.html( that.tpl({tiffinboxSupplier: this.tiffinboxSupplier.toJSON()}));
 
         }
@@ -765,21 +767,58 @@ app.AdminRightNavbarReportView =Backbone.View.extend({
          
     });
 
-
-app.DeleteDabbawalaView= Backbone.View.extend({
-       el: '.admin-content',
+    app.DeleteDabbawalaView= Backbone.View.extend({
+        el: '.admin-content',
         render: function (options) {
           console.log('in DeleteDabbawalaView'+options.id);
           var that = this;
-          console.Log(options.id);
-          var tiffinboxSupplier = new addTiffinBoxSupplier({id: options.id});
-          tiffinboxSupplier.destroy({
-            success: function (tiffinboxSupplier) {
-              console.log('in DeleteDabbawalaView success');
-              router.navigate('adminDashboard', {trigger:true});
+          if(options.id){
+            var id=options.id;
+            that.tiffinboxSupplier= new app.addTiffinBoxSupplier({id:id});
+            that.tiffinboxSupplier.destroy({
+              success: function (tiffinboxSupplier){
+                console.log('in DeleteDabbawalaView success');
+                app.router.navigate('adminDashboard', {trigger:true});
+              }
+            });
+            return false;
+          } 
+        }    
+    });
+
+
+app.EditDabbawalaView= Backbone.View.extend({
+      el: '.admin-content',
+      tpl: Handlebars.compile(
+        document.getElementById('edit-dabbawala-template').innerHTML
+      ),
+      events: {
+        'submit .edit-dabbawala-form':'update'    
+      },
+        render: function (options) {
+          var that=this;
+          if(options.id){
+            var id=options.id;
+            that.tiffinboxSupplier= new app.addTiffinBoxSupplier({id:id});
+            that.tiffinboxSupplier.fetch({
+              success: function (tiffinboxSupplier) { 
+                console.log('in edit form:'+ tiffinboxSupplier.toJSON().name);   
+                that.$el.html(that.tpl({tiffinboxSupplier:that.tiffinboxSupplier.toJSON()}));
+              }
+            })
+          }
+        },
+        update: function(){
+          var userDetails = $(ev.currentTarget).serializeObject();
+          var tiffinboxSupplier= new addTiffinBoxSupplier();
+          tiffinboxSupplier.save(userDetails,{}
+            success: function(tiffinboxSupplier){
+              console.log('in success');
+            },
+            error: function(){
+              console.log('in error');
             }
-          });
-          return false;
+          );
         }
     });
 

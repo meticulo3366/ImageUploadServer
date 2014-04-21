@@ -22,7 +22,8 @@ var app = app || {};
       'teamList': 'teamList',
       'menuList': 'menuList',
       'search': 'search',
-      'delete/:id': 'delete' 
+      'delete/:id': 'delete',
+      'edit/:id':'edit' 
     }
   });  
 })();

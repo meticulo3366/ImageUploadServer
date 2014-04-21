@@ -25,6 +25,9 @@ $(function () {
   
   app.router.on('route:signIn',function () {
     var signInView = new app.SignInView();
+    $('.admin-navbar').hide();
+    $('.admin-content').hide();
+    $('.page').show();
     signInView.render();
     navbarView.render();
   });
@@ -42,11 +45,12 @@ $(function () {
   });
 
   app.router.on('route:adminDashboard', function() {
+
     var adminDashboardView = new app.AdminDashboardView();
     adminDashboardView.render();
     fullnavbarView.render();
     adminnavbarView.render();
-   // adminrightnavbarView.render();
+    //adminrightnavbarView.render();
 
   });
 
@@ -129,6 +133,13 @@ $(function () {
       });
      app.router.on('route:delete',function (id) {
       var add = new app.DeleteDabbawalaView();
+      add.render({id:id});
+      fullnavbarView.render();
+      adminnavbarView.render();
+      //adminrightnavbarView.render();
+      });
+     app.router.on('route:edit',function (id) {
+      var add = new app.EditDabbawalaView();
       add.render({id:id});
       fullnavbarView.render();
       adminnavbarView.render();

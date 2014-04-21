@@ -38,6 +38,10 @@ module.exports = function(app){
     , passportConfig.isAuthenticated
     , passportConfig.ensureAdmin
     , dabbawalaController.create);
+  app.put('/tiffinBoxSupplier'
+    , passportConfig.isAuthenticated
+    , passportConfig.ensureAdmin
+    , dabbawalaController.update);
   app.get('/tiffinBoxSupplier/search',dabbawalaController.search);
   app.post('/tiffinBoxSupplier/filter',dabbawalaController.filter)
   app.get('/tiffinBoxSupplier', dabbawalaController.index);
