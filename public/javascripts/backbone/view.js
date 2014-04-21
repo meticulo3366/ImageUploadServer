@@ -99,7 +99,8 @@ app.SignInView =Backbone.View.extend({
               window.localStorage.setItem('id', user.attributes._id);
               console.log('in login success')
               if(user.attributes.role === 'admin') {
-                app.router.navigate('adminDashboard', {trigger: true});
+                //app.router.navigate('adminDashboard', {trigger: true});
+                window.location = '/adminDashboard';
               } else {
                 app.router.navigate('home', {trigger: true});  
               }

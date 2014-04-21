@@ -11,7 +11,12 @@ module.exports = function(app){
 
   app.get('/', rootController.landing);
   app.get('/users/user', rootController.user);
-  
+  app.get('/adminDashboard'
+    , passportConfig.isAuthenticated
+    , passportConfig.ensureAdmin
+    , rootController.adminDashboard)
+
+
   app.get('/users/confirm', userController.confirmEmail);
   app.get('/users/resetPassword', userController.renderResetPasswordPage);
   app.get('/users/resetPasswordPage', rootController.resetPassword);

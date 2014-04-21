@@ -91,9 +91,14 @@ passport.use(new facebookStrategy
 }));
 
 exports.isAuthenticated = function(req, res, next) {
+
+  console.log('In isAuthenticated');
+
   if (req.isAuthenticated()){
+    console.log('Autheticated request!');
     next(); 
   } else {
+    console.log('Unauthenticated!');
     res.redirect('/users/user#signin');
   }
 };
