@@ -24,6 +24,10 @@ var app = app || {};
     }
   });
 
+  app.TiffinBoxSupplier = Backbone.Model.extend({
+    urlRoot: '/tiffinBoxSupplier'
+  });
+
  
 
   app.addTiffinBoxSupplierMenu = Backbone.Model.extend({

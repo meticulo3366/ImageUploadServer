@@ -135,3 +135,19 @@ background-color: #222222;
 overflow-y: auto;
 }
 a:active {color:#0000FF;}
+
+div.transbox{
+        font-weight:500
+        width:400px;
+        height:180px;
+        margin:30px 50px;
+        /*background-color:#000000;*/
+        border:1px;
+        opacity:0.6;
+        filter:alpha(opacity=60); /* For IE8 and earlier */
+}
+div.transbox p{
+        margin:30px 40px;
+        font-weight:bold;
+        color:#000000;
+}

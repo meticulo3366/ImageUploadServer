@@ -15,69 +15,86 @@
 
     <div class="navigation"></div>    
     <div class="page"></div>
-    <div class="col-md-3 admin-navbar"></div>
-    <div class="admin-content col-md-9"></div>
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 admin-navbar"></div>
+    <div class="admin-content col-xs-12 col-sm-12 col-md-9 col-lg-9 well"></div>
 
   
 
     <script type="text/x-template" id="navbar-template">
-      <nav class="navbar navbar-default head_color" role="navigation>
+      <!--nav bar start-->
+      <nav class="navbar navbar-default head_color" role="navigation">
         <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-            <a href="#" class="navbar-brand">PuneDabbawala.in<br><small>eat your choice</small></a>    
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
-            </button>         
-            <div class="collapse navbar-collapse navHeaderCollapse">
-              <ul class="nav navbar-nav navbar-right">
-                <li class=""><a href="#">Home</a></li>
-                <li><a href="#new">Sign Up</a></li>  
-                <li><a href="#signin">Sign In</a></li>
-                <li><a href="#list">Contact us</a></li>
-              </ul>
-            </div>
+            </button>
+            <a class="navbar-brand" href="#"><p>PuneDabbawala.in<br><small>eat your choice</small></p></a>
           </div>
-        </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
+           <ul class="nav navbar-nav">
+              <li class="active"><a href="#"><p><b>Home</b></p></a></li>
+              <li><a href="#new"><p><b>Sign Up</b></p></a></li>
+              <li><a href="#signin"><p><b>Sign In</b></p></a></li>
+              <li><a href="#list"><p><b>Contact Us</b></p></a></li>
+           </ul>
+            <ul class="nav navbar-nav navbar-right" style="display:none">
+              <li><a href="#"><p><b>Hi, User</b></p></a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
       </nav>
+      <!--nav bar end-->
     </script>
 
     <script type="text/x-template" id="full-navbar-template">
-      <div class = "navbar navbar-inverse navbar-static-top">
-        <div class = "container">
+      <!--nav bar start-->
+      <nav class="navbar navbar-default head_color" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-            <a href="#" class = "navbar-brand">PuneDabbawala.in <br><small>eat your choice</small></a>
-
-            <button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
-              <span class = "icon-bar"></span>
-              <span class = "icon-bar"></span>
-              <span class = "icon-bar"></span>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
             </button>
+            <a class="navbar-brand" href="#"><p>PuneDabbawala.in<br><small>eat your choice</small></p></a>
           </div>
-
-          <div class = "collapse navbar-collapse navHeaderCollapse">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#" class="logout">Logout</a></li>
+              <li><a href="#" class="logout"><p><b>Logout</b></p></a></li>
             </ul>
-          </div>
-        </div>
-      </div>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+      <!--nav bar end-->
     </script>
 
 
     <script type="text/x-template" id="admin-navbar-template">
-      <div class = "navbar navbar-inverse navbar-static-top">
-        <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a href="#adminDashboard">Dabbawala</a></li>
-          <li><a href="#report">Report</a></li>
-          <li><a href="#contact">Contact Us</a></li>           
-        </ul>
+      <div class="panelone panel-default">
+        <div class="panel-heading">
+          <h4>Search by:</h4>
+        </div>
+        <div class="panel-bodyone">
+          <ul id="cat-navi" class="nav nav-list">
+            <li class="active"><a href="#adminDashboard"><b>Dabbawala</b></a></li>
+            <li><a href="#report"><b>Report</b></a></li>
+            <li><a href="#contact"><b>Contact Us</b></a></li>
+          </ul>
+        </div>
       </div>
     </script>
 
 
     <script type="text/x-template" id="admin-right-navbar-dabbawala-template">
+
       <div class = "navbar navbar-inverse navbar-static-top">
         <ul class="nav nav-pills nav-stacked">
           <li class=""><a href="#addDabbawala">Add Dabbawala</a></li>
@@ -655,177 +672,144 @@
     </script>
 
     <script type="text/x-template" id="add-dabbawala-template">
-     <div class="container">
-          <div class="row">
-            
-            <div class="well col-md-6">
-            <h4 class="center-text">Add Dabbawala/Restaurant</h4>
-            <hr>
-            <form class="form-horizontal create-dabbawala-form ">
-
-              <div class="form-group">      
-                  <input type="text" class="form-control " id="name" name="name" placeholder="Name of Organization or Restaurants" required>
-              </div>
-
-              <div class="form-group"> 
-                  <input type="email" class="form-control " name="email" placeholder="Email Address" required>
-              </div>
-
-              
-              <div class="form-group ">
-                  <input type="tel" class="form-control" id="contact" name="contactNumber" placeholder="Contact Number" required>
-              </div>  
-
-
-              <div class="form-group">
-                  <label class="col-sm-2">Address:</label>
-                  <div class="col-sm-3">
-                    <select id="address.city" name="address.city" class="form-control"  placeholder="enter your search Dabbawala">
-                          <option value="">[Select City]</option>
-                          <option>Pune</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-3">
-                    <select id="address.state" name="address.state"  class="form-control">
-                          <option value="">[Select State]</option>
-                          <option>Maharashtra</option> 
-                    </select>
-                  </div>
-                  <div class="col-sm-21">
-                    <input type="number" name="address.zipCode" value="" placeholder="zip code">
-                  </div>
-                  <input type="text" class="form-control " id="address.vicinity" name="address.vicinity" placeholder="House No.,Road/street" required>
-                
-              </div>
-              <div class="form-group">
-                 <select id="distributionAreas" name="distributionAreas" multiple size="1" class="form-control ">
-                        <option value="">[select Distribution Area]</option>
-                        <option>Hadapsar</option>
-                        <option>Dange Chowk</option>
-                        <option>Shivaji Nagar</option>
-                        <option>Aundh</option>
-                        <option>Kondwa</option>
-                        <option>Camp</option>
-                      </select>
-              </div>
-
-              
-
-              <div class="form-group">      
-                  <label class="col-sm-3">Category:</label>
-                  <div class="col-sm-3">
-                    <input type="checkbox" name="category" value="veg"> Veg
-                  </div>
-                  <div class="col-sm-3">
-                    
-                    <input type="checkbox" name="category" value="nonVeg">Non Veg
-                  </div>
-                  <div class="col-sm-3">
-                    
-                    <input type="checkbox" name="category" value="gujrati">Gujrati
-                  </div>         
-              </div>
-
-              <div class="form-group">
-                  <label class="col-sm-3">Order Type:</label>
-                  <div class="col-sm-3">
-                    <input type="checkbox" name="orderType" value="daily">Daily 
-                  </div>
-                  <div class="col-sm-3">
-                    
-                    <input type="checkbox" name="orderType" value="weekly">Weekly
-                  </div>
-                  <div class="col-sm-3">
-                    
-                    <input type="checkbox" name="orderType" value="monthly">Monthly
-                  </div>                          
-              </div>
-  
-              <div class="form-group">
-                  <label class="col-sm-3">Meal Type:</label>
-                  <div class="col-sm-3">
-                    <input type="checkbox" name="mealType" value='breakfast'>Breakfast 
-                  </div>
-                  <div class="col-sm-3">
-                    
-                    <input type="checkbox" name="mealType" value="lunch">Lunch
-                  </div>
-                  <div class="col-sm-3">
-                    
-                    <input type="checkbox" name="mealType" value="dinner">Dinner
-                  </div>                          
-              </div>
-
-             <div class="form-group">
-                  <label class="col-sm-3">Price:</label>
-                  <div class="col-sm-3 cb-weekly">
-                    <input type="checkbox" name="priceWeekly" value="weekly">Weekly 
-                  </div>
-                  <div class="col-sm-3 cb-monthly">
-                    
-                    <input type="checkbox" name="priceMonthly" value="monthly">Monthly
-                  </div>
-                  <div class="col-sm-3">
-                    
-                    
-                  </div>                          
-              </div>
-              
-              <div class="form-group" id="weekly" style="display:none"> 
-                  <div class="col-sm-4">
-                    <input type="number" name="price.weekly.breakfast" id="" placeholder="Weekly Breakfast price">
-                  </div>
-                  <div class="col-sm-4">
-                    <input type="number" name="price.weekly.lunch" id="" placeholder="Weekly Lunch price">
-                  </div>   
-                  <div class="col-sm-4">
-                    <input type="number" name="price.weekly.dinner" id="" placeholder="Weekly Dinner price">
-                  </div>                                            
-              </div>
-              
-              <div class="form-group" id="monthly" style="display:none"> 
-                  <div class="col-sm-4">
-                    <input type="number" name="price.monthly.breakfast" id="" placeholder="Monthly Breakfast price">
-                  </div>
-                  <div class="col-sm-4">
-                    <input type="number" name="price.monthly.lunch" id="" placeholder="Monthly Lunch price">
-                  </div>   
-                  <div class="col-sm-4">
-                    <input type="number" name="price.monthly.dinner" id="" placeholder="Monthly Dinner price">
-                  </div>                                            
-              </div>
-              
-
-              <div class="form-group col-sm-3">
-                  <button type="submit" class="btn btn-success">Save</button>
-              </div>
-            </form>
-            </div>
+      <div class="well col-sm-12">
+        <h4 class="center-text">Add Dabbawala/Restaurant</h4>
+        <hr>
+        <form class="form-horizontal create-dabbawala-form ">
+          <div class="form-group">      
+            <input type="text" class="form-control " id="name" name="name" placeholder="Name of Organization or Restaurants" required>
+          </div>
+          <div class="form-group"> 
+            <input type="email" class="form-control " name="email" placeholder="Email Address" required>
+          </div>
+          <div class="form-group ">
+            <input type="tel" class="form-control" id="contact" name="contactNumber" placeholder="Contact Number" required>
           </div>  
-        </div>
+          <div class="form-group">
+            <label class="col-sm-2">Address:</label>
+            <div class="col-sm-3">
+              <select id="address.city" name="address.city" class="form-control" >
+                <option value="">[Select City]</option>
+                <option>Pune</option>
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <select id="address.state" name="address.state"  class="form-control">
+                <option value="">[Select State]</option>
+                <option>Maharashtra</option> 
+              </select>
+            </div>
+            <div class="col-sm-21">
+              <input type="number" name="address.zipCode" value="" placeholder="zip code">
+            </div>
+            <input type="text" class="form-control " id="address.vicinity" name="address.vicinity" placeholder="House No.,Road/street" required>    
+          </div>
+          <div class="form-group">
+            <select id="distributionAreas" name="distributionAreas" multiple size="1" class="form-control ">
+              <option value="">[select Distribution Area]</option>
+              <option>Hadapsar</option>
+              <option>Dange Chowk</option>
+              <option>Shivaji Nagar</option>
+              <option>Aundh</option>
+              <option>Kondwa</option>
+              <option>Camp</option>
+            </select>
+          </div>
+          <div class="form-group">      
+            <label class="col-sm-3">Category:</label>
+            <div class="col-sm-3">
+              <input type="checkbox" name="category" value="veg"> Veg
+            </div>
+            <div class="col-sm-3">               
+              <input type="checkbox" name="category" value="nonVeg">Non Veg
+            </div>
+            <div class="col-sm-3">     
+              <input type="checkbox" name="category" value="gujrati">Gujrati
+            </div>         
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3">Order Type:</label>
+            <div class="col-sm-3">
+              <input type="checkbox" name="orderType" value="daily">Daily 
+            </div>
+            <div class="col-sm-3">                
+              <input type="checkbox" name="orderType" value="weekly">Weekly
+              </div>
+            <div class="col-sm-3">  
+              <input type="checkbox" name="orderType" value="monthly">Monthly
+            </div>                          
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3">Meal Type:</label>
+            <div class="col-sm-3">
+              <input type="checkbox" name="mealType" value='breakfast'>Breakfast 
+            </div>
+            <div class="col-sm-3">   
+              <input type="checkbox" name="mealType" value="lunch">Lunch
+            </div>
+            <div class="col-sm-3"> 
+              <input type="checkbox" name="mealType" value="dinner">Dinner
+            </div>                          
+          </div>
+            <div class="form-group">
+              <label class="col-sm-3">Price:</label>
+              <div class="col-sm-3 cb-weekly">
+                <input type="checkbox" name="priceWeekly" value="weekly">Weekly 
+              </div>
+              <div class="col-sm-3 cb-monthly"> 
+                <input type="checkbox" name="priceMonthly" value="monthly">Monthly
+              </div>
+              <div class="col-sm-3">     
+              </div>                          
+            </div>
+            <div class="form-group" id="weekly" style="display:none"> 
+              <div class="col-sm-4">
+                <input type="number" name="price.weekly.breakfast" id="" placeholder="Weekly Breakfast price">
+              </div>
+              <div class="col-sm-4">
+                <input type="number" name="price.weekly.lunch" id="" placeholder="Weekly Lunch price">
+              </div>   
+              <div class="col-sm-4">
+                <input type="number" name="price.weekly.dinner" id="" placeholder="Weekly Dinner price">
+              </div>                                            
+            </div>
+            <div class="form-group" id="monthly" style="display:none"> 
+            <div class="col-sm-4">
+              <input type="number" name="price.monthly.breakfast" id="" placeholder="Monthly Breakfast price">
+            </div>
+            <div class="col-sm-4">
+              <input type="number" name="price.monthly.lunch" id="" placeholder="Monthly Lunch price">
+            </div>   
+            <div class="col-sm-4">
+              <input type="number" name="price.monthly.dinner" id="" placeholder="Monthly Dinner price">
+            </div>                                            
+          </div>
+          <div class="form-group col-sm-3">
+            <button type="submit" class="btn btn-success">Save</button>
+          </div>
+        </form>
+      </div>
+     
+  
 
-        <script>
-                        
-              $('input[type=checkbox]', '.cb-weekly').on('change', function(e) {
+      <script>          
+        $('input[type=checkbox]', '.cb-weekly').on('change', function(e) {
                   if (this.name === 'priceWeekly' && this.checked) {
                     $('#weekly').show();
                   } 
                   else {
                     $('#weekly').hide();
                   }
-              });
-              $('input[type=checkbox]', '.cb-monthly').on('change', function(e) {
+        });
+        $('input[type=checkbox]', '.cb-monthly').on('change', function(e) {
                   if (this.name === 'priceMonthly' && this.checked) {
                     $('#monthly').show();
                   } 
                   else {
                     $('#monthly').hide();
                   }
-              });
-                       
-        </script>
-
-       
+        });                
+      </script>  
     </script>
 
     
@@ -888,150 +872,124 @@
 
 
     <script type="text/x-template" id="add-menu-template">
-      <div class="container">
-          <div class="row">
-            
-            <div class="well col-md-6">
-            <h4 class="center-text">Add Menu </h4>
-            <hr>
-            <form class="form-horizontal create-menu-form ">
-
-              <div class="form-group">      
-                  <select id="dbw" name="dbw" class="form-control ">
-                        <option>select Dabbawala</option>
-                        {{#each dabbawalaList }}
-
-                          <option>{{this.name}}</option>
-                
-                        {{/each}}  
-                  </select>
-              </div>
-
-              <div class="form-group">      
-                  <input type="text" class="form-control " id="name" name="name" placeholder="name of Menu " required>
-              </div>
-
-              <div class="form-group">      
-                  <input type="text" class="form-control " id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," required>
-              </div>
-
-              <div class="form-group">      
-                  <input type="text" class="form-control " id="description" name="description" placeholder="Discription" required>
-              </div>
-
-              <div class="form-group">      
-                  <label class="col-sm-3">Category:</label>
-                  <div class="col-sm-3">
-                    <input type="checkbox" name="category" value="veg"> Veg
-                  </div>
-                  <div class="col-sm-3">
-                    
-                    <input type="checkbox" name="category" value="nonVeg">Non Veg
-                  </div>
-                  <div class="col-sm-3">
-                    
-                    <input type="checkbox" name="category" value="gujrati">Gujrati
-                  </div>         
-              </div>
-
-              <div class="form-group">
-                  <label class="col-sm-3">Meal Type:</label>
-                  <div class="col-sm-3">
-                    <input type="checkbox" name="mealType" value='breakfast'>Breakfast 
-                  </div>
-                  <div class="col-sm-3">
-                    
-                    <input type="checkbox" name="mealType" value="lunch">Lunch
-                  </div>
-                  <div class="col-sm-3">
-                    
-                    <input type="checkbox" name="mealType" value="dinner">Dinner
-                  </div>                          
-              </div>
-
-              <div class="form-group">      
-                  <input type="number" class="form-control " id="fullPrice" name="fullPrice" placeholder="full Price" required>
-              </div>
-
-              <div class="form-group">      
-                  <input type="number" class="form-control " id="discountedPrice" name="discountedPrice" placeholder="Discount Price" required>
-              </div>
-
-              <div class="form-group">
-                  <button type="submit" class="btn btn-success">Save</button>
-              </div>
-            </form>
+      <div class="well col-md-8">
+        <h4 class="center-text">Add Menu </h4>
+        <hr>
+        <form class="form-horizontal create-menu-form ">
+          <div class="form-group">      
+            <select id="dbw" name="dbw" class="form-control ">
+              <option>select Dabbawala</option>
+              {{#each dabbawalaList }}
+                <option>{{this.name}}</option>
+              {{/each}}  
+            </select>
+          </div>
+          <div class="form-group">      
+            <input type="text" class="form-control " id="name" name="name" placeholder="name of Menu " required>
+          </div>
+          <div class="form-group">      
+            <input type="text" class="form-control " id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," required>
+          </div>
+          <div class="form-group">      
+            <input type="text" class="form-control " id="description" name="description" placeholder="Discription" required>
+          </div>
+          <div class="form-group">      
+            <label class="col-sm-3">Category:</label>
+            <div class="col-sm-3">
+              <input type="checkbox" name="category" value="veg"> Veg
             </div>
-          </div>  
-        </div>
+            <div class="col-sm-3">   
+              <input type="checkbox" name="category" value="nonVeg">Non Veg
+            </div>
+            <div class="col-sm-3">
+              <input type="checkbox" name="category" value="gujrati">Gujrati
+            </div>         
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3">Meal Type:</label>
+            <div class="col-sm-3">
+              <input type="checkbox" name="mealType" value='breakfast'>Breakfast 
+            </div>
+            <div class="col-sm-3"> 
+              <input type="checkbox" name="mealType" value="lunch">Lunch
+            </div>
+            <div class="col-sm-3">
+              <input type="checkbox" name="mealType" value="dinner">Dinner
+            </div>                          
+          </div>
+          <div class="form-group">      
+            <input type="number" class="form-control " id="fullPrice" name="fullPrice" placeholder="full Price" required>
+          </div>
+          <div class="form-group">      
+            <input type="number" class="form-control " id="discountedPrice" name="discountedPrice" placeholder="Discount Price" required>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-success">Save</button>
+          </div>
+        </form>
+      </div>
 
-       
+      <script>
+
+      </script>  
     </script>
 
     <script type="text/x-template" id="admin-dashboard-template">
-      <div class="container">
-        <div class="row">        
-              <div class="input-group col-md-6 col-md-offset-2">
-                  <div class="input-group ">
-                      <input type="text" class="form-control " id="searchKey" name="searchKey" placeholder="Search by Restaraunts, location, menu, category" required>
-                      <span class="input-group-btn">
-                          <button id="search" type="button" class="btn btn-primary search"><span class="glyphicon glyphicon-search"></span></button>
-                      </span>
-                  </div>   
-              </div>
-        </div>
-      </div>
-    
-      
-      <div class="table-responsive">
-        <h2>List of Dabbawala</h2>
-                      <div class="startTable" id="startTable"> 
-                        <table id="fTable" class=" table table-bordered ">
-                            <thead>
-                              <tr>
-                                <th>Name of Restaurants</th>
-                                <th>Address</th>
-                                <th>Service Location</th>
-                                <th>Action</th>
-                              </tr>
-                            </thead>
-
-                            <tbody>
-
-                                {{#each dabbawalaList }}
-                                  <tr>
-                                    <td>{{this.name}}</td> 
-                                    <td>{{this.address.vicinity}},{{this.address.city}},{{this.address.state}}</td>
-                                    <td>{{this.distributionAreas}}</td> 
-                                    <td><a href="#edit/{{ this._id }}" class="btn btn-primary" id="">Edit</a>
+      <div class="">
+        <div class="">
+          <div class="row">        
+            <div class="input-group col-md-6 col-md-offset-2">
+              <div class="input-group ">
+                <input type="text" class="form-control " id="searchKey" name="searchKey" placeholder="Search by Restaraunts, location, menu, category" required>
+                <span class="input-group-btn"><button id="search" type="button" class="btn btn-primary search"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+              </div>   
+            </div>
+          </div>   
+          <div class="table-responsive">
+            <h2>List of Dabbawala</h2>
+            <div class="startTable" id="startTable"> 
+              <table id="fTable" class=" table table-bordered ">
+                <thead>
+                  <tr class="colorcodeone">
+                    <th class="colorcodeone"><b>Name of Restarauntsaurants</b></th>
+                    <th class="colorcodeone">Address</th>
+                    <th class="colorcodeone">Service Location</th>
+                    <th class="colorcodeone">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each dabbawalaList }}
+                    <tr>
+                      <td class="active">{{this.name}}</td> 
+                      <td class="active">{{this.address.vicinity}},{{this.address.city}},{{this.address.state}}</td>
+                      <td class="active">{{this.distributionAreas}}</td> 
+                      <td class="active"><a href="#edit/{{ this._id }}" class="btn btn-primary" id="">Edit</a>
                                        <a href="#delete/{{ this._id }}" class="btn btn-danger" id="">Delete</a>
-                                    </td>
-                                  </tr>  
-                                {{/each}}
-                            </tbody>
-                          </table> 
-                        </div> 
-                  <div class="newTable" id="newTable"> 
-                    <table class="table table-bordered " >
-
-                          <thead>
-                            <tr>
-                              <th>Name of Restaurants</th>
-                              <th>Address</th>
-                              <th>Service Location</th>
-                              <th>Action</th>
-                            </tr>
-                          </thead>
-
-                          <tbody class="afterSearhTable"></tbody>
-
-
-                      </table> 
-                    </div>
-      </div>
-      <div class="pull-right"><a href="#addDabbawala" class="btn btn-primary" id="">Add New Dabbawala</a></div>  
-
-      <script>
+                      </td>
+                    </tr>  
+                  {{/each}}
+                </tbody>
+              </table> 
+            </div> 
+            <div class="newTable" id="newTable"> 
+            <table class="table table-bordered " >
+              <thead>
+                <tr class="colorcodeone">
+                  <th class="colorcodeone">Name of Restaurants</th>
+                  <th class="colorcodeone">Address</th>
+                  <th class="colorcodeone">Service Location</th>
+                  <th class="colorcodeone">Action</th>
+                </tr>
+              </thead>
+              <tbody class="afterSearhTable"></tbody>
+            </table> 
+          </div>
+          <div class="pull-right"><a href="#addDabbawala" class="btn btn-primary" id="">Add New Dabbawala</a>
+          </div>
+        </div> 
+      </div> 
+    <script>
         $( document ).ready(function() {
           $('.newTable').hide();
 
@@ -1045,25 +1003,21 @@
           <div class="table-responsive">
             <table class="table table-bordered">
                             <thead>
-                              <tr>
-                                <th>Name </th>
-                                <th>Email</th>
-                                <th>Contact</th>
-                                <th>Role</th>
-                                
-                                
+                              <tr class="colorcodeone">
+                                <th class="colorcodeone">Name </th>
+                                <th class="colorcodeone">Email</th>
+                                <th class="colorcodeone">Contact</th>
+                                <th class="colorcodeone">Role</th>      
                               </tr>
                             </thead>
 
                             <tbody>
-                            
                                 {{#each tiffinboxSupplier.team }}
                                   <tr>
-                                    <td>{{this.name.first}}&nbsp {{this.name.last}}</td>
-                                    <td>{{this.email}}</td>
-                                    <td>{{this.contactNumber}}</td>
-                                    <td>{{this.role}}</td> 
-                                    
+                                    <td class="active">{{this.name.first}}&nbsp {{this.name.last}}</td>
+                                    <td class="active">{{this.email}}</td>
+                                    <td class="active">{{this.contactNumber}}</td>
+                                    <td class="active">{{this.role}}</td>      
                                   </tr>  
                                 {{/each}}
                             </tbody>
@@ -1077,12 +1031,12 @@
           <div class="table-responsive">
             <table class="table table-bordered">
                             <thead>
-                              <tr>
-                                <th>Name </th>
-                                <th>Category</th>
-                                <th>Meal Type</th>
-                                <th>Items</th>
-                                <th>Price</th>
+                              <tr class="colorcodeone">
+                                <th class="colorcodeone">Name </th>
+                                <th class="colorcodeone">Category</th>
+                                <th class="colorcodeone">Meal Type</th>
+                                <th class="colorcodeone">Items</th>
+                                <th class="colorcodeone">Price</th>
                                 
                                 
                               </tr>
@@ -1092,11 +1046,11 @@
                             
                                 {{#each tiffinboxSupplier.menu }}
                                   <tr>
-                                    <td>{{this.name}}</td>
-                                    <td>{{this.category}}</td>
-                                    <td>{{this.mealType}}</td>
-                                    <td>{{this.ingredients}}</td>
-                                    <td>{{this.fullPrice}}</td> 
+                                    <td class="active">{{this.name}}</td>
+                                    <td class="active">{{this.category}}</td>
+                                    <td class="active">{{this.mealType}}</td>
+                                    <td class="active">{{this.ingredients}}</td>
+                                    <td class="active">{{this.fullPrice}}</td> 
                                     
                                   </tr>  
                                 {{/each}}
@@ -1139,23 +1093,22 @@
     </script>
 
     <script type="text/x-template" id="edit-dabbawala-template">
-      
-      <div class=" well">
+      <div class="">
         <div class="row">
-          <h4 class="center-text">{{tiffinboxSupplier.name}}'s Alter Page</h4>
+          <h4 class="center-text">{{tiffinboxSupplier.name}} Edit Page</h4>
           <div class="col-md-12">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#addDabbawala-t" data-toggle="tab">Edit Basic Information</a></li>
-              <li><a href="#addTeam-t" data-toggle="tab">Team</a></li>
-              <li><a href="#addMenu-t" data-toggle="tab">Menu</a></li> 
+              <li class="gbcolotab border_right"><a href="#addTeam-t" data-toggle="tab">Team</a></li>
+              <li class="gbcolotab border_right"><a href="#addMenu-t" data-toggle="tab">Menu</a></li> 
             </ul>
           </div>
         </div>
 
         <div class="row">
           <div class="tab-content">
-            <div class="tab-pane active col-md-10 well" id="addDabbawala-t">
-              <form class="form-horizontal create-dabbawala-form ">
+            <div class="tab-pane active col-md-10" id="addDabbawala-t"><div class="col-sm-12">
+              <form class="form-horizontal edit-dabbawala-form ">
                 <div class="form-group">      
                   <input type="text" class="form-control " id="name" name="name" value="{{tiffinboxSupplier.name}}" required>
                 </div>
@@ -1232,7 +1185,7 @@
                   <div class="col-sm-3">
                     <input type="checkbox" name="mealType" value="lunch">Lunch
                   </div>
-                  <div class="col-sm-3"
+                  <div class="col-sm-3">
                     <input type="checkbox" name="mealType" value="dinner">Dinner
                   </div>                          
                 </div>
@@ -1275,34 +1228,34 @@
                 </div>
               
                 <div class="form-group col-sm-3">
-                  <button type="submit" class="btn btn-success">Update</button>
-                  <input type="hidden" value="{{tiffinboxSupplier._id}}">
+                  <input type="hidden" value={{tiffinboxSupplier.id}} name="id">
+                  <button type="submit" class="btn btn-success">Update</button>             
                 </div>
               </form>
               <div class="pull-right"><a href="#addDabbawala" class="btn btn-primary" id="">Add New Dabbawala</a></div>                   
-            </div>
+            </div></div>
 
-            <div class="tab-pane col-md-10 well" id="addTeam-t">
-              <div class="table-responsive ">
+            <div class="tab-pane col-md-10 " id="addTeam-t">
+              <div class="table-responsive">
                 <table class="table table-bordered">
                   <thead>
-                    <tr>
-                      <th>Name </th>
-                      <th>Email</th>
-                      <th>Contact</th>
-                      <th>Role</th>
-                      <th>Action</th>
+                    <tr class="colorcodeone">
+                      <th class="colorcodeone">Name </th>
+                      <th class="colorcodeone">Email</th>
+                      <th class="colorcodeone">Contact</th>
+                      <th class="colorcodeone">Role</th>
+                      <th class="colorcodeone">Action</th>
                     </tr>
                   </thead>
 
                   <tbody>                            
                     {{#each tiffinboxSupplier.team }}
                       <tr>
-                        <td>{{this.name.first}}&nbsp {{this.name.last}}</td>
-                        <td>{{this.email}}</td>
-                        <td>{{this.contactNumber}}</td>
-                        <td>{{this.role}}</td>
-                        <td><a href="editTeam/{{this._id}}" class="btn btn-primary">Edit</a><a href="deleteTeam/{{this._id}}" class="btn btn-danger">Delete</a></td> 
+                        <td class="active">{{this.name.first}}&nbsp {{this.name.last}}</td>
+                        <td class="active">{{this.email}}</td>
+                        <td class="active">{{this.contactNumber}}</td>
+                        <td class="active">{{this.role}}</td>
+                        <td class="active"><a href="editTeam/{{this._id}}" class="btn btn-primary">Edit</a><a href="deleteTeam/{{this._id}}" class="btn btn-danger">Delete</a></td> 
                       </tr>  
                     {{/each}}
                   </tbody>
@@ -1311,35 +1264,34 @@
               <div class="pull-right"><a href="#addTeam" class="btn btn-primary" id="">Add New Team</a></div>                      
             </div>
 
-            <div class="tab-pane col-md-10 well" id="addMenu-t">
-              <div class="table-responsive well">
+            <div class="tab-pane col-md-10 " id="addMenu-t">
+              <div class="table-responsive">
                 <table class="table table-bordered">
                   <thead>
-                    <tr>
-                      <th>Name </th>
-                      <th>Category</th>
-                      <th>Meal Type</th>
-                      <th>Items</th>  
-                      <th>Price</th>
-                      <th>Action</th>                      
+                    <tr class="colorcodeone">
+                      <th class="colorcodeone">Name </th>
+                      <th class="colorcodeone">Category</th>
+                      <th class="colorcodeone">Meal Type</th>
+                      <th class="colorcodeone">Items</th>  
+                      <th class="colorcodeone">Price</th>
+                      <th class="colorcodeone">Action</th>                      
                     </tr>
                   </thead>
                   <tbody>            
                     {{#each tiffinboxSupplier.menu }}
                       <tr>
-                        <td>{{this.name}}</td>
-                        <td>{{this.category}}</td>
-                        <td>{{this.mealType}}</td>
-                        <td>{{this.ingredients}}</td>
-                        <td>{{this.fullPrice}}</td>
-                        <td><a href="editMenu/{{this._id}}" class="btn btn-primary">Edit</a><a href="deleteMenu/{{this._id}}" class="btn btn-danger">Delete</a></td>                                                            
+                        <td class="active">{{this.name}}</td>
+                        <td class="active">{{this.category}}</td>
+                        <td class="active">{{this.mealType}}</td>
+                        <td class="active">{{this.ingredients}}</td>
+                        <td class="active">{{this.fullPrice}}</td>
+                        <td class="active"><a href="editMenu/{{this._id}}" class="btn btn-primary">Edit</a><a href="deleteMenu/{{this._id}}" class="btn btn-danger">Delete</a></td>                                                            
                       </tr>  
                     {{/each}}
                   </tbody>
                 </table>
                 <div class="pull-right"><a href="#addMenu" class="btn btn-primary" id="">Add New Menu</a></div>                 
               </div>
-
             </div>        
           </div>
         </div>
@@ -1361,7 +1313,7 @@
                     $('#monthly').hide();
                   }
               });              
-        </script>
+      </script>
     </script>
     
     <script type="text/x-template" id="profile-template">
@@ -1378,6 +1330,7 @@
     <script src= "/javascripts/lib/underscore.js"></script>
     <script src= "/javascripts/lib/backbone.js"></script>
     <script src= "/javascripts/lib/bootstrap.min.js"></script>
+    <script src= "/javascripts/lib/helper.js"></script>
     <script src="/javascripts/backbone_utils.js"></script>
     <script src="/javascripts/backbone/model.js"></script>
     <script src="/javascripts/backbone/collections.js"></script>

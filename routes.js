@@ -32,13 +32,15 @@ module.exports = function(app){
   app.post('/users/resetPassword', userController.resetPassword)
   app.get('/users/logout', userController.logout);
 
-  app.post('/users',userController.create);
+  app.post('/users'
+    , passportConfig.isAuthenticated
+    ,userController.create);
 
   app.post('/tiffinBoxSupplier'
     , passportConfig.isAuthenticated
     , passportConfig.ensureAdmin
     , dabbawalaController.create);
-  app.put('/tiffinBoxSupplier'
+  app.put('/tiffinBoxSupplier/:id'
     , passportConfig.isAuthenticated
     , passportConfig.ensureAdmin
     , dabbawalaController.update);

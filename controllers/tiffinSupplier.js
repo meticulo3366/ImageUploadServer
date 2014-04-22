@@ -59,7 +59,7 @@ module.exports = function(app) {
         if(err) { return next(err); };
 
         if(tiffinBoxSupplier) {
-          console.log('team'+tiffinboxSupplier);
+          console.log('Fetched Record:'+tiffinboxSupplier);
           return res.json(tiffinBoxSupplier);
         } else {
           return res.json(404, {error: 'Tiffin box supplier not found!'});
@@ -195,6 +195,7 @@ tiffinboxSupplier.delete = function (req, res, next) {
   };
 
   tiffinboxSupplier.update = function (req, res, next) {
+    console.log("in update api"+req.params.id);
     if(req.params.id){
     console.log("in update api");
     TiffinboxSupplier.findById(req.params.id,

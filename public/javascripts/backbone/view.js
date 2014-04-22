@@ -97,9 +97,12 @@ app.SignInView =Backbone.View.extend({
           userLogin.save(loginDetails, {
             success: function(user){
               window.localStorage.setItem('id', user.attributes._id);
+               window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
               console.log('in login success')
               if(user.attributes.role === 'admin') {
+               
                 //app.router.navigate('adminDashboard', {trigger: true});
+
                 window.location = '/adminDashboard';
               } else {
                 app.router.navigate('home', {trigger: true});  
@@ -563,7 +566,8 @@ app.AdminDashboardView =Backbone.View.extend({
 
         initialize: function() {
           app.View= this;
-
+          var userName= window.localStorage.getItem('userName');
+          console.log("admin:"+userName);
           this.dabbawala = new app.addTiffinBoxSupplier();
           this.listenTo( this.dabbawala, 'sync', this.render,this);
           this.dabbawala.fetch();
@@ -571,7 +575,8 @@ app.AdminDashboardView =Backbone.View.extend({
         },
         render: function () {
           var that = this;
-          that.$el.html( that.tpl({dabbawalaList: that.dabbawala.toJSON()}));
+          var userName= window.localStorage.getItem('userName');
+          that.$el.html( that.tpl({dabbawalaList: that.dabbawala.toJSON(),userName: userName}));
 
         },
 
@@ -590,7 +595,7 @@ app.AdminDashboardView =Backbone.View.extend({
               var content= "";
     
               for(var i=0;i<that.tiffinboxSupplier.models.length;i++){
-                content+='<tr><td>'+that.tiffinboxSupplier.models[i].get('name')+'</td><td>'+that.tiffinboxSupplier.models[i].get('address').vicinity+','+that.tiffinboxSupplier.models[i].get('address').city+','+that.tiffinboxSupplier.models[i].get('address').zipCode+'</td><td>'+that.tiffinboxSupplier.models[i].get('distributionAreas')+'</td><td><a href="#update/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-danger" id="">Edit</a><a href="#delete/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-primary" id="">Delete</a></td></tr>';
+                content+='<tr><td class="active">'+that.tiffinboxSupplier.models[i].get('name')+'</td><td class="active">'+that.tiffinboxSupplier.models[i].get('address').vicinity+','+that.tiffinboxSupplier.models[i].get('address').city+','+that.tiffinboxSupplier.models[i].get('address').zipCode+'</td><td class="active">'+that.tiffinboxSupplier.models[i].get('distributionAreas')+'</td><td class="active"><a href="#update/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-primary" id="">Edit</a><a href="#delete/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-danger" id="">Delete</a></td></tr>';
               }
                   console.log(content);
                   //$('.afterSearhTable').innerHTML="W3Schools";
@@ -808,17 +813,18 @@ app.EditDabbawalaView= Backbone.View.extend({
             })
           }
         },
-        update: function(){
+        update: function(ev){
+          console.log('In update');
           var userDetails = $(ev.currentTarget).serializeObject();
-          var tiffinboxSupplier= new addTiffinBoxSupplier();
-          tiffinboxSupplier.save(userDetails,{}
+          var tiffinboxSupplier= new app.TiffinBoxSupplier();
+          tiffinboxSupplier.save(userDetails,{
             success: function(tiffinboxSupplier){
               console.log('in success');
             },
             error: function(){
               console.log('in error');
             }
-          );
+          });
         }
     });
 
