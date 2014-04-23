@@ -820,6 +820,7 @@ app.EditDabbawalaView= Backbone.View.extend({
           tiffinboxSupplier.save(userDetails,{
             success: function(tiffinboxSupplier){
               console.log('in success');
+              app.router.navigate('adminDashboard', {trigger:true});
             },
             error: function(){
               console.log('in error');

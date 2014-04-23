@@ -90,14 +90,14 @@ $(function () {
       add.render();
       fullnavbarView.render();
       adminnavbarView.render();
-      adminrightnavbarView.render();
+      //adminrightnavbarView.render();
       });
     app.router.on('route:AddMenu',function () {
       var add = new app.AddMenuView();
       add.render();
       fullnavbarView.render();
       adminnavbarView.render();
-      adminrightnavbarView.render();
+      //adminrightnavbarView.render();
       });
 
     app.router.on('route:addDabbawala',function () {

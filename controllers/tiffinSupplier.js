@@ -15,8 +15,7 @@ module.exports = function(app) {
 
     tiffinboxSupplier.create = function(req, res, next){
     var tiffinboxSupplier = new TiffinboxSupplier(req.body);
-   
-    
+
     tiffinboxSupplier.save(function(err, tiffinboxSupplier){
         if (err) { return next(err)};
         if(tiffinboxSupplier) {
@@ -75,20 +74,20 @@ module.exports = function(app) {
       function(err,tiffinboxSupplier){
         if(err){return next(err)}
         if(tiffinboxSupplier){
-          var split= req.body.ingredients.split(',');
+          tiffinboxSupplier.menu.push(req.body);
+          // var split= req.body.ingredients.split(',');
+          // console.log(split);
+          // tiffinboxSupplier.menu.push(
+          //   {
 
-          console.log(split);
-          tiffinboxSupplier.menu.push(
-            {
-
-              name:req.body.name,
-              category: req.body.category,
-              mealType: req.body.mealType,
-              description: req.body.description,
-              ingredients:split,
-              fullPrice: req.body.fullPrice,
-              discountedPrice: req.body.discountedPrice
-          });
+          //     name:req.body.name,
+          //     category: req.body.category,
+          //     mealType: req.body.mealType,
+          //     description: req.body.description,
+          //     ingredients:split,
+          //     fullPrice: req.body.fullPrice,
+          //     discountedPrice: req.body.discountedPrice
+          // });
 
          
 
@@ -198,15 +197,13 @@ tiffinboxSupplier.delete = function (req, res, next) {
     console.log("in update api"+req.params.id);
     if(req.params.id){
     console.log("in update api");
-    TiffinboxSupplier.findById(req.params.id,
+    TiffinboxSupplier.findByIdAndUpdate(req.params.id, req.body,
       function(err,tiffinBoxSupplier){
         if(!err){
-          tiffinboxSupplier=req.body;
-          tiffinBoxSupplier.save(function(err){
-            if (!err) {
-              res.json(tiffinBoxSupplier);
-            };    
-          });   
+          console.log(tiffinBoxSupplier);
+          return res.json(tiffinBoxSupplier);
+        } else {
+          return next(err);
         }
       });
   }

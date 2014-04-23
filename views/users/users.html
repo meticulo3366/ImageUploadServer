@@ -672,7 +672,7 @@
     </script>
 
     <script type="text/x-template" id="add-dabbawala-template">
-      <div class="well col-sm-12">
+      <div class="well col-sm-10">
         <h4 class="center-text">Add Dabbawala/Restaurant</h4>
         <hr>
         <form class="form-horizontal create-dabbawala-form ">
@@ -876,25 +876,38 @@
         <h4 class="center-text">Add Menu </h4>
         <hr>
         <form class="form-horizontal create-menu-form ">
-          <div class="form-group">      
-            <select id="dbw" name="dbw" class="form-control ">
-              <option>select Dabbawala</option>
-              {{#each dabbawalaList }}
-                <option>{{this.name}}</option>
-              {{/each}}  
-            </select>
+
+          <div class="form-group"> 
+            <label for="" class="col-sm-3 control-label">Dabbawala</label>
+            <div class="col-sm-9">     
+              <select id="dbw" name="dbw" class="form-control ">
+                {{#each dabbawalaList }}
+                  <option>{{this.name}}</option>
+                {{/each}}  
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-sm-3 control-label">Name of Menu</label>
+            <div class="col-sm-9">      
+              <input type="text" class="form-control " id="name" name="name" placeholder="name of Menu " required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-sm-3 control-label">Item List</label>
+            <div class="col-sm-7" id="items">      
+              <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," required>
+            </div>
+            <button type="button" class="btnAddItem btn "><span class="glyphicon glyphicon-plus-sign"></span></button>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-sm-3 control-label">Discription</label>
+            <div class="col-sm-9" id="items">      
+              <input type="text" class="form-control " id="description" name="description" placeholder="Discription" required>
+            </div>
           </div>
           <div class="form-group">      
-            <input type="text" class="form-control " id="name" name="name" placeholder="name of Menu " required>
-          </div>
-          <div class="form-group">      
-            <input type="text" class="form-control " id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," required>
-          </div>
-          <div class="form-group">      
-            <input type="text" class="form-control " id="description" name="description" placeholder="Discription" required>
-          </div>
-          <div class="form-group">      
-            <label class="col-sm-3">Category:</label>
+            <label for="" class="col-sm-3 control-label">Category</label>
             <div class="col-sm-3">
               <input type="checkbox" name="category" value="veg"> Veg
             </div>
@@ -906,7 +919,7 @@
             </div>         
           </div>
           <div class="form-group">
-            <label class="col-sm-3">Meal Type:</label>
+            <label class="col-sm-3 control-label">Meal Type</label>
             <div class="col-sm-3">
               <input type="checkbox" name="mealType" value='breakfast'>Breakfast 
             </div>
@@ -917,20 +930,30 @@
               <input type="checkbox" name="mealType" value="dinner">Dinner
             </div>                          
           </div>
-          <div class="form-group">      
-            <input type="number" class="form-control " id="fullPrice" name="fullPrice" placeholder="full Price" required>
+          <div class="form-group">
+            <label for="" class="col-sm-3 control-label">Full Price</label>
+            <div class="col-sm-9">      
+              <input type="number" class="form-control " id="fullPrice" name="fullPrice" placeholder="full Price" required>
+            </div>
           </div>
-          <div class="form-group">      
-            <input type="number" class="form-control " id="discountedPrice" name="discountedPrice" placeholder="Discount Price" required>
+          <div class="form-group">
+            <label for="" class="col-sm-3 control-label">Discount Price</label>
+            <div class="col-sm-9">        
+              <input type="number" class="form-control " id="discountedPrice" name="discountedPrice" placeholder="Discount Price" required>
+            </div>  
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-success">Save</button>
           </div>
         </form>
+
       </div>
 
       <script>
-
+      $('.btnAddItem').click(function(){
+        console.log('in jquery');
+        $(this).parent().append('<div class="col-sm-7 col-sm-offset-3"><input type="text" name="ingredients" placeholder="enter new item"></div>');
+      });
       </script>  
     </script>
 
@@ -989,13 +1012,11 @@
           </div>
         </div> 
       </div> 
-    <script>
+      <script>
         $( document ).ready(function() {
           $('.newTable').hide();
-
         });
       </script>
-
     </script>
 
     <script type="text/x-template" id="team-list-template">
@@ -1023,12 +1044,13 @@
                             </tbody>
 
                         </table> 
-          </div>    
+          </div>
+          <div class="pull-right"><a href="#addTeam" class="btn btn-primary" id="">Add New Team</a></div    
     </script>
 
     <script type="text/x-template" id="menu-list-template">
         <h2>{{tiffinboxSupplier.name}} Menu</h2>
-          <div class="table-responsive">
+        <div class="table-responsive">
             <table class="table table-bordered">
                             <thead>
                               <tr class="colorcodeone">
@@ -1057,7 +1079,8 @@
                             </tbody>
 
                         </table> 
-          </div>    
+          </div>
+          <div class="pull-right"><a href="#addMenu" class="btn btn-primary" id="">Add New Menu</a></div>    
     </script>
 
     <script type="text/x-template" id="search-dabbawala-template">
@@ -1154,76 +1177,76 @@
                 <div class="form-group">      
                   <label class="col-sm-3">Category:</label>
                   <div class="col-sm-3">
-                    <input type="checkbox" name="category" value="veg"> Veg
+                    <input type="checkbox" name="category" value="veg" {{#if (isPresent tiffinboxSupplier.category 'veg')}}checked {{/if}}> Veg
                   </div>
                   <div class="col-sm-3">
-                    <input type="checkbox" name="category" value="nonVeg">Non Veg
+                    <input type="checkbox" name="category" value="nonVeg" {{#if (isPresent tiffinboxSupplier.category 'nonVeg')}}checked {{/if}}>Non Veg
                   </div>
                   <div class="col-sm-3">
-                    <input type="checkbox" name="category" value="gujrati">Gujrati
+                    <input type="checkbox" name="category" value="gujrati" {{#if (isPresent tiffinboxSupplier.category 'gujrati')}}checked {{/if}}>Gujrati
                   </div>         
                 </div>
 
                 <div class="form-group">
                   <label class="col-sm-3">Order Type:</label>
                   <div class="col-sm-3">
-                    <input type="checkbox" name="orderType" value="daily">Daily 
+                    <input type="checkbox" name="orderType" value="daily" {{#if (isPresent tiffinboxSupplier.orderType 'daily')}}checked {{/if}}>Daily 
                   </div>
                   <div class="col-sm-3">
-                    <input type="checkbox" name="orderType" value="weekly">Weekly
+                    <input type="checkbox" name="orderType" value="weekly" {{#if (isPresent tiffinboxSupplier.orderType 'weekly')}}checked {{/if}}>Weekly
                   </div>
                   <div class="col-sm-3">
-                    <input type="checkbox" name="orderType" value="monthly">Monthly
+                    <input type="checkbox" name="orderType" value="monthly" {{#if (isPresent tiffinboxSupplier.orderType 'monthly')}}checked {{/if}}>Monthly
                   </div>                          
                 </div>
   
                 <div class="form-group">
                   <label class="col-sm-3">Meal Type:</label>
                   <div class="col-sm-3">
-                    <input type="checkbox" name="mealType" value='breakfast'>Breakfast 
+                    <input type="checkbox" name="mealType" value='breakfast' {{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}checked {{/if}}>Breakfast 
                   </div>
                   <div class="col-sm-3">
-                    <input type="checkbox" name="mealType" value="lunch">Lunch
+                    <input type="checkbox" name="mealType" value="lunch" {{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}checked {{/if}}>Lunch
                   </div>
                   <div class="col-sm-3">
-                    <input type="checkbox" name="mealType" value="dinner">Dinner
+                    <input type="checkbox" name="mealType" value="dinner" {{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}checked {{/if}}>Dinner
                   </div>                          
                 </div>
 
                 <div class="form-group">
                   <label class="col-sm-3">Price:</label>
                   <div class="col-sm-3 cb-weekly">
-                    <input type="checkbox" name="priceWeekly" value="weekly">Weekly 
+                    <input type="checkbox" name="priceWeekly" value="weekly" {{#if tiffinboxSupplier.price.weekly.dinner}} checked {{/if}}>Weekly 
                   </div>
                   <div class="col-sm-3 cb-monthly">
-                    <input type="checkbox" name="priceMonthly" value="monthly">Monthly
+                    <input type="checkbox" name="priceMonthly" value="monthly" {{#if tiffinboxSupplier.price.monthly.dinner}} checked {{/if}}>Monthly
                   </div>
                   <div class="col-sm-3">
 
                   </div>                          
                 </div>
               
-                <div class="form-group" id="weekly" style="display:none"> 
+                <div class="form-group" id="weekly" {{#if tiffinboxSupplier.price.weekly.dinner}}{{else}}style="display:none"{{/if}}> 
                   <div class="col-sm-4">
-                    <input type="number" name="price.weekly.breakfast" id="" placeholder="Weekly Breakfast price">
+                    <input type="number" name="price.weekly.breakfast" id="" placeholder="Weekly Breakfast price" {{#if tiffinboxSupplier.price.weekly.breakfast}} value="{{tiffinboxSupplier.price.weekly.breakfast}}" {{/if}}>
                   </div>
                   <div class="col-sm-4">
-                    <input type="number" name="price.weekly.lunch" id="" placeholder="Weekly Lunch price">
+                    <input type="number" name="price.weekly.lunch" id="" placeholder="Weekly Lunch price" {{#if tiffinboxSupplier.price.weekly.lunch}} value="{{tiffinboxSupplier.price.weekly.lunch}}" {{/if}}>
                   </div>   
                   <div class="col-sm-4">
-                    <input type="number" name="price.weekly.dinner" id="" placeholder="Weekly Dinner price">
+                    <input type="number" name="price.weekly.dinner" id="" placeholder="Weekly Dinner price" {{#if tiffinboxSupplier.price.weekly.dinner}} value="{{tiffinboxSupplier.price.weekly.dinner}}" {{/if}}>
                   </div>                                            
                 </div>
               
-                <div class="form-group" id="monthly" style="display:none"> 
+                <div class="form-group" id="monthly" {{#if tiffinboxSupplier.price.monthly.dinner}} {{else}}style="display:none"{{/if}}> 
                   <div class="col-sm-4">
-                    <input type="number" name="price.monthly.breakfast" id="" placeholder="Monthly Breakfast price">
+                    <input type="number" class="monthly_bf" name="price.monthly.breakfast" id="" placeholder="Monthly Breakfast price" {{#if tiffinboxSupplier.price.monthly.breakfast}} value="{{tiffinboxSupplier.price.monthly.breakfast}}" {{/if}}>
                   </div>
                   <div class="col-sm-4">
-                    <input type="number" name="price.monthly.lunch" id="" placeholder="Monthly Lunch price">
+                    <input type="number" class="monthly_lunch" name="price.monthly.lunch" id="" placeholder="Monthly Lunch price" {{#if tiffinboxSupplier.price.monthly.lunch}} value="{{tiffinboxSupplier.price.monthly.lunch}}" {{/if}}>
                   </div>   
                   <div class="col-sm-4">
-                    <input type="number" name="price.monthly.dinner" id="" placeholder="Monthly Dinner price">
+                    <input type="number" class="monthly_dinner" name="price.monthly.dinner" id="" placeholder="Monthly Dinner price" {{#if tiffinboxSupplier.price.monthly.dinner}} value="{{tiffinboxSupplier.price.monthly.dinner}}" {{/if}}>
                   </div>                                            
                 </div>
               
@@ -1302,6 +1325,9 @@
                     $('#weekly').show();
                   } 
                   else {
+                    $('.price.weekly.breakfast').val("");
+                    $('.price.weekly.lunch').val("");
+                    $('.price.weekly.dinner').val("");
                     $('#weekly').hide();
                   }
               });
@@ -1310,6 +1336,9 @@
                     $('#monthly').show();
                   } 
                   else {
+                    $('.monthly_bf').val('');
+                    $('.monthly_lunch').val('');
+                    $('.monthly_dinner').val('');
                     $('#monthly').hide();
                   }
               });              
