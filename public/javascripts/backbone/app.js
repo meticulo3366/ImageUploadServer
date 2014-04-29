@@ -145,6 +145,35 @@ $(function () {
       adminnavbarView.render();
       //adminrightnavbarView.render();
       });
+     app.router.on('route:editMenu',function (id) {
+      var add = new app.EditMenuView();
+      add.render({id:id});
+      fullnavbarView.render();
+      adminnavbarView.render();
+      //adminrightnavbarView.render();
+      });
+     app.router.on('route:editTeam',function (id) {
+      var add = new app.EditTeamView();
+      add.render({id:id});
+      fullnavbarView.render();
+      adminnavbarView.render();
+      //adminrightnavbarView.render();
+      });
+     app.router.on('route:deleteMenu',function (id) {
+      var add = new app.DeleteMenuView();
+      add.render({id:id});
+      fullnavbarView.render();
+      adminnavbarView.render();
+      //adminrightnavbarView.render();
+      });
+     app.router.on('route:deleteTeam',function (id) {
+      var add = new app.DeleteTeamView();
+      add.render({id:id});
+      fullnavbarView.render();
+      adminnavbarView.render();
+      //adminrightnavbarView.render();
+      });
+
 
   Backbone.history.start();
 });

@@ -32,9 +32,19 @@ module.exports = function(app){
   app.post('/users/resetPassword', userController.resetPassword)
   app.get('/users/logout', userController.logout);
 
+  
   app.post('/users'
     , passportConfig.isAuthenticated
     ,userController.create);
+
+  app.put('/users/:id'
+    , passportConfig.isAuthenticated
+    ,userController.update);
+
+app.delete('/users/:id'
+    , passportConfig.isAuthenticated
+    ,userController.delete);
+
 
   app.post('/tiffinBoxSupplier'
     , passportConfig.isAuthenticated
@@ -57,6 +67,16 @@ module.exports = function(app){
     , passportConfig.isAuthenticated
     , passportConfig.ensureAdmin
     , dabbawalaController.addMenu);
+
+  app.put('/tiffinBoxSupplierMenu/:dabbawalaId/:menuId'
+    , passportConfig.isAuthenticated
+    , passportConfig.ensureAdmin
+    , dabbawalaController.updateMenu);
+
+  app.delete('/tiffinBoxSupplierMenu/:dabbawalaId/:menuId'
+    , passportConfig.isAuthenticated
+    , passportConfig.ensureAdmin
+    , dabbawalaController.deleteMenu);
   //app.get('/tiffinBoxSupplierMenu/:id',dabbawalaController.getMenu);
   // app.get('/tiffinBoxSupplier/:id/getTeam'
   //   , passportConfig.isAuthenticated

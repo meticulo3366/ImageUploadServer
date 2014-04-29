@@ -4,13 +4,13 @@ var app = app || {};
 	'use strict';
 	app.User = Backbone.Model.extend({
 
-    url: function() {
-      if(this.get('dabbawalaId')) {
-        return '/users?dabbawalaId=' + this.get('dabbawalaId');    
-      } else {
+    urlRoot: function(){
+      if(this.get('dabbawalaId'))
+        return '/users/?dabbawalaId=' + this.get('dabbawalaId');
+      else
         return '/users';  
-      };
     }
+    
   });
 
  
@@ -31,7 +31,19 @@ var app = app || {};
  
 
   app.addTiffinBoxSupplierMenu = Backbone.Model.extend({
-    url: '/tiffinBoxSupplierMenu'
+     url: function() {
+      if(this.get('dabbawalaId')) {
+        if(this.get('menuId')){
+          return '/tiffinBoxSupplierMenu/' + this.get('dabbawalaId')+'/'+ this.get('menuId');
+        }
+        else{
+          return  '/tiffinBoxSupplierMenu/?dabbawalaId=' + this.get('dabbawalaId');  
+        } 
+      } else {
+        return '/tiffinBoxSupplierMenu';  
+      };
+    }
+    
   });
   // app.TiffinboxSupplier = Backbone.Model.extend({
   //   url:function() {

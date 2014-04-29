@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="stylesheet" href="/stylesheets/test.css">
+    <link rel="stylesheet" href="/stylesheets/test.css">    
     <link rel="stylesheet" href="/stylesheets/header-color.css">
 
   </head>
@@ -814,146 +814,244 @@
 
     
     <script type="text/x-template" id="add-team-template">
-
-      <div class="container">
-          <div class="row">
-            
-            <div class="well col-md-6">
-            <h4 class="center-text">Add Team </h4>
+      <div class="">
+        <div class="row">
+          <div class="well col-md-8">
+            <h4 class="center-text">{{#if team}}Edit Team{{else}}Add Team {{/if}}</h4>
             <hr>
-            <form class="form-horizontal create-team-form ">
-
-              <div class="form-group">      
-                  <select id="dbw" name="dbw" class="form-control ">
-                        <option value="">select Dabbawala</option>
-                        {{#each dabbawalaList }}
-
-                          <option value="{{this._id}}">{{this.name}}</option>
-                
-                        {{/each}}  
-                  </select>
-              </div>
-            
-              <div class="form-group">      
-                  <input type="text" class="form-control " id="firstName" name="firstName" placeholder="First Name" required>
-                  
-              </div>
-              <div class="form-group">      
-                  <input type="text" class="form-control " id="lastName" name="lastName" placeholder="Last Name" required>
-              </div>
-              <div class="form-group">      
-                  <input type="email" class="form-control " id="email" name="email" placeholder="Email" required>
-              </div>
-              <div class="form-group">      
-                  <input type="password" class="form-control " id="password" name="password" placeholder="Password" required>
-              </div>
-              <div class="form-group">      
-                  <input type="number" class="form-control " id="contactNumber" name="contactNumber" placeholder="Contact Number" required>
-              </div>
-               <div class="form-group">      
-                  <select id="role" name="role" class="form-control ">
-                        <option value="">Select Role</option>
-                        <option>Manager</option>
-                        <option>Shelf</option>
-                        <option>Delivry Boy</option>
-                  </select>
-              </div>
-            
-
+            {{#if team}}<form class="form-horizontal edit-team-form ">{{else}}<form class="form-horizontal create-team-form ">{{/if}}
               <div class="form-group">
-                  <button type="submit" class="btn btn-success">Save</button>
+                <label for="" class="col-sm-3 control-label">Dabbawala</label>
+                <div class="col-sm-9">      
+                  <input type="text" class="form-control " id="dbw" name="dbw" value="{{dabbawalaName}}" required disabled> 
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="" class="col-sm-3 control-label">First Name</label>
+                <div class="col-sm-9">      
+                  <input type="text" class="form-control " id="firstName"  placeholder="First Name" required {{#if team}}value="{{team.name.first}}" name="name.first"{{else}} name="firstName" {{/if}}>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Last Name</label>
+                <div class="col-sm-9">      
+                  <input type="text" class="form-control " id="lastName"  placeholder="Last Name" required {{#if team}}value="{{team.name.last}}" name="name.last"{{else}}name="lastName"{{/if}}>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Email</label>
+                <div class="col-sm-9">      
+                  <input type="email" class="form-control " id="email" name="email" placeholder="Email" required {{#if team}}value={{team.email}}{{/if}}>
+                </div>
+              </div>
+              {{#if team}}
+              {{else}}
+                <div class="form-group">
+                  <label for="" class="col-sm-3 control-label">Password</label>
+                  <div class="col-sm-9">      
+                    <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
+                  </div>
+                </div>
+              {{/if}}
+              <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Contact</label>
+                <div class="col-sm-9">      
+                  <input type="number" class="form-control " id="contactNumber" name="contactNumber" placeholder="Contact Number" required {{#if team}}value={{team.contactNumber}}{{/if}}>
+                </div>
+              </div>
+               <div class="form-group">
+                  <label for="" class="col-sm-3 control-label">Role of Member</label>
+                  <div class="col-sm-9">      
+                    <select id="role" name="role" class="form-control ">
+                      <option value="Manager" {{#if  (isSelected team.role 'Manager')}} selected {{/if}}>Manager</option>
+                      <option value="Chef" {{#if (isSelected team.role 'Chef')}} selected {{/if}}>Chef</option>
+                      <option value="Delivry Boy" {{#if (isSelected team.role 'Delivry Boy')}} selected {{/if}}>Delivry Boy</option>
+                    </select>
+                  </div>
+              </div>        
+              <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                  {{#if team}}
+                    <button type="submit" class="btn btn-success">Update</button>
+                    <input type="hidden" name="id" value="{{team._id}}">
+                  {{else}}
+                    <button type="submit" class="btn btn-success">Save</button>
+                  {{/if}}
+                </div>
               </div>
             </form>
-            </div>
-          </div>  
-        </div>
-
+          </div>
+        </div>  
+      </div>
     </script>
 
+    <script type="text/x-template" id="edit-team-template">
+      <div class="">
+        <div class="row">
+          <div class="well col-md-8">
+            <h4 class="center-text">Add Team </h4>
+            <hr>
+            <form class="form-horizontal edit-team-form ">
+              <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Dabbawala</label>
+                <div class="col-sm-9">      
+                  <input type="text" class="form-control " id="dbw" name="dbw" value="{{dabbawalaName}}" required disabled> 
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="" class="col-sm-3 control-label">First Name</label>
+                <div class="col-sm-9">      
+                  <input type="text" class="form-control " id="firstName" name="firstName" value="{{}}" required>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Last Name</label>
+                <div class="col-sm-9">      
+                  <input type="text" class="form-control " id="lastName" name="lastName" placeholder="Last Name" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Email</label>
+                <div class="col-sm-9">      
+                  <input type="email" class="form-control " id="email" name="email" placeholder="Email" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Password</label>
+                <div class="col-sm-9">      
+                  <input type="password" class="form-control " id="password" name="password" placeholder="Password" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Contact</label>
+                <div class="col-sm-9">      
+                  <input type="number" class="form-control " id="contactNumber" name="contactNumber" placeholder="Contact Number" required>
+                </div>
+              </div>
+               <div class="form-group">
+                  <label for="" class="col-sm-3 control-label">Role of Member</label>
+                  <div class="col-sm-9">      
+                    <select id="role" name="role" class="form-control ">
+                      <option>Manager</option>
+                      <option>Chef</option>
+                      <option>Delivry Boy</option>
+                    </select>
+                  </div> 
+              </div>        
+              <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                  <button type="submit" class="btn btn-success">Save</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>  
+      </div>
+    </script>
 
     <script type="text/x-template" id="add-menu-template">
       <div class="well col-md-8">
-        <h4 class="center-text">Add Menu </h4>
+        <h4 class="center-text">{{#if menu}}Edit Menu {{else}}Add Menu{{/if}}</h4>
         <hr>
+        {{#if menu}}
+        <form class="form-horizontal edit-menu-form ">
+        {{else}}
         <form class="form-horizontal create-menu-form ">
-
+        {{/if}}
           <div class="form-group"> 
             <label for="" class="col-sm-3 control-label">Dabbawala</label>
             <div class="col-sm-9">     
-              <select id="dbw" name="dbw" class="form-control ">
-                {{#each dabbawalaList }}
-                  <option>{{this.name}}</option>
-                {{/each}}  
-              </select>
+              <input type="text" class="form-control " id="dbw" name="dbw" value="{{dabbawalaName}}" required disabled>
             </div>
           </div>
           <div class="form-group">
             <label for="" class="col-sm-3 control-label">Name of Menu</label>
             <div class="col-sm-9">      
-              <input type="text" class="form-control " id="name" name="name" placeholder="name of Menu " required>
+              <input type="text" class="form-control " id="name" name="name" {{#if menu}}value="{{menu.name}}" {{/if}}placeholder="name of Menu " required>
             </div>
           </div>
           <div class="form-group">
             <label for="" class="col-sm-3 control-label">Item List</label>
-            <div class="col-sm-7" id="items">      
-              <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," required>
-            </div>
+            {{#if menu}}
+              {{#each menu.ingredients}}
+                <div class="col-sm-7" id="items">      
+                  <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," required value="{{this}}">
+                </div>
+              {{/each}}
+            {{else}}
+              <div class="col-sm-7" id="items">      
+                <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," required>
+              </div>
+            {{/if}}
+            
             <button type="button" class="btnAddItem btn "><span class="glyphicon glyphicon-plus-sign"></span></button>
           </div>
           <div class="form-group">
             <label for="" class="col-sm-3 control-label">Discription</label>
             <div class="col-sm-9" id="items">      
-              <input type="text" class="form-control " id="description" name="description" placeholder="Discription" required>
+              <input type="text" class="form-control " id="description" name="description" {{#if menu}}value="{{menu.description}}" {{/if}} placeholder="Discription" required >
             </div>
           </div>
           <div class="form-group">      
             <label for="" class="col-sm-3 control-label">Category</label>
             <div class="col-sm-3">
-              <input type="checkbox" name="category" value="veg"> Veg
+              <input type="checkbox" name="category" value="veg" {{#if menu}} {{#if (isPresent menu.category 'veg')}}selected {{/if}} {{/if}}> Veg
             </div>
             <div class="col-sm-3">   
-              <input type="checkbox" name="category" value="nonVeg">Non Veg
+              <input type="checkbox" name="category" value="nonVeg" {{#if menu}} {{#if (isPresent menu.category 'nonVeg')}} checked {{/if}} {{/if}}>Non Veg
             </div>
             <div class="col-sm-3">
-              <input type="checkbox" name="category" value="gujrati">Gujrati
+              <input type="checkbox" name="category" value="gujrati" {{#if menu}} {{#if (isPresent menu.category 'gujrati')}} checked {{/if}} {{/if}}>Gujrati
             </div>         
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Meal Type</label>
             <div class="col-sm-3">
-              <input type="checkbox" name="mealType" value='breakfast'>Breakfast 
+              <input type="checkbox" name="mealType" value='breakfast' {{#if menu}} {{#if (isPresent menu.mealType 'breakfast')}} checked {{/if}} {{/if}}>Breakfast 
             </div>
             <div class="col-sm-3"> 
-              <input type="checkbox" name="mealType" value="lunch">Lunch
+              <input type="checkbox" name="mealType" value="lunch" {{#if menu}} {{#if (isPresent menu.mealType 'lunch')}} checked {{/if}} {{/if}}>Lunch
             </div>
             <div class="col-sm-3">
-              <input type="checkbox" name="mealType" value="dinner">Dinner
+              <input type="checkbox" name="mealType" value="dinner" {{#if menu}} {{#if (isPresent menu.mealType 'dinner')}} checked {{/if}} {{/if}}>Dinner
             </div>                          
           </div>
           <div class="form-group">
-            <label for="" class="col-sm-3 control-label">Full Price</label>
+            <label for="" class="col-sm-3 control-label" >Full Price</label>
             <div class="col-sm-9">      
-              <input type="number" class="form-control " id="fullPrice" name="fullPrice" placeholder="full Price" required>
+              <input type="number" class = "form-control " id="fullPrice" name="fullPrice" placeholder="full Price" required {{#if menu}}value="{{menu.fullPrice}}" {{/if}}>
             </div>
           </div>
           <div class="form-group">
             <label for="" class="col-sm-3 control-label">Discount Price</label>
             <div class="col-sm-9">        
-              <input type="number" class="form-control " id="discountedPrice" name="discountedPrice" placeholder="Discount Price" required>
+              <input type="number" class="form-control " id="discountedPrice" name="discountedPrice" placeholder="Discount Price" required {{#if menu}}value="{{menu.discountedPrice}}" {{/if}}>
             </div>  
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-success">Save</button>
+            <div class="col-sm-offset-3 col-sm-9">
+              <button type="submit" class="btn btn-success">{{#if menu}}Update {{else}}Save{{/if}}</button>
+              {{#if menu}}<input type="hidden" name="id" value="menu._id"> hidden tag here{{/if}}
+            </div>
           </div>
         </form>
 
       </div>
 
       <script>
-      $('.btnAddItem').click(function(){
-        console.log('in jquery');
-        $(this).parent().append('<div class="col-sm-7 col-sm-offset-3"><input type="text" name="ingredients" placeholder="enter new item"></div>');
-      });
+        var itemLimit=5;
+        var itemCount=2;
+        $('.btnAddItem').click(function(){
+          console.log('in jquery');
+          if(itemCount <= itemLimit){
+            $(this).parent().append('<div class="col-sm-7 col-sm-offset-3"><input type="text" name="ingredients" placeholder="Enter new item" class="form-control"></div>');
+            itemCount+=1;
+            console.log(itemCount);
+          }
+          else{
+            alert('Only 5 item can be inserted');
+          }
+        });
       </script>  
     </script>
 
@@ -1021,74 +1119,67 @@
 
     <script type="text/x-template" id="team-list-template">
         <h2>{{tiffinboxSupplier.name}} Team</h2>
-          <div class="table-responsive">
-            <table class="table table-bordered">
-                            <thead>
-                              <tr class="colorcodeone">
-                                <th class="colorcodeone">Name </th>
-                                <th class="colorcodeone">Email</th>
-                                <th class="colorcodeone">Contact</th>
-                                <th class="colorcodeone">Role</th>      
-                              </tr>
-                            </thead>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="colorcodeone">
+                <th class="colorcodeone">Name </th>
+                <th class="colorcodeone">Email</th>
+                <th class="colorcodeone">Contact</th>
+                <th class="colorcodeone">Role</th>      
+              </tr>
+            </thead>
 
-                            <tbody>
-                                {{#each tiffinboxSupplier.team }}
-                                  <tr>
-                                    <td class="active">{{this.name.first}}&nbsp {{this.name.last}}</td>
-                                    <td class="active">{{this.email}}</td>
-                                    <td class="active">{{this.contactNumber}}</td>
-                                    <td class="active">{{this.role}}</td>      
-                                  </tr>  
-                                {{/each}}
-                            </tbody>
-
-                        </table> 
-          </div>
-          <div class="pull-right"><a href="#addTeam" class="btn btn-primary" id="">Add New Team</a></div    
+            <tbody>
+              {{#each tiffinboxSupplier.team }}
+                <tr>
+                  <td class="active">{{this.name.first}}&nbsp {{this.name.last}}</td>
+                  <td class="active">{{this.email}}</td>
+                  <td class="active">{{this.contactNumber}}</td>
+                  <td class="active">{{this.role}}</td>      
+                </tr>  
+              {{/each}}
+            </tbody>
+          </table> 
+        </div>
+      <div class="pull-right"><a href="#addTeam" class="btn btn-primary" id="">Add New Team</a></div    
     </script>
 
     <script type="text/x-template" id="menu-list-template">
-        <h2>{{tiffinboxSupplier.name}} Menu</h2>
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                            <thead>
-                              <tr class="colorcodeone">
-                                <th class="colorcodeone">Name </th>
-                                <th class="colorcodeone">Category</th>
-                                <th class="colorcodeone">Meal Type</th>
-                                <th class="colorcodeone">Items</th>
-                                <th class="colorcodeone">Price</th>
-                                
-                                
-                              </tr>
-                            </thead>
+      <h2>{{tiffinboxSupplier.name}} Menu</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr class="colorcodeone">
+              <th class="colorcodeone">Name </th>
+              <th class="colorcodeone">Category</th>
+              <th class="colorcodeone">Meal Type</th>
+              <th class="colorcodeone">Items</th>
+              <th class="colorcodeone">Price</th>   
+            </tr>
+          </thead>
 
-                            <tbody>
-                            
-                                {{#each tiffinboxSupplier.menu }}
-                                  <tr>
-                                    <td class="active">{{this.name}}</td>
-                                    <td class="active">{{this.category}}</td>
-                                    <td class="active">{{this.mealType}}</td>
-                                    <td class="active">{{this.ingredients}}</td>
-                                    <td class="active">{{this.fullPrice}}</td> 
-                                    
-                                  </tr>  
-                                {{/each}}
-                            </tbody>
-
-                        </table> 
-          </div>
-          <div class="pull-right"><a href="#addMenu" class="btn btn-primary" id="">Add New Menu</a></div>    
+          <tbody>                        
+            {{#each tiffinboxSupplier.menu }}
+              <tr>
+                <td class="active">{{this.name}}</td>
+                <td class="active">{{this.category}}</td>
+                <td class="active">{{this.mealType}}</td>
+                <td class="active">{{this.ingredients}}</td>
+                <td class="active">{{this.fullPrice}}</td>   
+              </tr>  
+            {{/each}}
+          </tbody>
+        </table> 
+      </div>
+      <div class="pull-right"><a href="#addMenu" class="btn btn-primary" id="">Add New Menu</a></div>    
     </script>
 
-    <script type="text/x-template" id="search-dabbawala-template">
-      
-          <div class="table-responsive">
-          <h4>Filtered Result</h4>
-            < <table class="table table-bordered">
-                          <thead>
+    <script type="text/x-template" id="search-dabbawala-template"> 
+      <div class="table-responsive">
+        <h4>Filtered Result</h4>
+          <table class="table table-bordered">
+            <thead>
                             <tr>
                               <th>Name of Restaurants</th>
                               <th>Address</th>
@@ -1119,8 +1210,8 @@
       <div class="">
         <div class="row">
           <h4 class="center-text">{{tiffinboxSupplier.name}} Edit Page</h4>
-          <div class="col-md-12">
-            <ul class="nav nav-tabs">
+          <div class="col-md-10">
+            <ul class="nav nav-tabs nav-justified">
               <li class="active"><a href="#addDabbawala-t" data-toggle="tab">Edit Basic Information</a></li>
               <li class="gbcolotab border_right"><a href="#addTeam-t" data-toggle="tab">Team</a></li>
               <li class="gbcolotab border_right"><a href="#addMenu-t" data-toggle="tab">Menu</a></li> 
@@ -1129,53 +1220,70 @@
         </div>
 
         <div class="row">
-          <div class="tab-content">
-            <div class="tab-pane active col-md-10" id="addDabbawala-t"><div class="col-sm-12">
+          <div class="tab-content editTabs">
+            <div class="tab-pane active col-md-10" id="addDabbawala-t">
               <form class="form-horizontal edit-dabbawala-form ">
-                <div class="form-group">      
-                  <input type="text" class="form-control " id="name" name="name" value="{{tiffinboxSupplier.name}}" required>
+                <div class="form-group">
+                  <label for="" class="col-sm-3 control-label">Dabbawala</label>
+                  <div class="col-sm-9">   
+                    <input type="text" class="form-control " id="" name="name" value="{{tiffinboxSupplier.name}}" required >
+                  </div>
                 </div>
 
-                <div class="form-group"> 
-                  <input type="email" class="form-control " name="email" value="{{tiffinboxSupplier.email}}" required>
+                <div class="form-group">
+                  <label for="" class="col-sm-3 control-label">Email</label>
+                  <div class="col-sm-9"> 
+                    <input type="email" class="form-control " name="email" value="{{tiffinboxSupplier.email}}" required>
+                  </div>
                 </div>
-
                 <div class="form-group ">
-                  <input type="tel" class="form-control" id="contact" name="contactNumber" value="{{tiffinboxSupplier.contactNumber}}" required>
-                </div>  
-
-                <div class="form-group">
-                  <label class="col-sm-2">Address:</label>
-                  <div class="col-sm-3">
-                    <select id="address.city" name="address.city" class="form-control"  placeholder="enter your search Dabbawala">
-                          <option value="">{{tiffinboxSupplier.address.city}}</option>
-                          <option value="Pune">Pune</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-3">
-                    <select id="address.state" name="address.state"  class="form-control">
-                          <option value="">{{tiffinboxSupplier.address.state}}</option>
-                          <option value="Maharashtra">Maharashtra</option> 
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <input type="number" name="address.zipCode" value="{{tiffinboxSupplier.address.zipCode}}">
-                  </div>
-                  <input type="text" class="form-control " id="address.vicinity" name="address.vicinity" value="{{tiffinboxSupplier.address.vicinity}}" required>
+                  <label for="" class="col-sm-3 control-label">Contact</label>
+                  <div class="col-sm-9">
+                    <input type="tel" class="form-control" id="contact" name="contactNumber" value="{{tiffinboxSupplier.contactNumber}}" required>
+                  </div>  
+                </div>
+                <div class="form-group ">
+                  <label for="" class="col-sm-3 control-label">Address</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="" name="address.vicinity" value="{{tiffinboxSupplier.address.vicinity}}" required>
+                  </div>  
                 </div>
                 <div class="form-group">
-                  <select id="distributionAreas" name="distributionAreas" multiple size="1" class="form-control">
-                        <option value="{tiffinboxSupplier.distributionAreas}}"></option>
-                        <option>Hadapsar</option>
-                        <option>Dange Chowk</option>
-                        <option>Shivaji Nagar</option>
-                        <option>Aundh</option>
-                        <option>Kondwa</option>
-                        <option>Camp</option>
-                  </select>
+                  <div class="col-sm-9 col-sm-offset-3">
+                    <div class="col-sm-4">
+                      <select id="address.city" name="address.city" class="form-control"  placeholder="enter your search Dabbawala">
+                            <option value="">Select City</option>
+                            <option select>Pune</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-4">
+                      <select id="address.state" name="address.state"  class="form-control">
+                        <option value="" >Select State</option>
+                        <option value="Maharashtra" select>Mahara shtra</option> 
+                      </select>
+                    </div>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control " id="address.zipCode" name="address.zipCode" value="{{tiffinboxSupplier.address.zipCode}}" required>
+                    </div> 
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="" class="col-sm-3 control-label">Distribution Area</label>
+                  <div class="col-sm-9">
+                    <select id="distributionAreas" name="distributionAreas" multiple class="form-control">
+                      <option value="">Select Distribution Area</option>
+                      <option value="Hadapsar" {{#if (isPresent tiffinboxSupplier.distributionAreas 'Hadapsar')}}selected {{/if}}>Hadapsar</option>
+                      <option value="Dange Chowk" {{#if (isPresent tiffinboxSupplier.distributionAreas 'Dange Chowk')}}selected {{/if}}>Dange Chowk</option>
+                      <option value="Shivaji Nagar" {{#if (isPresent tiffinboxSupplier.distributionAreas 'Shivaji Nagar')}}selected {{/if}}>Shivaji Nagar</option>
+                      <option value="Aundh" {{#if (isPresent tiffinboxSupplier.distributionAreas 'Aundh')}}selected {{/if}}>Aundh</option>
+                      <option value="Kondwa" {{#if (isPresent tiffinboxSupplier.distributionAreas 'Kondwa')}}selected {{/if}}>Kondwa</option>
+                      <option value="Camp" {{#if (isPresent tiffinboxSupplier.distributionAreas 'Camp')}}selected {{/if}}>Camp</option>
+                    </select>
+                  </div>
                 </div>
                 <div class="form-group">      
-                  <label class="col-sm-3">Category:</label>
+                  <label class="col-sm-3 control-label">Category:</label>
                   <div class="col-sm-3">
                     <input type="checkbox" name="category" value="veg" {{#if (isPresent tiffinboxSupplier.category 'veg')}}checked {{/if}}> Veg
                   </div>
@@ -1188,7 +1296,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="col-sm-3">Order Type:</label>
+                  <label class="col-sm-3 control-label">Order Type:</label>
                   <div class="col-sm-3">
                     <input type="checkbox" name="orderType" value="daily" {{#if (isPresent tiffinboxSupplier.orderType 'daily')}}checked {{/if}}>Daily 
                   </div>
@@ -1201,7 +1309,7 @@
                 </div>
   
                 <div class="form-group">
-                  <label class="col-sm-3">Meal Type:</label>
+                  <label class="col-sm-3 control-label">Meal Type:</label>
                   <div class="col-sm-3">
                     <input type="checkbox" name="mealType" value='breakfast' {{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}checked {{/if}}>Breakfast 
                   </div>
@@ -1214,7 +1322,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="col-sm-3">Price:</label>
+                  <label class="col-sm-3 control-label">Price:</label>
                   <div class="col-sm-3 cb-weekly">
                     <input type="checkbox" name="priceWeekly" value="weekly" {{#if tiffinboxSupplier.price.weekly.dinner}} checked {{/if}}>Weekly 
                   </div>
@@ -1226,38 +1334,40 @@
                   </div>                          
                 </div>
               
-                <div class="form-group" id="weekly" {{#if tiffinboxSupplier.price.weekly.dinner}}{{else}}style="display:none"{{/if}}> 
-                  <div class="col-sm-4">
-                    <input type="number" name="price.weekly.breakfast" id="" placeholder="Weekly Breakfast price" {{#if tiffinboxSupplier.price.weekly.breakfast}} value="{{tiffinboxSupplier.price.weekly.breakfast}}" {{/if}}>
+                <div class="form-group " id="weekly" {{#if tiffinboxSupplier.price.weekly.dinner}}{{else}}style="display:none"{{/if}}>
+                  <div class="col-sm-9 col-sm-offset-3"> 
+                    <div class="col-sm-4">
+                      <input type="number" name="price.weekly.breakfast" id="" placeholder="Weekly Breakfast price" {{#if tiffinboxSupplier.price.weekly.breakfast}} value="{{tiffinboxSupplier.price.weekly.breakfast}}" {{/if}}>
+                    </div>
+                    <div class="col-sm-4">
+                      <input type="number" name="price.weekly.lunch" id="" placeholder="Weekly Lunch price" {{#if tiffinboxSupplier.price.weekly.lunch}} value="{{tiffinboxSupplier.price.weekly.lunch}}" {{/if}}>
+                    </div>   
+                    <div class="col-sm-4">
+                      <input type="number" name="price.weekly.dinner" id="" placeholder="Weekly Dinner price" {{#if tiffinboxSupplier.price.weekly.dinner}} value="{{tiffinboxSupplier.price.weekly.dinner}}" {{/if}}>
+                    </div>                                            
                   </div>
-                  <div class="col-sm-4">
-                    <input type="number" name="price.weekly.lunch" id="" placeholder="Weekly Lunch price" {{#if tiffinboxSupplier.price.weekly.lunch}} value="{{tiffinboxSupplier.price.weekly.lunch}}" {{/if}}>
-                  </div>   
-                  <div class="col-sm-4">
-                    <input type="number" name="price.weekly.dinner" id="" placeholder="Weekly Dinner price" {{#if tiffinboxSupplier.price.weekly.dinner}} value="{{tiffinboxSupplier.price.weekly.dinner}}" {{/if}}>
-                  </div>                                            
                 </div>
-              
                 <div class="form-group" id="monthly" {{#if tiffinboxSupplier.price.monthly.dinner}} {{else}}style="display:none"{{/if}}> 
-                  <div class="col-sm-4">
-                    <input type="number" class="monthly_bf" name="price.monthly.breakfast" id="" placeholder="Monthly Breakfast price" {{#if tiffinboxSupplier.price.monthly.breakfast}} value="{{tiffinboxSupplier.price.monthly.breakfast}}" {{/if}}>
+                  <div class="col-sm-9 col-sm-offset-3"> 
+                    <div class="col-sm-4">
+                      <input type="number" class="monthly_bf" name="price.monthly.breakfast" id="" placeholder="Monthly Breakfast price" {{#if tiffinboxSupplier.price.monthly.breakfast}} value="{{tiffinboxSupplier.price.monthly.breakfast}}" {{/if}}>
+                    </div>
+                    <div class="col-sm-4">
+                      <input type="number" class="monthly_lunch" name="price.monthly.lunch" id="" placeholder="Monthly Lunch price" {{#if tiffinboxSupplier.price.monthly.lunch}} value="{{tiffinboxSupplier.price.monthly.lunch}}" {{/if}}>
+                    </div>   
+                    <div class="col-sm-4">
+                      <input type="number" class="monthly_dinner" name="price.monthly.dinner" id="" placeholder="Monthly Dinner price" {{#if tiffinboxSupplier.price.monthly.dinner}} value="{{tiffinboxSupplier.price.monthly.dinner}}" {{/if}}>
+                    </div>                                            
                   </div>
-                  <div class="col-sm-4">
-                    <input type="number" class="monthly_lunch" name="price.monthly.lunch" id="" placeholder="Monthly Lunch price" {{#if tiffinboxSupplier.price.monthly.lunch}} value="{{tiffinboxSupplier.price.monthly.lunch}}" {{/if}}>
-                  </div>   
-                  <div class="col-sm-4">
-                    <input type="number" class="monthly_dinner" name="price.monthly.dinner" id="" placeholder="Monthly Dinner price" {{#if tiffinboxSupplier.price.monthly.dinner}} value="{{tiffinboxSupplier.price.monthly.dinner}}" {{/if}}>
-                  </div>                                            
                 </div>
-              
-                <div class="form-group col-sm-3">
+                <div class="form-group">
                   <input type="hidden" value={{tiffinboxSupplier.id}} name="id">
-                  <button type="submit" class="btn btn-success">Update</button>             
+                  <div class="col-sm-9 col-sm-offset-3">
+                    <button type="submit" class="btn btn-success">Update</button>             
+                  </div>
                 </div>
-              </form>
-              <div class="pull-right"><a href="#addDabbawala" class="btn btn-primary" id="">Add New Dabbawala</a></div>                   
-            </div></div>
-
+              </form>               
+            </div>
             <div class="tab-pane col-md-10 " id="addTeam-t">
               <div class="table-responsive">
                 <table class="table table-bordered">
@@ -1278,7 +1388,7 @@
                         <td class="active">{{this.email}}</td>
                         <td class="active">{{this.contactNumber}}</td>
                         <td class="active">{{this.role}}</td>
-                        <td class="active"><a href="editTeam/{{this._id}}" class="btn btn-primary">Edit</a><a href="deleteTeam/{{this._id}}" class="btn btn-danger">Delete</a></td> 
+                        <td class="active"><a href="#editTeam/{{this._id}}" class="btn btn-primary">Edit</a><a href="#deleteTeam/{{this._id}}" class="btn btn-danger">Delete</a></td> 
                       </tr>  
                     {{/each}}
                   </tbody>
@@ -1308,7 +1418,7 @@
                         <td class="active">{{this.mealType}}</td>
                         <td class="active">{{this.ingredients}}</td>
                         <td class="active">{{this.fullPrice}}</td>
-                        <td class="active"><a href="editMenu/{{this._id}}" class="btn btn-primary">Edit</a><a href="deleteMenu/{{this._id}}" class="btn btn-danger">Delete</a></td>                                                            
+                        <td class="active"><a href="#editMenu/{{this._id}}" class="btn btn-primary">Edit</a><a href="#deleteMenu/{{this._id}}" class="btn btn-danger">Delete</a></td>                                                            
                       </tr>  
                     {{/each}}
                   </tbody>
@@ -1319,9 +1429,15 @@
           </div>
         </div>
       </div>
-      <script>                  
+      <script>  
+        $(function () {
+    $('#myTab a:last').tab('show')
+  });                
               $('input[type=checkbox]', '.cb-weekly').on('change', function(e) {
                   if (this.name === 'priceWeekly' && this.checked) {
+                    $('.price.weekly.breakfast').val({{tiffinboxSupplier.price.weekly.breakfast}});
+                    $('.price.weekly.lunch').val({{tiffinboxSupplier.price.weekly.lunch}});
+                    $('.price.weekly.dinner').val({{tiffinboxSupplier.price.weekly.dinner}});
                     $('#weekly').show();
                   } 
                   else {
@@ -1333,6 +1449,9 @@
               });
               $('input[type=checkbox]', '.cb-monthly').on('change', function(e) {
                   if (this.name === 'priceMonthly' && this.checked) {
+                    $('.monthly_bf').val({{tiffinboxSupplier.price.monthly.breakfast}});
+                    $('.monthly_lunch').val({{tiffinboxSupplier.price.monthly.lunch}});
+                    $('.monthly_dinner').val({{tiffinboxSupplier.price.monthly.dinner}});
                     $('#monthly').show();
                   } 
                   else {
@@ -1350,7 +1469,15 @@
     </script>
 
 
-    
+  <script>
+    // $(document).ready(function() {
+    //   $("[href]").each(function() {
+    //     if (this.href == window.location.href) {
+    //       $(this).addClass("active");
+    //     }
+    //   });
+    // });
+  </script>  
 
   
      <!--  <script src = "http://code.jquery.com/jquery-1.10.2.min.js"></script>--> 

@@ -14,42 +14,6 @@ module.exports = function(app) {
   
   var user = {};
 
-  // user.create1 = function(req, res, next){
-    
-  //   var user = new User(req.body);
-  //   user.set('fullname', req.body.firstName + ' ' + req.body.lastName);
-  //   user.set('password', req.body.password);
-
-  //   user.confirmationToken = util.getRandomToken();
-
-  //   user.createdAt =
-  //   user.updatedAt =
-  //   user.confirmationTokenSentAt = new Date();
-    
-  //   user.loginIps.push(req.ip);
-
-  //   user.save(function(err, user){
-  //   if (err) { return next(err)};
-  //       if(user) {
-  //         var params = {
-  //           to: user.email,
-  //           message: config.email.message.buildConfirmationMessage(user.email, user.confirmationToken),
-  //           subject: config.email.subject.confirmationEmail
-  //         };
-  //         app.monq.sendEmail(params, function(err){
-  //           if(err) { return next(err);};
-  //         });
-
-  //         req.flash('info', {msg: config.messages.confirmationMailSent});
-  //         return res.json(user);
-  //       }
-  //       else {
-  //         return res.status(500).json({error: 'Unable to add user!'});
-  //       }
-        
-  //   });
-  // };
-
     user.create = function(req, res, next){
       console.log(req.query.dabbawalaId);
     var isTiffinSupplierMember= false;
@@ -107,6 +71,40 @@ module.exports = function(app) {
         }
         
     });
+  };
+
+  user.update = function (req, res, next){
+    console.log('in update api user');
+    console.log(req.params.id);
+    if(req.params.id){
+    User.findByIdAndUpdate(req.params.id, req.body,
+      function(err,user){
+        if(!err){
+          console.log(user);
+          return res.json(user);
+        } else {
+          return next(err);
+        }
+      });
+    }  
+  };
+
+  user.delete = function (req, res, next){
+    console.log('in delete user api'+req.params.id);
+    if(req.params.id){
+      console.log("ok");
+      User.findById(
+        req.params.id,
+        function(err,user){
+          if(!err){
+            console.log(user);
+            if(user){
+              user.remove();
+              res.json(user);
+            }
+          }
+      });
+    }  
   };
 
 

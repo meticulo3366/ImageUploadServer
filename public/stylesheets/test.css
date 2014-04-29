@@ -77,6 +77,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9e5ab6', end
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #FFFFFF;
 }
+.nav-tabs.nav-justified>.active>a, .nav-tabs.nav-justified>.active>a:hover, .nav-tabs.nav-justified>.active>a:focus{
+   background-color: #C266E0;
+} 
 @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
         color: #8024AD;
@@ -255,7 +258,8 @@ border-left: 1px solid #AD54CE;
   color:#ffffff;
 } 
 a:hover,
-a:focus {
+a:focus,
+a:active {
   color: #fff;
   text-decoration: underline;
 }

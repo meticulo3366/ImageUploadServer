@@ -1,5 +1,13 @@
-Handlebars.registerHelper('isChecked', function(context, options) {
-  return ($(".context").is(':checked')) ? options.fn : options.inverse;
+Handlebars.registerHelper('isSelected', function(context, value) {
+  console.log(context);
+  console.log(value)
+  if(context == value){
+    console.log('matched');
+    return true;
+  }
+    
+  else
+    return false;
 });
 
 

@@ -23,7 +23,11 @@ var app = app || {};
       'menuList': 'menuList',
       'search': 'search',
       'delete/:id': 'delete',
-      'edit/:id':'edit' 
+      'edit/:id':'edit',
+      'editMenu/:id': 'editMenu',
+      'editTeam/:id': 'editTeam',
+      'deleteMenu/:id': 'deleteMenu',
+      'deleteTeam/:id': 'deleteTeam' 
     }
   });  
 })();
