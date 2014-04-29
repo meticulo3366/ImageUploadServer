@@ -34,6 +34,7 @@ module.exports = function(app){
     , passportConfig.ensureAdmin
     , dabbawalaController.create);
   app.get('/tiffinBoxSupplier/search',dabbawalaController.search);
+  app.post('/tiffinBoxSupplier/filter',dabbawalaController.filter)
   app.get('/tiffinBoxSupplier', dabbawalaController.index);
   app.get('/tiffinBoxSupplier/:id', dabbawalaController.show);
   app.delete('/tiffinBoxSupplier/:id'
