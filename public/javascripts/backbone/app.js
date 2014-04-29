@@ -25,6 +25,9 @@ $(function () {
   
   app.router.on('route:signIn',function () {
     var signInView = new app.SignInView();
+    $('.admin-navbar').hide();
+    $('.admin-content').hide();
+    $('.page').show();
     signInView.render();
     navbarView.render();
   });
@@ -42,11 +45,12 @@ $(function () {
   });
 
   app.router.on('route:adminDashboard', function() {
+
     var adminDashboardView = new app.AdminDashboardView();
     adminDashboardView.render();
     fullnavbarView.render();
     adminnavbarView.render();
-   // adminrightnavbarView.render();
+    //adminrightnavbarView.render();
 
   });
 
@@ -86,14 +90,14 @@ $(function () {
       add.render();
       fullnavbarView.render();
       adminnavbarView.render();
-      adminrightnavbarView.render();
+      //adminrightnavbarView.render();
       });
     app.router.on('route:AddMenu',function () {
       var add = new app.AddMenuView();
       add.render();
       fullnavbarView.render();
       adminnavbarView.render();
-      adminrightnavbarView.render();
+      //adminrightnavbarView.render();
       });
 
     app.router.on('route:addDabbawala',function () {
@@ -134,6 +138,42 @@ $(function () {
       adminnavbarView.render();
       //adminrightnavbarView.render();
       });
+     app.router.on('route:edit',function (id) {
+      var add = new app.EditDabbawalaView();
+      add.render({id:id});
+      fullnavbarView.render();
+      adminnavbarView.render();
+      //adminrightnavbarView.render();
+      });
+     app.router.on('route:editMenu',function (id) {
+      var add = new app.EditMenuView();
+      add.render({id:id});
+      fullnavbarView.render();
+      adminnavbarView.render();
+      //adminrightnavbarView.render();
+      });
+     app.router.on('route:editTeam',function (id) {
+      var add = new app.EditTeamView();
+      add.render({id:id});
+      fullnavbarView.render();
+      adminnavbarView.render();
+      //adminrightnavbarView.render();
+      });
+     app.router.on('route:deleteMenu',function (id) {
+      var add = new app.DeleteMenuView();
+      add.render({id:id});
+      fullnavbarView.render();
+      adminnavbarView.render();
+      //adminrightnavbarView.render();
+      });
+     app.router.on('route:deleteTeam',function (id) {
+      var add = new app.DeleteTeamView();
+      add.render({id:id});
+      fullnavbarView.render();
+      adminnavbarView.render();
+      //adminrightnavbarView.render();
+      });
+
 
   Backbone.history.start();
 });

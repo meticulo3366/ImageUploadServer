@@ -22,7 +22,12 @@ var app = app || {};
       'teamList': 'teamList',
       'menuList': 'menuList',
       'search': 'search',
-      'delete/:id': 'delete' 
+      'delete/:id': 'delete',
+      'edit/:id':'edit',
+      'editMenu/:id': 'editMenu',
+      'editTeam/:id': 'editTeam',
+      'deleteMenu/:id': 'deleteMenu',
+      'deleteTeam/:id': 'deleteTeam' 
     }
   });  
 })();

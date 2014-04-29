@@ -11,7 +11,12 @@ module.exports = function(app){
 
   app.get('/', rootController.landing);
   app.get('/users/user', rootController.user);
-  
+  app.get('/adminDashboard'
+    , passportConfig.isAuthenticated
+    , passportConfig.ensureAdmin
+    , rootController.adminDashboard)
+
+
   app.get('/users/confirm', userController.confirmEmail);
   app.get('/users/resetPassword', userController.renderResetPasswordPage);
   app.get('/users/resetPasswordPage', rootController.resetPassword);
@@ -27,12 +32,28 @@ module.exports = function(app){
   app.post('/users/resetPassword', userController.resetPassword)
   app.get('/users/logout', userController.logout);
 
-  app.post('/users',userController.create);
+  
+  app.post('/users'
+    , passportConfig.isAuthenticated
+    ,userController.create);
+
+  app.put('/users/:id'
+    , passportConfig.isAuthenticated
+    ,userController.update);
+
+app.delete('/users/:id'
+    , passportConfig.isAuthenticated
+    ,userController.delete);
+
 
   app.post('/tiffinBoxSupplier'
     , passportConfig.isAuthenticated
     , passportConfig.ensureAdmin
     , dabbawalaController.create);
+  app.put('/tiffinBoxSupplier/:id'
+    , passportConfig.isAuthenticated
+    , passportConfig.ensureAdmin
+    , dabbawalaController.update);
   app.get('/tiffinBoxSupplier/search',dabbawalaController.search);
   app.post('/tiffinBoxSupplier/filter',dabbawalaController.filter)
   app.get('/tiffinBoxSupplier', dabbawalaController.index);
@@ -46,10 +67,19 @@ module.exports = function(app){
     , passportConfig.isAuthenticated
     , passportConfig.ensureAdmin
     , dabbawalaController.addMenu);
-  app.get('/tiffinBoxSupplierMenu/:id',dabbawalaController.getMenu);
-  app.get('/tiffinBoxSupplier/:id/getTeam'
+
+  app.put('/tiffinBoxSupplierMenu/:dabbawalaId/:menuId'
     , passportConfig.isAuthenticated
     , passportConfig.ensureAdmin
-    , dabbawalaController.getTeam);
-  
+    , dabbawalaController.updateMenu);
+
+  app.delete('/tiffinBoxSupplierMenu/:dabbawalaId/:menuId'
+    , passportConfig.isAuthenticated
+    , passportConfig.ensureAdmin
+    , dabbawalaController.deleteMenu);
+  //app.get('/tiffinBoxSupplierMenu/:id',dabbawalaController.getMenu);
+  // app.get('/tiffinBoxSupplier/:id/getTeam'
+  //   , passportConfig.isAuthenticated
+  //   , passportConfig.ensureAdmin
+  //   , dabbawalaController.getTeam);
 };

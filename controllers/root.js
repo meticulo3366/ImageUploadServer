@@ -31,5 +31,10 @@ module.exports = function(app) {
     return res.render('users/userProfile');
   };
 
+  root.adminDashboard = function(req, res) {
+    return res.redirect('/#adminDashboard');
+  };
+
+
   return root;
 };

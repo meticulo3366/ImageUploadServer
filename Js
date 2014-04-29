@@ -1,6 +1,0 @@
-12 Apr 09:51:33 - [33m[nodemon] v1.0.15[39m
-12 Apr 09:51:33 - [33m[nodemon] to restart at any time, enter `rs`[39m
-12 Apr 09:51:33 - [33m[nodemon] watching: *.*[39m
-12 Apr 09:51:33 - [32m[nodemon] starting `node APP`[39m
-Express server listening on port 3000
-Terminate batch job (Y/N)? 
