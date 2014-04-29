@@ -227,6 +227,27 @@ module.exports = function(app) {
   
   tiffinboxSupplier.deleteMenu = function(req, res, next){
     console.log('in deleteMenu api');
+    console.log('dabbawalaId:'+req.params.dabbawalaId);
+    console.log('menuId : '+req.params.menuId);
+    TiffinboxSupplier.findById(
+      req.params.dabbawalaId,
+      function(err,tiffinboxSupplier){
+        if(err){return next(err)}
+        if(tiffinboxSupplier){
+          var menuId = req.params.menuId;
+          tiffinboxSupplier.menu.pull({_id: menuId});
+
+          tiffinboxSupplier.save(function(err,tiffinboxSupplier){
+            if(err){
+              return next(err);
+            }
+            else{
+              console.log('dabbawala menu saved'+ tiffinboxSupplier.menu);
+              res.json(tiffinboxSupplier);
+            }
+          });
+        }  
+    });
   };
 
  

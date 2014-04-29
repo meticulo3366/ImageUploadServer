@@ -692,27 +692,26 @@ app.EditMenuView =Backbone.View.extend({
     });
 
 app.DeleteMenuView= Backbone.View.extend({
-  el: '.admin-content',
   render: function (options) {
-    console.log('in DeletemenuView'+options.id);
-    var menuId = options.id;
+    console.log('in DeleteMenuView'+options.id);
     var that = this;
-    var dabbawalaId= window.localStorage.getItem('dabbawalaId');
+    var menuId = options.id;
+    var dabbawalaId = window.localStorage.getItem('dabbawalaId');
     console.log('dabbawalaId: '+dabbawalaId);
+    console.log('menuId:'+menuId);
     if(menuId){
       var menu = new app.addTiffinBoxSupplierMenu({dabbawalaId : dabbawalaId, menuId : menuId});
-      menu.destroy({
-        success: function (tiffinboxSupplier){
-          console.log('in DeletemenuView success!');
-          app.router.navigate('edit', {trigger:true});
-        },
-        error: function(){
-          console.log('in destroy error');
+      menu.save({},{
+        success: function (menu){
+          console.log(menu);
+          console.log('in DeleteMenuView success');
+          window.history.back();
+          //app.router.navigate('edit', {trigger:true});
         }
       });
       return false;
     }
-  }    
+  }        
 }); 
 app.AdminNavbarView =Backbone.View.extend({
       el:'.admin-navbar',
@@ -871,8 +870,7 @@ app.MenuListView =Backbone.View.extend({
 
         
         },
-        render: function () {
-         
+        render: function () {        
           var that = this;
           console.log();
           that.$el.html( that.tpl({tiffinboxSupplier: this.tiffinboxSupplier.toJSON()}));
@@ -988,7 +986,7 @@ app.EditDabbawalaView= Backbone.View.extend({
             that.tiffinboxSupplier = new app.addTiffinBoxSupplier({id:id});
             that.tiffinboxSupplier.fetch({
               success: function (tiffinboxSupplier) { 
-                console.log('in edit form:'+ tiffinboxSupplier.toJSON());
+                console.log('in edit form:'+ tiffinboxSupplier.toJSON().team);
                 window.localStorage.setItem('dabbawalaName', tiffinboxSupplier.attributes.name);
                 window.localStorage.setItem('dabbawalaId',tiffinboxSupplier.attributes.id);
                 console.log(tiffinboxSupplier);   

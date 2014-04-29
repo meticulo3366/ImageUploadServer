@@ -98,6 +98,7 @@ module.exports = function(app) {
         function(err,user){
           if(!err){
             console.log(user);
+            
             if(user){
               user.remove();
               res.json(user);
