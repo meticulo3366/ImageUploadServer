@@ -1257,13 +1257,13 @@
                     <div class="col-sm-4">
                       <select id="address.city" name="address.city" class="form-control"  placeholder="enter your search Dabbawala">
                             <option value="">Select City</option>
-                            <option select>Pune</option>
+                            <option value="Pune"{{#if  (isSelected tiffinboxSupplier.address.city 'Pune')}} selected {{/if}}>Pune</option>
                       </select>
                     </div>
                     <div class="col-sm-4">
                       <select id="address.state" name="address.state"  class="form-control">
                         <option value="" >Select State</option>
-                        <option value="Maharashtra" select>Mahara shtra</option> 
+                        <option value="Maharashtra" {{#if  (isSelected tiffinboxSupplier.address.state 'Maharashtra')}} selected {{/if}}>Maharashtra</option> 
                       </select>
                     </div>
                     <div class="col-sm-4">
