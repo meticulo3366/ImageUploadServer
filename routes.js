@@ -36,15 +36,12 @@ module.exports = function(app){
   app.post('/users'
     , passportConfig.isAuthenticated
     ,userController.create);
-
   app.put('/users/:id'
     , passportConfig.isAuthenticated
     ,userController.update);
-
 app.delete('/users/:id'
     , passportConfig.isAuthenticated
     ,userController.delete);
-
 
   app.post('/tiffinBoxSupplier'
     , passportConfig.isAuthenticated
@@ -54,10 +51,12 @@ app.delete('/users/:id'
     , passportConfig.isAuthenticated
     , passportConfig.ensureAdmin
     , dabbawalaController.update);
+
   app.get('/tiffinBoxSupplier/search',dabbawalaController.search);
   app.get('/tiffinBoxSupplier/filter',dabbawalaController.filter)
   app.get('/tiffinBoxSupplier', dabbawalaController.index);
   app.get('/tiffinBoxSupplier/:id', dabbawalaController.show);
+
   app.delete('/tiffinBoxSupplier/:id'
     , passportConfig.isAuthenticated
     , passportConfig.ensureAdmin
@@ -73,7 +72,7 @@ app.delete('/users/:id'
     , passportConfig.ensureAdmin
     , dabbawalaController.updateMenu);
 
-  app.delete('/tiffinBoxSupplierMenu/:dabbawalaId/:menuId'
+  app.post('/tiffinBoxSupplierMenu/:dabbawalaId/:menuId'
     , passportConfig.isAuthenticated
     , passportConfig.ensureAdmin
     , dabbawalaController.deleteMenu);
