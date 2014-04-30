@@ -55,7 +55,7 @@ app.delete('/users/:id'
     , passportConfig.ensureAdmin
     , dabbawalaController.update);
   app.get('/tiffinBoxSupplier/search',dabbawalaController.search);
-  app.post('/tiffinBoxSupplier/filter',dabbawalaController.filter)
+  app.get('/tiffinBoxSupplier/filter',dabbawalaController.filter)
   app.get('/tiffinBoxSupplier', dabbawalaController.index);
   app.get('/tiffinBoxSupplier/:id', dabbawalaController.show);
   app.delete('/tiffinBoxSupplier/:id'

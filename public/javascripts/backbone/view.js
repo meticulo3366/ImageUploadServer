@@ -304,26 +304,27 @@ app.ProfileView =Backbone.View.extend({
 
         },
         filterSearch : function(ev){
-          var that=this;
-<<<<<<< HEAD
+          var that=this
           app.View=this;
-          var filterValue=$(ev.currentTarget).serializeObject();
-          var searchFilterResult = new app.SearchFilterResult();
-          alert('In Before......');
-            searchFilterResult.save({},{
+          var query=$(ev.currentTarget).serializeObject();
+      var search=localStorage.getItem("name");
+          var searchFilterResult = new app.SearchFilterResult(JSON.stringify(query),search);
+          
+            searchFilterResult.fetch({
               success: function(ev){
-                alert('success');
+                console.log('success');
+                that.$el.html( that.tpl({tiffinSupplers:that.tbs.toJSON()}));
+
               },
               error:function(a,s){
                 alert('alert');
               }
             });
-=======
-          var filterValue=$(ev.currentTarget).serializeObject();
-          var searchFilterResult=new app.SearchFilterResult();
->>>>>>> 51214c569bf9106072dda0723e86541832b5faa8
-            alert('In Before');
-            console.log(filterValue);
+
+          
+
+           
+            
          return false;
        }
     });

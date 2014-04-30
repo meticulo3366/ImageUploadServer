@@ -17,22 +17,32 @@
     url:function() {
       return '/tiffinBoxSupplier/search?query=' + this.options.query;
     }
-<<<<<<< HEAD
+
   });
 
- app.SearchFilterResult = Backbone.Collection.extend({
+
+
+  app.SearchFilterResult = Backbone.Collection.extend({
+    initialize: function(options ,search) {
+      this.options = options;
+      this.search=search;
+      //console.log(this.search);
+      
+    },
+    url:function() {
+      //console.log('in function'+this.options);
+      
+      return '/tiffinBoxSupplier/filter?query=' + this.options+'&search='+this.search;
+    }
+
+  });
+
+/* app.SearchFilterResult = Backbone.Collection.extend({
     url: '/tiffinBoxSupplier/filter' 
     
   });
- 
+ */
   
-=======
-
-  });
- app.SearchFilterResult=Backbone.Collection.extend({
-  url:'/tiffinBoxSupplier/filter'
- });
->>>>>>> 51214c569bf9106072dda0723e86541832b5faa8
 
 })();
 
