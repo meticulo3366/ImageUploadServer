@@ -91,4 +91,4 @@ var tiffinboxsuppliersSchema = mongoose.Schema({
 
 
 
-module.exports = mongoose.model('Tiffinboxsuppliers', tiffinboxsuppliersSchema);
+module.exports = mongoose.model('Tiffinboxsupplier', tiffinboxsuppliersSchema);

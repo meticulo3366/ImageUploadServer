@@ -4,7 +4,8 @@
  */
 
 var bcrypt = require('bcrypt-nodejs')
-  , mongoose = require('mongoose');
+  , mongoose = require('mongoose')
+  , Tiffinboxsupplier = require('./TiffinboxSuppliers');
 
 var userSchema = mongoose.Schema({
   name: {
@@ -37,7 +38,7 @@ var userSchema = mongoose.Schema({
   },
   tiffinboxSupplier: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'TiffinboxSupplier'
+    ref: 'Tiffinboxsupplier'
   },
   address:[{
       vicinity:String,
@@ -130,7 +131,24 @@ userSchema.methods = {
     this.updatedAt = new Date();
     return this.save(callback);
   }
-}; 
+};
+
+userSchema.post('remove', function(user) {
+
+  if(user.tiffinboxSupplier) {
+    Tiffinboxsupplier.findById(user.tiffinboxSupplier, function(err, tiffinboxSupplier) {
+      if(err) {return err;};
+
+      if(tiffinboxSupplier){
+        tiffinboxSupplier.team.pull(user.id);
+        tiffinboxSupplier.save(function(err) {
+          if(err) { return err;};
+          console.log('Tiffinboxsupplier updated!');
+        });
+      };
+    });
+  };
+});
 
 var User = mongoose.model('User', userSchema);
 

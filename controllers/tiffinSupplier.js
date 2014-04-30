@@ -55,7 +55,7 @@ module.exports = function(app) {
         if(err) { return next(err); };
         if(tiffinBoxSupplier) {
           console.log('Fetched Record:'+tiffinboxSupplier);
-          console.log(tiffinboxSupplier);
+          console.log(tiffinBoxSupplier);
           return res.json(tiffinBoxSupplier);
         } else {
           return res.json(404, {error: 'Tiffin box supplier not found!'});
