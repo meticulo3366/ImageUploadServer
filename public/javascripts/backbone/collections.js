@@ -19,9 +19,30 @@
     }
 
   });
- app.SearchFilterResult=Backbone.Collection.extend({
-  url:'/tiffinBoxSupplier/filter'
- });
+
+
+
+  app.SearchFilterResult = Backbone.Collection.extend({
+    initialize: function(options ,search) {
+      this.options = options;
+      this.search=search;
+      //console.log(this.search);
+      
+    },
+    url:function() {
+      //console.log('in function'+this.options);
+      
+      return '/tiffinBoxSupplier/filter?query=' + this.options+'&search='+this.search;
+    }
+
+  });
+
+/* app.SearchFilterResult = Backbone.Collection.extend({
+    url: '/tiffinBoxSupplier/filter' 
+    
+  });
+ */
+  
 
 })();
 

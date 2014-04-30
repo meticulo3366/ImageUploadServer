@@ -148,11 +148,80 @@ module.exports = function(app) {
   };
 
 
-  tiffinboxSupplier.filter=function(req,res,next){
-    console.log('In Filter function Server');
-    console.log(req.body);
-    res.json({name:NAme});
-  };
+tiffinboxSupplier.filter=function(req,res,next){
+  
+  var filterValue=req.query.query;
+
+  var filterval=JSON.parse(filterValue);
+  
+var regex = new RegExp(req.query.search, 'i');
+
+
+  var cat=filterval.category;
+  var meal=filterval.mealType;
+  var order=filterval.orderType;
+
+  
+  var que;
+
+  if( typeof cat==='object'){
+    que='{category:{ $all :cat}}';
+  }
+  else{
+    que='{category:cat}';
+    }
+
+  if(typeof meal==='object'){
+   
+    que=',{mealType:{ $all :meal}}';
+  }
+  else{
+   
+    que=',{mealType:meal}';
+  }
+
+
+  if(typeof order==='object'){
+    
+    que=',{orderType:{ $all :order}}';
+  }
+  else{
+   
+   que=',{orderType:order}';
+}
+
+
+
+
+
+
+   var query={$and:[{$or: [
+      {name: { $regex: regex}}
+      ,{distributionAreas: {$in: [regex]}}
+      ,{category: {$in: [regex]}}
+      ,{mealType: {$in: [regex]}}
+      ,{orderType: {$in: [regex]}}
+      ]},{$and: [que]}]}
+
+/*       query = {$or: [
+      {name: { $regex: regex}}
+      ,{distributionAreas: {$in: [regex]}}
+      ,{category: {$in: [regex]}}
+      ,{mealType: {$in: [regex]}}
+      ,{orderType: {$in: [regex]}}
+      ]};
+*/
+TiffinboxSupplier.find(query, function(err, tbs) {
+
+      if(err) { return next(err); };
+      console.log(tbs);
+      res.json(tbs);
+    });
+  //res.json({name:"Name"});
+};
+ 
+
+
  
   tiffinboxSupplier.delete = function (req, res, next) {
     if(req.params.id){
