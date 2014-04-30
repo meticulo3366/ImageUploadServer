@@ -116,18 +116,17 @@
     </script>
 
     <script type="text/x-template" id="landing-template">
-      <div class="container">
-        <div class="row"> <br><br><br>         
+      <div class="container home_bg">
+        <div class="row"> <br>
+        <h3 class="center-text">Order Tiffin/Mess Facility for Home Delivry</h3>         
               <div class="input-group col-md-7 col-md-offset-3 divlocation"><br><br>
-
-                  <div class="input-group ">
-                      
-                      <input type="text" class="form-control" id="comsumerQuery"  placeholder="Entger Location or Name or Meal Type">
+                  <div class="input-group col-sm-10 col-sm-offset-1">                   
+                      <input type="text" class="form-control" id="comsumerQuery"  placeholder="Enter Location/Category/Restaurant Name or Meal Type">
                       <span class="input-group-btn">
                           <button type="button" class="btn btn-primary consumerSearch"><span class="glyphicon glyphicon-search"></span></button>
                       </span>
                   </div>   
-                 <br><br>
+                  <br><br>
               </div>
         </div>
       </div>
@@ -172,17 +171,17 @@
                   <h3>Meal Type</h3>
                   <div class="checkbox">
                     <label>
-                     <input type="checkbox" value="lunch" name="mealType">Lunch
+                     <input type="checkbox" value="Lunch" name="mealType">Lunch
                     </label>
                   </div>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" value="breakfast" name="mealType">Breakfast
+                      <input type="checkbox" value="Breakfast" name="mealType">Breakfast
                     </label>
                   </div>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" value="dinner" name="mealType">Dinner
+                      <input type="checkbox" value="Dinner" name="mealType">Dinner
                     </label>
                   </div>
                   <hr>
@@ -190,39 +189,39 @@
                   
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" value="veg" name="category">Veg
+                      <input type="checkbox" value="Veg" name="category">Veg
                     </label>
                   </div>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" value="nonVeg" name="category">Non-Veg
+                      <input type="checkbox" value="Non-Veg" name="category">Non-Veg
                     </label>
                   </div>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" value="jain" name="category">Jain
+                      <input type="checkbox" value="Jain" name="category">Jain
                     </label>
                   </div>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" value="gujrati" name="category">Gujrati
+                      <input type="checkbox" value="Gujrati" name="category">Gujrati
                     </label>
                   </div>
                   <hr>
                   <h3>Order Type</h3>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" value="weekly" name="orderType">Weekly
+                      <input type="checkbox" value="Weekly" name="orderType">Weekly
                     </label>
                   </div>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" value="daily" name="orderType">Daily
+                      <input type="checkbox" value="Daily" name="orderType">Daily
                     </label>
                   </div>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" value="monthly" name="orderType">Monthly
+                      <input type="checkbox" value="Monthly" name="orderType">Monthly
                     </label>
                   </div>
                   <button type="submit" class="btn btn-primary">Search</button>
@@ -721,7 +720,7 @@
               <input type="checkbox" name="category" value="veg"> Veg
             </div>
             <div class="col-sm-3">               
-              <input type="checkbox" name="category" value="nonveg">Non Veg
+              <input type="checkbox" name="category" value="nonVeg">Non Veg
             </div>
             <div class="col-sm-3">     
               <input type="checkbox" name="category" value="gujrati">Gujrati
@@ -832,7 +831,7 @@
                   <input type="text" class="form-control " id="firstName"  placeholder="First Name" required {{#if team}}value="{{team.name.first}}"  name="name.first" {{else}} name="firstName" {{/if}}>
                 </div>  
               </div>
-              <div class="form-group">
+              <div class="form-group">  
                 <label for="" class="col-sm-3 control-label">Last Name</label>
                 <div class="col-sm-9">      
                   <input type="text" class="form-control " id="lastName" placeholder="Last Name" required {{#if team}}value="{{team.name.last}}" name="name.last" {{else}}name="lastName"{{/if}}>
@@ -973,14 +972,14 @@
           <div class="form-group">
             <label for="" class="col-sm-3 control-label">Item List</label>
             {{#if menu}}
-              {{#each menu.ingredients}}
+              {{#foreach menu.ingredients}}
                 <div class="col-sm-7" id="items">      
                   <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," required value="{{this}}">
                 </div>
-              {{/each}}
+              {{/foreach}}
             {{else}}
               <div class="col-sm-7" id="items">      
-                <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," required>
+                <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="enter item i.e. Capati 4,rice" required>
               </div>
             {{/if}}
             
@@ -1059,7 +1058,7 @@
       <div class="">
         <div class="">
           <div class="row">        
-            <div class="input-group col-md-6 col-md-offset-2">
+            <div class="input-group col-md-8 col-md-offset-2">
               <div class="input-group ">
                 <input type="text" class="form-control " id="searchKey" name="searchKey" placeholder="Search by Restaraunts, location, menu, category" required>
                 <span class="input-group-btn"><button id="search" type="button" class="btn btn-primary search"><span class="glyphicon glyphicon-search"></span></button>
@@ -1068,7 +1067,7 @@
             </div>
           </div>   
           <div class="table-responsive">
-            <h2>List of Dabbawala</h2>
+            <h3>List of Dabbawala</h3>
             <div class="startTable" id="startTable"> 
               <table id="fTable" class=" table table-bordered ">
                 <thead>
@@ -1083,7 +1082,7 @@
                   {{#each dabbawalaList }}
                     <tr>
                       <td class="active">{{this.name}}</td> 
-                      <td class="active">{{this.address.vicinity}},{{this.address.city}},{{this.address.state}}</td>
+                      <td class="active">{{this.address.vicinity}}{{#if this.address.city}},{{this.address.city}}{{/if}}{{#if this.address.state}},{{this.address.state}}{{/if}}</td>
                       <td class="active">{{this.distributionAreas}}</td> 
                       <td class="active"><a href="#edit/{{ this._id }}" class="btn btn-primary" id="">Edit</a>
                                        <a href="#delete/{{ this._id }}" class="btn btn-danger" id="">Delete</a>
@@ -1222,7 +1221,7 @@
         <div class="row">
           <div class="tab-content editTabs">
             <div class="tab-pane active col-md-10" id="addDabbawala-t">
-              <form class="form-horizontal edit-dabbawala-form ">
+              <form class="form-horizontal edit-dabbawala-form well col-sm-12">
                 <div class="form-group">
                   <label for="" class="col-sm-3 control-label">Dabbawala</label>
                   <div class="col-sm-9">   
@@ -1251,9 +1250,9 @@
                 <div class="form-group">
                   <div class="col-sm-9 col-sm-offset-3">
                     <div class="col-sm-4">
-                      <select id="address.city" name="address.city" class="form-control"  placeholder="enter your search Dabbawala">
+                      <select id="address.city" name="address.city" class="form-control">
                             <option value="">Select City</option>
-                            <option value="Pune"{{#if  (isSelected tiffinboxSupplier.address.city 'Pune')}} selected {{/if}}>Pune</option>
+                            <option value="Pune" {{#if  (isSelected tiffinboxSupplier.address.city 'Pune')}} selected {{/if}}>Pune</option>
                       </select>
                     </div>
                     <div class="col-sm-4">
@@ -1324,17 +1323,17 @@
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Price:</label>
                   <div class="col-sm-3 cb-weekly">
-                    <input type="checkbox" name="priceWeekly" value="weekly" {{#if tiffinboxSupplier.price.weekly.dinner}} checked {{/if}}>Weekly 
+                    <input type="checkbox" name="priceWeekly" value="weekly" {{#if tiffinboxSupplier.price.weekly.dinner}}{{else}}{{#if tiffinboxSupplier.price.weekly.lunch}}{{else}}{{#if tiffinboxSupplier.price.weekly.breakfast}}{{else}}checked{{/if}}{{/if}}{{/if}}>Weekly 
                   </div>
                   <div class="col-sm-3 cb-monthly">
-                    <input type="checkbox" name="priceMonthly" value="monthly" {{#if tiffinboxSupplier.price.monthly.dinner}} checked {{/if}}>Monthly
+                    <input type="checkbox" name="priceMonthly" value="monthly" {{#if tiffinboxSupplier.price.monthly.dinner}}{{else}}{{#if tiffinboxSupplier.price.monthly.lunch}}{{else}}{{#if tiffinboxSupplier.price.monthly.breakfast}}{{else}}checked{{/if}}{{/if}}{{/if}}>Monthly
                   </div>
                   <div class="col-sm-3">
 
                   </div>                          
                 </div>
               
-                <div class="form-group " id="weekly" {{#if tiffinboxSupplier.price.weekly.dinner}}{{else}}style="display:none"{{/if}}>
+                <div class="form-group " id="weekly" {{#if tiffinboxSupplier.price.weekly.dinner}}{{else}}{{#if tiffinboxSupplier.price.weekly.lunch}}{{else}}{{#if tiffinboxSupplier.price.weekly.breakfast}}{{else}}style="display:none"{{/if}}{{/if}}{{/if}}>
                   <div class="col-sm-9 col-sm-offset-3"> 
                     <div class="col-sm-4">
                       <input type="number" name="price.weekly.breakfast" id="" placeholder="Weekly Breakfast price" {{#if tiffinboxSupplier.price.weekly.breakfast}} value="{{tiffinboxSupplier.price.weekly.breakfast}}" {{/if}}>
@@ -1347,7 +1346,7 @@
                     </div>                                            
                   </div>
                 </div>
-                <div class="form-group" id="monthly" {{#if tiffinboxSupplier.price.monthly.dinner}} {{else}}style="display:none"{{/if}}> 
+                <div class="form-group" id="monthly" {{#if tiffinboxSupplier.price.monthly.dinner}}{{else}}{{#if tiffinboxSupplier.price.monthly.lunch}}{{else}}{{#if tiffinboxSupplier.price.monthly.breakfast}}{{else}}style="display:none"{{/if}}{{/if}}{{/if}}> 
                   <div class="col-sm-9 col-sm-offset-3"> 
                     <div class="col-sm-4">
                       <input type="number" class="monthly_bf" name="price.monthly.breakfast" id="" placeholder="Monthly Breakfast price" {{#if tiffinboxSupplier.price.monthly.breakfast}} value="{{tiffinboxSupplier.price.monthly.breakfast}}" {{/if}}>

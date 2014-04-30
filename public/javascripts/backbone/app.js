@@ -13,6 +13,9 @@ $(function () {
 
   app.router.on('route:landing',function () {
     var landing = new app.LandingView();
+    $('.admin-navbar').hide();
+    $('.admin-content').hide();
+    $('.page').show();
     landing.render();
     navbarView.render();
   });
@@ -72,17 +75,17 @@ $(function () {
   app.router.on('route:listSupplier',function () {
       var list = new app.ListSupplierView();
       list.render();
-      fullnavbarView.render();
+      navbarView.render();
     });
   app.router.on('route:Checkout',function () {
       var checkout = new app.CheckoutView();
       checkout.render();
-      fullnavbarView.render();
+      navbarView.render();
     });
   app.router.on('route:orderProcess',function () {
       var order = new app.OrderProcessView();
       order.render();
-      fullnavbarView.render();
+      navbarView.render();
     });
   
   app.router.on('route:AddTeam',function () {

@@ -33,7 +33,7 @@ hr {
 }
 
 body {
-   background: url('../images/.jpg');
+   
  
 }
 
@@ -78,7 +78,7 @@ a {
 }
 .divlocation{
   border-radius: 10px;
-  border: 5px groove #FF6C00;
+  border: 5px groove #C266E0;
 
 
 img {
@@ -154,4 +154,8 @@ div.transbox p{
 .currentLink {
    color: #640200;
    background-color: #000000;
+}
+
+.home_bg{
+  background: url('../images/th.jpg');
 }
