@@ -279,7 +279,7 @@ app.ProfileView =Backbone.View.extend({
         render: function () {
           var that = this;
           var query=localStorage.getItem("name");
-          this.tiffinboxSupplier = new app.searchTiffinboxSupplier({query: query});
+          that.tiffinboxSupplier = new app.searchTiffinboxSupplier({query: query});
           that.tiffinboxSupplier.fetch({
             success: function(ev){
               that.$el.html( that.tpl({tiffinSupplers:that.tiffinboxSupplier.toJSON()}));
@@ -312,8 +312,9 @@ app.ProfileView =Backbone.View.extend({
           
             searchFilterResult.fetch({
               success: function(ev){
-                console.log('success');
-                that.$el.html( that.tpl({tiffinSupplers:that.tbs.toJSON()}));
+                console.log('success'+searchFilterResult.toJSON());
+                //that.$el.html( that.tpl({tiffinSupplers:that.tbs.toJSON()}));
+                that.$el.html( that.tpl({tiffinSupplers:searchFilterResult.toJSON()}));
 
               },
               error:function(a,s){

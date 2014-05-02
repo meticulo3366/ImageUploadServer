@@ -22,6 +22,9 @@ $(function () {
 
 	app.router.on('route:createUser',function () {
     var createUserView = new app.CreateUserView();
+    $('.admin-navbar').hide();
+    $('.admin-content').hide();
+    $('.page').show();
     createUserView.render();
     navbarView.render();
   });
@@ -74,6 +77,9 @@ $(function () {
 
   app.router.on('route:listSupplier',function () {
       var list = new app.ListSupplierView();
+      $('.admin-navbar').hide();
+      $('.admin-content').hide();
+      $('.page').show();
       list.render();
       navbarView.render();
     });

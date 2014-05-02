@@ -164,9 +164,12 @@
         <br><br>
 
         <div class="row">
-          <div class="col-sm-3">
+          <div class="col-md-3">
             <form class="form-horizontal filer-search-form">
               <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Filter Result By:</h3>
+                </div>
                 <div class="panel-body">
                   <h3>Meal Type</h3>
                   <div class="checkbox">
@@ -194,7 +197,7 @@
                   </div>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" value="Non-Veg" name="category">Non-Veg
+                      <input type="checkbox" value="NonVeg" name="category">NonVeg
                     </label>
                   </div>
                   <div class="checkbox">
@@ -229,34 +232,30 @@
               </div>
             </form>
           </div>
-          <div class="col-sm-9">
-            {{#each tiffinSupplers}}
-              <div class="col-md-4">
-                <div class="abc img-thumbnail">
-                  <div><img src="../images/a1.jpg" class="img-responsive listOfSupplier_img">
-                  </div>
-                  <div class="center-text">
-                    <h4>{{this.name}}</h4>
-                    {{this.address.vicinity}}
-                    <br>{{this.address.city}},{{this.address.city}}<br>{{this.address.state}},{{this.address.zipCode}}                   
-                  </div>
-                  <div class="lcb">
-                    <input type="checkbox" id="listOfSupplier">
-                  </div> 
-                </div>          
+          <div class="col-md-9">
+            <div class="landingSearch">          
+              {{#each tiffinSupplers}}
+                <div class="col-md-4">
+                  <div class="abc img-thumbnail">
+                    <div><img src="../images/a1.jpg" class="img-responsive listOfSupplier_img">
+                    </div>
+                    <div class="center-text">
+                      <h4>{{this.name}}</h4>
+                      {{this.address.vicinity}}
+                      <br>{{this.address.city}},{{this.address.city}}<br>{{this.address.state}},{{this.address.zipCode}}                   
+                    </div>
+                    <div class="lcb">
+                      <input type="checkbox" id="listOfSupplier">
+                    </div> 
+                  </div>          
+                </div>
+              {{/each}}
               </div>
-            {{/each}}
           </div>          
         </div>
-      </div>
-      
-
-            
-
+      </div>         
     </script>
 
-
-    
     <script type="text/x-template" id="create-user-template">
     <div class="container">
     <div class="well col-md-offset-3 col-md-6 signup" align="center">
@@ -972,11 +971,16 @@
           <div class="form-group">
             <label for="" class="col-sm-3 control-label">Item List</label>
             {{#if menu}}
-              {{#foreach menu.ingredients}}
+
+              {{#each menu.ingredients}}
+                {{#if @index}}
                 <div class="col-sm-7" id="items">      
                   <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," required value="{{this}}">
                 </div>
-              {{/foreach}}
+                {{else}}
+                  not first
+                {{/if}}
+              {{/each}}
             {{else}}
               <div class="col-sm-7" id="items">      
                 <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="enter item i.e. Capati 4,rice" required>
@@ -1211,16 +1215,16 @@
           <h4 class="center-text">{{tiffinboxSupplier.name}} Edit Page</h4>
           <div class="col-md-10">
             <ul class="nav nav-tabs nav-justified">
-              <li class="active"><a href="#addDabbawala-t" data-toggle="tab">Edit Basic Information</a></li>
-              <li class="gbcolotab border_right"><a href="#addTeam-t" data-toggle="tab">Team</a></li>
-              <li class="gbcolotab border_right"><a href="#addMenu-t" data-toggle="tab">Menu</a></li> 
+              <li class="active"><a href="#editDabbawala-t" data-toggle="tab">Edit Basic Information</a></li>
+              <li class="gbcolotab border_right"><a href="#editTeam-t" data-toggle="tab">Team</a></li>
+              <li class="gbcolotab border_right"><a href="#editMenu-t" data-toggle="tab">Menu</a></li> 
             </ul>
           </div>
         </div>
 
         <div class="row">
           <div class="tab-content editTabs">
-            <div class="tab-pane active col-md-10" id="addDabbawala-t">
+            <div class="tab-pane active col-md-10" id="editDabbawala-t">
               <form class="form-horizontal edit-dabbawala-form well col-sm-12">
                 <div class="form-group">
                   <label for="" class="col-sm-3 control-label">Dabbawala</label>
@@ -1323,10 +1327,10 @@
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Price:</label>
                   <div class="col-sm-3 cb-weekly">
-                    <input type="checkbox" name="priceWeekly" value="weekly" {{#if tiffinboxSupplier.price.weekly.dinner}}{{else}}{{#if tiffinboxSupplier.price.weekly.lunch}}{{else}}{{#if tiffinboxSupplier.price.weekly.breakfast}}{{else}}checked{{/if}}{{/if}}{{/if}}>Weekly 
+                    <input type="checkbox" name="priceWeekly" value="weekly" {{#if tiffinboxSupplier.price.weekly.dinner}}checked{{else}}{{#if tiffinboxSupplier.price.weekly.lunch}}checked{{else}}{{#if tiffinboxSupplier.price.weekly.breakfast}}checked{{else}}{{/if}}{{/if}}{{/if}}>Weekly 
                   </div>
                   <div class="col-sm-3 cb-monthly">
-                    <input type="checkbox" name="priceMonthly" value="monthly" {{#if tiffinboxSupplier.price.monthly.dinner}}{{else}}{{#if tiffinboxSupplier.price.monthly.lunch}}{{else}}{{#if tiffinboxSupplier.price.monthly.breakfast}}{{else}}checked{{/if}}{{/if}}{{/if}}>Monthly
+                    <input type="checkbox" name="priceMonthly" value="monthly" {{#if tiffinboxSupplier.price.monthly.dinner}}checked{{else}}{{#if tiffinboxSupplier.price.monthly.lunch}}checked{{else}}{{#if tiffinboxSupplier.price.monthly.breakfast}}checked{{else}}{{/if}}{{/if}}{{/if}}>Monthly
                   </div>
                   <div class="col-sm-3">
 
@@ -1368,6 +1372,9 @@
               </form>               
             </div>
             <div class="tab-pane col-md-10 " id="addTeam-t">
+            addTeam-t
+            </div>
+            <div class="tab-pane col-md-10 " id="editTeam-t">
               <div class="table-responsive">
                 <table class="table table-bordered">
                   <thead>
@@ -1395,8 +1402,8 @@
               </div>
               <div class="pull-right"><a href="#addTeam" class="btn btn-primary" id="">Add New Team</a></div>                      
             </div>
-
-            <div class="tab-pane col-md-10 " id="addMenu-t">
+          
+            <div class="tab-pane col-md-10 " id="editMenu-t">
               <div class="table-responsive">
                 <table class="table table-bordered">
                   <thead>

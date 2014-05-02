@@ -142,7 +142,8 @@ module.exports = function(app) {
     TiffinboxSupplier.find(query, function(err, tiffinBoxSuppliers) {
 
       if(err) { return next(err); };
-      //console.log(tiffinBoxSuppliers);
+      console.log('Search result:'+tiffinBoxSuppliers);
+
       res.json(tiffinBoxSuppliers);
     });
   };
@@ -156,52 +157,60 @@ tiffinboxSupplier.filter=function(req,res,next){
   
 var regex = new RegExp(req.query.search, 'i');
 
+console.log(req.query.query);
+console.log(filterval);
+
 
   var cat=filterval.category;
   var meal=filterval.mealType;
   var order=filterval.orderType;
 
+  console.log(cat);
+  console.log(meal);
+  console.log(order);
   
-  var que;
+  var que=[];
 
-  if( typeof cat==='object'){
-    que='{category:{ $all :cat}}';
+  if( typeof cat==='string'){
+    que.push({category:{ $all :[cat]}});
   }
   else{
-    que='{category:cat}';
+    que.push({category:{$all: cat}});
     }
 
-  if(typeof meal==='object'){
+  if(typeof meal==='string'){
    
-    que=',{mealType:{ $all :meal}}';
+    que.push({mealType:{ $all :[meal]}});
   }
   else{
    
-    que=',{mealType:meal}';
+    que.push({mealType:{$all: meal}});
   }
 
-
-  if(typeof order==='object'){
+console.log(typeof order == 'string');
+console.log(typeof order === 'string');
+  if(typeof order==='string'){
     
-    que=',{orderType:{ $all :order}}';
+    que.push({orderType:{ $all :[order]}});
   }
   else{
    
-   que=',{orderType:order}';
+   que.push({orderType:{$all: order}});
 }
 
+  console.log(que);
 
 
 
 
-
-   var query={$and:[{$or: [
-      {name: { $regex: regex}}
-      ,{distributionAreas: {$in: [regex]}}
-      ,{category: {$in: [regex]}}
-      ,{mealType: {$in: [regex]}}
-      ,{orderType: {$in: [regex]}}
-      ]},{$and: [que]}]}
+   var query={$and:
+                [{$or: 
+                  [{name: { $regex: regex}}
+                  ,{distributionAreas: {$in: [regex]}}
+                  ,{category: {$in: [regex]}}
+                  ,{mealType: {$in: [regex]}}
+                  ,{orderType: {$in: [regex]}}]}
+                ,{$and: [que]}]};
 
 /*       query = {$or: [
       {name: { $regex: regex}}
@@ -214,7 +223,8 @@ var regex = new RegExp(req.query.search, 'i');
 TiffinboxSupplier.find(query, function(err, tbs) {
 
       if(err) { return next(err); };
-      console.log(tbs);
+      console.log('filter result:')
+      //console.log(tbs);
       res.json(tbs);
     });
   //res.json({name:"Name"});
