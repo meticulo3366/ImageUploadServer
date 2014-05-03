@@ -949,7 +949,7 @@
 
     <script type="text/x-template" id="add-menu-template">
       <div class="well col-md-8">
-        <h4 class="center-text">{{#if menu}}Edit Menu {{else}}Add Menu{{/if}}</h4>
+        <h4 class="center-text">{{#if menu}}Edit Menu <div class="findForm" data-form="edit"><div>{{else}}Add Menu{{/if}}</h4>
         <hr>
         {{#if menu}}
         <form class="form-horizontal edit-menu-form ">
@@ -974,13 +974,21 @@
 
               {{#each menu.ingredients}}
                 {{#if @index}}
+                <div class="col-sm-7 col-sm-offset-3" id="items">      
+                  <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," required value="{{this}}">
+                </div>
+                
+                {{else}}
                 <div class="col-sm-7" id="items">      
                   <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," required value="{{this}}">
                 </div>
-                {{else}}
-                  not first
+                
                 {{/if}}
+
+                
               {{/each}}
+              <div class="findIndex" data-index="{{countIndex menu.ingredients}}"><div>
+            
             {{else}}
               <div class="col-sm-7" id="items">      
                 <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="enter item i.e. Capati 4,rice" required>
@@ -1042,8 +1050,20 @@
       </div>
 
       <script>
+      var index = $('.findIndex').data('index');
+      var form =$('.findForm').data('form');
+      console.log('result:'+form);
         var itemLimit=5;
+        if(form=="edit"){
+        console.log('in true'+index);
+        var itemCount=index+1;
+      }
+        else{
         var itemCount=2;
+        console.log('fales');
+        }
+        
+        console.log('Index     : '+index);
         $('.btnAddItem').click(function(){
           console.log('in jquery');
           if(itemCount <= itemLimit){

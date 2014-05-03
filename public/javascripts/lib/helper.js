@@ -54,3 +54,13 @@ Handlebars.registerHelper("foreach",function(arr,options) {
         return options.fn(item);
     }).join('');
 });
+
+Handlebars.registerHelper("countIndex",function(arr,options) {
+    if(options.inverse && !arr.length)
+        return options.inverse(this);
+      console.log('in countIndex:'+arr.length-1);
+
+    return arr.length;
+
+    
+});

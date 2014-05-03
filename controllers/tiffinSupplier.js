@@ -168,13 +168,14 @@ console.log(filterval);
   console.log(cat);
   console.log(meal);
   console.log(order);
+  console.log(typeof order); 
   
   var que=[];
 
   if( typeof cat==='string'){
     que.push({category:{ $all :[cat]}});
   }
-  else{
+  else if ( typeof cat==='object'){
     que.push({category:{$all: cat}});
     }
 
@@ -182,18 +183,18 @@ console.log(filterval);
    
     que.push({mealType:{ $all :[meal]}});
   }
-  else{
+  else if(typeof meal==='object'){
    
     que.push({mealType:{$all: meal}});
   }
 
 console.log(typeof order == 'string');
-console.log(typeof order === 'string');
+console.log(typeof meal === 'object');
   if(typeof order==='string'){
     
     que.push({orderType:{ $all :[order]}});
   }
-  else{
+  else if(typeof order==='object'){
    
    que.push({orderType:{$all: order}});
 }
@@ -210,7 +211,7 @@ console.log(typeof order === 'string');
                   ,{category: {$in: [regex]}}
                   ,{mealType: {$in: [regex]}}
                   ,{orderType: {$in: [regex]}}]}
-                ,{$and: [que]}]};
+                , [que]]};
 
 /*       query = {$or: [
       {name: { $regex: regex}}
@@ -224,7 +225,7 @@ TiffinboxSupplier.find(query, function(err, tbs) {
 
       if(err) { return next(err); };
       console.log('filter result:')
-      //console.log(tbs);
+      console.log(tbs);
       res.json(tbs);
     });
   //res.json({name:"Name"});
