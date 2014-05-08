@@ -182,6 +182,13 @@ $(function () {
       adminnavbarView.render();
       //adminrightnavbarView.render();
       });
+    app.router.on('route:menuDate',function (id) {
+      var add = new app.MenuDateView();
+      add.render({id:id});
+      fullnavbarView.render();
+      adminnavbarView.render();
+      //adminrightnavbarView.render();
+    });
 
 
   Backbone.history.start();

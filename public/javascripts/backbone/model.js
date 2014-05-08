@@ -45,6 +45,14 @@ var app = app || {};
     }
     
   });
+
+  app.AssignMenuDate = Backbone.Model.extend({
+     url: function() {
+      console.log('In Model');
+      return 'tiffinBoxSupplier/'+ this.get('dabbawalaId')+ '/setDate';
+    }
+    
+  });
   // app.TiffinboxSupplier = Backbone.Model.extend({
   //   url:function() {
   //     return '/tiffinBoxSupplier/' + this.get('id') + '/getTeam';

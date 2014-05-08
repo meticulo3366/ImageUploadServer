@@ -31,7 +31,7 @@ border-color: #;
     color: #8024AD;
 }
 .navbar-default .navbar-nav > .active > a, 
-.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
     color: #FFFFFF;
 background: rgb(158,90,182); /* Old browsers */
@@ -115,7 +115,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9e5ab6', end
 }
 .panel {
   margin-bottom: 20px;
-  background-color: #000000;
+  background-color: #FFA319;
   border: 1px solid transparent;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
@@ -125,7 +125,7 @@ color:#ffffff;
 .panel-body {
   padding: 5px;
   padding-bottom: 10px; 
-color:#ffffff;
+color:#000000;
 }
 /*.op3{
          background-color: #f5f5f5;
@@ -171,7 +171,7 @@ background: #F7E2F0;
 }
 .panel-default > .panel-heading {
   color: #FFFFFF;
-background: #AD54CE;
+background: #FF9900;
     border-color: #ddd;
 }
 .colorcodeone

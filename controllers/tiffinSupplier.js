@@ -7,6 +7,7 @@ var mongoose = require('mongoose')
   , util = require('../utils')
   , config = require('../config/config')
   , User = require('../models/User')
+  , TiffinCalendar = require('../models/TiffinCalendar')
   , TiffinboxSupplier = require('../models/TiffinboxSuppliers');
 
 module.exports = function(app) {
@@ -54,8 +55,8 @@ module.exports = function(app) {
       .exec(function(err, tiffinBoxSupplier) {
         if(err) { return next(err); };
         if(tiffinBoxSupplier) {
-          console.log('Fetched Record:'+tiffinboxSupplier);
-          console.log(tiffinBoxSupplier);
+          console.log('Fetched Record:');
+          //console.log(tiffinBoxSupplier);
           return res.json(tiffinBoxSupplier);
         } else {
           return res.json(404, {error: 'Tiffin box supplier not found!'});
@@ -85,45 +86,23 @@ module.exports = function(app) {
     });
   };
 
-  // tiffinboxSupplier.getTeam = function(req, res, next) {
-  //   console.log('in get team api');
-  //   //req.params.id - tiffinBoxSupplierId
-  //   TiffinboxSupplier.findById(req.params.id)
-  //     .populate('team')
-  //     .exec(function(err, tiffinBoxSupplier) {
+  tiffinboxSupplier.assignMenuDate = function(req, res, next){
+    console.log('in assignMenuDate api'+req.params.dabbawalaId);
+    var menuDate = new TiffinCalendar();
+    menuDate.tiffinboxSupplier= req.params.dabbawalaId;
+    menuDate.push(req.body);
+    menuDate.save(function(err,menuDate){
+      if (err) {return next(err);};
+      if (menuDate) {
+        console.log('date is assignet to menu');
+        res.json(menuDate);
+      };
+    });
 
-  //       if(err) { return next(err); };
+    
+  };
 
-  //       if(tiffinBoxSupplier) {
-  //         console.log('team'+tiffinboxSupplier);
-  //         return res.json(tiffinBoxSupplier);
-  //       } else {
-  //         return res.json(404, {error: 'Tiffin box supplier not found!'});
-  //       }
 
-  //     });
-  // };
- 
-
- 
-
-  // tiffinboxSupplier.getMenu = function(req, res, next) {
-  //     console.log('in get Menu api');
-  //     //req.params.id - tiffinBoxSupplierId
-  //     TiffinboxSupplier.findById(req.params.id)
-  //       .exec(function(err, tiffinBoxSupplier) {
-
-  //         if(err) { return next(err); };
-
-  //         if(tiffinBoxSupplier) {
-  //           console.log('menu'+tiffinboxSupplier.menu);
-  //           return res.json(tiffinBoxSupplier);
-  //         } else {
-  //           return res.json(404, {error: 'Tiffin box supplier not found!'});
-  //         }
-
-  //       });
-  //   };
 
   tiffinboxSupplier.search = function (req, res, next) {
 
@@ -148,61 +127,79 @@ module.exports = function(app) {
     });
   };
 
+  tiffinboxSupplier.checkout = function (req, res, next) {
+    console.log('in checkout api');
+    console.log(req.query.query);
+    var query= req.query.query;
+    var arr = query.split(',');
+    console.log(arr.length);
+    console.log(arr);
+    var myarr= JSON.parse(arr);
+    console.log(myarr);
+
+    var ts=[];
+   /* for (var i = 0; i< myarr.length;  i++) {
+      console.log(i);*/
+      TiffinboxSupplier.find({_id: {$in: myarr}}, function(err,tiffinBoxSuppliers){
+        if(err) { return next(err); };
+        //console.log(i);
+       //ts.push(tiffinBoxSuppliers);
+       /* if( i === (myarr.length-1)) {
+          console.log('Passing response to client!');
+          res.json(ts);
+        };
+        console.log(tiffinBoxSuppliers);*/
+        res.json(tiffinBoxSuppliers);
+      });
+    //};  
+  };
 
 tiffinboxSupplier.filter=function(req,res,next){
   
   var filterValue=req.query.query;
-
   var filterval=JSON.parse(filterValue);
-  
-var regex = new RegExp(req.query.search, 'i');
+  var regex = new RegExp(req.query.search, 'i');
 
-console.log(req.query.query);
-console.log(filterval);
+  console.log(req.query.query);
+  console.log(filterval);
 
-
-  var cat=filterval.category;
+  var cat= filterval.category;
   var meal=filterval.mealType;
   var order=filterval.orderType;
 
   console.log(cat);
   console.log(meal);
   console.log(order);
-  console.log(typeof order); 
-  
-  var que=[];
 
-  if( typeof cat==='string'){
-    que.push({category:{ $all :[cat]}});
+  var que=[];
+  if( typeof cat=='object'){
+    que.push({category:{ $all :cat}});
   }
-  else if ( typeof cat==='object'){
+  else if ( typeof cat=='string'){
     que.push({category:{$all: cat}});
     }
-
-  if(typeof meal==='string'){
-   
-    que.push({mealType:{ $all :[meal]}});
+  if(typeof meal=='object'){   
+    que.push({mealType:{ $all :meal}});
   }
-  else if(typeof meal==='object'){
-   
+  else if(typeof meal=='string'){
     que.push({mealType:{$all: meal}});
   }
-
-console.log(typeof order == 'string');
-console.log(typeof meal === 'object');
-  if(typeof order==='string'){
-    
-    que.push({orderType:{ $all :[order]}});
+  if(typeof order=='object'){ 
+    que.push({orderType:{ $all :order}});
   }
-  else if(typeof order==='object'){
-   
+  else if(typeof order=='string'){   
    que.push({orderType:{$all: order}});
-}
+  }
 
+  console.log('---------------------------');
+  console.log(typeof order);
+  console.log(typeof meal);
+  console.log('---------------------------');
+
+  console.log(typeof order == 'string');
+  console.log(typeof meal == 'object'); 
+  console.log("que:");
   console.log(que);
-
-
-
 
    var query={$and:
                 [{$or: 
@@ -210,25 +207,17 @@ console.log(typeof meal === 'object');
                   ,{distributionAreas: {$in: [regex]}}
                   ,{category: {$in: [regex]}}
                   ,{mealType: {$in: [regex]}}
-                  ,{orderType: {$in: [regex]}}]}
-                , [que]]};
+                  ,{orderType: {$in: [regex]}}]
+                }, {$and: que}] 
+              };
 
-/*       query = {$or: [
-      {name: { $regex: regex}}
-      ,{distributionAreas: {$in: [regex]}}
-      ,{category: {$in: [regex]}}
-      ,{mealType: {$in: [regex]}}
-      ,{orderType: {$in: [regex]}}
-      ]};
-*/
-TiffinboxSupplier.find(query, function(err, tbs) {
+console.log(query);
+TiffinboxSupplier.find(query, function(err, tiffinboxSupplier) {
 
       if(err) { return next(err); };
-      console.log('filter result:')
-      console.log(tbs);
-      res.json(tbs);
+      console.log(tiffinboxSupplier.length);
+      res.json(tiffinboxSupplier);
     });
-  //res.json({name:"Name"});
 };
  
 

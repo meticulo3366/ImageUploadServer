@@ -20,18 +20,24 @@
 
   });
 
+ app.checkoutTiffinboxSupplier = Backbone.Collection.extend({
+    initialize: function(options) {
+      this.options = options;
+    },
+    url:function() {
+      return '/tiffinBoxSupplier/checkout?query=' + this.options.query;
+    }
+
+  });
+
 
 
   app.SearchFilterResult = Backbone.Collection.extend({
     initialize: function(options ,search) {
       this.options = options;
-      this.search=search;
-      //console.log(this.search);
-      
+      this.search=search;     
     },
     url:function() {
-      //console.log('in function'+this.options);
-      
       return '/tiffinBoxSupplier/filter?query=' + this.options+'&search='+this.search;
     }
 

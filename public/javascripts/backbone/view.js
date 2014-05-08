@@ -268,7 +268,6 @@ app.ProfileView =Backbone.View.extend({
           document.getElementById('list-template').innerHTML
         ),
         events: {
-             'click .chekout': 'checkout',
              'click .newSearch' :  'search',
              'submit .filer-search-form' : 'filterSearch'
         },
@@ -287,10 +286,6 @@ app.ProfileView =Backbone.View.extend({
 
           });
         },
-
-        checkout: function(ev){
-           app.router.navigate('checkout', {trigger: true});
-        },
         search:function(){
           console.log('In New Search');
 
@@ -307,6 +302,7 @@ app.ProfileView =Backbone.View.extend({
           var that=this
           app.View=this;
           var query=$(ev.currentTarget).serializeObject();
+
       var search=localStorage.getItem("name");
           var searchFilterResult = new app.SearchFilterResult(JSON.stringify(query),search);
           
@@ -341,11 +337,28 @@ app.ProfileView =Backbone.View.extend({
         },
 
         initialize: function() {
+          app.View=this;
         
         },
-        render: function () {
+        render: function () { 
           var that = this;
-          that.$el.html( that.tpl());
+
+          console.log('in CheckoutView render:');
+          var query=[];
+          $(".listOfSuppliers:checked").each(function() {
+              query.push(this.value);
+          });
+          console.log(query);
+
+        var tiffinboxSuppliers = new app.checkoutTiffinboxSupplier({query: JSON.stringify(query)});
+          tiffinboxSuppliers.fetch({
+            success: function(ev){
+              console.log('in success:');
+              console.log(tiffinboxSuppliers);
+              that.$el.html( that.tpl({tiffinSupplers:tiffinboxSuppliers.toJSON()}));
+            }          
+
+          });
         },
         processorder:function(ev){
           app.router.navigate('orderProcess', {trigger: true});
@@ -808,36 +821,6 @@ app.AdminDashboardView =Backbone.View.extend({
         
     });
 
-// app.DabbawalaListView =Backbone.View.extend({
-//       el:'.admin-content',
-//        tpl: Handlebars.compile(
-//           document.getElementById('dabbawala-list-template').innerHTML
-//         ),
-//         events: {
-             
-//         },
-
-//         initialize: function() {
-//           app.View= this;
-
-//           this.dabbawala = new app.addTiffinBoxSupplier();
-//           this.listenTo( this.dabbawala, 'sync', this.render,this);
-//           this.dabbawala.fetch();
-        
-//         },
-//         render: function () {
-//           var that = this;
-//           that.$el.html( that.tpl({
-//           dabbawalaList: that.dabbawala.toJSON()
-        
-         
-//     }));
-
-//         }
-         
-//     });
-
-
 app.TeamListView =Backbone.View.extend({
       el:'.admin-content',
        tpl: Handlebars.compile(
@@ -1026,6 +1009,59 @@ app.EditDabbawalaView= Backbone.View.extend({
             }
           });
         }
+    });
+
+app.MenuDateView =Backbone.View.extend({
+      el:'.admin-content',
+       tpl: Handlebars.compile(
+          document.getElementById('menu-date-template').innerHTML
+        ),
+        events: {
+          'submit .assign-menuDate-form' : 'menuDate'
+        },
+
+        initialize: function() {
+           app.View= this;
+        },
+        render: function (options) {
+          var that=this;
+          if(options.id){
+            var id=options.id;
+            window.localStorage.setItem('id',id);
+            that.tiffinboxSupplier = new app.addTiffinBoxSupplier({id:id});
+            that.tiffinboxSupplier.fetch({
+              success: function (tiffinboxSupplier) {  
+                console.log('in menuDate form:');
+                window.localStorage.setItem('dabbawalaName', tiffinboxSupplier.attributes.name);
+                window.localStorage.setItem('dabbawalaId',tiffinboxSupplier.attributes.id);
+                //console.log(tiffinboxSupplier);   
+                that.$el.html(that.tpl({tiffinboxSupplier:that.tiffinboxSupplier.toJSON()}));
+              }
+            })
+
+            //return false;
+          }
+        },
+        menuDate: function(ev){
+          console.log('in menuDate function');
+          var menuDetails = $(ev.currentTarget).serializeObject();
+          var assignMenu =  new app.AssignMenuDate({dabbawalaId: window.localStorage.getItem('id')});
+
+          console.log('dabbawalaId:'+window.localStorage.getItem('id'));
+          console.log(menuDetails);
+          assignMenu.save(menuDetails,{
+            success: function(result){
+              console.log('in success');
+              app.router.navigate('adminDashboard', {trigger:true});
+            },
+            error: function(){
+              console.log('in error');
+            }
+          });
+
+          return false;
+        }
+         
     });
 
 

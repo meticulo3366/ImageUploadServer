@@ -27,7 +27,8 @@ var app = app || {};
       'editMenu/:id': 'editMenu',
       'editTeam/:id': 'editTeam',
       'deleteMenu/:id': 'deleteMenu',
-      'deleteTeam/:id': 'deleteTeam' 
+      'deleteTeam/:id': 'deleteTeam',
+      'menuDate/:id': 'menuDate' 
     }
   });  
 })();
