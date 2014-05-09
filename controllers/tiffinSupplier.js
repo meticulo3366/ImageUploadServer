@@ -87,10 +87,11 @@ module.exports = function(app) {
   };
 
   tiffinboxSupplier.assignMenuDate = function(req, res, next){
-    console.log('in assignMenuDate api'+req.params.dabbawalaId);
+    console.log('in assignMenuDate api');
+    console.log('dabbawalaId:'+req.params.dabbawalaId);
     var menuDate = new TiffinCalendar();
     menuDate.tiffinboxSupplier= req.params.dabbawalaId;
-    menuDate.push(req.body);
+    menuDate.days.push(req.body);
     menuDate.save(function(err,menuDate){
       if (err) {return next(err);};
       if (menuDate) {

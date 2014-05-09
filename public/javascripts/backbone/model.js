@@ -48,8 +48,8 @@ var app = app || {};
 
   app.AssignMenuDate = Backbone.Model.extend({
      url: function() {
-      console.log('In Model');
-      return 'tiffinBoxSupplier/'+ this.get('dabbawalaId')+ '/setDate';
+      console.log('In Model'+this.get('dabbawalaId'));
+      return '/tiffinBoxSupplier/menuDate/' + this.get('dabbawalaId');
     }
     
   });

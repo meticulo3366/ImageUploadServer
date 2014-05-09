@@ -58,8 +58,8 @@ app.delete('/users/:id'
   app.get('/tiffinBoxSupplier', dabbawalaController.index);
   app.get('/tiffinBoxSupplier/:id', dabbawalaController.show);
 
-  //app.post('tiffinBoxSupplier/:dabbawalaId/setDate'
-   // ,dabbawalaController.assignMenuDate);
+  app.post('/tiffinBoxSupplier/menuDate/:dabbawalaId'
+   ,dabbawalaController.assignMenuDate);
 
   app.delete('/tiffinBoxSupplier/:id'
     , passportConfig.isAuthenticated

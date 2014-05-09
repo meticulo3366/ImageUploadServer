@@ -41,7 +41,8 @@ opacity:0.7;">
               <li class="active"><a href="#"><p><b>Home</b></p></a></li>
               <li><a href="#new"><p><b>Sign Up</b></p></a></li>
               <li><a href="#signin"><p><b>Sign In</b></p></a></li>
-              <li><a href="#list"><p><b>Contact Us</b></p></a></li>
+              <li><a href="#feedback"><p><b>Feedback</b></p></a></li>
+              <li><a href="#contactUs"><p><b>Contact Us</b></p></a></li>
            </ul>
             <ul class="nav navbar-nav navbar-right" style="display:none">
               <li><a href="#"><p><b>Hi, User</b></p></a></li>
@@ -259,118 +260,119 @@ opacity:0.7;">
     </script>
 
     <script type="text/x-template" id="create-user-template">
-    <div class="container">
-    <div class="well col-md-offset-3 col-md-6 signup" align="center">
-      
-      <h3 class="">Sign Up</h3>
-      <hr>
-      <div class=""> 
+      <div class="container">
+        <div class="well col-md-offset-2 col-md-8 signup" align="center">
+          <h3 class="">Sign Up</h3>
+          <hr> 
           <form class="form-horizontal create-user-form">
-              
-              <div class="">
-              <div class="form-group col-md-6 col-md-offset-1">
-                
-                  <input type="text" class="form-control " id="firstName" name="firstName" placeholder="First Name" required>
-
-                
+            <div class="form-group">
+              <label class="col-sm-3 control-label">First Name:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control " id="firstName" name="firstName" placeholder="First Name" required>
               </div>
-              <div class="form-group col-md-6 col-md-offset-1">
-                
-                  <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
-                
+            </div>
+            <div class="form-group">
+            <label class="col-sm-3 control-label">Last Name:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
               </div>
+            </div>
+            <div class="form-group"> 
+              <label class="col-sm-3 control-label">Email:</label>
+              <div class="col-sm-9">
+                <input type="email" class="form-control " name="email" placeholder="Email Address" required>
               </div>
-              <div class="form-group col-md-6 col-md-offset-1"> 
-                
-                  <input type="email" class="form-control " name="email" placeholder="Email Address" required>
-                
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Password:</label>
+              <div class="col-sm-9"> 
+                <input type="password" class="form-control " id="password" name="password" placeholder="Password" required>  
               </div>
-              <div class=""><div class="form-group col-md-6 col-md-offset-1 "> 
-                
-                  <input type="password" class="form-control " id="password" name="password" placeholder="Password" required>
-                
+            </div>
+            <div class="form-group"> 
+              <label class="col-sm-3 control-label">Confirm Password:</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control " id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
               </div>
-
-              <div class="form-group col-md-6 col-md-offset-1"> 
-                
-                  <input type="password" class="form-control " id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
-                
-              </div></div>
-              
-
-              
-              <div class="form-group col-md-6 col-md-offset-1">
-                
-                  <input type="tel" class="form-control" id="contact" name="contactNumber" placeholder="Contact Number" required>
-                
-              </div>  
-
-              <div class="form-group col-md-6 col-md-offset-1"> 
-                
-                 <textarea class="form-control " name="" placeholder="Address 1" required row="2" cols="60"></textarea>
-
-                
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Contact:</label>
+              <div class="col-sm-9">
+                <input type="tel" class="form-control" id="contact" name="contactNumber" placeholder="Contact Number" required>
               </div>
-              <div class="form-group col-md-6 col-md-offset-1"> 
-                
-                 <textarea class="form-control " name="" placeholder="Address 2" required row="2" cols="60"></textarea>
-
-                
+            </div>  
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Address:</label>
+              <div class="col-sm-7"> 
+                <textarea class="form-control" name="" placeholder="Address 1" required row="2" cols="60"></textarea>
               </div>
-
-
-              <div class="form-group col-md-4 col-md-offset-4">
-                  <button type="submit" class="btn btn-success">Sign Up</button>
-              </div>
-            </form>
+              <button class="btn btn-primary col-sm-1 btnAddAddr" Type="button"><span class="glyphicon glyphicon-plus-sign"></span></button>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-success ">Sign Up</button>
+            </div>
+          </form>
         </div>
       </div>
-
-    </div>
-
+      <!-- <script>
+        var addrLimit=3;
+        var addrCount=2;
+        $('.btnAddAddr').click(function(){
+          console.log('in jquery');
+          if(addrCount <= addrLimit){
+            $(this).parent().append('<div class="col-sm-7 col-sm-offset-3"> 
+                <textarea class="form-control" name="" placeholder="Address " required row="2" cols="60"></textarea>
+              </div>');
+            addrCount+=1;
+            console.log(addrCount);
+          }
+          else{
+            alert('Only 3 Addresses can be inserted');
+          }
+        });
+      </script> -->
     </script>
 
     <script type="text/x-template" id="login-user-template">
-
-      <div class="well col-md-offset-4 col-sm-4 signin">
+      <div class="well col-md-offset-2 col-md-8 signin">
         <form class="form-horizontal login-user-form">
-
           <h3 class="center-text">User Login</h3>
-
           <hr/>
-          
           <div class="center-text">
-            <a href="/users/fbauth" class="btn btn-primary">
-              Sign In With Facebook
-            </a> 
-          </div>
+            <a href="/users/fbauth" class="btn btn-primary">Sign In With Facebook</a> 
+          </div><br>
           
           <p class="center-text">OR</p>
 
           <h5 class="red-text" id="error-message"></h5>
           <div class="form-group"> 
-            <div>
+            <label class="col-sm-3 control-label">Email:</label>
+            <div class="col-sm-9">
               <input type="email" class="form-control" name="email" placeholder="Email Address" >
             </div>
           </div>
 
           <div class="form-group"> 
-            <div>
+            <label class="col-sm-3 control-label">Password:</label>
+            <div class="col-sm-9">
               <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
             </div>
           </div>
 
           <div class="form-group">
-            <button type="submit" class="btn btn-success button-padding">Sign In</button>
+            <div class="col-sm-offset-3">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-success button-padding">Sign In</button>
+            </div>
           </div>
           
-
-          <h5>Dont have an account? <a href="#new"><u>Sign Up Here</u></a></h5>
-          <h5>Forgot Password?
-            <a href="/users/user#forgotpassword">
-              <u>Click Here</u>
-            </a>
-          </h5>
+          <div class="col-sm-offset-3">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h5>Dont have an account? <a href="#new"><u>Sign Up Here</u></a></h5>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h5>Forgot Password?
+              <a href="/users/user#forgotpassword">
+                <u>Click Here</u>
+              </a>
+            </h5>
+          </div>
         </form>
       </center>
     </script>
