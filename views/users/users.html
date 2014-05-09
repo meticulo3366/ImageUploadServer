@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/test.css">    
     <link rel="stylesheet" href="/stylesheets/header-color.css">
+
   </head>
 
   <body>
@@ -420,8 +421,8 @@ opacity:0.7;">
                   <table class="table table-bordered">
                     <thead>
                       <tr>
-                        <th>&nbsp</th>
-                        <th>Mon</th>
+                        <th>&nbsp;</th>
+                        <th class="center-text">Mon <div class="week"></div></th>
                         <th>Tue</th>
                         <th>Wed</th>
                         <th>Thus</th>
@@ -434,14 +435,19 @@ opacity:0.7;">
                     <tbody>
                     {{#each tiffinSupplers}}
                       <tr>
-                        <td><h5>{{this.name}}</h5></td>
+                        <td><h5>{{this.tiffinboxSupplier.name}}</h5></td>
                         <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
                         <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
                         <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
                         <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
                         <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
                         <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>                               
+                        <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>  
+                        <td>{{#each this.days}}
+                          date: {{this.date}}<br>
+                        {{/each}}
+
+                        </td>                             
                       </tr>
                     {{/each}}
                     </tbody>
@@ -455,7 +461,7 @@ opacity:0.7;">
                     <thead>
                       <tr>
                         <th>&nbsp</th>
-                        <th>Mon</th>
+                        <th>Mon<div class="week"></div></th>
                         <th>Tue</th>
                         <th>Wed</th>
                         <th>Thus</th>
@@ -518,6 +524,7 @@ opacity:0.7;">
               </div>
               <div id="btnCheckin" style="display:none">   
                 <a href="#orderProcess" id="" class="btn btn-primary addTocart">AddToBasket</a>
+                
               </div>
             </div>
           
@@ -528,10 +535,58 @@ opacity:0.7;">
         $('input:checkbox').change(function () {
                             if ($('input[type=checkbox]:checked').length > 0) {
                                 $('#btnCheckin').show();
+
                             } else {
                                 $('#btnCheckin').hide();
                             }
-                        });
+        });
+
+        $( document ).ready(function() {
+          var today = new Date();
+          var day = today.getDate();
+          var month = today.getMonth() + 1;
+          var year = today.getYear();
+          if (year < 2000)
+          year = year + 1900;
+          var offset = today.getDay();
+          var week;
+
+          if(offset != 0) {
+          day = day - offset;
+          if ( day < 1) {
+          if ( month == 1) day = 31 + day;
+          if (month == 2) day = 31 + day;
+          if (month == 3) {
+          if (( year == 00) || ( year == 04)) {
+          day = 29 + day;
+          }
+          else {
+          day = 28 + day;
+             }
+          }
+          if (month == 4) day = 31 + day;
+          if (month == 5) day = 30 + day;
+          if (month == 6) day = 31 + day;
+          if (month == 7) day = 30 + day;
+          if (month == 8) day = 31 + day;
+          if (month == 9) day = 31 + day;
+          if (month == 10) day = 30 + day;
+          if (month == 11) day = 31 + day;
+          if (month == 12) day = 30 + day;
+          if (month == 1) {
+          month = 12;
+          year = year - 1;
+          }
+          else {
+          month = month - 1;
+                }
+             }
+          }
+          day = day+1;
+          week = month + "-" + day +"-" + year; // i.e. 10-31-99
+          $('.week').html(week);
+        });
+
       </script>
     </script>
 
@@ -1531,6 +1586,7 @@ opacity:0.7;">
 
   
      <!--  <script src = "http://code.jquery.com/jquery-1.10.2.min.js"></script>--> 
+
     <script src= "/javascripts/lib/jquery.js"></script> 
     <script src= "/javascripts/lib/handlebars-v1.3.0.js"></script>
     <script src= "/javascripts/lib/underscore.js"></script>

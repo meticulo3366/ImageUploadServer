@@ -30,6 +30,15 @@
 
   });
 
+ app.GetMenuDate = Backbone.Collection.extend({
+    initialize: function(options) {
+      this.options = options;
+    },
+    url:function() {
+      return '/tiffinBoxSupplier/menuDate?menuDate=' + this.options.menuDate;
+    }
+
+  });
 
 
   app.SearchFilterResult = Backbone.Collection.extend({

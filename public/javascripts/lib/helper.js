@@ -1,8 +1,8 @@
 Handlebars.registerHelper('isSelected', function(context, value) {
-  console.log(context);
-  console.log(value)
+  //console.log(context);
+  //console.log(value)
   if(context == value){
-    console.log('matched');
+    //console.log('matched');
     return true;
   }
     
@@ -13,17 +13,17 @@ Handlebars.registerHelper('isSelected', function(context, value) {
 
 Handlebars.registerHelper('isPresent', function(array, value) {
   
-	console.log(array);
-	console.log(value);
+	//console.log(array);
+	//console.log(value);
 
   for(var i = 0 ; i < array.length; i++) {
   	if(array[i] == value) {
-      console.log('matched');
+      //console.log('matched');
   		return true;
   	}
   };
 
-  console.log('match not found!');
+  //console.log('match not found!');
   return false;
 });
 
@@ -58,7 +58,7 @@ Handlebars.registerHelper("foreach",function(arr,options) {
 Handlebars.registerHelper("countIndex",function(arr,options) {
     if(options.inverse && !arr.length)
         return options.inverse(this);
-      console.log('in countIndex:'+arr.length-1);
+      //console.log('in countIndex:'+arr.length-1);
 
     return arr.length;
 

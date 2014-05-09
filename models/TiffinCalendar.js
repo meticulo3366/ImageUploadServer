@@ -4,12 +4,13 @@
  */
 
 var bcrypt = require('bcrypt-nodejs')
-  , mongoose = require('mongoose');
+  , mongoose = require('mongoose')
+  , Tiffinboxsupplier = require('./TiffinboxSuppliers');
 
 var tiffincalendarSchema = mongoose.Schema({
    tiffinboxSupplier: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'TiffinboxSupplier'  
+    ref: 'Tiffinboxsupplier'  
   },
 
   days: [{

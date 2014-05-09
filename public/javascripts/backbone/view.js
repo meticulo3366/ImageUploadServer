@@ -350,7 +350,8 @@ app.ProfileView =Backbone.View.extend({
           });
           console.log(query);
 
-        var tiffinboxSuppliers = new app.checkoutTiffinboxSupplier({query: JSON.stringify(query)});
+        //var tiffinboxSuppliers = new app.checkoutTiffinboxSupplier({query: JSON.stringify(query)});
+          var tiffinboxSuppliers = new app.GetMenuDate({menuDate: JSON.stringify(query)});
           tiffinboxSuppliers.fetch({
             success: function(ev){
               console.log('in success:');
@@ -1048,19 +1049,19 @@ app.MenuDateView =Backbone.View.extend({
           var menuDetails = $(ev.currentTarget).serializeObject();
           var dabbawalaId = window.localStorage.getItem('dabbawalaId');
           var date = new app.AssignMenuDate({dabbawalaId : dabbawalaId});
-          //console.log(date.url);
+          console.log(date.url);
           date.save(menuDetails, {
             success: function(){
               if(app.View)
               app.View.close();
               //window.localStorage.setItem('tiffinboxSupplierId', menu.toJSON()._id);
 
-              console.log('in saveDate sucess');
-              window.history.back();
+              console.log('in save menuDate sucess');
+              //window.history.back();
               //app.router.navigate('menuList',{trigger: true});
             },
             error: function(model, response){
-              console.log('in savemenu error');
+              console.log('in save menuDate error');
             }
           });
           return false;

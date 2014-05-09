@@ -51,6 +51,12 @@ app.delete('/users/:id'
     , passportConfig.isAuthenticated
     , passportConfig.ensureAdmin
     , dabbawalaController.update);
+  
+app.post('/tiffinBoxSupplier/menuDate/:dabbawalaId'
+   ,dabbawalaController.assignMenuDate);
+  app.get('/tiffinBoxSupplier/menuDate'
+   ,dabbawalaController.getMenuDate);
+
 
   app.get('/tiffinBoxSupplier/search',dabbawalaController.search);
   app.get('/tiffinBoxSupplier/checkout',dabbawalaController.checkout);
@@ -60,6 +66,9 @@ app.delete('/users/:id'
 
   app.post('/tiffinBoxSupplier/menuDate/:dabbawalaId'
    ,dabbawalaController.assignMenuDate);
+  app.get('/tiffinBoxSupplier/menuDate'
+   ,dabbawalaController.getMenuDate);
+
 
   app.delete('/tiffinBoxSupplier/:id'
     , passportConfig.isAuthenticated
