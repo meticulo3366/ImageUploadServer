@@ -64,3 +64,36 @@ Handlebars.registerHelper("countIndex",function(arr,options) {
 
     
 });
+
+Handlebars.registerHelper("findMenuDate",function(arrDays,arrMenu,mealType,v,options) {
+  console.log('in findMenuDate helper');
+  //console.log('----------------------------');
+  //var day = arrDays[0];
+  //console.log('-------kkkkk--------------------')
+  //console.log(day[mealType].menuId);
+  //console.log('---------kkkkkkk-----------------')
+  //console.log('days lenth: '+arrDays.length);
+  //console.log('menu lenth:'+arrMenu.length);
+  var today = new Date();
+  today.setDate(today.getDate()+v);
+  var today1 = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+  
+  for(var i = 0; i< arrDays.length;i++){
+    var d = new Date(arrDays[i].date);
+    d = d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
+    if(d== today1){
+      for(var j = 0; j < arrMenu.length; j++){
+        var day = arrDays[i];
+        console.log('---------------------------')
+        console.log(day[mealType].menuId);
+        console.log('--------------------------');
+        if(day[mealType].menuId==arrMenu[j]._id){
+          console.log('matched'+arrMenu[j].ingredients);
+          //return {itmes: arrMenu[j].ingredients, price: arrMenu[j].fullPrice};
+          return options.fn(arrMenu[j]);
+
+        }
+      }  
+    }
+  }
+});

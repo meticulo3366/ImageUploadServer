@@ -150,7 +150,7 @@ opacity:0.7;">
                   <h3 class="panel-title">Filter Result By:</h3>
                 </div>
                 <div class="panel-body">
-                  <h3>Meal Type</h3>
+                  <h4>Meal Type</h4>
                   <div class="checkbox">
                     <label>
                      <input type="checkbox" value="lunch" name="mealType">Lunch
@@ -167,7 +167,7 @@ opacity:0.7;">
                     </label>
                   </div>
                   <hr>
-                  <h3>Category</h3>
+                  <h4>Category</h4>
                   
                   <div class="checkbox">
                     <label>
@@ -179,18 +179,18 @@ opacity:0.7;">
                       <input type="checkbox" value="nonVeg" name="category">NonVeg
                     </label>
                   </div>
-                  <div class="checkbox">
+                  <!--<div class="checkbox">
                     <label>
                       <input type="checkbox" value="jain" name="category">Jain
                     </label>
-                  </div>
+                  </div>-->
                   <div class="checkbox">
                     <label>
                       <input type="checkbox" value="gujrati" name="category">Gujrati
                     </label>
                   </div>
                   <hr>
-                  <h3>Order Type</h3>
+                  <h4>Order Type</h4>
                   <div class="checkbox">
                     <label>
                       <input type="checkbox" value="weekly" name="orderType">Weekly
@@ -422,33 +422,33 @@ opacity:0.7;">
                     <thead>
                       <tr>
                         <th>&nbsp;</th>
-                        <th class="center-text">Mon <div class="week"></div></th>
-                        <th>Tue</th>
-                        <th>Wed</th>
-                        <th>Thus</th>
-                        <th>Fri</th>
-                        <th>Sat</th>
-                        <th>Sun</th>
+                        <th class="center-text"><div class="monOfWeek"></div></th>
+                        <th class="center-text"><div class="tueOfWeek"></div></th>
+                        <th class="center-text"><div class="wedOfWeek"></div></th>
+                        <th class="center-text"><div class="thusOfWeek"></div></th>
+                        <th class="center-text"><div class="friOfWeek"></div></th>
+                        <th class="center-text"><div class="satOfWeek"></div></th>
+                        <th class="center-text"><div class="sunOfWeek"></div></th>
                       </tr>
                     </thead>
 
                     <tbody>
                     {{#each tiffinSupplers}}
-                      <tr>
-                        <td><h5>{{this.tiffinboxSupplier.name}}</h5></td>
-                        <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>  
-                        <td>{{#each this.days}}
-                          date: {{this.date}}<br>
-                        {{/each}}
-
-                        </td>                             
-                      </tr>
+                      {{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}
+                        <tr>
+                          <td><h5>{{this.tiffinboxSupplier.name}}</h5></td>
+                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 0}}"></div></td>
+                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 1}}"></div><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 2}}"></div><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 3}}"></div><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 4}}"></div><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 5}}"></div><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 6}}"></div><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                          <td>    {{#each this.days}}
+                            date: {{this.date}}<br>
+                          {{/each}}</td>                             
+                        </tr>
+                      {{/if}}
                     {{/each}}
                     </tbody>
                   </table> 
@@ -460,29 +460,31 @@ opacity:0.7;">
                   <table class="table table-bordered">
                     <thead>
                       <tr>
-                        <th>&nbsp</th>
-                        <th>Mon<div class="week"></div></th>
-                        <th>Tue</th>
-                        <th>Wed</th>
-                        <th>Thus</th>
-                        <th>Fri</th>
-                        <th>Sat</th>
-                        <th>Sun</th>
+                        <th>&nbsp;</th>
+                        <th class="center-text"><div class="monOfWeek"></div></th>
+                        <th class="center-text"><div class="tueOfWeek"></div></th>
+                        <th class="center-text"><div class="wedOfWeek"></div></th>
+                        <th class="center-text"><div class="thusOfWeek"></div></th>
+                        <th class="center-text"><div class="friOfWeek"></div></th>
+                        <th class="center-text"><div class="satOfWeek"></div></th>
+                        <th class="center-text"><div class="sunOfWeek"></div></th>
                       </tr>
                     </thead>
                           
                     <tbody> 
-                    {{#each tiffinSupplers}}                         
-                      <tr>
-                        <td><h5>{{this.name}}</h5></td>
-                        <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td class=""><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>        
-                      </tr>
+                    {{#each tiffinSupplers}}  
+                      {{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}
+                        <tr>
+                          <td><h5>{{this.tiffinboxSupplier.name}}</h5></td>
+                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 0}}"></div></td>
+                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 1}}"></div><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 2}}"></div><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 3}}"></div><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 4}}"></div><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 5}}"></div><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
+                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 6}}"></div><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>        
+                        </tr>
+                      {{/if}}
                     {{/each}}
                     </tbody>
                   </table> 
@@ -494,29 +496,38 @@ opacity:0.7;">
                   <table class="table table-bordered">
                     <thead>
                       <tr>
-                        <th>&nbsp</th>
-                        <th>Mon</th>
-                        <th>Tue</th>
-                        <th>Wed</th>
-                        <th>Thus</th>
-                        <th>Fri</th>
-                        <th>Sat</th>
-                        <th>Sun</th>
+                        <th>&nbsp;</th>
+                        <th class="center-text"><div class="monOfWeek"></div></th>
+                        <th class="center-text"><div class="tueOfWeek"></div></th> 
+                        <th class="center-text"><div class="wedOfWeek"></div></th>
+                        <th class="center-text"><div class="thusOfWeek"></div></th>
+                        <th class="center-text"><div class="friOfWeek"></div></th>
+                        <th class="center-text"><div class="satOfWeek"></div></th>
+                        <th class="center-text"><div class="sunOfWeek"></div></th>
                       </tr>
                     </thead>
 
                     <tbody>
                     {{#each tiffinSupplers}}
-                      <tr>
-                        <td><h5>{{this.name}}</h5></td>
-                        <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td class=""><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                        <td><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>        
-                      </tr>
+                      {{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}
+                        <tr>
+                          <td><h5>{{this.tiffinboxSupplier.name}}</h5></td>
+                          <td> {{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 0}}
+                          <div>
+                          {{this}}
+                          
+                          </div>
+                          
+                          {{/findMenuDate}}
+                          </td>
+                          <td>1</td>
+                          <td>2</td>
+                          <td>4</td>
+                          <td>5</td>
+                          <td>7</td>
+                          <td>78</td>        
+                        </tr>
+                      {{/if}}
                     {{/each}}
                     </tbody>
                   </table> 
@@ -542,50 +553,47 @@ opacity:0.7;">
         });
 
         $( document ).ready(function() {
-          var today = new Date();
-          var day = today.getDate();
-          var month = today.getMonth() + 1;
-          var year = today.getYear();
-          if (year < 2000)
-          year = year + 1900;
-          var offset = today.getDay();
-          var week;
+          
+          var monOfWeek;
+          var tueOfWeek;
+          var wedOfWeek;
+          var thusOfWeek;
+          var friOfWeek;
+          var satOfWeek;
+          var sunOfWeek;
+         
+          var weekday=new Array("Sun ","Mon ","Tue ","Wed ","Thu ",
+                "Fri ","Sat ");
+          var day1 = new Date();
+          day1.setDate(day1.getDate());
+          week = weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
+          day1.setDate(day1.getDate());
+          monOfWeek = weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
+          day1.setDate(day1.getDate()+1);
+          tueOfWeek = weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
+          day1.setDate(day1.getDate()+1);
+          wedOfWeek = weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
+          day1.setDate(day1.getDate()+1);
+          thusOfWeek = weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
+          day1.setDate(day1.getDate()+1);
+          friOfWeek = weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
+          day1.setDate(day1.getDate()+1);
+          satOfWeek = weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
+          day1.setDate(day1.getDate()+1);
+          sunOfWeek =  weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
+          
 
-          if(offset != 0) {
-          day = day - offset;
-          if ( day < 1) {
-          if ( month == 1) day = 31 + day;
-          if (month == 2) day = 31 + day;
-          if (month == 3) {
-          if (( year == 00) || ( year == 04)) {
-          day = 29 + day;
-          }
-          else {
-          day = 28 + day;
-             }
-          }
-          if (month == 4) day = 31 + day;
-          if (month == 5) day = 30 + day;
-          if (month == 6) day = 31 + day;
-          if (month == 7) day = 30 + day;
-          if (month == 8) day = 31 + day;
-          if (month == 9) day = 31 + day;
-          if (month == 10) day = 30 + day;
-          if (month == 11) day = 31 + day;
-          if (month == 12) day = 30 + day;
-          if (month == 1) {
-          month = 12;
-          year = year - 1;
-          }
-          else {
-          month = month - 1;
-                }
-             }
-          }
-          day = day+1;
-          week = month + "-" + day +"-" + year; // i.e. 10-31-99
           $('.week').html(week);
+          $('.monOfWeek').html(monOfWeek);
+          $('.tueOfWeek').html(tueOfWeek);
+          $('.wedOfWeek').html(wedOfWeek);
+          $('.thusOfWeek').html(thusOfWeek);
+          $('.friOfWeek').html(friOfWeek);
+          $('.satOfWeek').html(satOfWeek);
+          $('.sunOfWeek').html(sunOfWeek);
         });
+        var data= $('.findMenuDetail').data('menuDetail');
+        console.log('menudetail'+data);
 
       </script>
     </script>
@@ -1525,7 +1533,7 @@ opacity:0.7;">
                 <select name="breakfast.menuId" class="form-control menuDate">
                   <option value="">select menu name<option>
                   {{#each tiffinboxSupplier.menu}}
-                    <option value="{{this._id}}" name="days.breakfast.menuId">{{this.name}} <div class="findMenuItem" data-menuItem="{{this.ingredients}}"><div></option>
+                    <option class="findMenuItem" data-menuItem="{{this.ingredients}}" value="{{this._id}}">{{this.name}}</option>
                   {{/each}}
                 </select> 
               </div>
@@ -1538,7 +1546,7 @@ opacity:0.7;">
                 <select name="lunch.menuId" class="form-control menuDate">
                   <option value="">select menu name<option>
                   {{#each tiffinboxSupplier.menu}}
-                    <option value="{{this._id}}" name="">{{this.name}} <div class="findMenuItem" data-menuItem="{{this.ingredients}}"><div></option>
+                    <option class="findMenuItem" data-menuItem="{{this.ingredients}}" value="{{this._id}}">{{this.name}} </option>
                   {{/each}}
                 </select>
               </div>
@@ -1551,7 +1559,7 @@ opacity:0.7;">
                 <select name="dinner.menuId" class="form-control menuDate">
                   <option value="">select menu name<option>
                   {{#each tiffinboxSupplier.menu}}
-                    <option value="{{this._id}}" name="">{{this.name}} <div class="findMenuItem" data-menuItem="{{this.ingredients}}"><div></option>
+                    <option class="findMenuItem" data-menuItem="{{this.ingredients}}" value="{{this._id}}">{{this.name}}</option>
                   {{/each}}
                 </select>
               </div>
@@ -1565,13 +1573,13 @@ opacity:0.7;">
       <div class="col-md-4 onMenuSelect">
             display ur item here
       </div>
-      <!--<script>
+      <script>
         $('.menuDate').on('change', function(e){
           var items= $('.findMenuItem').data('menuItem');
-          alert(this.value);
+          alert(items);
           //alert($('.findMenuItem').data('menuItem'));
         });
-      </script>-->
+      </script>
     </script>
 
   <script>
