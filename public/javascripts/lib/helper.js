@@ -67,13 +67,7 @@ Handlebars.registerHelper("countIndex",function(arr,options) {
 
 Handlebars.registerHelper("findMenuDate",function(arrDays,arrMenu,mealType,v,options) {
   console.log('in findMenuDate helper');
-  //console.log('----------------------------');
-  //var day = arrDays[0];
-  //console.log('-------kkkkk--------------------')
-  //console.log(day[mealType].menuId);
-  //console.log('---------kkkkkkk-----------------')
-  //console.log('days lenth: '+arrDays.length);
-  //console.log('menu lenth:'+arrMenu.length);
+
   var today = new Date();
   today.setDate(today.getDate()+v);
   var today1 = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
@@ -84,13 +78,37 @@ Handlebars.registerHelper("findMenuDate",function(arrDays,arrMenu,mealType,v,opt
     if(d== today1){
       for(var j = 0; j < arrMenu.length; j++){
         var day = arrDays[i];
-        console.log('---------------------------')
-        console.log(day[mealType].menuId);
-        console.log('--------------------------');
+        //console.log('---------------------------')
+        //console.log(day[mealType].menuId);
+        //console.log('--------------------------');
         if(day[mealType].menuId==arrMenu[j]._id){
           console.log('matched'+arrMenu[j].ingredients);
-          //return {itmes: arrMenu[j].ingredients, price: arrMenu[j].fullPrice};
-          return options.fn(arrMenu[j]);
+          var x = arrMenu[j].ingredients;
+          //console.log(String(x).split(","));
+          var arr = String(x).split(',');
+          for (var l=0;l < arr.length; l++){
+            console.log('value:'+arr[l]);
+          }
+          var out= "<div class=''>";
+          out+="<form class=''><input class='pull-right' type='checkbox' id='addTocart' value='"+arrMenu[j]._id+"'></form>";
+          out+="<p>Menu:"+arrMenu[j].name+"</p>";
+          out+= "<p> Items: <ol>";
+          for(var l=0;l < arr.length; l++){
+           // if(i<arr.length){
+              out+="<li>"+arr[l]+"</li>";
+            //}
+           // else{
+            //out+="<br>";
+           // }
+          }
+            out+="</ol></p>";
+          //out+= "<p>Items:"+arrMenu[j].ingredients+"</p>";
+          out+="<p>Price:"+ arrMenu[j].fullPrice+"</p>";
+          
+          out+="</div>";
+
+          return out;
+          //return options.fn(arrMenu[j]);
 
         }
       }  

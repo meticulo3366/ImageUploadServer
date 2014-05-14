@@ -418,7 +418,7 @@ opacity:0.7;">
             <div class="tab-content">
               <div class="tab-pane active" id="breakfast">
                 <div class="table-responsive">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered " style='table-layout:fixed'>
                     <thead>
                       <tr>
                         <th>&nbsp;</th>
@@ -436,17 +436,14 @@ opacity:0.7;">
                     {{#each tiffinSupplers}}
                       {{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}
                         <tr>
-                          <td><h5>{{this.tiffinboxSupplier.name}}</h5></td>
-                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 0}}"></div></td>
-                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 1}}"></div><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 2}}"></div><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 3}}"></div><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 4}}"></div><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 5}}"></div><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 6}}"></div><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                          <td>    {{#each this.days}}
-                            date: {{this.date}}<br>
-                          {{/each}}</td>                             
+                          <td class="divMenu"><h5>{{this.tiffinboxSupplier.name}}</h5></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 0}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 2}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 3}}{{/findMenuDate}}</td></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 3}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 4}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 5}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 6}}{{/findMenuDate}}</div></td>     
                         </tr>
                       {{/if}}
                     {{/each}}
@@ -457,7 +454,7 @@ opacity:0.7;">
 
               <div class="tab-pane" id="lunch">                 
                 <div class="table-responsive">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered" style='table-layout:fixed'>
                     <thead>
                       <tr>
                         <th>&nbsp;</th>
@@ -475,14 +472,14 @@ opacity:0.7;">
                     {{#each tiffinSupplers}}  
                       {{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}
                         <tr>
-                          <td><h5>{{this.tiffinboxSupplier.name}}</h5></td>
-                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 0}}"></div></td>
-                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 1}}"></div><div class="menuItem well"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 2}}"></div><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 3}}"></div><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 4}}"></div><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 5}}"></div><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>
-                          <td><div class="findMenuDetail" data-menuDetail="{{findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 6}}"></div><div class="well menuItem"><p>Menu:</p><p>price:</p><input class="pull-right" type="checkbox" id="addTocart"></div></td>        
+                          <td class="divMenu"><h5>{{this.tiffinboxSupplier.name}}</h5></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 0}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 2}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 3}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 3}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 4}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 5}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 6}}{{/findMenuDate}}</div></td>      
                         </tr>
                       {{/if}}
                     {{/each}}
@@ -493,7 +490,7 @@ opacity:0.7;">
 
               <div class="tab-pane" id="dinner">
                 <div class="table-responsive">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered" style='table-layout:fixed'>
                     <thead>
                       <tr>
                         <th>&nbsp;</th>
@@ -511,21 +508,14 @@ opacity:0.7;">
                     {{#each tiffinSupplers}}
                       {{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}
                         <tr>
-                          <td><h5>{{this.tiffinboxSupplier.name}}</h5></td>
-                          <td> {{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 0}}
-                          <div>
-                          {{this}}
-                          
-                          </div>
-                          
-                          {{/findMenuDate}}
-                          </td>
-                          <td>1</td>
-                          <td>2</td>
-                          <td>4</td>
-                          <td>5</td>
-                          <td>7</td>
-                          <td>78</td>        
+                          <td class="divMenu"><h5>{{this.tiffinboxSupplier.name}}</h5></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 0}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 2}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 3}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 3}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 4}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 5}}{{/findMenuDate}}</div></td>
+                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 6}}{{/findMenuDate}}</div></td>      
                         </tr>
                       {{/if}}
                     {{/each}}
@@ -1576,8 +1566,9 @@ opacity:0.7;">
       <script>
         $('.menuDate').on('change', function(e){
           var items= $('.findMenuItem').data('menuItem');
-          alert(items);
+          console.log(items);
           //alert($('.findMenuItem').data('menuItem'));
+
         });
       </script>
     </script>

@@ -160,3 +160,13 @@ div.transbox p{
 .home_bg{
   background: url('../images/th.jpg');
 }
+table.fixed{
+  table-layout: fixed;
+  
+}
+.divMenu{
+  height: 12.5%;
+  width: 12.5%;
+  word-wrap:break-word;
+  word-wrap:break-word;
+}

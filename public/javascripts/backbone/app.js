@@ -85,6 +85,9 @@ $(function () {
     });
   app.router.on('route:Checkout',function () {
       var checkout = new app.CheckoutView();
+      $('.admin-navbar').hide();
+      $('.admin-content').hide();
+      $('.page').show();
       checkout.render();
       navbarView.render();
     });
@@ -185,6 +188,7 @@ $(function () {
     app.router.on('route:menuDate',function (id) {
       var add = new app.MenuDateView();
       add.render({id:id});
+
       fullnavbarView.render();
       adminnavbarView.render();
       //adminrightnavbarView.render();
