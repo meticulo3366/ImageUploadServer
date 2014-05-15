@@ -90,7 +90,7 @@ Handlebars.registerHelper("findMenuDate",function(arrDays,arrMenu,mealType,v,opt
             console.log('value:'+arr[l]);
           }
           var out= "<div class=''>";
-          out+="<form class=''><input class='pull-right' type='checkbox' id='addTocart' value='"+arrMenu[j]._id+"'></form>";
+          out+="<form class=''><input class='pull-right ckMenuId' type='checkbox' id='addTocart' value='"+arrDays[i]._id+"'></form>";
           out+="<p>Menu:"+arrMenu[j].name+"</p>";
           out+= "<p> Items: <ol>";
           for(var l=0;l < arr.length; l++){

@@ -7,6 +7,9 @@ module.exports = function(app){
   var userController = require('./controllers/user') (app)
    , rootController = require('./controllers/root') (app)
    , dabbawalaController = require('./controllers/tiffinSupplier') (app)
+   , cartController = require('./controllers/cart') (app)
+   , orderController = require('./controllers/order') (app)
+   , calendarController = require('./controllers/calendar') (app)
    , passportConfig = require('./config/passport-config.js');   
 
   app.get('/', rootController.landing);
@@ -56,6 +59,8 @@ app.post('/tiffinBoxSupplier/menuDate/:dabbawalaId'
    ,dabbawalaController.assignMenuDate);
   app.get('/tiffinBoxSupplier/menuDate'
    ,dabbawalaController.getMenuDate);
+  app.get('/cart/processOrder'
+   ,cartController.processOrder);
 
 
   app.get('/tiffinBoxSupplier/search',dabbawalaController.search);

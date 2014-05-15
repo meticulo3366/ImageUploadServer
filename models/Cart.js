@@ -4,12 +4,13 @@
  */
 
 var bcrypt = require('bcrypt-nodejs')
-  , mongoose = require('mongoose');
-
+  , mongoose = require('mongoose')
+  , User = require('./User')
+  , Tiffinboxsupplier = require('./TiffinboxSuppliers');
 var cartSchema = mongoose.Schema({
     userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'TiffinboxSupplier'
+    ref: 'User'
   },
 
   orderDetails:[{

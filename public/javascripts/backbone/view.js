@@ -333,7 +333,7 @@ app.ProfileView =Backbone.View.extend({
           document.getElementById('checkout-template').innerHTML
         ),
         events: {
-             'click .addToCart': 'processorder'
+             'click .addTocart': 'processOrder'
         },
 
         initialize: function() {
@@ -361,8 +361,27 @@ app.ProfileView =Backbone.View.extend({
 
           });
         },
-        processorder:function(ev){
-          app.router.navigate('orderProcess', {trigger: true});
+        processOrder:function(ev){
+          var that = this;
+          console.log('in processorder function');
+          var query=[];
+          $('.ckMenuId:checked').each(function() {
+            console.log('menuId'+this.value);
+              query.push(this.value);
+          });
+          console.log(query);
+          var calendars = new app.CartCollection({query: JSON.stringify(query)});
+          calendars.fetch({
+            success: function(ev){
+              console.log('in OrderProcessView.fetch.succe');
+              console.log(calendars);
+              that.$el.html( that.tpl({calendarsDetail: calendars.toJSON()}));
+            }
+           // error: function(){
+            ///  console.log('in OrderProcessView.fetch.error');
+            //}
+          });
+          
         }
          
     });
@@ -376,11 +395,34 @@ app.ProfileView =Backbone.View.extend({
         },
 
         initialize: function() {
-        
+          app.View=this;
+          
         },
         render: function () {
           var that = this;
-          that.$el.html( that.tpl());
+
+           console.log('in OrderProcessView render:');
+          var query=[];
+          $('.ckMenuId:checked').each(function() {
+            console.log('menuId'+this.value);
+              query.push(this.value);
+          });
+          console.log(query);
+          var calendars = new app.ProcessOrder({query: JSON.stringify(query)});
+          calendars.fetch({
+            success: function(ev){
+              console.log('in OrderProcessView.fetch.succe');
+              console.log(calendars);
+              that.$el.html( that.tpl({calendarsDetail: calendars.toJSON()}));
+            }
+           // error: function(){
+            ///  console.log('in OrderProcessView.fetch.error');
+            //}
+          });
+
+
+
+          
         }
          
     });
@@ -462,7 +504,7 @@ app.AddTeamView =Backbone.View.extend({
           var that = this;
           var dabbawalaName= window.localStorage.getItem('dabbawalaName');
                     that.$el.html( that.tpl({
-          dabbawalaList: that.dabbawala.toJSON(),dabbawalaName:dabbawalaName,
+          dabbawalaList: that.dabbawala.toJSON(),dabbawalaName:dabbawalaName
 
           }));
         },

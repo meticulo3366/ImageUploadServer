@@ -40,6 +40,25 @@
 
   });
 
+app.ProcessOrder = Backbone.Collection.extend({
+    initialize: function(options) {
+      this.options = options;
+    },
+    url:function() {
+      return '/tiffinBoxSupplier/processOrder?query=' + this.options.query;
+    }
+
+  });
+
+app.CartCollection = Backbone.Collection.extend({
+    initialize: function(options) {
+      this.options = options;
+    },
+    url:function() {
+      return '/cart/processOrder?query=' + this.options.query;
+    }
+
+  });
 
   app.SearchFilterResult = Backbone.Collection.extend({
     initialize: function(options ,search) {
