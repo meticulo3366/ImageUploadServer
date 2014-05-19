@@ -85,7 +85,7 @@ module.exports = function(app) {
         }  
     });
   };
-
+////////////////////////////////////////////////
   tiffinboxSupplier.assignMenuDate = function(req, res, next){
     console.log('in assignMenuDate api');
     console.log('dabbawalaId:'+req.params.dabbawalaId);
@@ -129,7 +129,7 @@ module.exports = function(app) {
     
   };
 
-  
+  /////////////////////////////////////////////////////////
 
 
   tiffinboxSupplier.search = function (req, res, next) {
@@ -181,33 +181,33 @@ module.exports = function(app) {
       });
     //};  
   };
-
+//////////////////////////
 tiffinboxSupplier.getMenuDate = function (req, res,next) {
-    console.log('in getMenuDate api');
-    console.log(req.query.menuDate);
-    var query= req.query.menuDate;
-    var arr = query.split(',');
-    console.log(arr.length);
-    console.log(arr);
-    var myarr= JSON.parse(arr);
-    console.log(myarr);
+     console.log('in getMenuDate apissssssssss');
+    // console.log(req.query.menuDate);
+    // var query= req.query.menuDate;
+    // var arr = query.split(',');
+    // console.log(arr.length);
+    // console.log(arr);
+    // var myarr= JSON.parse(arr);
+    // console.log(myarr);
 
-    var ts=[];
-    TiffinCalendar.find({tiffinboxSupplier: {$in: myarr}}) 
-    .populate('tiffinboxSupplier')
-    .exec(function(err,tiffinBoxSuppliers){
-      if(err) { return next(err);
-      };
-      if(tiffinBoxSuppliers){
-        console.log('result:'+tiffinBoxSuppliers);
-        res.json(tiffinBoxSuppliers);
-      }
-      else{
-        console.log('error: record not found!');
-      }
-    });
+    // var ts=[];
+    // TiffinCalendar.find({tiffinboxSupplier: {$in: myarr}}) 
+    // .populate('tiffinboxSupplier')
+    // .exec(function(err,tiffinBoxSuppliers){
+    //   if(err) { return next(err);
+    //   };
+    //   if(tiffinBoxSuppliers){
+    //     console.log('result:'+tiffinBoxSuppliers);
+    //     res.json(tiffinBoxSuppliers);
+    //   }
+    //   else{
+    //     console.log('error: record not found!');
+    //   }
+    // });
 };
-
+///////////////////////////////////////////
 
 tiffinboxSupplier.filter = function(req,res,next){
   

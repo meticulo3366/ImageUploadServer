@@ -65,7 +65,7 @@ Handlebars.registerHelper("countIndex",function(arr,options) {
     
 });
 
-Handlebars.registerHelper("findMenuDate",function(arrDays,arrMenu,mealType,v,options) {
+Handlebars.registerHelper("findMenuDate",function(arrDays,arrMenu,ts,mealType,v,options) {
   console.log('in findMenuDate helper');
 
   var today = new Date();
@@ -90,7 +90,7 @@ Handlebars.registerHelper("findMenuDate",function(arrDays,arrMenu,mealType,v,opt
             console.log('value:'+arr[l]);
           }
           var out= "<div class=''>";
-          out+="<form class=''><input class='pull-right ckMenuId' type='checkbox' id='addTocart' value='"+arrDays[i]._id+"'></form>";
+          out+="<form class=''><input class='pull-right ckMenuId' type='checkbox' id='"+ arrDays[i]._id +"' value='"+arrDays[i]._id+"' data-date='" + arrDays[i].date + "' data-mealtype='" + mealType + "''></form>";
           out+="<p>Menu:"+arrMenu[j].name+"</p>";
           out+= "<p> Items: <ol>";
           for(var l=0;l < arr.length; l++){
@@ -107,8 +107,9 @@ Handlebars.registerHelper("findMenuDate",function(arrDays,arrMenu,mealType,v,opt
           
           out+="</div>";
 
-          return out;
-          //return options.fn(arrMenu[j]);
+          //return out;
+          return options.fn({menu:arrMenu[j],date:today1,ts:ts});
+          //return new Handlebars.SafeString(out);
 
         }
       }  

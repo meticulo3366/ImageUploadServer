@@ -263,3 +263,8 @@ a:active {
   color: #fff;
   text-decoration: underline;
 }
+.home_bg{
+   margin-top: -2%;
+  background:url("../images/food1.jpg") top center no-repeat;
+  background-size: cover;
+}

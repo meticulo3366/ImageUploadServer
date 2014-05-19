@@ -30,21 +30,21 @@ module.exports = function(app) {
 
  
 
-	    // TiffinCalendar.find({days:{_id:{ $in: myarr}}}) 
-	    // .populate('tiffinboxSupplier')
-	    // .exec(function(err,tiffinBoxSuppliers){
-	    //   if(err) { return next(err);
-	    //   };
-	    //   if(tiffinBoxSuppliers){
-	    //     console.log('result:'+tiffinBoxSuppliers);
-	    //     var cart = new Cart();
-	    //     cart.TiffinCalendar= tiffinBoxSuppliers.
-	    //     //res.json(tiffinBoxSuppliers);
-	    //   }
-	    //   else{
-	    //     console.log('error: record not found!');
-	    //   }
-	    // });
+	    TiffinCalendar.find({days:{_id:{ $in: myarr}}}) 
+	    .populate('tiffinboxSupplier')
+	    .exec(function(err,tiffinBoxSuppliers){
+	      if(err) { return next(err);
+	      };
+	      if(tiffinBoxSuppliers){
+	        console.log('result:'+tiffinBoxSuppliers);
+	        //var cart = new Cart();
+	        //cart.TiffinCalendar= tiffinBoxSuppliers.
+	        res.json(tiffinBoxSuppliers);
+	      }
+	      else{
+	        console.log('error: record not found!');
+	      }
+	    });
 	
   };
 

@@ -158,7 +158,9 @@ div.transbox p{
 }
 
 .home_bg{
-  background: url('../images/th.jpg');
+   margin-top: -2%;
+  background:url("../images/food1.jpg") top center no-repeat;
+  background-size: cover;
 }
 table.fixed{
   table-layout: fixed;

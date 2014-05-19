@@ -54,13 +54,6 @@ app.delete('/users/:id'
     , passportConfig.isAuthenticated
     , passportConfig.ensureAdmin
     , dabbawalaController.update);
-  
-app.post('/tiffinBoxSupplier/menuDate/:dabbawalaId'
-   ,dabbawalaController.assignMenuDate);
-  app.get('/tiffinBoxSupplier/menuDate'
-   ,dabbawalaController.getMenuDate);
-  app.get('/cart/processOrder'
-   ,cartController.processOrder);
 
 
   app.get('/tiffinBoxSupplier/search',dabbawalaController.search);
@@ -69,10 +62,10 @@ app.post('/tiffinBoxSupplier/menuDate/:dabbawalaId'
   app.get('/tiffinBoxSupplier', dabbawalaController.index);
   app.get('/tiffinBoxSupplier/:id', dabbawalaController.show);
 
-  app.post('/tiffinBoxSupplier/menuDate/:dabbawalaId'
-   ,dabbawalaController.assignMenuDate);
-  app.get('/tiffinBoxSupplier/menuDate'
-   ,dabbawalaController.getMenuDate);
+  // app.post('/tiffinBoxSupplier/menuDate/:dabbawalaId'
+  //  ,dabbawalaController.assignMenuDate);
+  // app.get('/tiffinBoxSupplier/menuDate'
+  //  ,dabbawalaController.getMenuDate);
 
 
   app.delete('/tiffinBoxSupplier/:id'
@@ -101,4 +94,17 @@ app.post('/tiffinBoxSupplier/menuDate/:dabbawalaId'
   //   , passportConfig.isAuthenticated
   //   , passportConfig.ensureAdmin
   //   , dabbawalaController.getTeam);
+
+
+app.post('/calendar/menuDate/:dabbawalaId'
+   ,calendarController.assignMenuDate);
+app.get('/calendar/menuDate'
+   ,calendarController.getMenuDate);
+
+
+  app.get('/cart/processOrder'
+   ,cartController.processOrder);
+
+
+  
 };

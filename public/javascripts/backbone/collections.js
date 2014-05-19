@@ -35,11 +35,11 @@
       this.options = options;
     },
     url:function() {
-      return '/tiffinBoxSupplier/menuDate?menuDate=' + this.options.menuDate;
+      return '/calendar/menuDate?menuDate=' + this.options.menuDate;
     }
 
   });
-
+/////////////////////////////////
 app.ProcessOrder = Backbone.Collection.extend({
     initialize: function(options) {
       this.options = options;
@@ -49,7 +49,7 @@ app.ProcessOrder = Backbone.Collection.extend({
     }
 
   });
-
+///////////////////////////////////
 app.CartCollection = Backbone.Collection.extend({
     initialize: function(options) {
       this.options = options;

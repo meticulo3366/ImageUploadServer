@@ -85,7 +85,7 @@
     <script type="text/x-template" id="admin-navbar-template">
       <div class="panelone panel-default">
         <div class="panel-heading">
-          <h4>Search by:</h4>
+          <h4>To do Task:</h4>
         </div>
         <div class="panel-bodyone">
           <ul id="cat-navi" class="nav nav-list">
@@ -110,31 +110,53 @@
     </script>
 
     <script type="text/x-template" id="admin-right-navbar-report-template">
-      <div class = "navbar navbar-inverse navbar-static-top">
-        <ul class="nav nav-pills nav-stacked">
-          <li class=""><a href="#adminDashboard">Location Wise Tiffin Suppliers</a></li>
-          <li><a href="#addTeam">Total Order</a></li>
-          <li><a href="#addMenu">Order of Specific Tiffin Suppliers</a></li>
-          <li><a href="#addMenu">Order of Specific Customer</a></li>
-          <br><br><br><br>
-        </ul>
-      </div>
+     <div class="navbar navbar-inverse" navbar-static-top>
+          <div class="">
+              <a href="#" class="navbar-brand">mySite</a>
+          <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+         
+          <div class="collapse navbar-collapse navHeaderCollapse">
+            <ul class="nav navbar-nav navbar-left">
+              <li class="active"><a href=#"">Home</a></li>
+              <li><a href="#">Blog</a></li>  
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">social media<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Web Design</a></li>  
+                  <li><a href="#">Mobile Application</a></li>
+                  <li><a href="#">software maintanence</a></li>
+                </ul>
+              </li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact us</a></li>
+            </ul>
+          </div>
+        </div>
+
+        </div>
     </script>
 
     <script type="text/x-template" id="landing-template">
-      <div class="container home_bg">
-        <div class="row"> <br><br>
-        <h2 class="center-text">Order Tiffin/Mess Facility For Home Delivry</h2>         
-              <div class="input-group col-md-7 col-md-offset-3 divlocation"><br><br>
-                  <div class="input-group col-sm-10 col-sm-offset-1">                   
-                      <input type="text" class="form-control" id="comsumerQuery"  placeholder="Enter Location/Category/Restaurant Name or Meal Type">
-                      <span class="input-group-btn">
-                          <button type="button" class="btn btn-primary consumerSearch"><span class="glyphicon glyphicon-search"></span></button>
-                      </span>
-                  </div>   
-                  <br><br>
-              </div>
+      <div class="home_bg">
+        <div class="container">
+          <div class="row"> <br><br>
+            <h2 class="center-text">Order Tiffin/Mess Facility For Home Delivry</h2>         
+            <div class="input-group col-md-7 col-md-offset-3 divlocation"><br><br>
+              <h5 class="landingErrorMsg col-sm-10 col-sm-offset-1 text-danger" style="display:none">Please enter your search query!</h5>
+              <div class="input-group col-sm-10 col-sm-offset-1">                   
+                <input type="text" class="form-control" id="comsumerQuery"  placeholder="Enter Location/Category/Restaurant Name or Meal Type">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-primary consumerSearch"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+              </div>   <br><br>
+            </div>
+          </div>
         </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
       </div>
     </script>
 
@@ -221,7 +243,7 @@
                       <div class="modal-header">select location</div>
                       <div class="modal-body">
                         <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Enter Location or Name or Meal Type" id="newComsumerQuery" >
+                          <input type="text" class="form-control" placeholder="Enter Location or Name or Meal Type" id="newComsumerQuery">
                           <span class="input-group-btn">
                             <button type="button" class="btn btn-primary newSearch" data-dismiss="modal" >Search</button>
                           </span>
@@ -235,7 +257,7 @@
               </div>
             </div>
             <div class="col-md-2 col-md-offset-4">
-              <a href="#checkout" class="btn btn-primary checkout">View Menu</a>
+              <button class="btn btn-primary checkout viewMenu">View Menu</button>
             </div><br><br><br>
             <div class="landingSearch">          
               {{#each tiffinSupplers}}
@@ -262,7 +284,7 @@
 
     <script type="text/x-template" id="create-user-template">
       <div class="container">
-        <div class="well col-md-offset-2 col-md-8 signup" align="center">
+        <div class="well col-md-offset-2 col-md-7 signup" align="center">
           <h3 class="">Sign Up</h3>
           <hr> 
           <form class="form-horizontal create-user-form">
@@ -307,7 +329,8 @@
               <div class="col-sm-7"> 
                 <textarea class="form-control" name="" placeholder="Address 1" required row="2" cols="60"></textarea>
               </div>
-              <button class="btn btn-primary col-sm-1 btnAddAddr" Type="button"><span class="glyphicon glyphicon-plus-sign"></span></button>
+              <button class="btn btnAddAddr" Type="button"><span class="glyphicon glyphicon-plus-sign"></span></button>
+              
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-success ">Sign Up</button>
@@ -434,18 +457,16 @@
 
                     <tbody>
                     {{#each tiffinSupplers}}
-                      {{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}
                         <tr>
                           <td class="divMenu"><h5>{{this.tiffinboxSupplier.name}}</h5></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 0}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 2}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 3}}{{/findMenuDate}}</td></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 3}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 4}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 5}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'breakfast' 6}}{{/findMenuDate}}</div></td>     
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'breakfast' 0}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'breakfast' 1}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'breakfast' 2}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</td></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'breakfast' 3}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'breakfast' 4}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'breakfast' 5}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'breakfast' 6}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>     
                         </tr>
-                      {{/if}}
                     {{/each}}
                     </tbody>
                   </table> 
@@ -469,19 +490,17 @@
                     </thead>
                           
                     <tbody> 
-                    {{#each tiffinSupplers}}  
-                      {{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}
+                    {{#each tiffinSupplers}}
                         <tr>
                           <td class="divMenu"><h5>{{this.tiffinboxSupplier.name}}</h5></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 0}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 2}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 3}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 3}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 4}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 5}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'lunch' 6}}{{/findMenuDate}}</div></td>      
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'lunch' 0}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'lunch' 1}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'lunch' 2}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p><form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}"></form>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'lunch' 3}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'lunch' 4}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'lunch' 5}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'lunch' 6}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>      
                         </tr>
-                      {{/if}}
                     {{/each}}
                     </tbody>
                   </table> 
@@ -506,18 +525,16 @@
 
                     <tbody>
                     {{#each tiffinSupplers}}
-                      {{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}
                         <tr>
                           <td class="divMenu"><h5>{{this.tiffinboxSupplier.name}}</h5></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 0}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 2}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 3}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 3}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 4}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 5}}{{/findMenuDate}}</div></td>
-                          <td class="divMenu"><div class="">{{#findMenuDate this.days this.tiffinboxSupplier.menu 'dinner' 6}}{{/findMenuDate}}</div></td>      
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'dinner' 0}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'dinner' 1}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'dinner' 2}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'dinner' 3}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'dinner' 4}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'dinner' 5}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'dinner' 6}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>      
                         </tr>
-                      {{/if}}
                     {{/each}}
                     </tbody>
                   </table> 
@@ -983,12 +1000,12 @@
               {{#each menu.ingredients}}
                 {{#if @index}}
                 <div class="col-sm-7 col-sm-offset-3" id="items">      
-                  <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," required value="{{this}}">
+                  <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," value="{{this}}">
                 </div>
                 
                 {{else}}
                 <div class="col-sm-7" id="items">      
-                  <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," required value="{{this}}">
+                  <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="list of items    i.e. Capati 4,rice,Sabji,Daal," value="{{this}}">
                 </div>
                 
                 {{/if}}
@@ -999,7 +1016,7 @@
             
             {{else}}
               <div class="col-sm-7" id="items">      
-                <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="enter item i.e. Capati 4,rice" required>
+                <input type="text" class="form-control col-sm-8" id="ingredients" name="ingredients" placeholder="enter item i.e. Capati 4,rice" required value="">
               </div>
             {{/if}}
             
@@ -1008,28 +1025,28 @@
           <div class="form-group">
             <label for="" class="col-sm-3 control-label">Discription</label>
             <div class="col-sm-9" id="items">      
-              <input type="text" class="form-control " id="description" name="description" {{#if menu}}value="{{menu.description}}" {{/if}} placeholder="Discription" required >
+              <textarea row="2"cols="60" class="form-control " id="description" name="description" {{#if menu}}value="{{menu.description}}" {{/if}} placeholder="Discription" required ></textarea>
             </div>
           </div>
           <div class="form-group">      
-            <label for="" class="col-sm-3 control-label">Category</label>
+            <label for="" class="col-sm-3 control-label">Category{{category}} </label>
             <div class="col-sm-3">
-              <input type="checkbox" name="category" value="veg" {{#if menu}} {{#if (isPresent menu.category 'veg')}}selected {{/if}} {{/if}}> Veg
-            </div>
-            <div class="col-sm-3">   
-              <input type="checkbox" name="category" value="nonVeg" {{#if menu}} {{#if (isPresent menu.category 'nonVeg')}} checked {{/if}} {{/if}}>Non Veg
-            </div>
-            <div class="col-sm-3">
-              <input type="checkbox" name="category" value="gujrati" {{#if menu}} {{#if (isPresent menu.category 'gujrati')}} checked {{/if}} {{/if}}>Gujrati
-            </div>         
+              {{#each category}}
+              <input type="checkbox" name="category" value="{{this}}" {{#if menu}} {{#if (isPresent menu.category '{{this}}')}}selected {{/if}} {{/if}}> {{this}}
+              {{/each}}
+            </div>      
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label">Meal Type</label>
+            <label class="col-sm-3 control-label">Meal Type {{mealType}}</label>
             <div class="col-sm-3">
+            {{#if (isPresent mealType 'breakfast')}}
               <input type="checkbox" name="mealType" value='breakfast' {{#if menu}} {{#if (isPresent menu.mealType 'breakfast')}} checked {{/if}} {{/if}}>Breakfast 
+              {{/if}}
             </div>
-            <div class="col-sm-3"> 
+            <div class="col-sm-3">
+             {{#if (isPresent mealType 'lunch')}}
               <input type="checkbox" name="mealType" value="lunch" {{#if menu}} {{#if (isPresent menu.mealType 'lunch')}} checked {{/if}} {{/if}}>Lunch
+              {{/if}}
             </div>
             <div class="col-sm-3">
               <input type="checkbox" name="mealType" value="dinner" {{#if menu}} {{#if (isPresent menu.mealType 'dinner')}} checked {{/if}} {{/if}}>Dinner
@@ -1075,7 +1092,7 @@
         $('.btnAddItem').click(function(){
           console.log('in jquery');
           if(itemCount <= itemLimit){
-            $(this).parent().append('<div class="col-sm-7 col-sm-offset-3"><input type="text" name="ingredients" placeholder="Enter new item" class="form-control"></div>');
+            $(this).parent().append('<div class="col-sm-7 col-sm-offset-3"><input type="text" value="" name="ingredients" placeholder="Enter new item" class="form-control"></div>');
             itemCount+=1;
             console.log(itemCount);
           }
@@ -1104,7 +1121,7 @@
               <table id="fTable" class=" table table-bordered ">
                 <thead>
                   <tr class="colorcodeone">
-                    <th class="colorcodeone"><b>Name of Restarauntsaurants</b></th>
+                    <th class="colorcodeone"><b>Name of Restaurants</b></th>
                     <th class="colorcodeone">Address</th>
                     <th class="colorcodeone">Service Location</th>
                     <th class="colorcodeone center-text">Action</th>
@@ -1117,8 +1134,21 @@
                       <td class="active">{{this.address.vicinity}}{{#if this.address.city}},{{this.address.city}}{{/if}}{{#if this.address.state}},{{this.address.state}}{{/if}}</td>
                       <td class="active">{{this.distributionAreas}}</td> 
                       <td class="active"><a href="#edit/{{ this._id }}" class="btn btn-primary" id="">Edit</a>
-                                       <a href="#delete/{{ this._id }}" class="btn btn-danger" id="">Delete</a>
-                                       <a href="#menuDate/{{ this._id }}" class="btn btn-success" id="">MenuDate</a>
+                        <a href="#menuDate/{{ this._id }}" class="btn btn-primary" id="">MenuDate</a>
+                        <a href="#mymodel" data-toggle="modal" class="btn btn-danger">Delete</a>
+                        <div class="modal fade" id="mymodel" role="dialog" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">Delete Confirmation</div>
+                              <div class="modal-body">
+                                <p>Are you sure to delete {{this.name}}?</p><br><br>
+                              <div class="modal-footer">
+                                <a href="#delete/{{ this._id }}" class="btn btn-primary"  id="">Yes</a>&nbsp;
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                              </div>
+                           </div>
+                          </div>
+                        </div>
                       </td>
                     </tr>  
                   {{/each}}
@@ -1523,7 +1553,7 @@
                 <select name="breakfast.menuId" class="form-control menuDate">
                   <option value="">select menu name<option>
                   {{#each tiffinboxSupplier.menu}}
-                    <option class="findMenuItem" data-menuItem="{{this.ingredients}}" value="{{this._id}}">{{this.name}}</option>
+                    <option class="findMenuItem" data-menuitem="{{this.ingredients}}" value="{{this._id}}">{{this.name}}</option>
                   {{/each}}
                 </select> 
               </div>
@@ -1536,7 +1566,7 @@
                 <select name="lunch.menuId" class="form-control menuDate">
                   <option value="">select menu name<option>
                   {{#each tiffinboxSupplier.menu}}
-                    <option class="findMenuItem" data-menuItem="{{this.ingredients}}" value="{{this._id}}">{{this.name}} </option>
+                    <option class="findMenuItem" data-menuitem="{{this.ingredients}}" value="{{this._id}}">{{this.name}} </option>
                   {{/each}}
                 </select>
               </div>
@@ -1549,7 +1579,7 @@
                 <select name="dinner.menuId" class="form-control menuDate">
                   <option value="">select menu name<option>
                   {{#each tiffinboxSupplier.menu}}
-                    <option class="findMenuItem" data-menuItem="{{this.ingredients}}" value="{{this._id}}">{{this.name}}</option>
+                    <option class="findMenuItem" data-menuitem="{{this.ingredients}}" value="{{this._id}}">{{this.name}}</option>
                   {{/each}}
                 </select>
               </div>
@@ -1561,11 +1591,12 @@
         </form>
       </div>
       <div class="col-md-4 onMenuSelect">
-            display ur item here
+        
       </div>
       <script>
-        $('.menuDate').on('change', function(e){
-          var items= $('.findMenuItem').data('menuItem');
+        $('.menuDate').on('change' && this.select, function(e){
+          var items= $(this).data('menuitem');
+          $('.onMenuSelect').html(items);
           console.log(items);
           //alert($('.findMenuItem').data('menuItem'));
 
