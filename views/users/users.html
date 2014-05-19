@@ -924,7 +924,7 @@
               <div class="form-group">
                 <label for="" class="col-sm-3 control-label">First Name</label>
                 <div class="col-sm-9">      
-                  <input type="text" class="form-control " id="firstName" name="firstName" value="{{}}" required>
+                  <input type="text" class="form-control " id="firstName" name="firstName" value="" required>
                 </div>  
               </div>
               <div class="form-group">
@@ -1025,32 +1025,24 @@
           <div class="form-group">
             <label for="" class="col-sm-3 control-label">Discription</label>
             <div class="col-sm-9" id="items">      
-              <textarea row="2"cols="60" class="form-control " id="description" name="description" {{#if menu}}value="{{menu.description}}" {{/if}} placeholder="Discription" required ></textarea>
+              <textarea row="2"cols="60" class="form-control " id="description" name="description" placeholder="Discription" required > {{#if menu}}{{menu.description}} {{/if}}</textarea>
             </div>
           </div>
           <div class="form-group">      
-            <label for="" class="col-sm-3 control-label">Category{{category}} </label>
+            <label for="" class="col-sm-3 control-label">Category</label>
+            {{#each category}}
             <div class="col-sm-3">
-              {{#each category}}
-              <input type="checkbox" name="category" value="{{this}}" {{#if menu}} {{#if (isPresent menu.category '{{this}}')}}selected {{/if}} {{/if}}> {{this}}
-              {{/each}}
-            </div>      
+              <input type="checkbox" name="category" value="{{this}}" {{#if menu}} {{#if (isPresent menu.category this)}} checked {{/if}} {{/if}}> {{this}}
+            </div>
+            {{/each}}      
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label">Meal Type {{mealType}}</label>
+            <label class="col-sm-3 control-label">Meal Type </label>
+            {{#each mealType}}
             <div class="col-sm-3">
-            {{#if (isPresent mealType 'breakfast')}}
-              <input type="checkbox" name="mealType" value='breakfast' {{#if menu}} {{#if (isPresent menu.mealType 'breakfast')}} checked {{/if}} {{/if}}>Breakfast 
-              {{/if}}
+              <input type="checkbox" name="mealType" value='{{this}}' {{#if menu}} {{#if (isPresent menu.mealType this)}} checked {{/if}} {{/if}}>{{this}}
             </div>
-            <div class="col-sm-3">
-             {{#if (isPresent mealType 'lunch')}}
-              <input type="checkbox" name="mealType" value="lunch" {{#if menu}} {{#if (isPresent menu.mealType 'lunch')}} checked {{/if}} {{/if}}>Lunch
-              {{/if}}
-            </div>
-            <div class="col-sm-3">
-              <input type="checkbox" name="mealType" value="dinner" {{#if menu}} {{#if (isPresent menu.mealType 'dinner')}} checked {{/if}} {{/if}}>Dinner
-            </div>                          
+            {{/each}}                       
           </div>
           <div class="form-group">
             <label for="" class="col-sm-3 control-label" >Full Price</label>

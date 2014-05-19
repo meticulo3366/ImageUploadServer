@@ -13,12 +13,12 @@ Handlebars.registerHelper('isSelected', function(context, value) {
 
 Handlebars.registerHelper('isPresent', function(array, value) {
   
-	//console.log(array);
+	//console.log('in ispresnt helper'+array);
 	//console.log(value);
 
   for(var i = 0 ; i < array.length; i++) {
   	if(array[i] == value) {
-      //console.log('matched');
+    //  console.log('matched');
   		return true;
   	}
   };

@@ -704,11 +704,8 @@ app.AddMenuView =Backbone.View.extend({
 
           that.$el.html( that.tpl({dabbawalaList: that.dabbawala.toJSON()
                                   ,dabbawalaName: dabbawalaName
-                                  ,category:category.split()
-                                  ,mealType:mealType
-
-
-          }));
+                                  ,category:category.split(',')
+                                  ,mealType:mealType.split(',')}));
         },
         saveMenu:function(ev){
           console.log('in saveMenu');
@@ -772,10 +769,15 @@ app.EditMenuView =Backbone.View.extend({
                     break;
                   }
                 };
-
+                 var dabbawalaName= window.localStorage.getItem('dabbawalaName')
+                  ,mealType= window.localStorage.getItem('mealtype')
+                  ,category= window.localStorage.getItem('category');
 
                 //console.log(window.localStorage.getItem('dabbawalaId'));   
-                that.$el.html(that.tpl({menu: menu, dabbawalaName: window.localStorage.getItem('dabbawalaName')}));
+                that.$el.html(that.tpl({menu: menu
+                  ,dabbawalaName: dabbawalaName
+                  ,category:category.split(',')
+                  ,mealType:mealType.split(',')}));
               }
             })
           //}
@@ -793,6 +795,7 @@ app.EditMenuView =Backbone.View.extend({
 
               console.log('in saveMenu sucess');
               window.history.back();
+              //window.location.reload();
               //app.router.navigate('menuList',{trigger: true});
             },
             error: function(model, response){
