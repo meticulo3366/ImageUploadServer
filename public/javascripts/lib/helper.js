@@ -27,21 +27,7 @@ Handlebars.registerHelper('isPresent', function(array, value) {
   return false;
 });
 
-// Handlebars.registerHelper('@first', function(array,first) {
-  
-//   console.log(array);
-//   console.log(value);
 
-//   for(var i = 0 ; i < array.length; i++) {
-//     if(i == 0) {
-//       console.log('first');
-//       ;
-//     }
-//   };
-
-//   console.log('match not found!');
-//   return false;
-// });
 
 Handlebars.registerHelper("foreach",function(arr,options) {
     if(options.inverse && !arr.length)
@@ -78,9 +64,7 @@ Handlebars.registerHelper("findMenuDate",function(arrDays,arrMenu,ts,mealType,v,
     if(d== today1){
       for(var j = 0; j < arrMenu.length; j++){
         var day = arrDays[i];
-        //console.log('---------------------------')
-        //console.log(day[mealType].menuId);
-        //console.log('--------------------------');
+        
         if(day[mealType].menuId==arrMenu[j]._id){
           console.log('matched'+arrMenu[j].ingredients);
           var x = arrMenu[j].ingredients;

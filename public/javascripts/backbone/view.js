@@ -3,48 +3,44 @@ var app = app || {};
 (function () {
   'use strict';
 
-   Backbone.View.prototype.close = function () {
-    
+  Backbone.View.prototype.close = function () {
     //COMPLETELY UNBIND THE VIEW
     this.undelegateEvents();
     this.$el.removeData().unbind();
     this.$el.empty();
   };
 
+  app.LandingView =Backbone.View.extend({
+    el:'.page',
+    tpl: Handlebars.compile(
+      document.getElementById('landing-template').innerHTML
+    ),
+    events: {
+      'click .consumerSearch' : 'storeQueryAndNavigate'
+    },
 
-app.LandingView =Backbone.View.extend({
-      el:'.page',
-       tpl: Handlebars.compile(
-          document.getElementById('landing-template').innerHTML
-        ),
-        events: {
-             'click .consumerSearch' : 'storeQueryAndNavigate'
-        },
-
-        initialize: function() {
-        
-        },
-        render: function () {
-          var that = this;
-          that.$el.html( that.tpl());
-        },
-        storeQueryAndNavigate:function(){
-          var taht=this;
-          var query=document.getElementById('comsumerQuery').value;
-          localStorage.setItem("name", query);
-          if($('#comsumerQuery').val()==""){
-            console.log('please inter');
-            $('.landingErrorMsg').show();
-            return false;
-          }
-          app.router.navigate('list', {trigger: true});
-
-
-        }
-    });
+    initialize: function() {
+    
+    },
+    render: function () {
+      var that = this;
+      that.$el.html( that.tpl());
+    },
+    storeQueryAndNavigate:function(){
+      var taht=this;
+      var query=document.getElementById('comsumerQuery').value;
+      localStorage.setItem("name", query);
+      if($('#comsumerQuery').val()==""){
+        //console.log('please inter');
+        $('.landingErrorMsg').show();
+        return false;
+      }
+        app.router.navigate('list', {trigger: true});
+    }
+  });
        
-app.CreateUserView =Backbone.View.extend({
-      el:'.page',
+  app.CreateUserView =Backbone.View.extend({
+    el:'.page',
        tpl: Handlebars.compile(
           document.getElementById('create-user-template').innerHTML
         ),
@@ -67,9 +63,9 @@ app.CreateUserView =Backbone.View.extend({
               app.router.navigate('signin',{trigger: true});
             },
             error: function (model, response) {
-              if(response.responseJSON.error.name === 'MongoError') {
-                document.getElementById('register-error-message').innerHTML = 'Email you entered is already registered with the application!';
-              }
+              //if(response.responseJSON.error.name === 'MongoError') {
+                //document.getElementById('register-error-message').innerHTML = 'Email you entered is already registered with the application!';
+              //}
             }
           });
           return false;

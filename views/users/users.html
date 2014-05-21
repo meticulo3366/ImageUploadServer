@@ -110,34 +110,7 @@
     </script>
 
     <script type="text/x-template" id="admin-right-navbar-report-template">
-     <div class="navbar navbar-inverse" navbar-static-top>
-          <div class="">
-              <a href="#" class="navbar-brand">mySite</a>
-          <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          </button>
-         
-          <div class="collapse navbar-collapse navHeaderCollapse">
-            <ul class="nav navbar-nav navbar-left">
-              <li class="active"><a href=#"">Home</a></li>
-              <li><a href="#">Blog</a></li>  
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">social media<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Web Design</a></li>  
-                  <li><a href="#">Mobile Application</a></li>
-                  <li><a href="#">software maintanence</a></li>
-                </ul>
-              </li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact us</a></li>
-            </ul>
-          </div>
-        </div>
-
-        </div>
+      <h2>Till report not prepared!</h2>
     </script>
 
     <script type="text/x-template" id="landing-template">
@@ -160,8 +133,6 @@
       </div>
     </script>
 
-
-     
     <script type="text/x-template" id="list-template">
       <div class="container">
         <div class="row">
@@ -435,9 +406,7 @@
             </ul>
           </div>
         </div>
-
         <div class="row">
-          
             <div class="tab-content">
               <div class="tab-pane active" id="breakfast">
                 <div class="table-responsive">
@@ -465,7 +434,7 @@
                           <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'breakfast' 3}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
                           <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'breakfast' 4}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
                           <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'breakfast' 5}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'breakfast' 6}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>     
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier.name 'breakfast' 6}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>    
                         </tr>
                     {{/each}}
                     </tbody>
@@ -542,21 +511,19 @@
               </div>
               <div id="btnCheckin" style="display:none">   
                 <button class="btn btn-primary addTocart">AddToBasket</button>
-                
               </div>
             </div>
-          
+          </div>
         </div>
-      </div>
 
       <script>
         $('input:checkbox').change(function () {
-                            if ($('input[type=checkbox]:checked').length > 0) {
-                                $('#btnCheckin').show();
-
-                            } else {
-                                $('#btnCheckin').hide();
-                            }
+          if ($('input[type=checkbox]:checked').length > 0) {
+            $('#btnCheckin').show();
+          } 
+          else {
+            $('#btnCheckin').hide();
+          }
         });
 
         $( document ).ready(function() {
@@ -601,97 +568,74 @@
         });
         var data= $('.findMenuDetail').data('menuDetail');
         console.log('menudetail'+data);
-
       </script>
     </script>
 
      <script type="text/x-template" id="order-detail-template">
-        
-                    <div class="table-responsive">
-                       <table class="table table-bordered">
-                          <thead>
-                            <tr>
-                              <th>Name of Dabbawala</th>
-                              <th>Meal Type</th>
-                              <th>Category</th>
-                              <th>Date</th>
-                              <th>Menu</th>
-                              <th>Price</th>
-                              <th>Delivry Address</th>
-                              <th>Option</th>
-                            </tr>
-                          </thead>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Name of Dabbawala</th>
+                <th>Meal Type</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Menu</th>
+                <th>Price</th>
+                <th>Delivry Address</th>
+                <th>Option</th>
+              </tr>
+            </thead>
 
-                          <tbody>
-                          
-                              <tr>
-                                <td><h5>Uphar Restaurants</h5></td>
-                                <td>Dinner</td>
-                                <td>NonVeg</td>
-                                <td>12-7-2014</td>
-                                <td><div class="well menuItem">1-chapti 4<br>2-curd<br>3-rice<br>4-daal</td>
-                                <td>Rs. 60.00/-</td>
-                                <td>
-                                      <div class="input-group">
-                                        <select id="location" name="location" class="form-control">
-                                          <option>address-1</option>
-                                          <option>address-2</option>
-                                          <option>address-3</option>
-                                          <option>address-4</option>
-                                        </select>
-                                      </div>
-                                </td>
-                                <td><a title="Remove Item"><span class="glyphicon glyphicon-remove btn-remove"></span></a></td>                            
-                              </tr>
-                              <tr>
-                                <td><h5>Uphar Restaurants</h5></td>
-                                <td>Dinner</td>
-                                <td>NonVeg</td>
-                                <td>12-7-2014</td>
-                                <td><div class="well menuItem">1-chapti 4<br>2-curd<br>3-rice<br>4-daal</td>
-                                <td>Rs. 60.00/-</td>
-                                <td>
-                                      <div class="input-group">
-                                        <select id="location" name="location" class="form-control">
-                                          <option>address-1</option>
-                                          <option>address-2</option>
-                                          <option>address-3</option>
-                                          <option>address-4</option>
-                                        </select>
-                                      </div>
-                                </td>
-                                <td><a title="Remove Item"><span class="glyphicon glyphicon-remove btn-remove"></span></a></td>
-                                
-                                
-                              </tr>
-
-
-                               <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  
-                              </tr>
-                            
-                          </tbody>
-
-                      </table>
-
-                      <div class="input-group pull-right">
-                          <a class="btn btn-primary">Confirm Order</a>
-                      </div>
-
-
+            <tbody>        
+              <tr>
+                <td><h5>Uphar Restaurants</h5></td>
+                <td>Dinner</td>
+                <td>NonVeg</td>
+                <td>12-7-2014</td>
+                <td><div class="well menuItem">1-chapti 4<br>2-curd<br>3-rice<br>4-daal</td>
+                <td>Rs. 60.00/-</td>
+                <td>
+                  <div class="input-group">
+                    <select id="location" name="location" class="form-control">
+                      <option>address-1</option>
+                      <option>address-2</option>
+                      <option>address-3</option>
+                      <option>address-4</option>
+                    </select>
+                  </div>
+                </td>
+                <td><a title="Remove Item"><span class="glyphicon glyphicon-remove btn-remove"></span></a>
+                </td>     
+              </tr>
+              <tr>
+                <td><h5>Uphar Restaurants</h5></td>
+                <td>Dinner</td>
+                <td>NonVeg</td>
+                <td>12-7-2014</td>
+                <td><div class="well menuItem">1-chapti 4<br>2-curd<br>3-rice<br>4-daal</td>
+                <td>Rs. 60.00/-</td>
+                <td>
+                  <div class="input-group">
+                    <select id="location" name="location" class="form-control">
+                      <option>address-1</option>
+                      <option>address-2</option>
+                      <option>address-3</option>
+                      <option>address-4</option>
+                    </select>
+                  </div>
+                </td>
+                <td><a title="Remove Item"><span class="glyphicon glyphicon-remove btn-remove"></span></a></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="input-group pull-right">
+              <a class="btn btn-primary">Confirm Order</a>
+          </div>
     </script>
 
-
     <script type="text/x-template" id="homepage-template">
-        <h2>Home Page!</h2>
+      <h2>Home Page!</h2>
     </script>
 
     <script type="text/x-template" id="add-dabbawala-template">
@@ -812,8 +756,6 @@
           </div>
         </form>
       </div>
-     
-  
 
       <script>          
         $('input[type=checkbox]', '.cb-weekly').on('change', function(e) {
@@ -1023,31 +965,31 @@
             <button type="button" class="btnAddItem btn "><span class="glyphicon glyphicon-plus-sign"></span></button>
           </div>
           <div class="form-group">
-            <label for="" class="col-sm-3 control-label">Discription</label>
+            <label for="" class="col-sm-3 control-label">Description</label>
             <div class="col-sm-9" id="items">      
-              <textarea row="2"cols="60" class="form-control " id="description" name="description" placeholder="Discription" required > {{#if menu}}{{menu.description}} {{/if}}</textarea>
+              <textarea row="2"cols="50" class="form-control " id="description" name="description" placeholder="Discription" required > {{#if menu}}{{menu.description}} {{/if}}</textarea>
             </div>
           </div>
           <div class="form-group">      
             <label for="" class="col-sm-3 control-label">Category</label>
             {{#each category}}
             <div class="col-sm-3">
-              <input type="checkbox" name="category" value="{{this}}" {{#if menu}} {{#if (isPresent menu.category this)}} checked {{/if}} {{/if}}> {{this}}
+              <input type="checkbox" name="category" value="{{this}}" {{#if ../menu}}{{#if (isPresent ../../menu.category this)}} checked {{/if}} {{/if}}> {{this}}
             </div>
             {{/each}}      
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label">Meal Type </label>
+            <label class="col-sm-3 control-label">Meal Type {{mealType}}</label>
             {{#each mealType}}
             <div class="col-sm-3">
-              <input type="checkbox" name="mealType" value='{{this}}' {{#if menu}} {{#if (isPresent menu.mealType this)}} checked {{/if}} {{/if}}>{{this}}
+              <input type="checkbox" name="mealType" value='{{this}}' {{#if ../menu}}{{#if (isPresent ../../menu.mealType this)}}checked{{/if}} {{/if}}>{{this}}
             </div>
             {{/each}}                       
           </div>
           <div class="form-group">
             <label for="" class="col-sm-3 control-label" >Full Price</label>
             <div class="col-sm-9">      
-              <input type="number" class = "form-control " id="fullPrice" name="fullPrice" placeholder="full Price" required {{#if menu}}value="{{menu.fullPrice}}" {{/if}}>
+              <input type="number" class = "form-control " id="fullPrice" name="fullPrice" placeholder="full Price" required {{#if menu}}value="{{menu.fullPrice}}"{{/if}}>
             </div>
           </div>
           <div class="form-group">
@@ -1082,7 +1024,7 @@
         
         console.log('Index     : '+index);
         $('.btnAddItem').click(function(){
-          console.log('in jquery');
+          //console.log('in jquery');
           if(itemCount <= itemLimit){
             $(this).parent().append('<div class="col-sm-7 col-sm-offset-3"><input type="text" value="" name="ingredients" placeholder="Enter new item" class="form-control"></div>');
             itemCount+=1;
@@ -1127,13 +1069,14 @@
                       <td class="active">{{this.distributionAreas}}</td> 
                       <td class="active"><a href="#edit/{{ this._id }}" class="btn btn-primary" id="">Edit</a>
                         <a href="#menuDate/{{ this._id }}" class="btn btn-primary" id="">MenuDate</a>
-                        <a href="#mymodel" data-toggle="modal" class="btn btn-danger">Delete</a>
-                        <div class="modal fade" id="mymodel" role="dialog" aria-hidden="true">
+                        <a href="#mymodel{{this._id}}" data-toggle="modal" class="btn btn-danger">Delete</a>
+                        <div class="modal fade" id="mymodel{{this._id}}" role="dialog" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">Delete Confirmation</div>
                               <div class="modal-body">
                                 <p>Are you sure to delete {{this.name}}?</p><br><br>
+                              </div>
                               <div class="modal-footer">
                                 <a href="#delete/{{ this._id }}" class="btn btn-primary"  id="">Yes</a>&nbsp;
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
@@ -1232,32 +1175,29 @@
     <script type="text/x-template" id="search-dabbawala-template"> 
       <div class="table-responsive">
         <h4>Filtered Result</h4>
-          <table class="table table-bordered">
-            <thead>
-                            <tr>
-                              <th>Name of Restaurants</th>
-                              <th>Address</th>
-                              <th>Service Location</th>
-                              <th>Action</th>
-                            </tr>
-                          </thead>
-
-                          <tbody>
-
-                              {{#each dabbawalaList }}
-                                <tr>
-                                  <td>{{this.name}}</td> 
-                                  <td>{{this.address.vicinity}},{{this.address.city}},{{this.address.state}}</td>
-                                  <td>{{this.distributionAreas}}</td> 
-                                  <td><a href="#update/{{ this._id }}" class="btn btn-primary" id="">Edit</a>
-                                     <a href="#delete/{{ this._id }}" class="btn btn-danger" id="">Delete</a>
-                                  </td>
-                                </tr>  
-                              {{/each}}
-                          </tbody>
-
-                      </table> 
-          </div>    
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Name of Restaurants</th>
+              <th>Address</th>
+              <th>Service Location</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each dabbawalaList }}
+              <tr>
+                <td>{{this.name}}</td> 
+                <td>{{this.address.vicinity}},{{this.address.city}},{{this.address.state}}</td>
+                <td>{{this.distributionAreas}}</td> 
+                <td><a href="#update/{{ this._id }}" class="btn btn-primary" id="">Edit</a>
+                   <a href="#delete/{{ this._id }}" class="btn btn-danger" id="">Delete</a>
+                </td>
+              </tr>  
+            {{/each}}
+          </tbody>
+        </table> 
+      </div>    
     </script>
 
     <script type="text/x-template" id="edit-dabbawala-template">
@@ -1306,8 +1246,8 @@
                   <div class="col-sm-9 col-sm-offset-3">
                     <div class="col-sm-4">
                       <select id="address.city" name="address.city" class="form-control">
-                            <option value="">Select City</option>
-                            <option value="Pune" {{#if  (isSelected tiffinboxSupplier.address.city 'Pune')}} selected {{/if}}>Pune</option>
+                        <option value="">Select City</option>
+                        <option value="Pune" {{#if  (isSelected tiffinboxSupplier.address.city 'Pune')}} selected {{/if}}>Pune</option>
                       </select>
                     </div>
                     <div class="col-sm-4">
@@ -1490,34 +1430,34 @@
         $(function () {
           $('#myTab a:last').tab('show')
         });                
-              $('input[type=checkbox]', '.cb-weekly').on('change', function(e) {
-                  if (this.name === 'priceWeekly' && this.checked) {
-                    $('.price.weekly.breakfast').val({{tiffinboxSupplier.price.weekly.breakfast}});
-                    $('.price.weekly.lunch').val({{tiffinboxSupplier.price.weekly.lunch}});
-                    $('.price.weekly.dinner').val({{tiffinboxSupplier.price.weekly.dinner}});
-                    $('#weekly').show();
-                  } 
-                  else {
-                    $('.price.weekly.breakfast').val("");
-                    $('.price.weekly.lunch').val("");
-                    $('.price.weekly.dinner').val("");
-                    $('#weekly').hide();
-                  }
-              });
-              $('input[type=checkbox]', '.cb-monthly').on('change', function(e) {
-                  if (this.name === 'priceMonthly' && this.checked) {
-                    $('.monthly_bf').val({{tiffinboxSupplier.price.monthly.breakfast}});
-                    $('.monthly_lunch').val({{tiffinboxSupplier.price.monthly.lunch}});
-                    $('.monthly_dinner').val({{tiffinboxSupplier.price.monthly.dinner}});
-                    $('#monthly').show();
-                  } 
-                  else {
-                    $('.monthly_bf').val('');
-                    $('.monthly_lunch').val('');
-                    $('.monthly_dinner').val('');
-                    $('#monthly').hide();
-                  }
-              });              
+        $('input[type=checkbox]', '.cb-weekly').on('change', function(e) {
+            if (this.name === 'priceWeekly' && this.checked) {
+              $('.price.weekly.breakfast').val({{tiffinboxSupplier.price.weekly.breakfast}});
+              $('.price.weekly.lunch').val({{tiffinboxSupplier.price.weekly.lunch}});
+              $('.price.weekly.dinner').val({{tiffinboxSupplier.price.weekly.dinner}});
+              $('#weekly').show();
+            } 
+            else {
+              $('.price.weekly.breakfast').val("");
+              $('.price.weekly.lunch').val("");
+              $('.price.weekly.dinner').val("");
+              $('#weekly').hide();
+            }
+        });
+        $('input[type=checkbox]', '.cb-monthly').on('change', function(e) {
+            if (this.name === 'priceMonthly' && this.checked) {
+              $('.monthly_bf').val({{tiffinboxSupplier.price.monthly.breakfast}});
+              $('.monthly_lunch').val({{tiffinboxSupplier.price.monthly.lunch}});
+              $('.monthly_dinner').val({{tiffinboxSupplier.price.monthly.dinner}});
+              $('#monthly').show();
+            } 
+            else {
+              $('.monthly_bf').val('');
+              $('.monthly_lunch').val('');
+              $('.monthly_dinner').val('');
+              $('#monthly').hide();
+            }
+        });              
       </script>
     </script>
     
@@ -1528,70 +1468,89 @@
     <script type="text/x-template" id="menu-date-template">
       <h3>Assign Date to Menu {{#if tiffinboxSupplier}}for {{tiffinboxSupplier.name}} {{/if}}</h3>
       <hr />
-      <div class="col-md-6">
-        <form class="assign-menuDate-form form-horizontal">
+      <div class="col-md-12">
+        <form class="assign-menuDate-form form-horizontal col-md-12">
+        <table>
           {{#if tiffinboxSupplier}}
+          <tr><td class="col-sm-9">
             <div class="form-group">      
               <label class="col-sm-4 control-label">Date:</label>
               <div class="col-sm-8">
                 <input type="date" name="date" class="form-control "> 
               </div>
-            </div>
+            </div></td><td class="col-sm-3">&nbsp;</td></tr>
           {{/if}}
           {{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}
+          <tr><td class="col-sm-9">
             <div class="form-group">      
               <label class="col-sm-4 control-label">Breakfast:</label>
               <div class="col-sm-8">
-                <select name="breakfast.menuId" class="form-control menuDate">
-                  <option value="">select menu name<option>
+                <select name="breakfast.menuId" class="form-control menuDate-b">
+                  <option value="">select menu</option>
                   {{#each tiffinboxSupplier.menu}}
                     <option class="findMenuItem" data-menuitem="{{this.ingredients}}" value="{{this._id}}">{{this.name}}</option>
                   {{/each}}
                 </select> 
               </div>
-            </div>
+            </div></td><td class="onMenuSelect-b col-sm-3"></td></tr>
           {{/if}}
           {{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}
+           <tr><td class="col-sm-9">
             <div class="form-group">      
               <label class="col-sm-4 control-label">Lunch:</label>
               <div class="col-sm-8">
-                <select name="lunch.menuId" class="form-control menuDate">
-                  <option value="">select menu name<option>
+                <select name="lunch.menuId" class="form-control menuDate-l">
+                  <option value="">select menu</option>
                   {{#each tiffinboxSupplier.menu}}
                     <option class="findMenuItem" data-menuitem="{{this.ingredients}}" value="{{this._id}}">{{this.name}} </option>
                   {{/each}}
                 </select>
               </div>
-            </div>
+            </div></td><td class="onMenuSelect-l col-sm-3"></td></tr>
           {{/if}}
           {{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}
+           <tr><td class="col-sm-9">
             <div class="form-group">      
               <label class="col-sm-4 control-label">Dinner:</label>
               <div class="col-sm-8">
-                <select name="dinner.menuId" class="form-control menuDate">
-                  <option value="">select menu name<option>
+                <select name="dinner.menuId" class="form-control menuDate-d">
+                  <option value="">select menu</option>
                   {{#each tiffinboxSupplier.menu}}
                     <option class="findMenuItem" data-menuitem="{{this.ingredients}}" value="{{this._id}}">{{this.name}}</option>
                   {{/each}}
                 </select>
               </div>
-            </div>
+            </div></td><td class="onMenuSelect-d col-sm-3"></td></tr>
           {{/if}}
+          <tr><td>
           <div class="form-group">      
             <button type="submit" class="col-sm-4 col-sm-offset-5 btn btn-primary">save</button>
-          </div>
+          </div></td><td>&nbsp;</td></tr></table>
         </form>
       </div>
-      <div class="col-md-4 onMenuSelect">
-        
-      </div>
+      
       <script>
-        $('.menuDate').on('change' && this.select, function(e){
-          var items= $(this).data('menuitem');
-          $('.onMenuSelect').html(items);
-          console.log(items);
-          //alert($('.findMenuItem').data('menuItem'));
-
+       $('.menuDate-b').on('change', function(e){
+          var val = $(".menuDate-b option:selected").data('menuitem');
+          $('.onMenuSelect-b').html(val);
+          //console.log(items);
+        });
+       $('.menuDate-l').on('change', function(e){
+          var val = $(".menuDate-l option:selected").data('menuitem');
+        //  var val1=val.split(',');
+        //  val1+= 'ul';
+        //   for ( var i=0;i<val1.length;i++){
+        //     val1+= '<li>'+val1[i]+'</li>';
+        //   }
+        // val1+='</ul>'
+        //  console.log(typeof 'val1');
+          $('.onMenuSelect-l').html(val);
+          //console.log(items);
+        });
+       $('.menuDate-d').on('change', function(e){
+          var val = $(".menuDate-d option:selected").data('menuitem');
+          $('.onMenuSelect-d').html(val);
+          //console.log(items);
         });
       </script>
     </script>

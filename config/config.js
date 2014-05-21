@@ -6,7 +6,7 @@
 module.exports = {
   development: {
     siteUrl: 'http://localhost:3000',
-    dbUrl: 'mongodb://localhost/boilerplate_development',
+    dbUrl: 'mongodb://localhost/punedabbawala_development',
     monqDbUrl: 'mongodb://localhost/queue_development'
   },
   production: {
