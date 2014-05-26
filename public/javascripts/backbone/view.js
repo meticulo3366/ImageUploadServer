@@ -346,7 +346,7 @@ app.ProfileView =Backbone.View.extend({
           document.getElementById('checkout-template').innerHTML
         ),
         events: {
-             'click .addTocart': 'processOrder'
+             'click .addTocart': 'addTocart'
         },
 
         initialize: function() {
@@ -371,46 +371,62 @@ app.ProfileView =Backbone.View.extend({
 
           });
         },
-        processOrder:function(ev){
+        addTocart:function(ev){
          /* var data = $(ev.currentTarget).serializeObject();
           console.log(data);*/
 
           var that = this;
           console.log('in processorder function....');
           var query=[];
+           var cart = new app.CartCollection();
+          
+           var orderDetails = [];
+
           $('.ckMenuId:checked').each(function() {
+            var menuId=this.value;
+            var dt=($(this).data('date')).split('/');
+            console.log(dt);
+            var date = new Date(dt[2],dt[1],dt[0]);
+            console.log(date);
+            var mealType= $(this).data('mealtype');
+            var ts_id= $(this).data('tiffinsupplier');
             console.log('-----------------------------');
-            console.log('menuId'+this.value);
-            console.log($(this).data('date'));
-            console.log($(this).data('mealtype'));
-            console.log($(this).data('tiffinsupplier'));
-            console.log('-----------------------------');
-              query.push(this.value);
+
+            orderDetails.push({tiffinboxSupplier: ts_id,menuId:menuId, date:date, mealAt:mealType});
           });
-          console.log(query);
-          var calendars = new app.CartCollection({query: JSON.stringify(query)});
-          calendars.fetch({
-            success: function(ev){
-              console.log('in OrderProcessView.fetch.succe');
-              console.log(calendars);
-              //that.$el.html( that.tpl({calendarsDetail: calendars.toJSON()}));
-             app.router.navigate('orderProcess', {trigger: true});
-            }
-           // error: function(){
-            ///  console.log('in OrderProcessView.fetch.error');
-            //}
+
+          console.log(orderDetails);
+
+          cart.save({orderDetails: orderDetails}, {
+            success: function(cart){
+                  console.log(cart.toJSON()._id);
+                  window.localStorage.setItem('cartId',cart.toJSON()._id);
+                  window.localStorage.setItem('cart',cart.toJSON());
+                 // $.session.set('cartid',cart.toJSON()._id)
+                  //app.Session.cartId= cart.toJSON()._id;
+                 // app.Session('cartId',cart.toJSON._id);
+                  //query.push(cart.toJSON()._id);
+                  //window.localStorage.setItem('query',query);
+                  app.router.navigate('orderProcess',{trigger:true});
+              },
+              error: function(){
+                console.log('error');
+              }
           });
-          return false;
-        }
-         
+
+              // return false;
+        },
+                             
     });
+
    app.OrderProcessView =Backbone.View.extend({
       el:'.page',
        tpl: Handlebars.compile(
           document.getElementById('order-detail-template').innerHTML
         ),
         events: {
-             
+          'click .btn-singlecartid': 'delteFromCart',
+          'submit .cart-detail': 'placeOrder'
         },
 
         initialize: function() {
@@ -419,33 +435,64 @@ app.ProfileView =Backbone.View.extend({
         },
         render: function () {
           var that = this;
-
-           console.log('in OrderProcessView render:');
-          var query=[];
-          $('.ckMenuId:checked').each(function() {
-            console.log('menuId'+this.value);
-              query.push(this.value);
+          console.log('in OrderProcessView render:');
+          //console.log('cartid'+ $.session.get('cartid'));
+          //var m = window.localStorage.getItem('cart');
+          //console.log('cart'+m._id);
+          var cartId= window.localStorage.getItem('cartId');
+          var cart= new app.CartCollection({id:cartId});
+          cart.fetch({
+            success:function(ev){
+              console.log('in OrderProcessView.render.success'+cart.toJSON());
+              that.$el.html( that.tpl({cartDetail: cart.toJSON()}));
+            },
+            error: function(){
+              console.log('in error');
+            }
           });
-          console.log(query);
-          var calendars = new app.ProcessOrder({query: JSON.stringify(query)});
-          //calendars.fetch({
-           // success: function(ev){
-             // console.log('in OrderProcessView.fetch.succe');
-             // console.log(calendars);
-              that.$el.html( that.tpl({calendarsDetail: calendars.toJSON()}));
-           // }
-           // error: function(){
-            ///  console.log('in OrderProcessView.fetch.error');
-            //}
-          //});
-
-
-
+      
+        },
+        delteFromCart: function(ev){
+          var that = this;
+          var singlecartid= $(ev.currentTarget).data('singlecartid');
+          console.log($(ev.currentTarget).data('singlecartid'));
+          console.log(singlecartid);
           
-        }
-         
-    });
+          var cartId= window.localStorage.getItem('cartId');
+          var cart = new app.CartCollection({id:cartId, singlecartid:singlecartid});
+          cart.save({},{
+            success: function(cart){
+              console.log('in delteFromCart.sucess');
+              window.localStorage.setItem('cartId',cart.toJSON()._id);
+              console.log(cart.toJSON()._id);
+            
+              new app.OrderProcessView();
+              that.render();          
 
+            },
+            error: function(model, response){
+              console.log('in delteFromCart.error');
+            }
+
+          });   
+            return false;   
+        },
+        placeOrder:function(ev){
+          console.log('in placeOrder function');
+          var cartId= window.localStorage.getItem('cartId');
+          var cart = new app.CartCollection({id:cartId});
+          var updateDetail= $(ev.currentTarget).serializeObject();
+          cart.save(updateDetail,{
+            success:function(cart){
+              console.log('in placeOrder success');
+            },
+            error: function(){
+              console.log('in placeOrder error');
+            }
+          });
+
+        }
+      });
 
 
 
@@ -750,13 +797,6 @@ app.EditMenuView =Backbone.View.extend({
             that.tiffinboxSupplier.fetch({
               success: function (tiffinboxSupplier) { 
                 console.log('in menu edit fetch.success:'+ tiffinboxSupplier.toJSON().name);
-                 //window.localStorage.setItem('dabbawalaName', tiffinboxSupplier.attributes.name);
-                // window.localStorage.setItem('dabbawalaId',tiffinboxSupplier.attributes.id);
-                 //window.localStorage.setItem('category',tiffinboxSupplier.attributes.category);
-                 //window.localStorage.setItem('mealtype',tiffinboxSupplier.attributes.mealType);
-                 console.log('name:'+window.localStorage.getItem('dabbawalaName'));
-                 console.log('category:'+window.localStorage.getItem('category'));
-                 console.log('mealtye:'+window.localStorage.getItem('mealtype'));
                 for (var i = 0; i < tiffinboxSupplier.toJSON().menu.length; i++) {
                   if(tiffinboxSupplier.toJSON().menu[i]._id === menuId){
                     var menu = tiffinboxSupplier.toJSON().menu[i];

@@ -50,12 +50,15 @@ app.ProcessOrder = Backbone.Collection.extend({
 
   });
 ///////////////////////////////////
-app.CartCollection = Backbone.Collection.extend({
+app.CartCollections = Backbone.Collection.extend({
     initialize: function(options) {
       this.options = options;
     },
     url:function() {
-      return '/cart/processOrder?query=' + this.options.query;
+      if(this.options.query)
+      return '/cart/addtocart?query=' + this.options.query;
+    else
+      return 'cart/addtocart';
     }
 
   });

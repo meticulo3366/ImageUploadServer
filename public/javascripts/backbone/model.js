@@ -53,28 +53,24 @@ var app = app || {};
     }
     
   });
-  // app.TiffinboxSupplier = Backbone.Model.extend({
-  //   url:function() {
-  //     return '/tiffinBoxSupplier/' + this.get('id') + '/getTeam';
-  //   }
-  // });
+
+  app.CartCollection = Backbone.Model.extend({
+    url:function() {
+      if(this.get('id')){
+        if(this.get('singlecartid')){
+          return '/cart/addtocart/' + this.get('id')+'/'+this.get('singlecartid');
+        }
+        else
+      return '/cart/addtocart/' + this.get('id');
+      }
+      else{
+        return '/cart/addtocart/';
+      }
+    }  
+
+  });
 
 
-
-  // app.TiffinboxSupplier = Backbone.Model.extend({
-  //  url: function() {
-  //     if(this.get('id')) {
-  //       return '/tiffinBoxSupplier/' + this.get('id');    
-  //     } else {
-  //       return '/tiffinBoxSupplier/';  
-  //     };
-  //   }
-  // })
-
-
-  // app.addTiffinBoxSupplierTeam = Backbone.Model.extend({
-  //     url: '/tiffinBoxSupplierTeam'
-  //   });
 
   app.UserLogin = Backbone.Model.extend({
     url: '/users/authenticate'

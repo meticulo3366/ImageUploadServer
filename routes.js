@@ -101,9 +101,16 @@ app.post('/calendar/menuDate/:dabbawalaId'
 app.get('/calendar/menuDate'
    ,calendarController.getMenuDate);
 
-
-  app.get('/cart/processOrder'
-   ,cartController.processOrder);
+  app.post('/cart/addtocart',
+    cartController.addToCart);
+  app.get('/cart/addtocart/:id',
+    cartController.getToCart);
+   app.put('/cart/addtocart/:id/:singlecartid',
+    cartController.deleteToCart);
+  app.put('/cart/addtocart/:id',
+    cartController.updateToCart);
+  // app.get('/cart/addtocart'
+  //  ,cartController.getToCart);
 
 
   

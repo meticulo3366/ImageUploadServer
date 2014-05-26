@@ -50,6 +50,19 @@ Handlebars.registerHelper("countIndex",function(arr,options) {
 
     
 });
+// Handlebars.registerHelper("getMenu",function(arr,menuId,options) {
+//     if(options.inverse && !arr.length)
+//         return options.inverse(this);
+//       //console.log('in countIndex:'+arr.length-1);
+//       for(var i=0;i<arr.length;i++){
+//         if{menuId===arr[i]._id}
+//           return options.fn(arr[i]);
+//       }
+
+//     return false;
+
+    
+// });
 
 Handlebars.registerHelper("findMenuDate",function(arrDays,arrMenu,ts,mealType,v,options) {
   console.log('in findMenuDate helper');
@@ -72,6 +85,7 @@ Handlebars.registerHelper("findMenuDate",function(arrDays,arrMenu,ts,mealType,v,
           var arr = String(x).split(',');
           for (var l=0;l < arr.length; l++){
             console.log('value:'+arr[l]);
+            console.log(ts);
           }
           var out= "<div class=''>";
           out+="<form class=''><input class='pull-right ckMenuId' type='checkbox' id='"+ arrDays[i]._id +"' value='"+arrDays[i]._id+"' data-date='" + arrDays[i].date + "' data-mealtype='" + mealType + "''></form>";
@@ -99,4 +113,23 @@ Handlebars.registerHelper("findMenuDate",function(arrDays,arrMenu,ts,mealType,v,
       }  
     }
   }
+});
+Handlebars.registerHelper('dateFormate', function(date) {
+  
+  console.log('in dateFormate helper');
+  var d = new Date(date);
+    d = d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
+    console.log(d);
+    return d;
+});
+
+Handlebars.registerHelper('menuDet', function(arr, id, options) {
+  
+  console.log('in menuDet helper');
+  for(var i=0;i<arr.length;i++){
+    if(id===arr[i]._id)
+      return options.fn(arr[i]);
+  }
+
+  
 });

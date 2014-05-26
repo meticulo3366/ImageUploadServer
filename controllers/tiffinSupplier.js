@@ -318,9 +318,9 @@ TiffinboxSupplier.find(query, function(err, tiffinboxSupplier) {
         if(err){return next(err)}
         if(tiffinboxSupplier){
           var menuId = req.params.menuId;
-          console.log(tiffinboxSupplier.menu.length);
+          //console.log(tiffinboxSupplier.menu.length);
           for( var i= 0; i < tiffinboxSupplier.menu.length; i++){
-            console.log('in for');
+           // console.log('in for');
             if(tiffinboxSupplier.menu[i].id === menuId){
               console.log('matched');
               tiffinboxSupplier.menu[i].id= menuId;
@@ -331,7 +331,7 @@ TiffinboxSupplier.find(query, function(err, tiffinboxSupplier) {
               tiffinboxSupplier.menu[i].mealType=req.body.mealType;
               tiffinboxSupplier.menu[i].fullPrice=req.body.fullPrice;
               tiffinboxSupplier.menu[i].discountedPrice=req.body.discountedPrice;
-              console.log(tiffinboxSupplier.menu[i]);
+              //console.log(tiffinboxSupplier.menu[i]);
               break;
             }
           }

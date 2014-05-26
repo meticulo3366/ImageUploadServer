@@ -12,42 +12,96 @@ module.exports = function(app) {
   
   var cart = {};
 
-  cart.processOrder = function(req, res, next){
-    console.log('in orderProcess api');
-    console.log(req.query.query);
-    var query1= req.query.query;
-    var arr = query1.split(',');
-    console.log(arr.length);
-    console.log(arr);
-    var myarr= JSON.parse(arr);
-    console.log(myarr);
-    // var query = {$or: [
-    //  {days:{breakfast:{menuId: {$in: myarr}}
-    //   ,lunch:{menuId: {$in: myarr}}
-    //   ,dinner:{menuId: {$in: myarr}}}
-    //   //{days.breakfast.menuId:{$in: myarr},days.dinner.menuId:{$in: myarr}}
-    //   }]};
-
- 
-
-	    TiffinCalendar.find({days:{_id:{ $in: myarr}}}) 
-	    .populate('tiffinboxSupplier')
-	    .exec(function(err,tiffinBoxSuppliers){
-	      if(err) { return next(err);
-	      };
-	      if(tiffinBoxSuppliers){
-	        console.log('result:'+tiffinBoxSuppliers);
-	        //var cart = new Cart();
-	        //cart.TiffinCalendar= tiffinBoxSuppliers.
-	        res.json(tiffinBoxSuppliers);
-	      }
-	      else{
-	        console.log('error: record not found!');
-	      }
-	    });
+  cart.addToCart = function(req, res, next){
+    console.log('in addToCart api');
+    console.log(req.body);
+    var cart = new Cart(req.body);
+    //cart.orderDetails = req.body;
+    cart.save(function(err,cart){
+      if(err){return next(err);};
+      if(cart){
+        console.log('cart'+cart);
+        return res.json(cart);
+      }
+    });
+   
 	
   };
 
+  cart.getToCart = function(req, res, next){
+    console.log('in getToCart api'+req.params.id);
+    var populateQuery = [{path:'orderDetails.tiffinboxSupplier', select:'name'}];
+    Cart.findById(req.params.id)
+      .populate('orderDetails.tiffinboxSupplier')
+      //.populate('orderDetails.menuId')
+      //.populate('populateQuery')
+      .exec(function(err, cart) {
+        if(err) { return next(err); };
+        if(cart) {
+          console.log('Fetched Record:'+cart);
+          //console.log(tiffinBoxSupplier);
+          return res.json(cart);
+        } else {
+          return res.json(404, {error: 'Tiffin box supplier not found!'});
+        }
+    });
+  };
+
+cart.deleteToCart = function(req, res, next){
+    console.log('in deleteToCart api'+req.params.id);
+    console.log(req.body);
+    Cart.findById(req.params.id,function(err,cart){
+      if(err){return next(err);}
+      console.log('length'+cart.orderDetails.length);
+      if (cart){
+        cart.orderDetails.pull({_id:req.params.singlecartid});
+        // console.log('deleted:'+cart);
+        // return res.json(cart);
+        cart.save(function(err,cart){
+          if(err){return next(err);}
+          if(cart){
+            console.log('after delete:'+cart);
+            return res.json(cart);
+          }
+        })
+      }
+       else {
+          return res.json(404, {error: 'page not found!'});
+        }
+      
+    });
+
+
+    
+  };
+  
+  cart.updateToCart = function(req, res, next){
+    console.log('in updateToCart api'+req.params.id);
+    console.log(req.body);
+    // Cart.findById(req.params.id,function(err,cart){
+    //   if(err){return next(err);}
+    //   console.log('length'+cart.orderDetails.length);
+    //   if (cart){
+    //     cart.orderDetails.pull({_id:req.params.singlecartid});
+    //     // console.log('deleted:'+cart);
+    //     // return res.json(cart);
+    //     cart.save(function(err,cart){
+    //       if(err){return next(err);}
+    //       if(cart){
+    //         console.log('after delete:'+cart);
+    //         return res.json(cart);
+    //       }
+    //     })
+    //   }
+    //    else {
+    //       return res.json(404, {error: 'page not found!'});
+    //     }
+      
+    // });
+
+
+    
+  };
 
    return cart;
 };

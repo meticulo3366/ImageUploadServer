@@ -17,12 +17,12 @@ var cartSchema = mongoose.Schema({
 
     tiffinboxSupplier: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'TiffinboxSupplier'
+      ref: 'Tiffinboxsupplier'
     },
 
     menuId: {
        type: mongoose.Schema.Types.ObjectId,
-       ref: 'TiffinboxSupplier.menu'
+       ref: 'Tiffinboxsupplier.menu'
     },
 
     date: Date,
@@ -33,14 +33,13 @@ var cartSchema = mongoose.Schema({
     price: Number, //Daily will come from menu.price, monthly and weekly will come from dabbawala.price  
 
     deliveryAddress:{
-      type: String,
-      required: true
+      type: String
     }
   }],
 
   contactNumber: {
-    type: Number,
-    required: true
+    type: Number
+    
   },
 
   orderDate: Date,

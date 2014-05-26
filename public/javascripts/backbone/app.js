@@ -93,8 +93,12 @@ $(function () {
     });
   app.router.on('route:orderProcess',function () {
       var order = new app.OrderProcessView();
+      $('.admin-navbar').hide();
+      $('.admin-content').hide();
+      $('.page').show();
       order.render();
       navbarView.render();
+
     });
   
   app.router.on('route:AddTeam',function () {
