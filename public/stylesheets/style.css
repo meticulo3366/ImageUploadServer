@@ -1,0 +1,174 @@
+.center-text {
+	text-align: center;
+}
+
+.login-text {
+  margin: 2%; 
+}
+
+.red-text{
+  color: red;
+}
+
+.white-text{
+  color: white;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 100%;               
+  background-color:#000000;
+  height: 1px;
+}
+
+.new-line {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 100%;               
+  background-color:#999999;
+  height: 1px;
+}
+
+body {
+   
+ 
+}
+
+
+a {
+  color: #00B7FF;
+}
+
+.dish{
+  height: auto;
+  background-color: #F7FE00
+; 
+}
+
+.center-text{
+  text-align: center;
+}
+.listOfSupplier_img{
+  width: 90%;
+  height: auto;
+  text-align: center;
+
+
+}
+
+.listOfSupplier{
+  
+}
+.abc{
+   height: auto;
+  background-color:;
+  padding: 5%;
+  margin-bottom: 5%;
+  border-radius: 5%;
+  
+}
+
+.lcb{
+  position: absolute;
+  font-size: 40px;
+  right: 7%;
+  bottom: 7%;
+}
+.divlocation{
+  border-radius: 10px;
+  border: 5px groove #C266E0;
+
+
+img {
+display: block;
+margin: auto;
+}
+
+
+.menuItem{
+  margin: 0px;
+}
+td{
+  border: 0px;
+  padding: 0px;
+}
+
+.signin{
+  border-radius: 10px;
+  border: 3px groove #FF6C00;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 10%
+}
+.signup{
+  border-radius: 5%;
+  border: 3px groove #FF6C00;
+  padding-left: 2%;
+  padding-right: 2%;
+
+}
+
+.col-md-offset-1{
+  padding-left: 8%;
+}
+
+.btn-remove{
+  padding: 40%;
+} 
+
+.select-box{
+  padding-left: 8%;
+}
+
+.side-nav{
+  margin-left: -225px;
+left: 225px;
+width: 225px;
+position: fixed;
+top: 50px;
+height: 100%;
+border-radius: 0;
+border: none;
+background-color: #222222;
+overflow-y: auto;
+}
+a:active {color:#0000FF;}
+
+div.transbox{
+        font-weight:500
+        width:400px;
+        height:180px;
+        margin:30px 50px;
+        /*background-color:#000000;*/
+        border:1px;
+        opacity:0.6;
+        filter:alpha(opacity=60); /* For IE8 and earlier */
+}
+div.transbox p{
+        margin:30px 40px;
+        font-weight:bold;
+        color:#000000;
+}
+.currentLink {
+   color: #640200;
+   background-color: #000000;
+}
+
+.home_bg{
+   margin-top: -2%;
+  background:url("../images/food1.jpg") top center no-repeat;
+  background-size: cover;
+}
+table.fixed{
+  table-layout: fixed;
+  
+}
+.divMenu{
+  height: 12.5%;
+  width: 12.5%;
+  word-wrap:break-word;
+  word-wrap:break-word;
+}
