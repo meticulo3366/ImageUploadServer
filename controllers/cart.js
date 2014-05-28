@@ -83,13 +83,7 @@ cart.deleteToCart = function(req, res, next){
       console.log('kk');
       if(err){return next(err);}
       if(cart){
-        cart.orderDetails.push(req.body.deliveryAddress);
-        cart.save(function(err,cart){
-          if(!err){
-            console.log(cart);
-            return res.json(cart);
-          }
-        });
+        console.log(req.body.delivery)
       }
     });
 
