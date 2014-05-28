@@ -390,9 +390,10 @@ app.ProfileView =Backbone.View.extend({
             console.log(date);
             var mealType= $(this).data('mealtype');
             var ts_id= $(this).data('tiffinsupplier');
-            console.log('-----------------------------');
+            var price= $(this).data('price');
+            console.log('-----------------------------'+price);
 
-            orderDetails.push({tiffinboxSupplier: ts_id,menuId:menuId, date:date, mealAt:mealType});
+            orderDetails.push({tiffinboxSupplier: ts_id,menuId:menuId, date:date, mealAt:mealType,price:price});
           });
 
           console.log(orderDetails);
@@ -455,8 +456,8 @@ app.ProfileView =Backbone.View.extend({
         delteFromCart: function(ev){
           var that = this;
           var singlecartid= $(ev.currentTarget).data('singlecartid');
-          console.log($(ev.currentTarget).data('singlecartid'));
-          console.log(singlecartid);
+          // console.log($(ev.currentTarget).data('singlecartid'));
+          // console.log(singlecartid);
           
           var cartId= window.localStorage.getItem('cartId');
           var cart = new app.CartCollection({id:cartId, singlecartid:singlecartid});
@@ -482,9 +483,17 @@ app.ProfileView =Backbone.View.extend({
           var cartId= window.localStorage.getItem('cartId');
           var cart = new app.CartCollection({id:cartId});
           var updateDetail= $(ev.currentTarget).serializeObject();
+          console.log(updateDetail);
+          for(var i=0;i<updateDetail.length; i++){
+            console.log(updateDetail[i]._id);
+            console.log(updateDetail[i].delveryAddress)
+          }
           cart.save(updateDetail,{
             success:function(cart){
               console.log('in placeOrder success');
+              //window.location.reload();
+              //alert('oops');
+
             },
             error: function(){
               console.log('in placeOrder error');
