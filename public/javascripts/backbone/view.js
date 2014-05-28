@@ -482,18 +482,19 @@ app.ProfileView =Backbone.View.extend({
           console.log('in placeOrder function');
           var cartId= window.localStorage.getItem('cartId');
           var cart = new app.CartCollection({id:cartId});
-          var updateDetail= $(ev.currentTarget).serializeObject();
-          console.log(updateDetail);
-          for(var i=0;i<updateDetail.length; i++){
-            console.log(updateDetail[i]._id);
-            console.log(updateDetail[i].delveryAddress)
-          }
-          cart.save(updateDetail,{
+          //var updateDetail= $(ev.currentTarget).serializeObject();
+           var updateDetails = [];
+
+           $(ev.currentTarget).find('.deliveryaddress').each(function() {
+             updateDetails.push({deliveryAddress: $(this).val(), dayId: $(this).attr('id')});
+           });
+
+
+
+          console.log(updateDetails[0]);
+          cart.save({updateDetails: updateDetails},{
             success:function(cart){
               console.log('in placeOrder success');
-              //window.location.reload();
-              //alert('oops');
-
             },
             error: function(){
               console.log('in placeOrder error');

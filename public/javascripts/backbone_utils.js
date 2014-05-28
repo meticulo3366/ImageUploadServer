@@ -18,6 +18,7 @@ $.fn.serializeObject = function() {
   return o;
 };
 
+
     $('input:checkbox').change(function () {
     if ($('input[type=checkbox]:checked').length > 0) {
         $('#btnCheckin').show();

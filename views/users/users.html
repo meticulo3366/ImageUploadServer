@@ -603,8 +603,8 @@
                                     
                   <td>{{#if @index}}
                       
-                      <textarea placeholder="Enter Address" name="deliveryAddress" data-id="{{this._id}}"class="secondAddr"></textarea>
-                      {{else}}<textarea placeholder="Enter Address" name="deliveryAddress" data-id="{{this._id}}" class="firstAddr"></textarea><br>
+                      <textarea placeholder="Enter Address" name="deliveryAddress" id="{{this._id}}" class="secondAddr deliveryaddress"></textarea>
+                      {{else}}<textarea placeholder="Enter Address" name="deliveryAddress" id="{{this._id}}" class="firstAddr deliveryaddress"></textarea><br>
                       <input class='pull-left ckMenuId address_cb' type='checkbox' id="" value="">same for all
                       {{/if}}
                   </td>
