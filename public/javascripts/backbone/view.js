@@ -390,9 +390,10 @@ app.ProfileView =Backbone.View.extend({
             console.log(date);
             var mealType= $(this).data('mealtype');
             var ts_id= $(this).data('tiffinsupplier');
-            console.log('-----------------------------');
+            var price= $(this).data('price');
+            console.log('-----------------------------'+price);
 
-            orderDetails.push({tiffinboxSupplier: ts_id,menuId:menuId, date:date, mealAt:mealType});
+            orderDetails.push({tiffinboxSupplier: ts_id,menuId:menuId, date:date, mealAt:mealType,price:price});
           });
 
           console.log(orderDetails);
@@ -455,8 +456,9 @@ app.ProfileView =Backbone.View.extend({
         delteFromCart: function(ev){
           var that = this;
           var singlecartid= $(ev.currentTarget).data('singlecartid');
-          console.log($(ev.currentTarget).data('singlecartid'));
-          console.log(singlecartid);
+   // console.log($(ev.currentTarget).data('singlecartid'));
+          // console.log(singlecartid);
+
           
           var cartId= window.localStorage.getItem('cartId');
           var cart = new app.CartCollection({id:cartId, singlecartid:singlecartid});
@@ -481,8 +483,17 @@ app.ProfileView =Backbone.View.extend({
           console.log('in placeOrder function');
           var cartId= window.localStorage.getItem('cartId');
           var cart = new app.CartCollection({id:cartId});
-          var updateDetail= $(ev.currentTarget).serializeObject();
-          cart.save(updateDetail,{
+          //var updateDetail= $(ev.currentTarget).serializeObject();
+           var updateDetails = [];
+
+           $(ev.currentTarget).find('.deliveryaddress').each(function() {
+             updateDetails.push({deliveryAddress: $(this).val(), dayId: $(this).attr('id')});
+           });
+
+
+
+          console.log(updateDetails[0]);
+          cart.save({updateDetails: updateDetails},{
             success:function(cart){
               console.log('in placeOrder success');
             },

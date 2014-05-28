@@ -20,7 +20,11 @@ module.exports = function(app) {
     cart.save(function(err,cart){
       if(err){return next(err);};
       if(cart){
+<<<<<<< HEAD
         console.log('cart'+cart);
+=======
+        console.log('cart'+cart.orderDetails);
+>>>>>>> ce8810f9c11abc01d5c480f77f8827e1e3635323
         return res.json(cart);
       }
     });
@@ -78,6 +82,7 @@ cart.deleteToCart = function(req, res, next){
   cart.updateToCart = function(req, res, next){
     console.log('in updateToCart api'+req.params.id);
     console.log(req.body);
+<<<<<<< HEAD
     // Cart.findById(req.params.id,function(err,cart){
     //   if(err){return next(err);}
     //   console.log('length'+cart.orderDetails.length);
@@ -101,6 +106,36 @@ cart.deleteToCart = function(req, res, next){
 
 
     
+=======
+
+    Cart.findById(req.params.id, function(err,cart){
+      console.log('kk');
+      if(err){return next(err);}
+      if(cart){
+        console.log(req.body.updateDetails);
+        var updateDetails = req.body.updateDetails;
+        console.log('length'+updateDetails.length);
+        for (var i = 0; i< cart.orderDetails.length; i++){
+          console.log(cart.orderDetails[i]._id);
+          for(var j= 0; j<updateDetails.length; j++){
+            console.log(updateDetails[j].dayId);
+            if(updateDetails[j].dayId==cart.orderDetails[i]._id){
+              cart.orderDetails[i].deliveryAddress=updateDetails[j].deliveryAddress;
+              console.log(cart.orderDetails[i].deliveryAddress);
+            }
+          }
+        }
+        cart.save(function(err, cart){
+          if (err) {return next(err);};
+          if(cart){
+            console.log('updated cart'+cart);
+            return res.json(cart);
+          }
+        });
+      }
+    });
+
+>>>>>>> ce8810f9c11abc01d5c480f77f8827e1e3635323
   };
 
    return cart;

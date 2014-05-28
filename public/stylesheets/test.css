@@ -26,6 +26,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', end
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
+
     color: #A4A4A4;
 }
 .navbar-default .navbar-nav > .active > a, 
@@ -45,6 +46,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', end
 .navbar-default .navbar-nav > .open > a, 
 .navbar-default .navbar-nav > .open > a:hover, 
 .navbar-default .navbar-nav > .open > a:focus {
+
     color: #A4A4A4;
     background-color: #A4A4A4;
 }
@@ -61,6 +63,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', end
 .navbar-default .navbar-nav > .open > a .caret, 
 .navbar-default .navbar-nav > .open > a:hover .caret, 
 .navbar-default .navbar-nav > .open > a:focus .caret {
+
     border-top-color: #A4A4A4;
     border-bottom-color: #A4A4A4;
 }
@@ -85,7 +88,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', end
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
         color: #A4A4A4;
-    }
+
 }
 
 .p1
@@ -113,6 +116,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', end
 }
 .panel {
   margin-bottom: 20px;
+
   background-color: #E8E8E8;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -120,6 +124,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', end
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 color:#ffffff;
 }
+
 .panel-primary>.panel-heading
 {
   color:#fff;
@@ -138,6 +143,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', end
   padding-bottom: 10px; 
 color:#000000;
 }
+
 .panel_one {
   margin-bottom: 20px;
   margin-left: auto;
@@ -198,6 +204,7 @@ background: #F7E2F0;
 }
 .panel-default > .panel-heading {
   color: #FFFFFF;
+
 
 background: #4c4c4c; /* Old browsers */
 background: -moz-linear-gradient(top,  #4c4c4c 0%, #666666 0%, #595959 12%, #474747 30%, #2c2c2c 50%, #111111 100%, #131313 100%); /* FF3.6+ */
@@ -300,6 +307,7 @@ a:active {
   text-decoration: underline;
 }
 .home_bg{
+
   /* margin-top: -2%;*/
   background:url("../images/food1.jpg") top center no-repeat;
   background-size: cover;
@@ -335,4 +343,5 @@ background-color: #535353;
 }
 .btn-default {
 border-color: #0F0C0C;
+
 }
