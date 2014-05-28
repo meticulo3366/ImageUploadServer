@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="stylesheet" href="/stylesheets/test.css">    
+    <link rel="stylesheet" href="/stylesheets/test.css">
     <link rel="stylesheet" href="/stylesheets/header-color.css">
 
   </head>
@@ -17,8 +17,7 @@
     <div class="page"></div>
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 admin-navbar"></div>
     <div class="admin-content col-xs-12 col-sm-12 col-md-9 col-lg-9 well"></div>
-
-  
+    
 
     <script type="text/x-template" id="navbar-template">
       <!--nav bar start-->
@@ -33,9 +32,27 @@
               <span class="icon-bar"></span>
             </button>
             <!--<a class="navbar-brand" href="#"><p><img src="/images/TSlogo.png" width="60%" height="20%" style="padding-top: 0px;"></p></a> -->
-            <img src="/images/TSlogo.png" width="60%" height="20%" style="padding-top: 1px;background-color:#C266E0;
-              opacity:0.7;">
+            <!--img src="/images/TSlogo.png" width="60%" height="20%" style="padding-top: 1px;background-color:#C266E0;
+              opacity:0.7;"-->
+               <a class="navbar-brand" href="#">PuneDabbawala.in</a>
           </div>
+
+          <!--Location_text-->
+            <div class="btn-group locapadding">
+              
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><b> Location</b>
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Pune</a></li>
+                  <li><a href="#">Mumbai</a></li>
+                </ul>
+              
+            </div>
+
+
+
+
             <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
            <ul class="nav navbar-nav">
@@ -117,97 +134,138 @@
       <div class="home_bg">
         <div class="container">
           <div class="row"> <br><br>
-            <h2 class="center-text">Order Tiffin/Mess Facility For Home Delivry</h2>         
-            <div class="input-group col-md-7 col-md-offset-3 divlocation"><br><br>
-              <h5 class="landingErrorMsg col-sm-10 col-sm-offset-1 text-danger" style="display:none">Please enter your search query!</h5>
+                     
+            <br>
+            <div class="col-md-offset-1 col-md-10">
+              <div class="panel_one panel-primary    ">
+                <div class="panel_one-body">
+                <br>
+                <h2 class="center-text ">Order Tiffin/Mess Facility For Home Delivry</h2>
+                <br>
+                  <div class="input-group col-md-7 col-md-offset-3">
+              <h5 class="landingErrorMsg col-sm-10 col-sm-offset-1 text-danger" style="display:none ">Please enter your search query!</h5>
               <div class="input-group col-sm-10 col-sm-offset-1">                   
                 <input type="text" class="form-control" id="comsumerQuery"  placeholder="Enter Location/Category/Restaurant Name or Meal Type">
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-primary consumerSearch"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
+
+                </div>
+                <br><br>
+              </div>
+            
+            </div>
               </div>   <br><br>
             </div>
           </div>
         </div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
       </div>
+
     </script>
 
     <script type="text/x-template" id="list-template">
-      <div class="container">
+      
         <div class="row">
           <div class="col-md-3">
             <form class="form-horizontal filer-search-form ">
-              <div class="panel panel-primary ">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Filter Result By:</h3>
-                </div>
-                <div class="panel-body">
-                  <h4>Meal Type</h4>
-                  <div class="checkbox">
-                    <label>
-                     <input type="checkbox" value="lunch" name="mealType">Lunch
-                    </label>
+              <div class="panel-group" id="accordion">
+                
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        <h4>Category <span class="caret"></h4>
+                      </a>
+                    </h4>
                   </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" value="breakfast" name="mealType">Breakfast
-                    </label>
+                  <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <div class="checkbox">
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" value="veg" name="category">Veg
+                          </label>
+                        </div>
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" value="nonVeg" name="category">NonVeg
+                          </label>
+                        </div>
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" value="gujrati" name="category">Gujrati
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" value="dinner" name="mealType">Dinner
-                    </label>
-                  </div>
-                  <hr>
-                  <h4>Category</h4>
+                </div>  
                   
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" value="veg" name="category">Veg
-                    </label>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        <h4>Meal Type <span class="caret"></h4>
+                      </a>
+                    </h4>
                   </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" value="nonVeg" name="category">NonVeg
-                    </label>
+                  <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" value="lunch" name="mealType">Lunch
+                        </label>
+                      </div>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" value="breakfast" name="mealType">Breakfast
+                        </label>
+                      </div>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" value="dinner" name="mealType">Dinner
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                  <!--<div class="checkbox">
-                    <label>
-                      <input type="checkbox" value="jain" name="category">Jain
-                    </label>
-                  </div>-->
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" value="gujrati" name="category">Gujrati
-                    </label>
-                  </div>
-                  <hr>
-                  <h4>Order Type</h4>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" value="weekly" name="orderType">Weekly
-                    </label>
-                  </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" value="daily" name="orderType">Daily
-                    </label>
-                  </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" value="monthly" name="orderType">Monthly
-                    </label>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Search</button>
                 </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        <h4>Order Type <span class="caret"></h4>
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" value="weekly" name="orderType">Weekly
+                        </label>
+                      </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="daily" name="orderType">Daily
+                      </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="monthly" name="orderType">Monthly
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              
               </div>
             </form>
           </div>
+        </div>
           <div class="col-md-9">
             <div class="">
               <div class="col-md-2 col-md-offset-2">
-                <a href="#mymodel" data-toggle="modal" class="btn btn-primary">Change Location</a>
+                <!--a href="#mymodel" data-toggle="modal" class="btn btn-primary">Change Location</a-->
                 <div class="modal fade" id="mymodel" role="dialog" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
@@ -250,7 +308,7 @@
               </div>
           </div>          
         </div>
-      </div>         
+               
     </script>
 
     <script type="text/x-template" id="create-user-template">
