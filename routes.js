@@ -14,7 +14,7 @@ module.exports = function(app){
 
   app.get('/', rootController.landing);
   app.get('/users/user', rootController.user);
-  app.get('/adminDashboard'
+  app.get('/admin'
     , passportConfig.isAuthenticated
     , passportConfig.ensureAdmin
     , rootController.adminDashboard)
@@ -42,7 +42,7 @@ module.exports = function(app){
   app.put('/users/:id'
     , passportConfig.isAuthenticated
     ,userController.update);
-app.delete('/users/:id'
+  app.delete('/users/:id'
     , passportConfig.isAuthenticated
     ,userController.delete);
 

@@ -10,25 +10,11 @@ var app = app || {};
       'signin': 'signIn',
       'forgotpassword': 'forgotPassword',
       'home': 'home',
-      'adminDashboard': 'adminDashboard',
+      //'adminDashboard': 'adminDashboard',
       'profile': 'profile',
       'list': 'listSupplier',
       'checkout': 'Checkout',
       'orderProcess': 'orderProcess',
-      'addTeam': 'AddTeam',
-      'addMenu': 'AddMenu',
-      'report': 'report',
-      'addDabbawala': 'addDabbawala',
-      'teamList': 'teamList',
-      'menuList': 'menuList',
-      'search': 'search',
-      'delete/:id': 'delete',
-      'edit/:id':'edit',
-      'editMenu/:id': 'editMenu',
-      'editTeam/:id': 'editTeam',
-      'deleteMenu/:id': 'deleteMenu',
-      'deleteTeam/:id': 'deleteTeam',
-      'menuDate/:id': 'menuDate' 
-    }
+      'search': 'search'}
   });  
 })();

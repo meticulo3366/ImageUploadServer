@@ -20,11 +20,9 @@ module.exports = function(app) {
     cart.save(function(err,cart){
       if(err){return next(err);};
       if(cart){
-<<<<<<< HEAD
         console.log('cart'+cart);
-=======
         console.log('cart'+cart.orderDetails);
->>>>>>> ce8810f9c11abc01d5c480f77f8827e1e3635323
+
         return res.json(cart);
       }
     });
@@ -82,7 +80,6 @@ cart.deleteToCart = function(req, res, next){
   cart.updateToCart = function(req, res, next){
     console.log('in updateToCart api'+req.params.id);
     console.log(req.body);
-<<<<<<< HEAD
     // Cart.findById(req.params.id,function(err,cart){
     //   if(err){return next(err);}
     //   console.log('length'+cart.orderDetails.length);
@@ -105,8 +102,7 @@ cart.deleteToCart = function(req, res, next){
     // });
 
 
-    
-=======
+
 
     Cart.findById(req.params.id, function(err,cart){
       console.log('kk');
@@ -135,7 +131,6 @@ cart.deleteToCart = function(req, res, next){
       }
     });
 
->>>>>>> ce8810f9c11abc01d5c480f77f8827e1e3635323
   };
 
    return cart;
