@@ -62,7 +62,7 @@ var app = app || {};
 
 
   app.Logout = Backbone.Model.extend({
-    url: '/users/logout'
+    url: '/admin/logout'
   });
 
 })();

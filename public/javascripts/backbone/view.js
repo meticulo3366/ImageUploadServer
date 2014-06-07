@@ -16,7 +16,8 @@ var app = app || {};
       document.getElementById('landing-template').innerHTML
     ),
     events: {
-      'click .consumerSearch' : 'storeQueryAndNavigate'
+      'click .consumerSearch' : 'storeQueryAndNavigate',
+      'focus #comsumerQuery': 'getAutocomplete'
     },
 
     initialize: function() {
@@ -36,6 +37,12 @@ var app = app || {};
         return false;
       }
         app.router.navigate('list', {trigger: true});
+    },
+    getAutocomplete:function(ev){
+      console.log('in getAutocomplete function');
+      $('#comsumerQuery').autocomplete({
+      source: ['Veg','Nonveg','Lunch','Dinner','Breakfast','Daily','Monthly','Weekly','Hadapsar','Aundh','Dange chowk']
+    });
     }
   });
        
@@ -216,7 +223,7 @@ app.ListSupplierView =Backbone.View.extend({
           that.tiffinboxSupplier = new app.searchTiffinboxSupplier({query: query});
           that.tiffinboxSupplier.fetch({
             success: function(ev){
-              console.log(that.tiffinboxSupplier.toJSON());
+              //console.log(that.tiffinboxSupplier.toJSON());
               that.$el.html( that.tpl({tiffinSupplers:that.tiffinboxSupplier.toJSON()}));
             }          
 

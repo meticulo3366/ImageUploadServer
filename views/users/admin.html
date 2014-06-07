@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/test.css">    
     <link rel="stylesheet" href="/stylesheets/header-color.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"> 
 
   </head>
 
@@ -54,7 +55,7 @@
         </div>
         <div class="panel-bodyone">
           <ul id="cat-navi" class="nav nav-list">
-            <li class="active"><a href="#adminDashboard"><b>Dabbawala</b></a></li>
+            <li class="active"><a href="#"><b>Dabbawala</b></a></li>
             <li><a href="#report"><b>Report</b></a></li>
             <li><a href="#contact"><b>Contact Us</b></a></li>
           </ul>
@@ -954,7 +955,8 @@
             <div class="form-group">      
               <label class="col-sm-4 control-label">Date:</label>
               <div class="col-sm-8">
-                <input type="date" name="date" class="form-control "> 
+                <input type="text" name="date" id="datepicker" class="form-control "> 
+                
               </div>
             </div></td><td class="col-sm-3">&nbsp;</td></tr>
           {{/if}}
@@ -1006,7 +1008,11 @@
           </div></td><td>&nbsp;</td></tr></table>
         </form>
       </div>
-      
+      <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
       <script>
        $('.menuDate-b').on('change', function(e){
           var val = $(".menuDate-b option:selected").data('menuitem');
@@ -1053,5 +1059,6 @@
     <script src="/javascripts/adminDashboard/collections.js"></script>
     <script src="/javascripts/adminDashboard/router.js"></script>
     <script src="/javascripts/adminDashboard/app.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   </body>
 </html>

@@ -120,7 +120,8 @@ app.FullNavbarView =Backbone.View.extend({
           var userLogout = new app.Logout();
             userLogout.fetch({
             success: function() {
-              app.router.navigate('signin', {trigger: true});
+              //app.router.navigate('signin', {trigger: true});
+              window.location = '/users/user#signin';
             },
             error: function(model, response) {
          

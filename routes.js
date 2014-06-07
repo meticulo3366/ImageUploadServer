@@ -33,7 +33,7 @@ module.exports = function(app){
   app.get('/users/fbAuthenticationComplete', userController.onFbAuthenticationComplete);
   app.post('/users/forgotPassword', userController.forgotPassword);
   app.post('/users/resetPassword', userController.resetPassword)
-  app.get('/users/logout', userController.logout);
+  app.get('/admin/logout', userController.logout);
 
   
   app.post('/users'
