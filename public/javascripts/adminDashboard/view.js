@@ -10,6 +10,60 @@ var app = app || {};
     this.$el.empty();
   };
 
+app.AdminDashboardView =Backbone.View.extend({
+      el:'.admin-content',
+       tpl: Handlebars.compile(
+          document.getElementById('admin-dashboard-template').innerHTML
+        ),
+        events: {
+             'click .search': 'searchResult'
+        },
+
+        initialize: function() {
+          app.View= this;
+          var userName= window.localStorage.getItem('userName');
+          console.log("admin:"+userName);
+          this.dabbawala = new app.addTiffinBoxSupplier();
+          this.listenTo( this.dabbawala, 'sync', this.render,this);
+          this.dabbawala.fetch();
+        
+        },
+        render: function () {
+          var that = this;
+          var userName= window.localStorage.getItem('userName');
+          that.$el.html( that.tpl({dabbawalaList: that.dabbawala.toJSON(),userName: userName}));
+
+        },
+
+        searchResult: function(ev){
+          var query = $('#searchKey').val();
+          console.log('in searchList initialize '+query);
+          this.tiffinboxSupplier = new app.searchTiffinboxSupplier({query: query});
+          //console.log(this.tiffinboxSupplier);
+          var that= this;
+          that.tiffinboxSupplier.fetch({
+            success: function(ev){
+              //console.log('*****************tiff supp :');
+              console.log(that.tiffinboxSupplier);
+              console.log(that.tiffinboxSupplier.models.length);
+              
+              var content= "";
+    
+              for (var i=0;i<that.tiffinboxSupplier.models.length;i++){
+                content+='<tr><td class="active">'+that.tiffinboxSupplier.models[i].get('name')+'</td><td class="active">'+that.tiffinboxSupplier.models[i].get('address').vicinity+','+that.tiffinboxSupplier.models[i].get('address').city+','+that.tiffinboxSupplier.models[i].get('address').zipCode+'</td><td class="active">'+that.tiffinboxSupplier.models[i].get('distributionAreas')+'</td><td class="active"><a href="#edit/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-primary" id="">Edit</a><a href="#delete/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-danger" id="">Delete</a></td></tr>';
+              }
+                  $('.afterSearhTable').html(content);
+                  $('.startTable').hide();
+                  $('.newTable').show();
+            }
+          });
+         
+          return false;   
+        
+        }
+
+        
+    });
   
 app.addDabbawalaView =Backbone.View.extend({
       el:'.admin-content',
@@ -470,60 +524,7 @@ app.AdminNavbarView =Backbone.View.extend({
 
 
 
-app.AdminDashboardView =Backbone.View.extend({
-      el:'.admin-content',
-       tpl: Handlebars.compile(
-          document.getElementById('admin-dashboard-template').innerHTML
-        ),
-        events: {
-             'click .search': 'searchResult'
-        },
 
-        initialize: function() {
-          app.View= this;
-          var userName= window.localStorage.getItem('userName');
-          console.log("admin:"+userName);
-          this.dabbawala = new app.addTiffinBoxSupplier();
-          this.listenTo( this.dabbawala, 'sync', this.render,this);
-          this.dabbawala.fetch();
-        
-        },
-        render: function () {
-          var that = this;
-          var userName= window.localStorage.getItem('userName');
-          that.$el.html( that.tpl({dabbawalaList: that.dabbawala.toJSON(),userName: userName}));
-
-        },
-
-        searchResult: function(ev){
-          var query = $('#searchKey').val();
-          console.log('in searchList initialize '+query);
-          this.tiffinboxSupplier = new app.searchTiffinboxSupplier({query: query});
-          //console.log(this.tiffinboxSupplier);
-          var that= this;
-          that.tiffinboxSupplier.fetch({
-            success: function(ev){
-              //console.log('*****************tiff supp :');
-              console.log(that.tiffinboxSupplier);
-              console.log(that.tiffinboxSupplier.models.length);
-              
-              var content= "";
-    
-              for (var i=0;i<that.tiffinboxSupplier.models.length;i++){
-                content+='<tr><td class="active">'+that.tiffinboxSupplier.models[i].get('name')+'</td><td class="active">'+that.tiffinboxSupplier.models[i].get('address').vicinity+','+that.tiffinboxSupplier.models[i].get('address').city+','+that.tiffinboxSupplier.models[i].get('address').zipCode+'</td><td class="active">'+that.tiffinboxSupplier.models[i].get('distributionAreas')+'</td><td class="active"><a href="#edit/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-primary" id="">Edit</a><a href="#delete/'+that.tiffinboxSupplier.models[i].get('_id')+'" class="btn btn-danger" id="">Delete</a></td></tr>';
-              }
-                  $('.afterSearhTable').html(content);
-                  $('.startTable').hide();
-                  $('.newTable').show();
-            }
-          });
-         
-          return false;   
-        
-        }
-
-        
-    });
 
 app.TeamListView =Backbone.View.extend({
       el:'.admin-content',
@@ -754,6 +755,8 @@ app.MenuDateView =Backbone.View.extend({
         menuDate: function(ev){
           console.log('in menuDate function');
           var menuDetails = $(ev.currentTarget).serializeObject();
+          console.log('menuDetails'+new Date(menuDetails.date).toISOString());
+          menuDetails.date= new Date(menuDetails.date).toISOString();
           var dabbawalaId = window.localStorage.getItem('dabbawalaId');
           var date = new app.AssignMenuDate({dabbawalaId : dabbawalaId});
           console.log(date.url);
@@ -765,11 +768,7 @@ app.MenuDateView =Backbone.View.extend({
               //window.localStorage.setItem('tiffinboxSupplierId', menu.toJSON()._id);
 
               console.log('in save menuDate sucess');
-              //window.history.back();
-              //app.router.navigate('menuDate',{trigger: true});
-             //new app.MenuDateView();
-             //this.render();
-             window.location.reload();
+             // window.location.reload();
             },
             error: function(model, response){
               console.log('in save menuDate error');

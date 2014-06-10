@@ -108,19 +108,21 @@ cart.deleteToCart = function(req, res, next){
       console.log('kk');
       if(err){return next(err);}
       if(cart){
-        console.log(req.body.updateDetails);
+        //console.log(req.body.updateDetails);
         var updateDetails = req.body.updateDetails;
-        console.log('length'+updateDetails.length);
+        //console.log('length'+updateDetails.length);
         for (var i = 0; i< cart.orderDetails.length; i++){
-          console.log(cart.orderDetails[i]._id);
+          //console.log(cart.orderDetails[i]._id);
           for(var j= 0; j<updateDetails.length; j++){
-            console.log(updateDetails[j].dayId);
+            //console.log(updateDetails[j].dayId);
             if(updateDetails[j].dayId==cart.orderDetails[i]._id){
               cart.orderDetails[i].deliveryAddress=updateDetails[j].deliveryAddress;
-              console.log(cart.orderDetails[i].deliveryAddress);
+              //console.log(cart.orderDetails[i].deliveryAddress);
             }
           }
         }
+        console.log('contact'+req.body.contact);
+        cart.contactNumber=req.body.contact;
         cart.save(function(err, cart){
           if (err) {return next(err);};
           if(cart){

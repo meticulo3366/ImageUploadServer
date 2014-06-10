@@ -118,8 +118,6 @@
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-primary consumerSearch"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
-
-
                 </div>
                 <br><br>
               </div>
@@ -643,8 +641,8 @@
                   </td>
                   <td>{{#if @index}}
                     
-                    <input Type="number" placeholder="Enter Contact" name="deliveryContact" class="second">
-                    {{else}}<input Type="number" placeholder="Enter Contact" name="deliveryContact" class="first"><br>
+                    <input Type="number" placeholder="Enter Contact" name="deliveryContact" class="second" >
+                    {{else}}<input Type="number" placeholder="Enter Contact" name="deliveryContact" class="first" id='contact'><br>
                     <input class='pull-left ckMenuId contact_cb' type='checkbox' id="" value="">same for all
                     {{/if}}
                   </td>
@@ -691,19 +689,15 @@
     </script>
 
     
-  <script>
-    // $(document).ready(function() {
-    //   $("[href]").each(function() {
-    //     if (this.href == window.location.href) {
-    //       $(this).addClass("active");
-    //     }
-    //   });
-    // });
-  </script>  
-
-  
-     <!--  <script src = "http://code.jquery.com/jquery-1.10.2.min.js"></script>--> 
-
+    <script>
+      // $(document).ready(function() {
+      //   $("[href]").each(function() {
+      //     if (this.href == window.location.href) {
+      //       $(this).addClass("active");
+      //     }
+      //   });
+      // });
+    </script>  
     <script src= "/javascripts/lib/jquery.js"></script> 
     <script src= "/javascripts/lib/handlebars-v1.3.0.js"></script>
     <script src= "/javascripts/lib/underscore.js"></script>

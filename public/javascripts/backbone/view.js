@@ -21,7 +21,9 @@ var app = app || {};
     },
 
     initialize: function() {
-    
+      this.dabbawala = new app.addTiffinBoxSupplier();
+          this.listenTo( this.dabbawala, 'sync', this.render,this);
+          this.dabbawala.fetch();
     },
     render: function () {
       var that = this;
@@ -39,9 +41,16 @@ var app = app || {};
         app.router.navigate('list', {trigger: true});
     },
     getAutocomplete:function(ev){
-      console.log('in getAutocomplete function');
+      var that = this;
+      // this.dabbawala = new app.addTiffinBoxSupplier();
+      //     this.listenTo( this.dabbawala, 'sync', this.render,this);
+      //     this.dabbawala.fetch();
+      // console.log('in getAutocomplete function'+this.dabbawala.toJSON().length);
+      var searchArray = ['Veg','Nonveg','Lunch','Dinner','Breakfast','Daily','Monthly','Weekly','Hadapsar','Aundh','Dange chowk'];
+      // console.log(this.dabbawala.length);
+      // searchArray.push(this.dabbawala);
       $('#comsumerQuery').autocomplete({
-      source: ['Veg','Nonveg','Lunch','Dinner','Breakfast','Daily','Monthly','Weekly','Hadapsar','Aundh','Dange chowk']
+      source: searchArray
     });
     }
   });
@@ -423,6 +432,7 @@ app.ListSupplierView =Backbone.View.extend({
             return false;   
         },
         placeOrder:function(ev){
+
           console.log('in placeOrder function');
           var cartId= window.localStorage.getItem('cartId');
           var cart = new app.CartCollection({id:cartId});
@@ -434,11 +444,18 @@ app.ListSupplierView =Backbone.View.extend({
            });
 
 
-
-          console.log(updateDetails[0]);
-          cart.save({updateDetails: updateDetails},{
+           var contact= $('#contact').val();
+           console.log('contact::'+contact);
+          //console.log(updateDetails[0]);
+          cart.save({updateDetails: updateDetails,contact:contact},{
             success:function(cart){
               console.log('in placeOrder success');
+              if(confirm('Confirm Order')){
+                alert('order is confirmed');
+              }
+              else{
+                alert('order cancelled!');
+              }
             },
             error: function(){
               console.log('in placeOrder error');

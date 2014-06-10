@@ -1008,12 +1008,11 @@
           </div></td><td>&nbsp;</td></tr></table>
         </form>
       </div>
+      
       <script>
-  $(function() {
+      $(function() {
     $( "#datepicker" ).datepicker();
   });
-  </script>
-      <script>
        $('.menuDate-b').on('change', function(e){
           var val = $(".menuDate-b option:selected").data('menuitem');
           $('.onMenuSelect-b').html(val);
@@ -1021,13 +1020,7 @@
         });
        $('.menuDate-l').on('change', function(e){
           var val = $(".menuDate-l option:selected").data('menuitem');
-        //  var val1=val.split(',');
-        //  val1+= 'ul';
-        //   for ( var i=0;i<val1.length;i++){
-        //     val1+= '<li>'+val1[i]+'</li>';
-        //   }
-        // val1+='</ul>'
-        //  console.log(typeof 'val1');
+     
           $('.onMenuSelect-l').html(val);
           //console.log(items);
         });

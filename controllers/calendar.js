@@ -39,21 +39,13 @@ module.exports = function(app) {
   calendar.assignMenuDate = function(req, res, next){
     console.log('in assignMenuDate api');
     console.log('dabbawalaId:'+req.params.dabbawalaId);
-    // var menuDate = new TiffinCalendar();
-    // menuDate.tiffinboxSupplier= req.params.dabbawalaId;
-    // menuDate.days.push(req.body);
-    // menuDate.save(function(err,menuDate){
-    //   if (err) {return next(err);};
-    //   if (menuDate) {
-    //     console.log('date is assignet to menu');
-    //     res.json(menuDate);
-    //   };
-    // });
+    
     TiffinCalendar.findOne({tiffinboxSupplier:req.params.dabbawalaId},
       function(err,result){
         if (err) { return next(err);};
         if(result){
           result.tiffinboxSupplier= req.params.dabbawalaId;
+          console.log('date::'+req.body);
           result.days.push(req.body);
           result.save(function(err,menuDate){
             if (err) {return next(err);};
