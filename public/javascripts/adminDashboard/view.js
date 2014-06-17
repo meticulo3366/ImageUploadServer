@@ -205,7 +205,7 @@ app.AddTeamView =Backbone.View.extend({
 
         },
         render: function () {
-         
+
           var that = this;
           var dabbawalaName= window.localStorage.getItem('dabbawalaName');
                     that.$el.html( that.tpl({
@@ -216,30 +216,27 @@ app.AddTeamView =Backbone.View.extend({
 
         saveTeam:function(ev){
           console.log('in saveTeam');
+
           var menuDetails = $(ev.currentTarget).serializeObject();
          
           //var dabbawalaId = $('#dbw').val();
           var dabbawalaId = window.localStorage.getItem('dabbawalaId');
-          console.log('dabbawalaId'+dabbawalaId)
-          var team = new app.User({dabbawalaId: dabbawalaId});
 
-          console.log(team);
+
+           var team = new app.User({dabbawalaId: dabbawalaId});
          
           team.save(menuDetails, {
             success: function(){
-                console.log(team);
-                console.log(team.toJSON().email);
-                console.log(team.toJSON().tiffinboxSupplier);
-                window.localStorage.setItem('tiffinboxSupplierId', team.toJSON().tiffinboxSupplier);
-                console.log(window.localStorage.getItem('tiffinboxSupplierId'));
+              console.log(team.toJSON().tiffinboxSupplier);
+              window.localStorage.setItem('tiffinboxSupplierId', team.toJSON().tiffinboxSupplier);
+              console.log(window.localStorage.getItem('tiffinboxSupplierId'));
 
-                if(app.View)
-
+              if(app.View){
                 app.View.close();
-              
-                console.log('in saveTeam sucess');
-                window.history.back();
-                //app.router.navigate('teamList',{trigger: true});
+              }            
+
+              window.history.back();
+              //app.router.navigate('teamList',{trigger: true});
             },
             error: function(model, response){
               console.log('in saveteam error');
@@ -286,8 +283,6 @@ app.EditTeamView =Backbone.View.extend({
                     break;
                   }
                 };
-
-
                 //console.log(window.localStorage.getItem('dabbawalaId'));   
                 that.$el.html(that.tpl({team: team, dabbawalaName: window.localStorage.getItem('dabbawalaName')}));
               }
@@ -303,24 +298,20 @@ app.EditTeamView =Backbone.View.extend({
           var userId = window.localStorage.getItem('userId');
           console.log('userId'+userId)
           var team = new app.User({userId: userId});
-
-          console.log(team);
          
           team.save(menuDetails,{
             success: function(){
-                console.log(team);
-                console.log(team.toJSON());
-                console.log(team.toJSON().tiffinboxSupplier);
-                window.localStorage.setItem('tiffinboxSupplierId', team.toJSON().tiffinboxSupplier);
-                console.log(window.localStorage.getItem('tiffinboxSupplierId'));
+              console.log('in saveTeam sucess');
+              console.log(team.toJSON().tiffinboxSupplier);
+              window.localStorage.setItem('tiffinboxSupplierId', team.toJSON().tiffinboxSupplier);
+              console.log(window.localStorage.getItem('tiffinboxSupplierId'));
 
-                if(app.View)
-
+              if(app.View){
                 app.View.close();
-              
-                console.log('in saveTeam sucess');
-                window.history.back();
-                //app.router.navigate('teamList',{trigger: true});
+              }
+            
+              window.history.back();
+              //app.router.navigate('teamList',{trigger: true});
             },
             error: function(model, response){
               console.log('in saveteam error');
@@ -469,8 +460,8 @@ app.EditMenuView =Backbone.View.extend({
               window.localStorage.setItem('tiffinboxSupplierId', menu.toJSON()._id);
 
               console.log('in saveMenu sucess');
-              window.history.back();
-              //window.location.reload();
+              //window.history.back();
+              window.location.reload();
               //app.router.navigate('menuList',{trigger: true});
             },
             error: function(model, response){
@@ -698,7 +689,7 @@ app.EditDabbawalaView= Backbone.View.extend({
                 window.localStorage.setItem('dabbawalaId',tiffinboxSupplier.attributes.id);
                 window.localStorage.setItem('category',tiffinboxSupplier.attributes.category);
                  window.localStorage.setItem('mealtype',tiffinboxSupplier.attributes.mealType);
-                console.log(tiffinboxSupplier);   
+                console.log('ts:'+tiffinboxSupplier);   
                 that.$el.html(that.tpl({tiffinboxSupplier:that.tiffinboxSupplier.toJSON()}));
               }
             })

@@ -379,12 +379,14 @@ app.ListSupplierView =Backbone.View.extend({
         ),
         events: {
           'click .btn-singlecartid': 'delteFromCart',
-          'submit .cart-detail': 'placeOrder'
+          'submit .cart-detail': 'placeOrder',          
+          //'click .placeOrder' : 'placeOrder',
+          'click .continueOrder': 'continueOrder'
         },
 
         initialize: function() {
           app.View=this;
-          
+           
         },
         render: function () {
           var that = this;
@@ -431,37 +433,89 @@ app.ListSupplierView =Backbone.View.extend({
           });   
             return false;   
         },
-        placeOrder:function(ev){
+        continueOrder:function(ev){
+          console.log('in continueOrder function');         
+          //var updateDetail= $(ev.currentTarget).serializeObject();          
+          // var contact,email;
+          $('#modal-placeorder').modal('show');
+           // $('body').removeClass('modal-open');
+           // $('.modal-backdrop').remove();
 
+           $('#result').click(function(ev){
+            $('body').removeClass('modal-open');
+             $('.modal-backdrop').remove();
+            //alert($('#contact').val());
+            //alert($('#email').val());
+            app.contact = $('#contact').val();
+            app.email= $('#email').val();
+            $('#d-addr-head').show();
+            $('.d-addr-data').show();
+            $('#btn-continue-order').hide();
+            $('#btn-place-order').show();
+            //$('#btn-place-order').val("Place Order");
+            //$( "p" ).removeClass( "continueOrder" ).addClass( "placeOrder" );
+           }); 
+
+           //return false;         
+        },
+        placeOrder:function(ev){
           console.log('in placeOrder function');
+          //alert('placeOrder fun');
           var cartId= window.localStorage.getItem('cartId');
           var cart = new app.CartCollection({id:cartId});
-          //var updateDetail= $(ev.currentTarget).serializeObject();
-           var updateDetails = [];
-
-           $(ev.currentTarget).find('.deliveryaddress').each(function() {
-             updateDetails.push({deliveryAddress: $(this).val(), dayId: $(this).attr('id')});
-           });
-
-
-           var contact= $('#contact').val();
-           console.log('contact::'+contact);
-          //console.log(updateDetails[0]);
-          cart.save({updateDetails: updateDetails,contact:contact},{
+          var updateDetails = [];
+          $(ev.currentTarget).find('.deliveryaddress').each(function() {
+            updateDetails.push({deliveryAddress: $(this).val(), dayId: $(this).attr('id')});
+          });
+          //alert('updateDetails');
+          cart.save({updateDetails: updateDetails, contact:app.contact},{
             success:function(cart){
               console.log('in placeOrder success');
-              if(confirm('Confirm Order')){
-                alert('order is confirmed');
-              }
-              else{
-                alert('order cancelled!');
-              }
+
+               // $('#modal-confirm-order').modal('show');
+               $('#modal-conform-order').modal('show');
+               // // $('body').removeClass('modal-open');
+               // // $('.modal-backdrop').remove();
+              $('#confirm').click(function(ev){
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+
+                var order = new app.Order();
+                order.save({order:cart}, {
+                  success: function(order){
+                    alert('order is confirmed');
+                    console.log('order is success:'+order);
+                  }
+                  // error: function(model, response){
+                  //   console.log('in order.save.error');
+                  // }
+                });
+               });
+
+
+              // if(confirm('Confirm Order')){                
+              //   var order = new app.Order();
+              //   order.save({order:cart}, {
+              //     success: function(order){
+              //       alert('order is confirmed');
+              //       console.log('order is success:'+order);
+              //     }
+              //     // error: function(model, response){
+              //     //   console.log('in order.save.error');
+              //     // }
+
+              //   });
+              // }
+              // else{
+              //   alert('order is cancelled!');
+              // }
             },
-            error: function(){
-              console.log('in placeOrder error');
+            error: function(model, response){
+              console.log('in cart.save.error');
             }
           });
-
+          //alert('end');
+          return false;
         }
       });
 

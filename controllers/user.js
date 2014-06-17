@@ -15,6 +15,7 @@ module.exports = function(app) {
   var user = {};
 
     user.create = function(req, res, next){
+      console.log('in create user function');
       console.log(req.query.dabbawalaId);
     var isTiffinSupplierMember= false;
     var user = new User(req.body);

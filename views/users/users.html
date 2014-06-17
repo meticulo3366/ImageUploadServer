@@ -164,7 +164,7 @@
             <div class="form-group"> 
               <label class="col-sm-3 control-label">Confirm Password:</label>
               <div class="col-sm-9">
-                <input type="password" class="form-control " id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+                <input type="password" class="form-control " id="confirm_password" name="confirm_password" placeholder="ConfirPassword" required>
               </div>
             </div>
             <div class="form-group">
@@ -351,6 +351,7 @@
           <div class="col-md-9">
             <div class="">
               <div class="col-md-2 col-md-offset-2">
+              <input type="checkbox" id="selectAll">select all
                 <!--a href="#mymodel" data-toggle="modal" class="btn btn-primary">Change Location</a-->
                 <div class="modal fade" id="mymodel" role="dialog" aria-hidden="true">
                   <div class="modal-dialog">
@@ -394,6 +395,26 @@
               </div>
           </div>          
         </div>
+      <script>
+       $('#selectAll').on('change',function(){
+          
+          if(this.checked) { // check select status
+            $('.listOfSuppliers').each(function() { //loop through each checkbox
+                this.checked = true;  //select all checkboxes with class "checkbox1"  
+          
+                //this.val('Unselect'); 
+                 //$(this).val('uncheck all');          
+            });
+            }else{
+                $('.listOfSuppliers').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1" 
+                    $(this).val('Select All');                     
+                });        
+            }
+
+            
+      });
+      </script>
     </script>
 
    
@@ -492,7 +513,7 @@
                           <td class="divMenu"><h5>{{this.tiffinboxSupplier.name}}</h5></td>
                           <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 0}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
                           <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 1}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 2}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p><form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}"></form>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 2}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
                           <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 3}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
                           <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 4}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
                           <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 5}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
@@ -550,6 +571,7 @@
         $('input:checkbox').change(function () {
           if ($('input[type=checkbox]:checked').length > 0) {
             $('#btnCheckin').show();
+            $()
           } 
           else {
             $('#btnCheckin').hide();
@@ -602,7 +624,7 @@
     </script>
 
     <script type="text/x-template" id="order-detail-template">
-      <div class="table-responsive">
+      <div class="table-responsive col-md-10 col-md-offset-1">
         <form class="cart-detail">
           <table class="table table-bordered">
             <thead>
@@ -613,8 +635,7 @@
                 <th>Category</th>
                 <th>Menu</th>
                 <th>Price</th>
-                <th>Delivry Address</th>
-                <th>Contact Number</th>
+                <th style="display:none" id="d-addr-head">Delivry Address</th>
                 <th></th>
               </tr>
             </thead>
@@ -631,7 +652,7 @@
                     <td>{{this.fullPrice}}<input type="number" name="price" value="{{this.fullPrice}}" style="display:none"></td>
                   {{/menuDet}}
                                     
-                  <td>{{#if @index}}
+                  <td style="display:none" class="d-addr-data">{{#if @index}}
                       
                       <textarea placeholder="Enter Address" name="deliveryAddress" id="{{this._id}}" class="secondAddr deliveryaddress"></textarea>
                       {{else}}<textarea placeholder="Enter Address" name="deliveryAddress" id="{{this._id}}" class="firstAddr deliveryaddress"></textarea><br>
@@ -639,13 +660,7 @@
                       <input class='pull-left ckMenuId address_cb' type='checkbox' id="" value="">same for all
                       {{/if}}
                   </td>
-                  <td>{{#if @index}}
-                    
-                    <input Type="number" placeholder="Enter Contact" name="deliveryContact" class="second" >
-                    {{else}}<input Type="number" placeholder="Enter Contact" name="deliveryContact" class="first" id='contact'><br>
-                    <input class='pull-left ckMenuId contact_cb' type='checkbox' id="" value="">same for all
-                    {{/if}}
-                  </td>
+                  
                   <td><button title="Remove Item" type="button" class="btn btn-primary btn-singlecartid" data-singlecartid="{{this._id}}"><span class="glyphicon glyphicon-remove btn-remove center-text"></span></button>
                   </td>     
                 </tr>
@@ -653,12 +668,75 @@
             </tbody>
           </table>
           <div class="input-group pull-right">
-              <button class="btn btn-primary placeOrder" type="submit">Place Order</button>
+              <button class="btn btn-primary continueOrder" type="button" id='btn-continue-order'>Continue</button>
+          </div>
+          <div class="input-group pull-right">
+              <button class="btn btn-primary placeOrder" type="submit" id='btn-place-order' style="display:none">Place Order</button>
           </div>
         </form>
+
+
+              <!-- Modal -->
+              <div class="modal fade" id="modal-placeorder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title" id="myModalLabel">Enter Detail</h4>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group"> 
+                          <label class="col-sm-3 control-label">Email:</label>
+                          <div class="col-sm-9">
+                            <input type="email" class="form-control" id="email" placeholder="Email Address" >
+                          </div>
+                        </div>
+                        <div class="form-group"> 
+                          <label class="col-sm-3 control-label">Contact:</label>
+                          <div class="col-sm-9">
+                            <input type="number" class="form-control" name="deliveryContact" id='contact' placeholder="Contact Number" >
+                          </div>
+                        </div>
+                      </form>
+                      <br><br><br>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default result" data-dismiss="modal" value="close">Close</button>
+                      <button type="button" class="btn btn-primary result" id='result' value="save" data-dismiss="modal">Save & Continue</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- Modal -->
+              <div class="modal fade" id="modal-conform-order" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title" id="myModalLabel">Order Confirmation Page</h4>
+                    </div>
+                    <div class="modal-body">
+                      Are u sure to confirm the Order!
+                      <br><br><br>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default result" data-dismiss="modal" value="close">Cancle</button>
+                      <button type="button" class="btn btn-primary result" id='confirm' value="save" data-dismiss="modal">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+       
+        </div>
       </div>
       <script>
         $('.contact_cb').on('change',function(){
+
           if (this.checked){
             $('.second').val($('.first').val());
           }
@@ -703,6 +781,7 @@
     <script src= "/javascripts/lib/underscore.js"></script>
     <script src= "/javascripts/lib/backbone.js"></script>
     <script src= "/javascripts/lib/bootstrap.min.js"></script>
+    <!--<script src= "/javascripts/lib/bootstrapdailog.min.js"></script>-->
     <script src= "/javascripts/lib/helper.js"></script>
     <script src="/javascripts/backbone_utils.js"></script>
     <script src="/javascripts/backbone/model.js"></script>

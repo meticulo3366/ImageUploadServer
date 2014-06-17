@@ -2,7 +2,16 @@ var app = app || {};
 
 (function () {
 	'use strict';
+app.User = Backbone.Model.extend({
 
+    urlRoot: function(){
+      if(this.get('dabbawalaId'))
+        return '/users/?dabbawalaId=' + this.get('dabbawalaId');
+      else
+        return '/users';  
+    }
+    
+  });
  
   app.addTiffinBoxSupplier = Backbone.Model.extend({
      url: function() {
@@ -59,6 +68,18 @@ var app = app || {};
     }  
 
   });
+
+  // app.Order = Backbone.Model.extend({
+  //   url:function() {
+  //     alert('in model');
+  //     return '/order/addToOrder';
+  //   }  
+
+  // });
+
+  // app.Order = Backbone.Model.extend({
+  //   url: '/order'
+  // });
 
 
   app.Logout = Backbone.Model.extend({
