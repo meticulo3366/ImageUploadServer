@@ -50,8 +50,17 @@ var app = app || {};
       // console.log(this.dabbawala.length);
       // searchArray.push(this.dabbawala);
       $('#comsumerQuery').autocomplete({
-      source: searchArray
-    });
+        
+        minLength: 1,
+        source: searchArray,
+        select: function (event, ui) {
+          app.router.navigate('list', {trigger: true});
+
+        }
+        // error: function (event, ui) {
+        // //error code here
+        // }
+      });
     }
   });
        
@@ -399,7 +408,16 @@ app.ListSupplierView =Backbone.View.extend({
           cart.fetch({
             success:function(ev){
               console.log('in OrderProcessView.render.success'+cart.toJSON());
-              that.$el.html( that.tpl({cartDetail: cart.toJSON()}));
+              var data = cart.toJSON().orderDetails;
+              app.total= 0;
+              for (var i=0; i<data.length; i++){
+                //alert(data[i].price);
+                app.total= app.total + data[i].price;
+              }
+              app.item= i;
+              //alert('total:'+app.total);
+              //alert('item:'+app.item);
+              that.$el.html( that.tpl({cartDetail: cart.toJSON(), total:app.total, item:app.item}));
             },
             error: function(){
               console.log('in error');
@@ -491,24 +509,6 @@ app.ListSupplierView =Backbone.View.extend({
                   // }
                 });
                });
-
-
-              // if(confirm('Confirm Order')){                
-              //   var order = new app.Order();
-              //   order.save({order:cart}, {
-              //     success: function(order){
-              //       alert('order is confirmed');
-              //       console.log('order is success:'+order);
-              //     }
-              //     // error: function(model, response){
-              //     //   console.log('in order.save.error');
-              //     // }
-
-              //   });
-              // }
-              // else{
-              //   alert('order is cancelled!');
-              // }
             },
             error: function(model, response){
               console.log('in cart.save.error');

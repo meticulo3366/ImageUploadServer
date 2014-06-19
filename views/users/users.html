@@ -667,12 +667,20 @@
               {{/each}}
             </tbody>
           </table>
-          <div class="input-group pull-right">
-              <button class="btn btn-primary continueOrder" type="button" id='btn-continue-order'>Continue</button>
+          <div class="center-text">
+            <h2>
+              <span class="label label-default">Total:{{total}}</span>
+              <span class="label label-default">Item:{{item}}</span>
+            </h2>
           </div>
-          <div class="input-group pull-right">
-              <button class="btn btn-primary placeOrder" type="submit" id='btn-place-order' style="display:none">Place Order</button>
-          </div>
+          <h1>
+            <div class="input-group pull-right">
+                <button class="btn btn-primary continueOrder" type="button" id='btn-continue-order'>Continue</button>
+            </div>
+            <div class="input-group pull-right">
+                <button class="btn btn-primary placeOrder" type="submit" id='btn-place-order' style="display:none">Place Order</button>
+            </div>
+          </h1>  
         </form>
 
 
