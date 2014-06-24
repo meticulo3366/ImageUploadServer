@@ -31,8 +31,10 @@ var app = app || {};
     },
     storeQueryAndNavigate:function(){
       var taht=this;
-      var query=document.getElementById('comsumerQuery').value;
-      localStorage.setItem("name", query);
+      var query=document.getElementById('#comsumerQuery').value;
+      //alert(query);
+      window.localStorage.setItem("name", query);
+      app.qr= $('#comsumerQuery').val();
       if($('#comsumerQuery').val()==""){
         //console.log('please inter');
         $('.landingErrorMsg').show();
@@ -54,6 +56,9 @@ var app = app || {};
         minLength: 1,
         source: searchArray,
         select: function (event, ui) {
+          var query=$('#comsumerQuery').val();
+          alert(ui.item.value);
+          window.localStorage.setItem("name", ui.item.value); 
           app.router.navigate('list', {trigger: true});
 
         }
@@ -117,13 +122,15 @@ app.SignInView =Backbone.View.extend({
           that.$el.html( that.tpl());
         },
           login: function(ev) {
-            console.log('in login f of Backbone');
+            //console.log('in login f of Backbone');
           var loginDetails = $(ev.currentTarget).serializeObject();
           var userLogin = new app.UserLogin();
           userLogin.save(loginDetails, {
             success: function(user){
               window.localStorage.setItem('id', user.attributes._id);
                window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
+               //app.user=user.attributes.name.first+' '+user.attributes.name.last;
+             
               console.log('in login success')
               if(user.attributes.role === 'admin') {
                
@@ -238,6 +245,8 @@ app.ListSupplierView =Backbone.View.extend({
         render: function () {
           var that = this;
           var query=localStorage.getItem("name");
+          //alert(app.qr);
+          //alert(query);
           that.tiffinboxSupplier = new app.searchTiffinboxSupplier({query: query});
           that.tiffinboxSupplier.fetch({
             success: function(ev){
@@ -390,7 +399,8 @@ app.ListSupplierView =Backbone.View.extend({
           'click .btn-singlecartid': 'delteFromCart',
           'submit .cart-detail': 'placeOrder',          
           //'click .placeOrder' : 'placeOrder',
-          'click .continueOrder': 'continueOrder'
+          'click .continueOrder': 'continueOrder',
+          'submit .login-user-form': 'login'
         },
 
         initialize: function() {
@@ -415,9 +425,10 @@ app.ListSupplierView =Backbone.View.extend({
                 app.total= app.total + data[i].price;
               }
               app.item= i;
-              //alert('total:'+app.total);
-              //alert('item:'+app.item);
-              that.$el.html( that.tpl({cartDetail: cart.toJSON(), total:app.total, item:app.item}));
+              alert('total:'+app.total);
+              alert('item:'+app.item);
+              //alert(app.user);
+              that.$el.html( that.tpl({cartDetail: cart.toJSON(), total:app.total, item:app.item, userName:window.localStorage.getItem('userName')}));
             },
             error: function(){
               console.log('in error');
@@ -455,26 +466,53 @@ app.ListSupplierView =Backbone.View.extend({
           console.log('in continueOrder function');         
           //var updateDetail= $(ev.currentTarget).serializeObject();          
           // var contact,email;
+          //$('.carousel').show();
           $('#modal-placeorder').modal('show');
-           // $('body').removeClass('modal-open');
-           // $('.modal-backdrop').remove();
-
-           $('#result').click(function(ev){
-            $('body').removeClass('modal-open');
-             $('.modal-backdrop').remove();
-            //alert($('#contact').val());
-            //alert($('#email').val());
-            app.contact = $('#contact').val();
-            app.email= $('#email').val();
-            $('#d-addr-head').show();
-            $('.d-addr-data').show();
-            $('#btn-continue-order').hide();
-            $('#btn-place-order').show();
-            //$('#btn-place-order').val("Place Order");
-            //$( "p" ).removeClass( "continueOrder" ).addClass( "placeOrder" );
-           }); 
 
            //return false;         
+        },
+        login: function(ev){
+          alert('login called');
+                       
+                        //alert($('#contact').val());
+                        //alert($('#email').val());
+                        // app.contact = $('#contact').val();
+                        // app.email= $('#email').val();
+                        var loginDetails = $(ev.currentTarget).serializeObject();
+                          var userLogin = new app.UserLogin();
+                          alert('email:'+loginDetails.email);
+                          userLogin.save(loginDetails, {
+                            success: function(user){
+                              $('body').removeClass('modal-open');
+                              $('.modal-backdrop').remove();
+                              window.localStorage.setItem('id', user.attributes._id);
+                              window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
+                              app.userName= user.attributes.name.first+' '+user.attributes.name.last;
+                              alert('login success:'+app.userName);
+                              // if(user.attributes.role === 'consumer') {
+                              //   var fullnavbarView = new app.FullNavbarView();
+                              //   fullnavbarView.render();
+                              //  //alert('yes'+app.userName);                                
+                              // }
+
+                              $("#btn-continue-order").hide();
+                              $("#btn-place-order").show();
+                              $('.d-addr-data').show();
+                              $('#usr').show();
+                              $('#in').hide();
+                              $('#up').hide();
+                              $('.action').hide();
+                              $('.contact_no').show();
+                              
+                            },
+                            error: function (model, response) {
+                              alert('login failded');
+                              if(_.isString(response.responseJSON.error)) {
+                                document.getElementById('error-message').innerHTML = response.responseJSON.error;
+                              }              
+                            }
+
+                          });
         },
         placeOrder:function(ev){
           console.log('in placeOrder function');
@@ -486,6 +524,7 @@ app.ListSupplierView =Backbone.View.extend({
             updateDetails.push({deliveryAddress: $(this).val(), dayId: $(this).attr('id')});
           });
           //alert('updateDetails');
+          app.contact= $('.delivey-contact').val
           cart.save({updateDetails: updateDetails, contact:app.contact},{
             success:function(cart){
               console.log('in placeOrder success');

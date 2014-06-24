@@ -55,10 +55,19 @@
           <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
            <ul class="nav navbar-nav">
               <li class="active"><a href="#"><p><b>Home</b></p></a></li>
-              <li><a href="#new"><p><b>Sign Up</b></p></a></li>
-              <li><a href="#signin"><p><b>Sign In</b></p></a></li>
+              <li id="up"><a href="#new"><p><b>Sign Up</b></p></a></li>
+              <li id="in"><a href="#signin"><p><b>Sign In</b></p></a></li>
               <li><a href="#feedback"><p><b>Feedback</b></p></a></li>
               <li><a href="#contactUs"><p><b>Contact Us</b></p></a></li>
+              <li class="dropdown " style="display:none" id="usr">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi{{userName}}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Account</a></li>
+                  <li><a href="#">Order</a></li>
+                  <li><a href="#">Logout</a></li>
+                </ul>
+              </li>
+
            </ul>
             <ul class="nav navbar-nav navbar-right" style="display:none">
               <li><a href="#"><p><b>Hi, User</b></p></a></li>
@@ -247,6 +256,7 @@
             </h5>
           </div>
         </form>
+      </div>
       </center>
     </script>
 
@@ -661,16 +671,24 @@
                       {{/if}}
                   </td>
                   
-                  <td><button title="Remove Item" type="button" class="btn btn-primary btn-singlecartid" data-singlecartid="{{this._id}}"><span class="glyphicon glyphicon-remove btn-remove center-text"></span></button>
+                  <td class="action"><button title="Remove Item" type="button" class="btn btn-primary btn-singlecartid" data-singlecartid="{{this._id}}"><span class="glyphicon glyphicon-remove btn-remove center-text"></span></button>
                   </td>     
                 </tr>
               {{/each}}
             </tbody>
           </table>
           <div class="center-text">
-            <h2>
-              <span class="label label-default">Total:{{total}}</span>
+         
+              
+              <div class="form-group contact_no" style="display:none" id="contact_no"> 
+                <label class="col-sm-2 control-label">Contact:</label>
+                <div class="col-sm-3">
+                  <input type="number" class="form-control delivey-contact" name="" placeholder="Contact Number" required>
+                </div>
+              </div>
+            <h2 class="col-sm-offset-3">             
               <span class="label label-default">Item:{{item}}</span>
+              <span class="label label-default">Total:{{total}}</span>
             </h2>
           </div>
           <h1>
@@ -684,35 +702,200 @@
         </form>
 
 
-              <!-- Modal -->
+                  
+
+
+              <!-- Modal--> 
               <div class="modal fade" id="modal-placeorder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title" id="myModalLabel">Enter Detail</h4>
+                      <h4 class="modal-title" id="myModalLabel">Login to website for ordering</h4>
                     </div>
                     <div class="modal-body">
-                      <form>
-                        <div class="form-group"> 
-                          <label class="col-sm-3 control-label">Email:</label>
-                          <div class="col-sm-9">
-                            <input type="email" class="form-control" id="email" placeholder="Email Address" >
-                          </div>
+
+                      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                          <div class="item active">
+                            <div class="signin col-md-6">
+                             <!--
+                              <form class="form-horizontal login-user-form">               
+                                <h5 class="red-text" id="error-message"></h5>
+                                <div class="form-group"> 
+                                  <label class="col-sm-3 control-label">Email:</label>
+                                  <div class="col-sm-9">
+                                    <input type="email" class="form-control" name="email" placeholder="Email Address" >
+                                  </div>
+                                </div>
+
+                                <div class="form-group"> 
+                                  <label class="col-sm-3 control-label">Password:</label>
+                                  <div class="col-sm-9">
+                                    <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <div class="col-sm-offset-3">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="" class="btn btn-success button-padding">Sign In</button><br>
+                                    <a href="/users/user#forgotpassword">
+                                      Forgot Password?
+                                    </a>                                  
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                   <div class="col-sm-offset-3">                               
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="signup">Dont have an account?</button>                                  
+                                  </div>
+                                </div>                                  
+                              </form>
+
+                              <form class="form-horizontal create-user-form" style="display:none">               
+                                <h5 class="red-text" id="error-message"></h5>
+                                <div class="form-group"> 
+                                  <label class="col-sm-3 control-label">Email:</label>
+                                  <div class="col-sm-9">
+                                    <input type="email" class="form-control" name="email" placeholder="Email Address" >
+                                  </div>
+                                </div>
+
+                                <div class="form-group"> 
+                                  <label class="col-sm-3 control-label">Password:</label>
+                                  <div class="col-sm-9">
+                                    <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
+                                  </div>
+                                </div>
+                                <div class="form-group"> 
+                                  <label class="col-sm-3 control-label">Password:</label>
+                                  <div class="col-sm-9">
+                                    <input type="password" class="form-control " id="pass" name="confirm_password" placeholder=" Confirm Password" required >
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <div class="col-sm-offset-3">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="" class="btn btn-success button-padding">Sign Up Now</button>
+                                  </div>
+                                </div>                                
+                              </form>-->
+
+
+
+                             <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                              <li class="active"><a href="#s1" data-toggle="tab">Sign In</a></li>
+                              <li><a href="#s2" data-toggle="tab">Sign Up</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                              <div class="tab-pane active" id="s1">
+                                <form class="form-horizontal login-user-form">               
+                                  <h5 class="red-text" id="error-message"></h5>
+                                  <div class="form-group"> 
+                                    <label class="col-sm-3 control-label">Email:</label>
+                                    <div class="col-sm-9">
+                                      <input type="email" class="form-control" name="email" placeholder="Email Address" >
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group"> 
+                                    <label class="col-sm-3 control-label">Password:</label>
+                                    <div class="col-sm-9">
+                                      <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <div class="col-sm-offset-3">
+                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="" class="btn btn-success button-padding">Sign In</button><br>
+                                      <a href="/users/user#forgotpassword">
+                                        Forgot Password?
+                                      </a>                                  
+                                    </div>
+                                  </div>           
+                                </form>
+                              </div>
+                              <div class="tab-pane" id="s2">
+                                <form class="form-horizontal create-user-form">               
+                                  <h5 class="red-text" id="error-message"></h5>
+                                  <div class="form-group"> 
+                                    <label class="col-sm-3 control-label">Email:</label>
+                                    <div class="col-sm-9">
+                                      <input type="email" class="form-control" name="email" placeholder="Email Address" >
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group"> 
+                                    <label class="col-sm-3 control-label">Password:</label>
+                                    <div class="col-sm-9">
+                                      <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
+                                    </div>
+                                  </div>
+                                  <div class="form-group"> 
+                                    <label class="col-sm-3 control-label">Password:</label>
+                                    <div class="col-sm-9">
+                                      <input type="password" class="form-control " id="pass" name="confirm_password" placeholder=" Confirm Password" required >
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <div class="col-sm-offset-3">
+                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="" class="btn btn-success button-padding">Sign Up Now</button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+
+
+                            </div> 
+
+                            <div class="col-md-6">
+                              <p class="center-text">OR</p>
+                              <div class="center-text">
+                                <a href="/users/fbauth" class="btn btn-primary">Sign In With Google</a> 
+                              </div><br>
+                              <div class="center-text">
+                                  <a href="/users/fbauth" class="btn btn-primary">Sign In With Facebook</a> 
+                              </div><br>
+                            </div>
+                            <div class="carousel-caption">
+                              
+                            </div>
+                          </div>                
                         </div>
-                        <div class="form-group"> 
-                          <label class="col-sm-3 control-label">Contact:</label>
-                          <div class="col-sm-9">
-                            <input type="number" class="form-control" name="deliveryContact" id='contact' placeholder="Contact Number" >
-                          </div>
-                        </div>
-                      </form>
-                      <br><br><br>
+
+                        <!-- Controls 
+                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                          <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>-->
+                      </div>
                     </div>
+                   
+
+                   
+
+
+                    <!--
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default result" data-dismiss="modal" value="close">Close</button>
-                      <button type="button" class="btn btn-primary result" id='result' value="save" data-dismiss="modal">Save & Continue</button>
+                      <button type="button" class="btn btn-primary result" id='' value="save" data-dismiss="modal">Save & Continue</button>
                     </div>
+                    -->
                   </div>
                 </div>
               </div>
@@ -743,6 +926,13 @@
         </div>
       </div>
       <script>
+      alert('at order tempate');
+          //$('.create-user-form').hide();
+          $(".signup").click(function(){
+            //alert('at signup button');
+          $(".create-user-form").fadeToggle();
+        });
+
         $('.contact_cb').on('change',function(){
 
           if (this.checked){

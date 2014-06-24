@@ -137,6 +137,7 @@ module.exports = function(app) {
   };
 
   user.authenticate = function(req, res, next){
+    console.log(req);
     passport.authenticate('local', function(err, user, info) {
       if (err) { return next(err)};
 

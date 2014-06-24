@@ -759,7 +759,7 @@ app.MenuDateView =Backbone.View.extend({
               //window.localStorage.setItem('tiffinboxSupplierId', menu.toJSON()._id);
 
               console.log('in save menuDate sucess');
-             // window.location.reload();
+             window.location.reload();
             },
             error: function(model, response){
               console.log('in save menuDate error');
