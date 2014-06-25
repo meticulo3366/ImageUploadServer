@@ -37,7 +37,6 @@ module.exports = function(app){
 
   
   app.post('/users'
-    , passportConfig.isAuthenticated
     ,userController.create);
   app.put('/users/:id'
     , passportConfig.isAuthenticated

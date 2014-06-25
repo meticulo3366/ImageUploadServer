@@ -94,8 +94,12 @@ var app = app || {};
     url: '/users/resetPassword'
   });
 
+  // app.Logout = Backbone.Model.extend({
+  //   url: '/users/logout'
+  // });
   app.Logout = Backbone.Model.extend({
-    url: '/users/logout'
+    url: '/admin/logout'
   });
+
 
 })();
