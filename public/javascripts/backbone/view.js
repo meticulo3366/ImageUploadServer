@@ -1,5 +1,7 @@
 var app = app || {};
 
+app.usr_flag= false;
+
 (function () {
   'use strict';
 
@@ -110,7 +112,7 @@ app.SignInView =Backbone.View.extend({
           document.getElementById('login-user-template').innerHTML
         ),
         events: {
-            'submit .login-user-form': 'login',
+          'submit .login-user-form': 'login',
           'click #sign-in-with-fb': 'loginFb'
         },
 
@@ -408,11 +410,9 @@ app.ListSupplierView =Backbone.View.extend({
            
         },
         render: function () {
-          var that = this;
           console.log('in OrderProcessView render:');
-          //console.log('cartid'+ $.session.get('cartid'));
-          //var m = window.localStorage.getItem('cart');
-          //console.log('cart'+m._id);
+          var that = this;          
+          
           var cartId= window.localStorage.getItem('cartId');
           var cart= new app.CartCollection({id:cartId});
           cart.fetch({
@@ -425,10 +425,9 @@ app.ListSupplierView =Backbone.View.extend({
                 app.total= app.total + data[i].price;
               }
               app.item= i;
-              alert('total:'+app.total);
-              alert('item:'+app.item);
-              //alert(app.user);
-              that.$el.html( that.tpl({cartDetail: cart.toJSON(), total:app.total, item:app.item, userName:window.localStorage.getItem('userName')}));
+              //alert('total:'+app.total);
+              //alert('item:'+app.item);
+              that.$el.html( that.tpl({cartDetail: cart.toJSON(), total:app.total, item:app.item}));
             },
             error: function(){
               console.log('in error');
@@ -472,19 +471,17 @@ app.ListSupplierView =Backbone.View.extend({
            //return false;         
         },
         login: function(ev){
-          alert('login called');
+          console.log('login function called');
                        
-                        //alert($('#contact').val());
-                        //alert($('#email').val());
-                        // app.contact = $('#contact').val();
-                        // app.email= $('#email').val();
-                        var loginDetails = $(ev.currentTarget).serializeObject();
+                          var loginDetails = $(ev.currentTarget).serializeObject();
                           var userLogin = new app.UserLogin();
-                          alert('email:'+loginDetails.email);
+                          console.log('email:'+loginDetails.email);
+
                           userLogin.save(loginDetails, {
                             success: function(user){
                               $('body').removeClass('modal-open');
                               $('.modal-backdrop').remove();
+                              app.usr_flag= true;
                               window.localStorage.setItem('id', user.attributes._id);
                               window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
                               app.userName= user.attributes.name.first+' '+user.attributes.name.last;
@@ -495,15 +492,17 @@ app.ListSupplierView =Backbone.View.extend({
                               //  //alert('yes'+app.userName);                                
                               // }
 
+                              var navbar = new app.NavbarView();
+                              navbar.render();
                               $("#btn-continue-order").hide();
                               $("#btn-place-order").show();
                               $('.d-addr-data').show();
+                              $('.d-addr-head').show();
                               $('#usr').show();
                               $('#in').hide();
                               $('#up').hide();
                               $('.action').hide();
-                              $('.contact_no').show();
-                              
+                              $('.contact_no').show();                              
                             },
                             error: function (model, response) {
                               alert('login failded');
@@ -511,7 +510,6 @@ app.ListSupplierView =Backbone.View.extend({
                                 document.getElementById('error-message').innerHTML = response.responseJSON.error;
                               }              
                             }
-
                           });
         },
         placeOrder:function(ev){
@@ -574,7 +572,16 @@ app.NavbarView =Backbone.View.extend({
         },
         render: function () {
           var that = this;
-          that.$el.html( that.tpl());
+
+          
+          var userName=null;
+          console.log('usr_flag:'+app.usr_flag);
+
+          if(app.usr_flag){
+            userName= window.localStorage.getItem('userName');
+            console.log('nabr'+userName);
+          }
+          that.$el.html( that.tpl({userName:userName}));
         }
          
     });
