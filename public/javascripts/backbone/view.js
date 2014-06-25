@@ -481,6 +481,7 @@ app.ListSupplierView =Backbone.View.extend({
             loginUser.save(loginDetails, {
               success: function(user){
                 console.log('Login Success!')
+                $('#modal-placeorder').hide();
                 $('body').removeClass('modal-open');
                 $('.modal-backdrop').remove();
                 app.usr_flag= true;
