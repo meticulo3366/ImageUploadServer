@@ -16,7 +16,7 @@ var orderSchema = mongoose.Schema({
 
     tiffinboxSupplier: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'TiffinboxSupplier'
+      ref: 'User'
     },
 
     menuId: {

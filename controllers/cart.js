@@ -123,6 +123,7 @@ cart.deleteToCart = function(req, res, next){
         }
         console.log('contact'+req.body.contact);
         cart.contactNumber=req.body.contact;
+        cart.userId=req.body.userId;
         cart.save(function(err, cart){
           if (err) {return next(err);};
           if(cart){

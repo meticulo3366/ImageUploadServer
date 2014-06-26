@@ -402,7 +402,8 @@ app.ListSupplierView =Backbone.View.extend({
           'submit .cart-detail': 'placeOrder',          
           //'click .placeOrder' : 'placeOrder',
           'click .continueOrder': 'continueOrder',
-          'submit .login-user-form': 'login'
+          'submit .login-user-form': 'login',
+          'submit .create-user-form': 'createUser'
         },
 
         initialize: function() {
@@ -461,63 +462,21 @@ app.ListSupplierView =Backbone.View.extend({
           });   
             return false;   
         },
+
         continueOrder:function(ev){
-          console.log('in continueOrder function');         
-          //var updateDetail= $(ev.currentTarget).serializeObject();          
-          // var contact,email;
-          //$('.carousel').show();
+          console.log('in continueOrder function');  
           $('#modal-placeorder').modal('show');
 
            //return false;         
         },
+
         login: function(ev){
           console.log('login function called');
-                       
-// <<<<<<< HEAD
-//           var loginDetails = $(ev.currentTarget).serializeObject();
-//           var userLogin = new app.UserLogin();
-//           console.log('email:'+loginDetails.email);
-
-//           userLogin.save(loginDetails, {
-//             success: function(user){
-//               $('#').hide();
-//               $('body').removeClass('modal-open');
-//               $('.modal-backdrop').remove();
-//               app.usr_flag= true;
-//               window.localStorage.setItem('id', user.attributes._id);
-//               window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
-//               app.userName= user.attributes.name.first+' '+user.attributes.name.last;
-//               alert('login success:'+app.userName);
-//               // if(user.attributes.role === 'consumer') {
-//               //   var fullnavbarView = new app.FullNavbarView();
-//               //   fullnavbarView.render();
-//               //  //alert('yes'+app.userName);                                
-//               // }
-
-//               var navbar = new app.NavbarView();
-//               navbar.render();
-//               $("#btn-continue-order").hide();
-//               $("#btn-place-order").show();
-//               $('.d-addr-data').show();
-//               $('.d-addr-head').show();
-//               $('#usr').show();
-//               $('#in').hide();
-//               $('#up').hide();
-//               $('.action').hide();
-//               $('.contact_no').show();                              
-//             },
-//             error: function (model, response) {
-//               alert('login failded');
-//               if(_.isString(response.responseJSON.error)) {
-//                 document.getElementById('error-message').innerHTML = response.responseJSON.error;
-//               }              
-//             }
-//           });
-// =======
             var loginDetails = $(ev.currentTarget).serializeObject();
             var loginUser = new app.UserLogin();
 
             console.log(loginDetails);
+            window.localStorage.setItem('user_id', null);
 
             loginUser.save(loginDetails, {
               success: function(user){
@@ -528,7 +487,7 @@ app.ListSupplierView =Backbone.View.extend({
                 $('body').removeClass('modal-open');
                 $('.modal-backdrop').remove();
                 app.usr_flag= true;
-                window.localStorage.setItem('id', user.attributes._id);
+                window.localStorage.setItem('user_id', user.attributes._id);
                 window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
                 app.userName= user.attributes.name.first+' '+user.attributes.name.last;
                 // if(user.attributes.role === 'consumer') {
@@ -559,6 +518,66 @@ app.ListSupplierView =Backbone.View.extend({
 
           return false;
         },
+
+        createUser: function(ev){
+          console.log('at createUser function');
+          var userInfo = $(ev.currentTarget).serializeObject();
+          var user = new app.User();
+          user.save(userInfo, {
+            success: function(user){
+              console.log('createUser success');
+              console.log(user.attributes.email);
+              console.log(user.attributes.password);
+              var login_User = new app.UserLogin();
+              window.localStorage.setItem('user_id', null);
+
+              login_User.save({email:user.attributes.email,password:user.attributes.password}, {
+                success: function(user){
+
+                  console.log('logged in');
+
+                  $('#modal-placeorder').hide();
+                  $('body').removeClass('modal-open');
+                  $('.modal-backdrop').remove();
+                  app.usr_flag= true;
+                  window.localStorage.setItem('user_id', user.attributes._id);
+                  window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
+
+                  var navbar = new app.NavbarView();
+                  navbar.render();
+
+                  $("#btn-continue-order").hide();
+                  $("#btn-place-order").show();
+                  $('.d-addr-data').show();
+                  $('.d-addr-head').show();
+                  $('#usr').show();
+                  $('#in').hide();
+                  $('#up').hide();
+                  $('.action').hide();
+                  $('.contact_no').show();                              
+                },
+                error: function (model, response) {
+                  console.log('login failded');
+                  if(_.isString(response.responseJSON.error)) {
+                    document.getElementById('error-message').innerHTML = response.responseJSON.error;
+                  }              
+                }
+              });
+              return false;
+
+              //app.router.navigate('signin',{trigger: true});
+            },
+            error: function (model, response) {
+               console.log('error');
+              //if(response.responseJSON.error.name === 'MongoError') {
+                //document.getElementById('register-error-message').innerHTML = 'Email you entered is already registered with the application!';
+              //}
+            }
+          });
+          return false;
+
+        },
+        
         placeOrder:function(ev){
           console.log('in placeOrder function');
           //alert('placeOrder fun');
@@ -569,8 +588,8 @@ app.ListSupplierView =Backbone.View.extend({
             updateDetails.push({deliveryAddress: $(this).val(), dayId: $(this).attr('id')});
           });
           //alert('updateDetails');
-          app.contact= $('.delivey-contact').val
-          cart.save({updateDetails: updateDetails, contact:app.contact},{
+          app.contact= $('.delivey-contact').val();
+          cart.save({updateDetails: updateDetails, contact:app.contact,userId:window.localStorage.getItem('user_id')},{
             success:function(cart){
               console.log('in placeOrder success');
 
@@ -587,6 +606,7 @@ app.ListSupplierView =Backbone.View.extend({
                   success: function(order){
                     alert('order is confirmed');
                     console.log('order is success:'+order);
+                    app.router.navigate('/',{trigger:true});
                   }
                   // error: function(model, response){
                   //   console.log('in order.save.error');

@@ -726,142 +726,86 @@
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
                           <div class="item active">
-                            <div class="signin col-md-6">
-                             <!--
-                              <form class="form-horizontal login-user-form">               
-                                <h5 class="red-text" id="error-message"></h5>
-                                <div class="form-group"> 
-                                  <label class="col-sm-3 control-label">Email:</label>
-                                  <div class="col-sm-9">
-                                    <input type="email" class="form-control" name="email" placeholder="Email Address" >
-                                  </div>
-                                </div>
+                            <div class="signin col-md-8">
+                            <!-- Nav tabs -->
+                              <ul class="nav nav-tabs">
+                                <li class="active"><a href="#s1" data-toggle="tab">Sign In</a></li>
+                                <li><a href="#s2" data-toggle="tab">Sign Up</a></li>
+                              </ul>
 
-                                <div class="form-group"> 
-                                  <label class="col-sm-3 control-label">Password:</label>
-                                  <div class="col-sm-9">
-                                    <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
-                                  </div>
-                                </div>
-
-                                <div class="form-group">
-                                  <div class="col-sm-offset-3">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="" class="btn btn-success button-padding">Sign In</button><br>
-                                    <a href="/users/user#forgotpassword">
-                                      Forgot Password?
-                                    </a>                                  
-                                  </div>
-                                </div>
-
-                                <div class="form-group">
-                                   <div class="col-sm-offset-3">                               
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="signup">Dont have an account?</button>                                  
-                                  </div>
-                                </div>                                  
-                              </form>
-
-                              <form class="form-horizontal create-user-form" style="display:none">               
-                                <h5 class="red-text" id="error-message"></h5>
-                                <div class="form-group"> 
-                                  <label class="col-sm-3 control-label">Email:</label>
-                                  <div class="col-sm-9">
-                                    <input type="email" class="form-control" name="email" placeholder="Email Address" >
-                                  </div>
-                                </div>
-
-                                <div class="form-group"> 
-                                  <label class="col-sm-3 control-label">Password:</label>
-                                  <div class="col-sm-9">
-                                    <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
-                                  </div>
-                                </div>
-                                <div class="form-group"> 
-                                  <label class="col-sm-3 control-label">Password:</label>
-                                  <div class="col-sm-9">
-                                    <input type="password" class="form-control " id="pass" name="confirm_password" placeholder=" Confirm Password" required >
-                                  </div>
-                                </div>
-
-                                <div class="form-group">
-                                  <div class="col-sm-offset-3">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="" class="btn btn-success button-padding">Sign Up Now</button>
-                                  </div>
-                                </div>                                
-                              </form>-->
-
-
-
-                             <!-- Nav tabs -->
-                            <ul class="nav nav-tabs">
-                              <li class="active"><a href="#s1" data-toggle="tab">Sign In</a></li>
-                              <li><a href="#s2" data-toggle="tab">Sign Up</a></li>
-                            </ul>
-
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                              <div class="tab-pane active" id="s1">
-                                <form class="form-horizontal login-user-form">               
-                                  <h5 class="red-text" id="error-message"></h5>
-                                  <div class="form-group"> 
-                                    <label class="col-sm-3 control-label">Email:</label>
-                                    <div class="col-sm-9">
-                                      <input type="email" class="form-control" name="email" placeholder="Email Address" >
+                              <!-- Tab panes -->
+                              <div class="tab-content">
+                                <div class="tab-pane active" id="s1">
+                                  <form class="form-horizontal login-user-form">               
+                                    <h5 class="red-text" id="error-message"></h5>
+                                    <div class="form-group"> 
+                                      <label class="col-sm-3 control-label">Email:</label>
+                                      <div class="col-sm-9">
+                                        <input type="email" class="form-control" name="email" placeholder="Email Address" >
+                                      </div>
                                     </div>
-                                  </div>
 
-                                  <div class="form-group"> 
-                                    <label class="col-sm-3 control-label">Password:</label>
-                                    <div class="col-sm-9">
-                                      <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
+                                    <div class="form-group"> 
+                                      <label class="col-sm-3 control-label">Password:</label>
+                                      <div class="col-sm-9">
+                                        <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
+                                      </div>
                                     </div>
-                                  </div>
 
-                                  <div class="form-group">
-                                    <div class="col-sm-offset-3">
-                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="" class="btn btn-success button-padding">Sign In</button><br>
-                                      <a href="/users/user#forgotpassword">
-                                        Forgot Password?
-                                      </a>                                  
+                                    <div class="form-group">
+                                      <div class="col-sm-offset-3">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="" class="btn btn-success button-padding">Sign In</button><br>
+                                        <a href="/users/user#forgotpassword">
+                                          Forgot Password?
+                                        </a>                                  
+                                      </div>
+                                    </div>           
+                                  </form>
+                                </div>
+                                <div class="tab-pane" id="s2">
+                                  <form class="form-horizontal create-user-form">               
+                                    <h5 class="red-text" id="error-message"></h5>
+                                    <div class="form-group">
+                                      <label class="col-sm-3 control-label">Name:</label>
+                                      <div class="col-sm-4">
+                                        <input type="text" class="form-control " id="firstName" name="firstName" placeholder="First Name" required>
+                                      </div>&nbsp;&nbsp;
+                                      <div class="col-sm-4">
+                                        <input type="text" class="form-control " id="lastName" name="lastName" placeholder="Last Name" required>
+                                      </div>
                                     </div>
-                                  </div>           
-                                </form>
+
+                                    <div class="form-group"> 
+                                      <label class="col-sm-3 control-label">Email:</label>
+                                      <div class="col-sm-9">
+                                        <input type="email" class="form-control" name="email" placeholder="Email Address" >
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group"> 
+                                      <label class="col-sm-3 control-label">Password:</label>
+                                      <div class="col-sm-9">
+                                        <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
+                                      </div>
+                                    </div>
+                                    <div class="form-group"> 
+                                      <label class="col-sm-3 control-label">Password:</label>
+                                      <div class="col-sm-9">
+                                        <input type="password" class="form-control " id="pass" name="confirm_password" placeholder=" Confirm Password" required >
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <div class="col-sm-offset-3">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="" class="btn btn-success button-padding">Sign Up Now</button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
                               </div>
-                              <div class="tab-pane" id="s2">
-                                <form class="form-horizontal create-user-form">               
-                                  <h5 class="red-text" id="error-message"></h5>
-                                  <div class="form-group"> 
-                                    <label class="col-sm-3 control-label">Email:</label>
-                                    <div class="col-sm-9">
-                                      <input type="email" class="form-control" name="email" placeholder="Email Address" >
-                                    </div>
-                                  </div>
-
-                                  <div class="form-group"> 
-                                    <label class="col-sm-3 control-label">Password:</label>
-                                    <div class="col-sm-9">
-                                      <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
-                                    </div>
-                                  </div>
-                                  <div class="form-group"> 
-                                    <label class="col-sm-3 control-label">Password:</label>
-                                    <div class="col-sm-9">
-                                      <input type="password" class="form-control " id="pass" name="confirm_password" placeholder=" Confirm Password" required >
-                                    </div>
-                                  </div>
-
-                                  <div class="form-group">
-                                    <div class="col-sm-offset-3">
-                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="" class="btn btn-success button-padding">Sign Up Now</button>
-                                    </div>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-
-
                             </div> 
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <p class="center-text">OR</p>
                               <div class="center-text">
                                 <a href="/users/fbauth" class="btn btn-primary">Sign In With Google</a> 

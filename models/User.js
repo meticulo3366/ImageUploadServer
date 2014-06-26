@@ -33,8 +33,7 @@ var userSchema = mongoose.Schema({
     required: true,
   },
    contactNumber: {
-    type: Number,
-    required: true
+    type: Number
   },
   tiffinboxSupplier: {
     type: mongoose.Schema.Types.ObjectId,
