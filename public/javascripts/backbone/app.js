@@ -82,7 +82,24 @@ $(function () {
       adminnavbarView.render();
       //adminrightnavbarView.render();
       });
+
+     app.router.on('route:getOrder',function (id) {
+      var add = new app.getOrderView();
+      $('.admin-navbar').hide();
+      $('.admin-content').hide();
+      //$('.page').show();
+      add.render({id:id});
+      //navbarView.render();
+      });
     
+     app.router.on('route:userAccount',function (id) {
+      var add = new app.userAccountView();
+      $('.admin-navbar').hide();
+      $('.admin-content').hide();
+      add.render({id:id});
+
+      //navbarView.render();
+      });
      
 
 

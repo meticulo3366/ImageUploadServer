@@ -5,8 +5,10 @@ var app = app || {};
 app.User = Backbone.Model.extend({
 
     urlRoot: function(){
-      if(this.get('dabbawalaId'))
+      if(this.get('dabbawalaId')){
+        alert('alert');
         return '/users/?dabbawalaId=' + this.get('dabbawalaId');
+      }
       else
         return '/users';  
     }

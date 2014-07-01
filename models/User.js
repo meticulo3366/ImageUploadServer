@@ -93,6 +93,8 @@ userSchema
   this.hash = bcrypt.hashSync(password, this.salt);
 });
 
+
+
 userSchema
 .virtual('fullname')
 .get(function () {

@@ -38,6 +38,8 @@ module.exports = function(app){
   
   app.post('/users'
     ,userController.create);
+  app.get('/users/:id'
+    ,userController.search);
   app.put('/users/:id'
     , passportConfig.isAuthenticated
     ,userController.update);

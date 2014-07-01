@@ -217,7 +217,7 @@ app.AddTeamView =Backbone.View.extend({
         saveTeam:function(ev){
           console.log('in saveTeam');
 
-          var menuDetails = $(ev.currentTarget).serializeObject();
+          var teamDetails = $(ev.currentTarget).serializeObject();
          
           //var dabbawalaId = $('#dbw').val();
           var dabbawalaId = window.localStorage.getItem('dabbawalaId');
@@ -225,7 +225,7 @@ app.AddTeamView =Backbone.View.extend({
 
            var team = new app.User({dabbawalaId: dabbawalaId});
          
-          team.save(menuDetails, {
+          team.save(teamDetails, {
             success: function(){
               console.log(team.toJSON().tiffinboxSupplier);
               window.localStorage.setItem('tiffinboxSupplierId', team.toJSON().tiffinboxSupplier);
@@ -292,14 +292,14 @@ app.EditTeamView =Backbone.View.extend({
 
         editTeam:function(ev){
           console.log('in editTeam');
-          var menuDetails = $(ev.currentTarget).serializeObject();
+          var teamDetails = $(ev.currentTarget).serializeObject();
          
           //var dabbawalaId = $('#dbw').val();
           var userId = window.localStorage.getItem('userId');
           console.log('userId'+userId)
           var team = new app.User({userId: userId});
          
-          team.save(menuDetails,{
+          team.save(teamDetails,{
             success: function(){
               console.log('in saveTeam sucess');
               console.log(team.toJSON().tiffinboxSupplier);
@@ -353,7 +353,8 @@ app.AddMenuView =Backbone.View.extend({
           document.getElementById('add-menu-template').innerHTML
         ),
         events: {
-            'submit .create-menu-form':'saveMenu'  
+            'submit .create-menu-form':'saveMenu',
+            'click .btnback': 'backFun'  
         },
 
         initialize: function(){
@@ -367,6 +368,9 @@ app.AddMenuView =Backbone.View.extend({
         render: function () {
   
           var that = this;
+          // if(app.View){
+          //   app.View.close();
+          // }
           var dabbawalaName= window.localStorage.getItem('dabbawalaName')
           ,mealType= window.localStorage.getItem('mealtype')
           ,category= window.localStorage.getItem('category');
@@ -380,26 +384,31 @@ app.AddMenuView =Backbone.View.extend({
                                   ,category:category.split(',')
                                   ,mealType:mealType.split(',')}));
         },
+        backFun:function(ev){
+          console.log('btn click');
+          window.history.back();
+        },
         saveMenu:function(ev){
-          console.log('in saveMenu');
+
+          alert('in saveMenu');
           var menuDetails = $(ev.currentTarget).serializeObject();
           var dabbawalaId = window.localStorage.getItem('dabbawalaId');
           console.log('savemenu dabbawalaId: '+dabbawalaId);
 
-          var menu = new app.addTiffinBoxSupplierMenu({dabbawalaId : dabbawalaId});
-          menu.save(menuDetails, {
-            success: function(){
-              if(app.View)
+          var menu1 = new app.addTiffinBoxSupplierMenu({dabbawalaId : dabbawalaId});
+          if(app.View)
               app.View.close();
-              window.localStorage.setItem('tiffinboxSupplierId', menu.toJSON()._id);
+          menu1.save(menuDetails, {
+            success: function(){
+              // if(app.View)
+              // app.View.close();
+              window.localStorage.setItem('tiffinboxSupplierId', menu1.toJSON()._id);
 
-              console.log('in saveMenu sucess');
+              alert('in saveMenu sucess');
               window.location.reload();
-              //window.history.back();
-              //app.router.navigate('menuList',{trigger: true});
             },
             error: function(model, response){
-              console.log('in savemenu error');
+              alert('in savemenu error');
             }
           });
           return false;
@@ -450,10 +459,10 @@ app.EditMenuView =Backbone.View.extend({
         },
         editMenu:function(ev){
           console.log('in editMenu');
-          var menuDetails = $(ev.currentTarget).serializeObject();
+          var menuDetails1 = $(ev.currentTarget).serializeObject();
           var dabbawalaId = window.localStorage.getItem('dabbawalaId');
           var menu = new app.addTiffinBoxSupplierMenu({dabbawalaId : dabbawalaId, menuId : window.localStorage.getItem('menuId')});
-          menu.save(menuDetails, {
+          menu.save(menuDetails1, {
             success: function(){
               if(app.View)
               app.View.close();

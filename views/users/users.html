@@ -62,8 +62,8 @@
               <li class="dropdown " style="display:none" id="usr">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi {{userName}}<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Account</a></li>
-                  <li><a href="#">Order</a></li>
+                  <li><a href="#userAccount/{{uid}}">Account</a></li>
+                  <li><a href="#getOrder/{{uid}}">Order</a></li>
                   <li><a href="#">Logout</a></li>
                 </ul>
               </li>
@@ -181,15 +181,33 @@
               <div class="col-sm-9">
                 <input type="tel" class="form-control" id="contact" name="contactNumber" placeholder="Contact Number" required>
               </div>
-            </div>  
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Address:</label>
-              <div class="col-sm-7"> 
-                <textarea class="form-control" name="" placeholder="Address 1" required row="2" cols="60"></textarea>
-              </div>
-              <button class="btn btnAddAddr" Type="button"><span class="glyphicon glyphicon-plus-sign"></span></button>
-              
             </div>
+            <div class="form-group ">
+              <label for="" class="col-sm-3 control-label">Address</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="" name="address.vicinity" placeOrder="street or Road" required>
+              </div>  
+            </div>
+            <div class="form-group">
+              <div class="col-sm-9 col-sm-offset-3">
+                <div class="col-sm-4">
+                  <select id="address.city" name="address.city" class="form-control">
+                    <option value="">Select City</option>
+                    <option value="Pune" >Pune</option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <select id="address.state" name="address.state"  class="form-control">
+                    <option value="" >Select State</option>
+                    <option value="Maharashtra">Maharashtra</option> 
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control " id="address.zipCode" name="address.zipCode" placeholder="zip code" required>
+                </div> 
+              </div>
+            </div>  
+            
             <div class="form-group">
               <button type="submit" class="btn btn-success ">Sign Up</button>
             </div>
@@ -486,13 +504,13 @@
                         <tr>
                           <td class="divMenu"><h5>{{this.tiffinboxSupplier.name}}</h5></td>
 
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 0}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 1}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 2}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</td></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 3}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 4}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 5}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 6}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>    
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 0}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 1}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 2}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</td></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 3}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 4}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 5}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 6}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>    
 
                         </tr>
                     {{/each}}
@@ -521,13 +539,13 @@
                     {{#each tiffinSupplers}}
                         <tr>
                           <td class="divMenu"><h5>{{this.tiffinboxSupplier.name}}</h5></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 0}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 1}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 2}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 3}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 4}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 5}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 6}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>      
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 0}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 1}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 2}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 3}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 4}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 5}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 6}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>      
                         </tr>
                     {{/each}}
                     </tbody>
@@ -556,13 +574,13 @@
                         <tr>
                           <td class="divMenu"><h5>{{this.tiffinboxSupplier.name}}</h5></td>
 
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 0}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 1}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 2}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 3}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 4}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 5}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 6}}<form class=''><input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}"></form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>      
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 0}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 1}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 2}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 3}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 4}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 5}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
+                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 6}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>      
                           
                         </tr>
                     {{/each}}
@@ -726,7 +744,15 @@
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
                           <div class="item active">
-                            <div class="signin col-md-8">
+                            <div class="signin col-md-12">
+
+                            <div class="center-text">
+                              <a href="/users/fbauth" class="btn btn-primary">Sign In With Google</a> 
+                            </div><br>                            
+                            <div class="center-text">
+                                <a href="/users/fbauth" class="btn btn-primary">Sign In With Facebook</a> 
+                            </div><br>
+                            <p class="center-text"> <span class="badge">OR</span></a></p><br>
                             <!-- Nav tabs -->
                               <ul class="nav nav-tabs">
                                 <li class="active"><a href="#s1" data-toggle="tab">Sign In</a></li>
@@ -789,11 +815,42 @@
                                       </div>
                                     </div>
                                     <div class="form-group"> 
-                                      <label class="col-sm-3 control-label">Password:</label>
+                                      <label class="col-sm-3 control-label">Confirm Password:</label>
                                       <div class="col-sm-9">
                                         <input type="password" class="form-control " id="pass" name="confirm_password" placeholder=" Confirm Password" required >
                                       </div>
                                     </div>
+                                    <div class="form-group">
+                                      <label class="col-sm-3 control-label">Contact:</label>
+                                      <div class="col-sm-9">
+                                        <input type="tel" class="form-control" id="contact" value='{{user.contactNumber}}' name="contactNumber" placeholder="Contact Number" required>
+                                      </div>
+                                    </div> 
+                                    <div class="form-group ">
+                                      <label for="" class="col-sm-3 control-label">Address</label>
+                                      <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="" name="address.vicinity" placeholder="street or Road" required>
+                                      </div>  
+                                    </div>
+                                    <div class="form-group">
+                                      <div class="col-sm-10 col-sm-offset-2">
+                                        <div class="col-sm-5">
+                                          <select id="address.city" name="address.city" class="form-control">
+                                            <option value="">Select City</option>
+                                            <option value="Pune" >Pune</option>
+                                          </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                          <select id="address.state" name="address.state"  class="form-control">
+                                            <option value="">Select State</option>
+                                            <option value="Maharashtra">Maharashtra</option> 
+                                          </select>
+                                        </div>
+                                        <div class="col-sm-3">
+                                          <input type="text" class="form-control " id="address.zipCode" name="address.zipCode" required placeholder="zip code">
+                                        </div> 
+                                      </div>
+                                    </div> 
 
                                     <div class="form-group">
                                       <div class="col-sm-offset-3">
@@ -805,15 +862,6 @@
                               </div>
                             </div> 
 
-                            <div class="col-md-4">
-                              <p class="center-text">OR</p>
-                              <div class="center-text">
-                                <a href="/users/fbauth" class="btn btn-primary">Sign In With Google</a> 
-                              </div><br>
-                              <div class="center-text">
-                                  <a href="/users/fbauth" class="btn btn-primary">Sign In With Facebook</a> 
-                              </div><br>
-                            </div>
                             <div class="carousel-caption">
                               
                             </div>
@@ -905,7 +953,111 @@
     
     
     <script type="text/x-template" id="profile-template">
-      <h2>User Profile Page!</h2>
+      <div class="col-md-8 col-md-offset-2">
+        <h2>User Profile Page!</h2>
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active"><a href="#a1" role="tab" data-toggle="tab">Basic info</a></li>
+          <li><a href="#a2" role="tab" data-toggle="tab">Change passoword</a></li>
+          <li><a href="#a3" role="tab" data-toggle="tab">Settings</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="a1">
+            <form class="form-horizontal edit-user-basic-form">
+            <div class="form-group">
+              <label class="col-sm-3 control-label">First Name:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control " value='{{user.name.first}}' id="firstName" name="firstName" placeholder="First Name" required>
+              </div>
+            </div>
+            <div class="form-group">
+            <label class="col-sm-3 control-label">Last Name:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="lastName" value='{{user.name.last}}' name="lastName" placeholder="Last Name" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Contact:</label>
+              <div class="col-sm-9">
+                <input type="tel" class="form-control" id="contact" value='{{user.contactNumber}}' name="contactNumber" placeholder="Contact Number" required>
+              </div>
+            </div>  
+            <div class="form-group ">
+              <label for="" class="col-sm-3 control-label">Address</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="" name="address.vicinity" required placeholder="enter Road.or street">
+              </div>  
+            </div>
+            <div class="form-group">
+              <div class="col-sm-9 col-sm-offset-3">
+                <div class="col-sm-4">
+                  <select id="address.city" name="address.city" class="form-control">
+                    <option value="">Select City</option>
+                    <option value="Pune" >Pune</option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <select id="address.state" name="address.state"  class="form-control">
+                    <option value="" >Select State</option>
+                    <option value="Maharashtra" >Maharashtra</option> 
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control " id="address.zipCode" name="address.zipCode" required placeholder="zip code">
+                </div> 
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-3">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-success ">Update</button>
+                <input type="hidden" name="id" value="{{user._id}}">
+              </div>
+            </div>
+          </form>
+
+          </div>
+          <div class="tab-pane" id="a2">
+            <form class="form-horizontal edit-user-password-form">               
+              <h5 class="red-text" id="error-message"></h5>
+                             
+              <div class="form-group"> 
+                <label class="col-sm-3 control-label">old password:</label>
+                <div class="col-sm-9">
+                  <input type="password" class="form-control" name="oldpswd" placeholder="Email Address" >
+                </div>
+              </div>
+
+              <div class="form-group"> 
+                <label class="col-sm-3 control-label">New Password:</label>
+                <div class="col-sm-9">
+                  <input type="password" class="form-control " id="newpswd" name="password" placeholder="Password" required >
+                </div>
+              </div>
+              <div class="form-group"> 
+                <label class="col-sm-3 control-label"> Confirm Password:</label>
+                <div class="col-sm-9">
+                  <input type="password" class="form-control " id="pass" name="confirmpswd" placeholder=" Confirm Password" required >
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-offset-3">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="" class="btn btn-success button-padding">Update</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane" id="a3">
+            ...a3
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="user-order-template">
+      <h2>User Order Page!</h2>
     </script>
 
     

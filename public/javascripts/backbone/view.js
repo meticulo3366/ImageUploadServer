@@ -29,6 +29,9 @@ app.usr_flag= false;
     },
     render: function () {
       var that = this;
+      var navbar = new app.NavbarView();               
+      navbar.render();
+
       that.$el.html( that.tpl());
     },
     storeQueryAndNavigate:function(){
@@ -129,9 +132,7 @@ app.SignInView =Backbone.View.extend({
           var userLogin = new app.UserLogin();
           userLogin.save(loginDetails, {
             success: function(user){
-              window.localStorage.setItem('id', user.attributes._id);
-               window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
-               //app.user=user.attributes.name.first+' '+user.attributes.name.last;
+             
              
               console.log('in login success')
               if(user.attributes.role === 'admin') {
@@ -140,7 +141,20 @@ app.SignInView =Backbone.View.extend({
 
                 window.location = '/admin';
               } else {
-                app.router.navigate('home', {trigger: true});  
+                app.usr_flag= true;
+                window.localStorage.setItem('user_id', user.attributes._id);
+                window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
+               
+                // var navbar = new app.NavbarView();               
+                // navbar.render();
+
+                $('#usr').show();
+                $('#in').hide();
+                $('#up').hide();
+  
+                //app.router.navigate('/', {trigger: true});  
+                window.history.back();
+
               }
               
             },
@@ -428,6 +442,7 @@ app.ListSupplierView =Backbone.View.extend({
               app.item= i;
               //alert('total:'+app.total);
               //alert('item:'+app.item);
+              //if(app.View){app.View.close();}
               that.$el.html( that.tpl({cartDetail: cart.toJSON(), total:app.total, item:app.item}));
             },
             error: function(){
@@ -471,7 +486,9 @@ app.ListSupplierView =Backbone.View.extend({
         },
 
         login: function(ev){
+
           console.log('login function called');
+         
             var loginDetails = $(ev.currentTarget).serializeObject();
             var loginUser = new app.UserLogin();
 
@@ -623,7 +640,95 @@ app.ListSupplierView =Backbone.View.extend({
         }
       });
 
+app.getOrderView =Backbone.View.extend({
+      el:'.page',
+       tpl: Handlebars.compile(
+          document.getElementById('user-order-template').innerHTML
+        ),
+        events: {
+        },
 
+        initialize: function() {
+        
+        },
+        render: function (options){
+          //alert('yes');
+          var that = this;
+          var navbar = new app.NavbarView();
+          navbar.render();
+          $('#usr').show();
+          $('#in').hide();
+          $('#up').hide();
+          console.log('id:'+options.id);
+          that.$el.html( that.tpl());
+        }
+         
+    });
+
+    app.userAccountView =Backbone.View.extend({
+      el:'.page',
+       tpl: Handlebars.compile(
+          document.getElementById('profile-template').innerHTML
+        ),
+        events: {
+          'submit .edit-user-basic-form': 'editBasicDetail',
+          'submit .edit-user-password-form': 'editPasswordDetail'             
+        },
+
+        initialize: function() {
+        
+        },
+        render: function (options){
+          //alert('yes');
+          var that = this;
+          var navbar = new app.NavbarView();
+          navbar.render();
+          $('#usr').show();
+          $('#in').hide();
+          $('#up').hide();
+          console.log('id:'+options.id);          
+
+          var user1 = new app.User({id: options.id});        
+         
+          user1.fetch({
+            success:function(){
+              console.log('success'+user1.toJSON().password);
+              console.log('success'+user1.attributes.password);
+
+              that.$el.html( that.tpl({user:user1.toJSON()}));
+
+            },
+            error:function(){
+              alert('error');
+            }
+          });
+       
+          //console.log(this.user.toJSON()); 
+         
+        },
+        editBasicDetail: function(ev){
+          alert('in editBasicDetail');
+          var userInfo = $(ev.currentTarget).serializeObject();
+          var userId= window.localStorage.getItem('user_id');
+          var user = new app.User({id:userId});
+          user.save(userInfo,{
+            success:function(err,user){
+              alert('in success');
+
+            },
+            error: function(){
+              alert('in error');
+            }
+
+          });
+
+        },
+        editPasswordDetail:function(ev){
+          alert('editPasswordDetail');
+
+        }
+         
+    });              
 
 app.NavbarView =Backbone.View.extend({
       el:'.navigation',
@@ -646,9 +751,9 @@ app.NavbarView =Backbone.View.extend({
 
           if(app.usr_flag){
             userName= window.localStorage.getItem('userName');
-            console.log('nabr'+userName);
+            console.log('user:'+userName);
           }
-          that.$el.html( that.tpl({userName:userName}));
+          that.$el.html( that.tpl({userName:userName,uid:localStorage.getItem('user_id')}));
         }
          
     });

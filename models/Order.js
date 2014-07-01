@@ -9,14 +9,14 @@ var bcrypt = require('bcrypt-nodejs')
 var orderSchema = mongoose.Schema({
     userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'TiffinboxSupplier'
+    ref: 'User'
   },
 
   orderDetails:[{
 
     tiffinboxSupplier: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'TiffinboxSupplier'
     },
 
     menuId: {

@@ -15,6 +15,9 @@ var app = app || {};
       'list': 'listSupplier',
       'checkout': 'Checkout',
       'orderProcess': 'orderProcess',
-      'search': 'search'}
+      'search': 'search',
+      'getOrder/:id':'getOrder',
+      'userAccount/:id':'userAccount'
+    }
   });  
 })();

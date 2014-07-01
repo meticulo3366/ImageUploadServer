@@ -7,8 +7,10 @@ var app = app || {};
     urlRoot: function(){
       if(this.get('dabbawalaId'))
         return '/users/?dabbawalaId=' + this.get('dabbawalaId');
-      else
+      else{
+        console.log('Model');
         return '/users';  
+      }
     }
     
   });

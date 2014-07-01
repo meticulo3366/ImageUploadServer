@@ -41,7 +41,6 @@ module.exports = function(app) {
     if (err) { return next(err)};
 
         if(user){
-
           if(isTiffinSupplierMember){
             TiffinSupplier.findById(req.query.dabbawalaId,
               function(err,tiffinboxSupplier){
@@ -72,6 +71,22 @@ module.exports = function(app) {
         }
         
     });
+  };
+
+  user.search= function (req, res, next){
+    console.log('in search api user');
+    console.log(req.params.id);
+    if(req.params.id){
+    User.findById(req.params.id, 
+      function(err,user){
+        if(!err){
+          console.log(user);
+          return res.json(user);
+        } else {
+          return next(err);
+        }
+      });
+    }  
   };
 
   user.update = function (req, res, next){
@@ -137,7 +152,7 @@ module.exports = function(app) {
   };
 
   user.authenticate = function(req, res, next){
-    console.log(req);
+    //console.log(req);
     passport.authenticate('local', function(err, user, info) {
       if (err) { return next(err)};
 
