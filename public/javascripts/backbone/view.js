@@ -1,6 +1,9 @@
+
+
 var app = app || {};
 
-app.usr_flag= false;
+//app.usr_flag= false;
+
 
 (function () {
   'use strict';
@@ -28,9 +31,7 @@ app.usr_flag= false;
           this.dabbawala.fetch();
     },
     render: function () {
-      var that = this;
-      var navbar = new app.NavbarView();               
-      navbar.render();
+      var that = this;    
 
       that.$el.html( that.tpl());
     },
@@ -38,7 +39,7 @@ app.usr_flag= false;
       var taht=this;
       var query=document.getElementById('#comsumerQuery').value;
       //alert(query);
-      window.localStorage.setItem("name", query);
+      window.localStorage.setItem("searchItem", query);
       app.qr= $('#comsumerQuery').val();
       if($('#comsumerQuery').val()==""){
         //console.log('please inter');
@@ -62,8 +63,8 @@ app.usr_flag= false;
         source: searchArray,
         select: function (event, ui) {
           var query=$('#comsumerQuery').val();
-          alert(ui.item.value);
-          window.localStorage.setItem("name", ui.item.value); 
+          console.log('selected text'+ui.item.value);
+          window.localStorage.setItem("searchItem", ui.item.value); 
           app.router.navigate('list', {trigger: true});
 
         }
@@ -145,15 +146,15 @@ app.SignInView =Backbone.View.extend({
                 window.localStorage.setItem('user_id', user.attributes._id);
                 window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
                
-                // var navbar = new app.NavbarView();               
-                // navbar.render();
+                var fullnavbar = new app.FullNavbarView();               
+                fullnavbar.render();
 
                 $('#usr').show();
                 $('#in').hide();
                 $('#up').hide();
   
-                //app.router.navigate('/', {trigger: true});  
-                window.history.back();
+                app.router.navigate('/', {trigger: true});  
+                //window.history.back();
 
               }
               
@@ -260,7 +261,7 @@ app.ListSupplierView =Backbone.View.extend({
         },
         render: function () {
           var that = this;
-          var query=localStorage.getItem("name");
+          var query=localStorage.getItem("searchItem");
           //alert(app.qr);
           //alert(query);
           that.tiffinboxSupplier = new app.searchTiffinboxSupplier({query: query});
@@ -276,7 +277,7 @@ app.ListSupplierView =Backbone.View.extend({
           console.log('In New Search');
 
           var query=document.getElementById('newComsumerQuery').value;
-          localStorage.setItem("name", query);
+          localStorage.setItem("searchItem", query);
          //app.router.navigate('list', {trigger: true});
           $('body').removeClass('modal-open');
           $('.modal-backdrop').remove();
@@ -289,7 +290,7 @@ app.ListSupplierView =Backbone.View.extend({
           app.View=this;
           var query=$(ev.currentTarget).serializeObject();
 
-      var search=localStorage.getItem("name");
+      var search=localStorage.getItem("searchItem");
           var searchFilterResult = new app.SearchFilterResult(JSON.stringify(query),search);
           
             searchFilterResult.fetch({
@@ -506,15 +507,15 @@ app.ListSupplierView =Backbone.View.extend({
                 app.usr_flag= true;
                 window.localStorage.setItem('user_id', user.attributes._id);
                 window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
-                app.userName= user.attributes.name.first+' '+user.attributes.name.last;
+                //app.userName= user.attributes.name.first+' '+user.attributes.name.last;
                 // if(user.attributes.role === 'consumer') {
                 //   var fullnavbarView = new app.FullNavbarView();
                 //   fullnavbarView.render();
                 //  //alert('yes'+app.userName);                                
                 // }
-
-                var navbar = new app.NavbarView();
-                navbar.render();
+                var fullnavbarView= new app.FullNavbarView();
+                fullnavbarView.render();
+                
                 $("#btn-continue-order").hide();
                 $("#btn-place-order").show();
                 $('.d-addr-data').show();
@@ -560,9 +561,9 @@ app.ListSupplierView =Backbone.View.extend({
                   window.localStorage.setItem('user_id', user.attributes._id);
                   window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
 
-                  var navbar = new app.NavbarView();
-                  navbar.render();
-
+                  var fullnavbarView= new app.FullNavbarView();
+                  fullnavbarView.render();
+                  $('.delivey-contact').val(user.attributes.contactNumber);
                   $("#btn-continue-order").hide();
                   $("#btn-place-order").show();
                   $('.d-addr-data').show();
@@ -654,8 +655,8 @@ app.getOrderView =Backbone.View.extend({
         render: function (options){
           //alert('yes');
           var that = this;
-          var navbar = new app.NavbarView();
-          navbar.render();
+          var fullnavbar = new app.FullNavbarView();
+          fullnavbar.render();
           $('#usr').show();
           $('#in').hide();
           $('#up').hide();
@@ -681,8 +682,8 @@ app.getOrderView =Backbone.View.extend({
         render: function (options){
           //alert('yes');
           var that = this;
-          var navbar = new app.NavbarView();
-          navbar.render();
+          var fullnavbar = new app.FullNavbarView();
+          fullnavbar.render();
           $('#usr').show();
           $('#in').hide();
           $('#up').hide();
@@ -692,8 +693,8 @@ app.getOrderView =Backbone.View.extend({
          
           user1.fetch({
             success:function(){
-              console.log('success'+user1.toJSON().password);
-              console.log('success'+user1.attributes.password);
+              
+              localStorage.setItem('hash',user1.toJSON().hash);
 
               that.$el.html( that.tpl({user:user1.toJSON()}));
 
@@ -701,10 +702,8 @@ app.getOrderView =Backbone.View.extend({
             error:function(){
               alert('error');
             }
-          });
-       
-          //console.log(this.user.toJSON()); 
-         
+          });       
+          //console.log(this.user.toJSON());          
         },
         editBasicDetail: function(ev){
           alert('in editBasicDetail');
@@ -721,19 +720,35 @@ app.getOrderView =Backbone.View.extend({
             }
 
           });
-
+          return false;
         },
         editPasswordDetail:function(ev){
           alert('editPasswordDetail');
+          //var bcrypt = require('bcrypt-nodejs');
 
-        }
-         
+          var pswdDetail = $(ev.currentTarget).serializeObject();
+
+          var change_pswd= new app.changePassword({id:window.localStorage.getItem('user_id')});
+          change_pswd.save(pswdDetail, {
+            success: function(user){
+              alert('success');
+              alert('new password:'+user.attributes.password);
+              window.location.reload();
+
+            },
+            error:function(model,response){
+              alert('error');
+            }
+
+          });
+          return false;
+        }         
     });              
 
-app.NavbarView =Backbone.View.extend({
+app.FullNavbarView =Backbone.View.extend({
       el:'.navigation',
        tpl: Handlebars.compile(
-          document.getElementById('navbar-template').innerHTML
+          document.getElementById('full-navbar-template').innerHTML
         ),
         events: {
              
@@ -752,16 +767,19 @@ app.NavbarView =Backbone.View.extend({
           if(app.usr_flag){
             userName= window.localStorage.getItem('userName');
             console.log('user:'+userName);
+            $('#usr').show();
+            $('#in').hide();
+            $('#up').hide();
           }
-          that.$el.html( that.tpl({userName:userName,uid:localStorage.getItem('user_id')}));
+          that.$el.html( that.tpl({userName: userName,uid:localStorage.getItem('user_id')}));
         }
          
     });
 
-app.FullNavbarView =Backbone.View.extend({
+app.NavbarView =Backbone.View.extend({
       el:'.navigation',
        tpl: Handlebars.compile(
-          document.getElementById('full-navbar-template').innerHTML
+          document.getElementById('navbar-template').innerHTML
         ),
         events: {
              'click .logout': 'logoutUser'

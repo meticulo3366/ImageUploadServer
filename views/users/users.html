@@ -19,7 +19,7 @@
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 admin-navbar"></div>
     <div class="admin-content col-xs-12 col-sm-12 col-md-9 col-lg-9 well"></div>
 
-    <script type="text/x-template" id="navbar-template">
+    <script type="text/x-template" id="full-navbar-template">
       <!--nav bar start-->
       <nav class="navbar navbar-default head_color" role="navigation">
         <div class="container-fluid">
@@ -78,7 +78,7 @@
       <!--nav bar end-->
     </script>
 
-    <script type="text/x-template" id="full-navbar-template">
+    <script type="text/x-template" id="navbar-template">
       <!--nav bar start-->
       <nav class="navbar navbar-default head_color" role="navigation">
         <div class="container-fluid">
@@ -663,7 +663,7 @@
                 <th>Category</th>
                 <th>Menu</th>
                 <th>Price</th>
-                <th style="display:none" id="d-addr-head">Delivry Address</th>
+                <th style="display:none" class="d-addr-head">Delivry Address</th>
                 <th></th>
               </tr>
             </thead>
@@ -958,7 +958,7 @@
         <ul class="nav nav-tabs" role="tablist">
           <li class="active"><a href="#a1" role="tab" data-toggle="tab">Basic info</a></li>
           <li><a href="#a2" role="tab" data-toggle="tab">Change passoword</a></li>
-          <li><a href="#a3" role="tab" data-toggle="tab">Settings</a></li>
+          
         </ul>
 
         <!-- Tab panes -->
@@ -984,31 +984,33 @@
                 <input type="tel" class="form-control" id="contact" value='{{user.contactNumber}}' name="contactNumber" placeholder="Contact Number" required>
               </div>
             </div>  
+            {{#each user.address}}
             <div class="form-group ">
               <label for="" class="col-sm-3 control-label">Address</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="" name="address.vicinity" required placeholder="enter Road.or street">
+                <input type="text" class="form-control" id="" name="vicinity" required placeholder="enter Road.or street" value="{{this.vicinity}}">
               </div>  
             </div>
             <div class="form-group">
               <div class="col-sm-9 col-sm-offset-3">
                 <div class="col-sm-4">
-                  <select id="address.city" name="address.city" class="form-control">
+                  <select id="city" name="city" class="form-control">
                     <option value="">Select City</option>
-                    <option value="Pune" >Pune</option>
+                    <option {{#if  (isSelected this.city 'Pune')}} selected {{/if}}>Pune</option>
                   </select>
                 </div>
                 <div class="col-sm-4">
-                  <select id="address.state" name="address.state"  class="form-control">
-                    <option value="" >Select State</option>
-                    <option value="Maharashtra" >Maharashtra</option> 
+                  <select id="address.state" name="state"  class="form-control">
+                    <option value="" {{#if  (isSelected this.state 'Maharashtra')}} selected {{/if}}>Select State</option>
+                    <option>Maharashtra</option> 
                   </select>
                 </div>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control " id="address.zipCode" name="address.zipCode" required placeholder="zip code">
+                  <input type="text" class="form-control " id="zipCode" name="zipCode" required placeholder="zip code" value="{{this.zipCode}}">
                 </div> 
               </div>
             </div>
+            {{/each}}
             <div class="form-group">
               <div class="col-sm-offset-3">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-success ">Update</button>
@@ -1025,20 +1027,20 @@
               <div class="form-group"> 
                 <label class="col-sm-3 control-label">old password:</label>
                 <div class="col-sm-9">
-                  <input type="password" class="form-control" name="oldpswd" placeholder="Email Address" >
+                  <input type="password" class="form-control" name="oldpswd" placeholder="Current Password" >
                 </div>
               </div>
 
               <div class="form-group"> 
                 <label class="col-sm-3 control-label">New Password:</label>
                 <div class="col-sm-9">
-                  <input type="password" class="form-control " id="newpswd" name="password" placeholder="Password" required >
+                  <input type="password" class="form-control " id="newpswd" name="password" placeholder="New Password" required >
                 </div>
               </div>
               <div class="form-group"> 
                 <label class="col-sm-3 control-label"> Confirm Password:</label>
                 <div class="col-sm-9">
-                  <input type="password" class="form-control " id="pass" name="confirmpswd" placeholder=" Confirm Password" required >
+                  <input type="password" class="form-control " id="pass" name="confirmpswd" placeholder=" Repeat Password" required >
                 </div>
               </div>
 
@@ -1050,7 +1052,7 @@
             </form>
           </div>
           <div class="tab-pane" id="a3">
-            ...a3
+          
           </div>
         </div>
       </div>

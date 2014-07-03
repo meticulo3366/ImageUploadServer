@@ -56,6 +56,11 @@ var app = app || {};
     
   });
 
+  app.changePassword = Backbone.Model.extend({
+     urlRoot: '/changePassword'
+    
+  });
+
   app.CartCollection = Backbone.Model.extend({
     url:function() {
       if(this.get('id')){

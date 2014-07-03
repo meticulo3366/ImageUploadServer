@@ -17,7 +17,7 @@ module.exports = function(app){
   app.get('/admin'
     , passportConfig.isAuthenticated
     , passportConfig.ensureAdmin
-    , rootController.adminDashboard)
+    , rootController.adminDashboard);
 
 
   app.get('/users/confirm', userController.confirmEmail);
@@ -46,6 +46,8 @@ module.exports = function(app){
   app.delete('/users/:id'
     , passportConfig.isAuthenticated
     ,userController.delete);
+
+  app.put('/changePassword/:id',userController.changePassword);
 
   app.post('/tiffinBoxSupplier'
     , passportConfig.isAuthenticated

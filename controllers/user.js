@@ -5,6 +5,7 @@
 var mongoose = require('mongoose')
   , passport = require('passport')
   , util = require('../utils')
+  , bcrypt = require('bcrypt-nodejs')
   , config = require('../config/config')
   , TiffinSupplier = require('../models/TiffinboxSuppliers')
   , User = require('../models/User');
@@ -30,6 +31,7 @@ module.exports = function(app) {
     user.confirmationTokenSentAt = new Date();
     
     user.loginIps.push(req.ip);
+    user.address.push({vicinity:req.body.vicinity,city:req.body.city,state:req.body.state,zipCode:req.body.zipCode});
 
     if(req.query.dabbawalaId){
         console.log('tiffinboxSupplier id is'+ req.query.dabbawalaId);
@@ -39,36 +41,35 @@ module.exports = function(app) {
 
     user.save(function(err, user){
     if (err) { return next(err)};
-
-        if(user){
-          if(isTiffinSupplierMember){
-            TiffinSupplier.findById(req.query.dabbawalaId,
-              function(err,tiffinboxSupplier){
-                tiffinboxSupplier.team.push(user._id);
-                tiffinboxSupplier.save(function(err,tiffinboxSupplier){
-                  console.log('dabbawala updated with team'+tiffinboxSupplier.team);
-                    // Store
-                    //localStorage.setItem("tiffinboxSupplierId", tiffinboxSupplier._id)
-                    // Retrieve localStorage.getItem(tiffinboxSupplierId);
-              });
+      if(user){
+        if(isTiffinSupplierMember){
+          TiffinSupplier.findById(req.query.dabbawalaId,
+            function(err,tiffinboxSupplier){
+              tiffinboxSupplier.team.push(user._id);
+              tiffinboxSupplier.save(function(err,tiffinboxSupplier){
+                console.log('dabbawala updated with team'+tiffinboxSupplier.team);
+                  // Store
+                  //localStorage.setItem("tiffinboxSupplierId", tiffinboxSupplier._id)
+                  // Retrieve localStorage.getItem(tiffinboxSupplierId);
             });
-          }
-
-          var params = {
-            to: user.email,
-            message: config.email.message.buildConfirmationMessage(user.email, user.confirmationToken),
-            subject: config.email.subject.confirmationEmail
-          };
-          app.monq.sendEmail(params, function(err){
-            if(err) { return next(err);};
           });
+        }
 
-          req.flash('info', {msg: config.messages.confirmationMailSent});
-          return res.json(user);
-        }
-        else {
-          return res.status(500).json({error: 'Unable to add user!'});
-        }
+        var params = {
+          to: user.email,
+          message: config.email.message.buildConfirmationMessage(user.email, user.confirmationToken),
+          subject: config.email.subject.confirmationEmail
+        };
+        app.monq.sendEmail(params, function(err){
+          if(err) { return next(err);};
+        });
+
+        req.flash('info', {msg: config.messages.confirmationMailSent});
+        return res.json(user);
+      }
+      else {
+        return res.status(500).json({error: 'Unable to add user!'});
+      }
         
     });
   };
@@ -91,18 +92,54 @@ module.exports = function(app) {
 
   user.update = function (req, res, next){
     console.log('in update api user');
-    console.log(req.params.id);
+    console.log(req.body);
     if(req.params.id){
-    User.findByIdAndUpdate(req.params.id, req.body,
-      function(err,user){
-        if(!err){
-          console.log(user);
-          return res.json(user);
-        } else {
-          return next(err);
-        }
+      User.findById(req.params.id, function(err,user){
+        if(err){return next(err);}
+        if(user){
+          //user.set('password', req.body.password);
+          user.set('fullname', req.body.firstName + ' ' + req.body.lastName);
+          user.loginIps.push(req.ip);
+          user.address.push({vicinity:req.body.vicinity,city:req.body.city,state:req.body.state,zipCode:req.body.zipCode});
+          user.updatedAt = new Date();
+
+          user.save(function(err,user){
+            if(err){return next(err);}
+            if(user){
+              console.log(user);
+              return res.json(user);
+            }
+            else{
+               return res.status(500).json({error: 'Unable to update user!'});  
+            }
+          }); 
+        }         
       });
     }  
+  };
+
+  user.changePassword= function(req, res, next){
+    console.log('in changePassword api'+req.params.id);
+    User.findById(req.params.id, function(err, user){
+      if (err){ return next(err);}
+      if (user){
+        console.log(user);
+        console.log('old pswd'+req.body.oldpswd);
+        var pswd_match= bcrypt.compareSync(req.body.oldpswd, user.hash);
+        console.log('result:'+pswd_match);
+        if(pswd_match){
+          user.set('password', req.body.newpswd);
+          user.save(function(err, user){
+            if(err){ return next(err);}
+            if(user){
+              console.log('password changed successfully');
+              return res.json(user);
+            }
+          })
+
+        }
+      }
+    });
   };
 
   user.delete = function (req, res, next){

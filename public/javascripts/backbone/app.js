@@ -13,7 +13,7 @@ $(function () {
     $('.admin-content').hide();
     $('.page').show();
     landing.render();
-    navbarView.render();
+    fullnavbarView.render();
   });
 
 	app.router.on('route:createUser',function () {
@@ -22,7 +22,7 @@ $(function () {
     $('.admin-content').hide();
     $('.page').show();
     createUserView.render();
-    navbarView.render();
+    //fullnavbarView.render();
   });
   app.router.on('route:signIn',function () {
     var signInView = new app.SignInView();
@@ -30,13 +30,13 @@ $(function () {
     $('.admin-content').hide();
     $('.page').show();
     signInView.render();
-    navbarView.render();
+    //fullnavbarView.render();
   });
 
   app.router.on('route:forgotPassword',function () {
     var forgetPasswordView = new app.ForgotPasswordView();
     forgetPasswordView.render();
-    navbarView.render();
+    fullnavbarView.render();
   });
 
   app.router.on('route:home',function () {
@@ -54,7 +54,7 @@ $(function () {
       $('.admin-content').hide();
       $('.page').show();
       list.render();
-      navbarView.render();
+      fullnavbarView.render();
     });
   app.router.on('route:Checkout',function () {
       var checkout = new app.CheckoutView();
@@ -62,7 +62,7 @@ $(function () {
       $('.admin-content').hide();
       $('.page').show();
       checkout.render();
-      navbarView.render();
+      fullnavbarView.render();
     });
   app.router.on('route:orderProcess',function () {
       var order = new app.OrderProcessView();
@@ -70,7 +70,7 @@ $(function () {
       $('.admin-content').hide();
       $('.page').show();
       order.render();
-      navbarView.render();
+      //fullnavbarView.render();
 
     });
   
@@ -78,7 +78,7 @@ $(function () {
      app.router.on('route:search',function () {
       var add = new app.SearchListView();
       add.render();
-      fullnavbarView.render();
+      navbarView.render();
       adminnavbarView.render();
       //adminrightnavbarView.render();
       });
@@ -89,7 +89,7 @@ $(function () {
       $('.admin-content').hide();
       //$('.page').show();
       add.render({id:id});
-      //navbarView.render();
+      //fullnavbarView.render();
       });
     
      app.router.on('route:userAccount',function (id) {
@@ -98,7 +98,7 @@ $(function () {
       $('.admin-content').hide();
       add.render({id:id});
 
-      //navbarView.render();
+      //fullnavbarView.render();
       });
      
 
