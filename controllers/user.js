@@ -31,7 +31,7 @@ module.exports = function(app) {
     user.confirmationTokenSentAt = new Date();
     
     user.loginIps.push(req.ip);
-    user.address.push({vicinity:req.body.vicinity,city:req.body.city,state:req.body.state,zipCode:req.body.zipCode});
+    //user.address.push({vicinity:req.body.vicinity,city:req.body.city,state:req.body.state,zipCode:req.body.zipCode});
 
     if(req.query.dabbawalaId){
         console.log('tiffinboxSupplier id is'+ req.query.dabbawalaId);
@@ -100,8 +100,14 @@ module.exports = function(app) {
           //user.set('password', req.body.password);
           user.set('fullname', req.body.firstName + ' ' + req.body.lastName);
           user.loginIps.push(req.ip);
-          user.address.push({vicinity:req.body.vicinity,city:req.body.city,state:req.body.state,zipCode:req.body.zipCode});
-          user.updatedAt = new Date();
+          user.contactNumber= req.body.contactNumber;
+          user.address= req.body.address;
+          // console.log('length:'+user.address.length);
+          // for (var i = 0;i< user.address.length;i++){
+          //   user.address[i].push(req.body.address);
+          // }
+          // user.address.push({vicinity:req.body.vicinity,city:req.body.city,state:req.body.state,zipCode:req.body.zipCode});
+          // user.updatedAt = new Date();
 
           user.save(function(err,user){
             if(err){return next(err);}

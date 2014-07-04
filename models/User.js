@@ -39,12 +39,18 @@ var userSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Tiffinboxsupplier'
   },
-  address:[{
+  // address:[{
+  //     vicinity:String,
+  //     city:String,
+  //     state:String,
+  //     zipCode:String
+  //   }],
+  address:{
       vicinity:String,
       city:String,
       state:String,
       zipCode:String
-    }],
+    },
   facebook:{
     profileId: String,
     displayName: String,

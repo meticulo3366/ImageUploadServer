@@ -2,7 +2,7 @@
 
 var app = app || {};
 
-//app.usr_flag= false;
+app.usr_flag= false;
 
 
 (function () {
@@ -145,7 +145,8 @@ app.SignInView =Backbone.View.extend({
                 app.usr_flag= true;
                 window.localStorage.setItem('user_id', user.attributes._id);
                 window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
-               
+                app.router.navigate('/', {trigger: true});  
+                //window.history.back();
                 var fullnavbar = new app.FullNavbarView();               
                 fullnavbar.render();
 
@@ -153,8 +154,7 @@ app.SignInView =Backbone.View.extend({
                 $('#in').hide();
                 $('#up').hide();
   
-                app.router.navigate('/', {trigger: true});  
-                //window.history.back();
+                
 
               }
               
@@ -515,7 +515,7 @@ app.ListSupplierView =Backbone.View.extend({
                 // }
                 var fullnavbarView= new app.FullNavbarView();
                 fullnavbarView.render();
-                
+                $('.delivey-contact').val(user.attributes.contactNumber);
                 $("#btn-continue-order").hide();
                 $("#btn-place-order").show();
                 $('.d-addr-data').show();
@@ -524,7 +524,9 @@ app.ListSupplierView =Backbone.View.extend({
                 $('#in').hide();
                 $('#up').hide();
                 $('.action').hide();
-                $('.contact_no').show();                              
+                $('.contact_no').show();
+                new app.OrderProcessView();
+                this.render();                              
               },
               error: function (model, response) {
                 alert('login failded');
