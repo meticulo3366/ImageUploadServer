@@ -35,7 +35,7 @@ module.exports = function(app){
   app.post('/users/resetPassword', userController.resetPassword)
   app.get('/admin/logout', userController.logout);
 
-  
+  app.get('/users/loggedIn',userController.userLoggedIn);
   app.post('/users'
     ,userController.create);
   app.get('/users/:id'
@@ -46,6 +46,8 @@ module.exports = function(app){
   app.delete('/users/:id'
     , passportConfig.isAuthenticated
     ,userController.delete);
+
+  //app.get('/users/loggedIn',userController.userLoggedIn);
 
   app.put('/changePassword/:id',userController.changePassword);
 

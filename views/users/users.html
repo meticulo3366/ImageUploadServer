@@ -58,20 +58,9 @@
               <li id="up"><a href="#new"><p><b>Sign Up</b></p></a></li>
               <li id="in"><a href="#signin"><p><b>Sign In</b></p></a></li>
               <li><a href="#feedback"><p><b>Feedback</b></p></a></li>
-              <li><a href="#contactUs"><p><b>Contact Us</b></p></a></li>
-              <li class="dropdown " style="display:none" id="usr">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi {{userName}}<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#userAccount/{{uid}}">Account</a></li>
-                  <li><a href="#getOrder/{{uid}}">Order</a></li>
-                  <li><a href="#">Logout</a></li>
-                </ul>
-              </li>
+              <li><a href="#contactUs"><p><b>Contact Us</b></p></a></li>            
 
            </ul>
-            <ul class="nav navbar-nav navbar-right" style="display:none">
-              <li><a href="#"><p><b>Hi, User</b></p></a></li>
-            </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
@@ -97,7 +86,17 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#" class="logout"><p><b>Logout</b></p></a></li>
+              <li class="active"><a href="#"><p><b>Home</b></p></a></li>
+              <li><a href="#feedback"><p><b>Feedback</b></p></a></li>
+              <li><a href="#contactUs"><p><b>Contact Us</b></p></a></li>
+              <li class="dropdown " style="" id="usr">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi {{userName}}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#userAccount/{{uid}}">Account</a></li>
+                  <li><a href="#getOrder/{{uid}}">Order</a></li>
+                  <li><a href="/logout">Logout</a></li>
+                </ul>
+              </li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -1034,7 +1033,7 @@
               <div class="form-group"> 
                 <label class="col-sm-3 control-label">New Password:</label>
                 <div class="col-sm-9">
-                  <input type="password" class="form-control " id="newpswd" name="password" placeholder="New Password" required >
+                  <input type="password" class="form-control " id="" name="newpswd" placeholder="New Password" required >
                 </div>
               </div>
               <div class="form-group"> 

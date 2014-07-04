@@ -31,8 +31,37 @@ app.usr_flag= false;
           this.dabbawala.fetch();
     },
     render: function () {
-      var that = this;    
+      var that = this;
+      var isUserLoggedIn = new app.UserLoggedIn();
+      isUserLoggedIn.fetch({
+        success:function(ev){
+          alert('success:'+isUserLoggedIn.toJSON().message);
+          console.log('success'+isUserLoggedIn.toJSON().message);
+          if(isUserLoggedIn.toJSON().message){
+            app.userEmail= isUserLoggedIn.toJSON().user.email; 
+            app.uid= isUserLoggedIn.toJSON().user.id; 
+            app.contact= isUserLoggedIn.toJSON().user.contactNumber;
+            app.usr_flag= true;
 
+            var navbarView= new app.NavbarView();
+            navbarView.render();
+            
+          }
+          else{
+            var fullnavbarView= new app.FullNavbarView();
+            fullnavbarView.render();
+          }
+          
+          that.$el.html( that.tpl());
+
+        },
+        error: function(){
+          alert('error');
+        }
+       
+      });    
+      var fullnavbarView= new app.FullNavbarView();
+      fullnavbarView.render();
       that.$el.html( that.tpl());
     },
     storeQueryAndNavigate:function(){
@@ -139,22 +168,9 @@ app.SignInView =Backbone.View.extend({
               if(user.attributes.role === 'admin') {
                
                 //app.router.navigate('adminDashboard', {trigger: true});
-
                 window.location = '/admin';
               } else {
-                app.usr_flag= true;
-                window.localStorage.setItem('user_id', user.attributes._id);
-                window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
-                app.router.navigate('/', {trigger: true});  
-                //window.history.back();
-                var fullnavbar = new app.FullNavbarView();               
-                fullnavbar.render();
-
-                $('#usr').show();
-                $('#in').hide();
-                $('#up').hide();
-  
-                
+                app.router.navigate('/', {trigger: true});                             
 
               }
               
@@ -264,6 +280,15 @@ app.ListSupplierView =Backbone.View.extend({
           var query=localStorage.getItem("searchItem");
           //alert(app.qr);
           //alert(query);
+          if(app.usr_flag){
+            var navbarView =new app.NavbarView();
+            navbarView.render();
+
+          }
+          else{
+            var fullnavbarView = new app.FullNavbarView();
+            fullnavbarView.render();
+          }
           that.tiffinboxSupplier = new app.searchTiffinboxSupplier({query: query});
           that.tiffinboxSupplier.fetch({
             success: function(ev){
@@ -342,8 +367,19 @@ app.ListSupplierView =Backbone.View.extend({
         },
         render: function () { 
           var that = this;
-
           console.log('in CheckoutView render:');
+          if(app.usr_flag){
+            alert('true');
+            var navbarView =new app.NavbarView();
+            navbarView.render();
+
+          }
+          else{
+            alert('false');
+
+            var fullnavbarView = new app.FullNavbarView();
+            fullnavbarView.render();
+          }
 
           var selectedTs = window.localStorage.getItem('selectedTs');
           console.log('selectedTs'+selectedTs)
@@ -427,8 +463,18 @@ app.ListSupplierView =Backbone.View.extend({
         },
         render: function () {
           console.log('in OrderProcessView render:');
-          var that = this;          
-          
+          var that = this;
+
+          if(app.usr_flag){
+            var navbarView =new app.NavbarView();
+            navbarView.render();
+            alert('true');
+          }
+          else{
+            alert('false');
+            var fullnavbarView = new app.FullNavbarView();
+            fullnavbarView.render();
+          }
           var cartId= window.localStorage.getItem('cartId');
           var cart= new app.CartCollection({id:cartId});
           cart.fetch({
@@ -480,10 +526,22 @@ app.ListSupplierView =Backbone.View.extend({
         },
 
         continueOrder:function(ev){
-          console.log('in continueOrder function');  
-          $('#modal-placeorder').modal('show');
-
-           //return false;         
+          if(app.usr_flag){
+            var that = this;
+            $('.delivey-contact').val(app.contact);
+            //ev.currentTarget.placeOrder();
+            //that.placeOrder();
+            $("#btn-continue-order").hide();
+                $("#btn-place-order").show();
+                $('.d-addr-data').show();
+                $('.d-addr-head').show();
+                $('.action').hide();
+                $('.contact_no').show();
+          }else{
+            console.log('in continueOrder function');  
+            $('#modal-placeorder').modal('show');
+           //return false;  
+          }       
         },
 
         login: function(ev){
@@ -500,29 +558,29 @@ app.ListSupplierView =Backbone.View.extend({
               success: function(user){
 
                 console.log('Login Success!');
-
+                 $('.delivey-contact').val(user.attributes.contactNumber);
                 $('#modal-placeorder').hide();
                 $('body').removeClass('modal-open');
                 $('.modal-backdrop').remove();
                 app.usr_flag= true;
-                window.localStorage.setItem('user_id', user.attributes._id);
-                window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
-                //app.userName= user.attributes.name.first+' '+user.attributes.name.last;
+                app.uid= user.attributes._id;
+                app.userEmail= user.attributes.email;
+
+                // window.localStorage.setItem('user_id', user.attributes._id);
+                // window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
+
                 // if(user.attributes.role === 'consumer') {
                 //   var fullnavbarView = new app.FullNavbarView();
                 //   fullnavbarView.render();
                 //  //alert('yes'+app.userName);                                
                 // }
-                var fullnavbarView= new app.FullNavbarView();
-                fullnavbarView.render();
+                var navbarView= new app.NavbarView();
+                navbarView.render();
                 $('.delivey-contact').val(user.attributes.contactNumber);
                 $("#btn-continue-order").hide();
                 $("#btn-place-order").show();
                 $('.d-addr-data').show();
                 $('.d-addr-head').show();
-                $('#usr').show();
-                $('#in').hide();
-                $('#up').hide();
                 $('.action').hide();
                 $('.contact_no').show();
                 new app.OrderProcessView();
@@ -560,8 +618,10 @@ app.ListSupplierView =Backbone.View.extend({
                   $('body').removeClass('modal-open');
                   $('.modal-backdrop').remove();
                   app.usr_flag= true;
-                  window.localStorage.setItem('user_id', user.attributes._id);
-                  window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
+                  app.uid= user.attributes._id;
+                  app.userEmail= user.attributes.email;
+                  // window.localStorage.setItem('user_id', user.attributes._id);
+                  // window.localStorage.setItem('userName', user.attributes.name.first+' '+user.attributes.name.last);
 
                   var fullnavbarView= new app.FullNavbarView();
                   fullnavbarView.render();
@@ -570,9 +630,6 @@ app.ListSupplierView =Backbone.View.extend({
                   $("#btn-place-order").show();
                   $('.d-addr-data').show();
                   $('.d-addr-head').show();
-                  $('#usr').show();
-                  $('#in').hide();
-                  $('#up').hide();
                   $('.action').hide();
                   $('.contact_no').show();                              
                 },
@@ -609,7 +666,7 @@ app.ListSupplierView =Backbone.View.extend({
           });
           //alert('updateDetails');
           app.contact= $('.delivey-contact').val();
-          cart.save({updateDetails: updateDetails, contact:app.contact,userId:window.localStorage.getItem('user_id')},{
+          cart.save({updateDetails: updateDetails, contact:app.contact,userId:app.uid},{
             success:function(cart){
               console.log('in placeOrder success');
 
@@ -761,21 +818,8 @@ app.FullNavbarView =Backbone.View.extend({
         },
         render: function () {
           var that = this;
-
-          
-          var userName=null;
-          console.log('usr_flag:'+app.usr_flag);
-
-          if(app.usr_flag){
-            userName= window.localStorage.getItem('userName');
-            console.log('user:'+userName);
-            $('#usr').show();
-            $('#in').hide();
-            $('#up').hide();
-          }
-          that.$el.html( that.tpl({userName: userName,uid:localStorage.getItem('user_id')}));
-        }
-         
+          that.$el.html( that.tpl());
+        }          
     });
 
 app.NavbarView =Backbone.View.extend({
@@ -790,9 +834,15 @@ app.NavbarView =Backbone.View.extend({
         initialize: function() {
         
         },
-        render: function () {
-          var that = this;
-          that.$el.html( that.tpl());
+        render: function () { 
+          var that= this;
+          console.log('usr_flag:'+app.usr_flag);
+
+          if(app.usr_flag){
+            console.log('userEmail:'+app.userEmail);
+          }
+          that.$el.html( that.tpl({userName: app.userEmail,uid:app.uid}));
+        
         },
         logoutUser: function() {
           var userLogout = new app.Logout();

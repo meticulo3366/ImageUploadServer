@@ -134,6 +134,7 @@ module.exports = function(app) {
         var pswd_match= bcrypt.compareSync(req.body.oldpswd, user.hash);
         console.log('result:'+pswd_match);
         if(pswd_match){
+          console.log(req.body.newpswd);
           user.set('password', req.body.newpswd);
           user.save(function(err, user){
             if(err){ return next(err);}
@@ -165,6 +166,16 @@ module.exports = function(app) {
           }
       });
     }  
+  };
+
+  user.userLoggedIn= function(req, res, next){
+    console.log('in userLoggedIn api');
+    if(req.user) {
+      console.log('logged');
+      return res.json({message: true, user: req.user});
+    } else {
+      return res.json({message: false});
+    };
   };
 
 

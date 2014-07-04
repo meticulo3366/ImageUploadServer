@@ -61,6 +61,11 @@ var app = app || {};
     
   });
 
+  app.UserLoggedIn = Backbone.Model.extend({
+     urlRoot: '/users/loggedIn'
+    
+  });
+
   app.CartCollection = Backbone.Model.extend({
     url:function() {
       if(this.get('id')){

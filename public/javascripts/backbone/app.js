@@ -13,7 +13,7 @@ $(function () {
     $('.admin-content').hide();
     $('.page').show();
     landing.render();
-    fullnavbarView.render();
+    //fullnavbarView.render();
   });
 
 	app.router.on('route:createUser',function () {
@@ -22,7 +22,7 @@ $(function () {
     $('.admin-content').hide();
     $('.page').show();
     createUserView.render();
-    //fullnavbarView.render();
+    fullnavbarView.render();
   });
   app.router.on('route:signIn',function () {
     var signInView = new app.SignInView();
@@ -30,7 +30,7 @@ $(function () {
     $('.admin-content').hide();
     $('.page').show();
     signInView.render();
-    //fullnavbarView.render();
+    fullnavbarView.render();
   });
 
   app.router.on('route:forgotPassword',function () {
@@ -42,7 +42,7 @@ $(function () {
   app.router.on('route:home',function () {
     var homepage = new app.HomepageView();
     homepage.render();
-    fullnavbarView.render();
+    //fullnavbarView.render();
   });
 
   
@@ -54,7 +54,7 @@ $(function () {
       $('.admin-content').hide();
       $('.page').show();
       list.render();
-      fullnavbarView.render();
+      //fullnavbarView.render();
     });
   app.router.on('route:Checkout',function () {
       var checkout = new app.CheckoutView();
@@ -62,7 +62,7 @@ $(function () {
       $('.admin-content').hide();
       $('.page').show();
       checkout.render();
-      fullnavbarView.render();
+      //fullnavbarView.render();
     });
   app.router.on('route:orderProcess',function () {
       var order = new app.OrderProcessView();
