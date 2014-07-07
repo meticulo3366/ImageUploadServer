@@ -94,7 +94,7 @@
                 <ul class="dropdown-menu">
                   <li><a href="#userAccount/{{uid}}">Account</a></li>
                   <li><a href="#getOrder/{{uid}}">Order</a></li>
-                  <li><a href="/logout">Logout</a></li>
+                  <li class="logout"><a><p>Logout</p></a></li>
                 </ul>
               </li>
             </ul>
@@ -917,7 +917,7 @@
         </div>
       </div>
       <script>
-      alert('at order tempate');
+      //alert('at order tempate');
           //$('.create-user-form').hide();
           $(".signup").click(function(){
             //alert('at signup button');
@@ -1059,6 +1059,7 @@
 
     <script type="text/x-template" id="user-order-template">
       <h2>User Order Page!</h2>
+      <div class="userOrder"></div>
       <script>
 
 
@@ -1240,7 +1241,8 @@
         text += '</CENTER>'
 
         // print accumulative HTML string
-        document.write(text) 
+        //document.write(text) 
+        $('.userOrder').html(text);
         }
         </script>
     </script>

@@ -35,12 +35,13 @@ app.usr_flag= false;
       var isUserLoggedIn = new app.UserLoggedIn();
       isUserLoggedIn.fetch({
         success:function(ev){
-          alert('success:'+isUserLoggedIn.toJSON().message);
-          console.log('success'+isUserLoggedIn.toJSON().message);
+          console.log('success:'+isUserLoggedIn.toJSON().message);
           if(isUserLoggedIn.toJSON().message){
             app.userEmail= isUserLoggedIn.toJSON().user.email; 
-            app.uid= isUserLoggedIn.toJSON().user.id; 
+            app.uid= isUserLoggedIn.toJSON().user._id; 
+            console.log(app.uid);
             app.contact= isUserLoggedIn.toJSON().user.contactNumber;
+            app.address= isUserLoggedIn.toJSON().address;
             app.usr_flag= true;
 
             var navbarView= new app.NavbarView();
@@ -52,7 +53,7 @@ app.usr_flag= false;
             fullnavbarView.render();
           }
           
-          that.$el.html( that.tpl());
+          //that.$el.html( that.tpl());
 
         },
         error: function(){
@@ -60,14 +61,13 @@ app.usr_flag= false;
         }
        
       });    
-      var fullnavbarView= new app.FullNavbarView();
-      fullnavbarView.render();
+      // var fullnavbarView= new app.FullNavbarView();
+      // fullnavbarView.render();
       that.$el.html( that.tpl());
     },
     storeQueryAndNavigate:function(){
       var taht=this;
       var query=document.getElementById('#comsumerQuery').value;
-      //alert(query);
       window.localStorage.setItem("searchItem", query);
       app.qr= $('#comsumerQuery').val();
       if($('#comsumerQuery').val()==""){
@@ -138,8 +138,7 @@ app.usr_flag= false;
 
     });
 
-
-app.SignInView =Backbone.View.extend({
+  app.SignInView =Backbone.View.extend({
       el:'.page',
        tpl: Handlebars.compile(
           document.getElementById('login-user-template').innerHTML
@@ -169,8 +168,18 @@ app.SignInView =Backbone.View.extend({
                
                 //app.router.navigate('adminDashboard', {trigger: true});
                 window.location = '/admin';
-              } else {
-                app.router.navigate('/', {trigger: true});                             
+              } 
+              else {
+                app.userEmail= user.attributes.email; 
+                app.uid= user.attributes._id; 
+                console.log(app.uid);
+                app.contact= user.attributes.contactNumber;
+                app.address= user.attributes.address;
+                app.usr_flag= true;
+
+                var navbarView= new app.NavbarView();
+                navbarView.render();
+                window.history.back();                      
 
               }
               
@@ -236,7 +245,7 @@ app.HomepageView =Backbone.View.extend({
         },
         render: function () {
           var that = this;
-          that.$el.html( that.tpl());
+          that.$el.html(that.tpl());
         }
          
     });
@@ -278,17 +287,37 @@ app.ListSupplierView =Backbone.View.extend({
         render: function () {
           var that = this;
           var query=localStorage.getItem("searchItem");
-          //alert(app.qr);
-          //alert(query);
-          if(app.usr_flag){
-            var navbarView =new app.NavbarView();
-            navbarView.render();
+          console.log('laod ListSupplierView');
 
-          }
-          else{
-            var fullnavbarView = new app.FullNavbarView();
-            fullnavbarView.render();
-          }
+          var isUserLoggedIn = new app.UserLoggedIn();
+          isUserLoggedIn.fetch({
+            success:function(ev){
+              console.log('success:'+isUserLoggedIn.toJSON().message);
+              if(isUserLoggedIn.toJSON().message){
+                app.userEmail= isUserLoggedIn.toJSON().user.email; 
+                app.uid= isUserLoggedIn.toJSON().user._id; 
+                console.log(app.uid);
+                app.contact= isUserLoggedIn.toJSON().user.contactNumber;
+                app.address= isUserLoggedIn.toJSON().address;
+                app.usr_flag= true;
+
+                var navbarView= new app.NavbarView();
+                navbarView.render();
+                
+              }
+              else{
+                var fullnavbarView= new app.FullNavbarView();
+                fullnavbarView.render();
+              }
+              
+              //that.$el.html( that.tpl());
+
+            },
+            error: function(){
+              alert('error');
+            }
+           
+          });  
           that.tiffinboxSupplier = new app.searchTiffinboxSupplier({query: query});
           that.tiffinboxSupplier.fetch({
             success: function(ev){
@@ -368,18 +397,36 @@ app.ListSupplierView =Backbone.View.extend({
         render: function () { 
           var that = this;
           console.log('in CheckoutView render:');
-          if(app.usr_flag){
-            alert('true');
-            var navbarView =new app.NavbarView();
-            navbarView.render();
 
-          }
-          else{
-            alert('false');
+          var isUserLoggedIn = new app.UserLoggedIn();
+          isUserLoggedIn.fetch({
+            success:function(ev){
+              console.log('success:'+isUserLoggedIn.toJSON().message);
+              if(isUserLoggedIn.toJSON().message){
+                app.userEmail= isUserLoggedIn.toJSON().user.email; 
+                app.uid= isUserLoggedIn.toJSON().user._id; 
+                console.log(app.uid);
+                app.contact= isUserLoggedIn.toJSON().user.contactNumber;
+                app.address= isUserLoggedIn.toJSON().address;
+                app.usr_flag= true;
 
-            var fullnavbarView = new app.FullNavbarView();
-            fullnavbarView.render();
-          }
+                var navbarView= new app.NavbarView();
+                navbarView.render();
+                
+              }
+              else{
+                var fullnavbarView= new app.FullNavbarView();
+                fullnavbarView.render();
+              }
+              
+              //that.$el.html( that.tpl());
+
+            },
+            error: function(){
+              alert('error');
+            }
+           
+          });  
 
           var selectedTs = window.localStorage.getItem('selectedTs');
           console.log('selectedTs'+selectedTs)
@@ -465,16 +512,35 @@ app.ListSupplierView =Backbone.View.extend({
           console.log('in OrderProcessView render:');
           var that = this;
 
-          if(app.usr_flag){
-            var navbarView =new app.NavbarView();
-            navbarView.render();
-            alert('true');
-          }
-          else{
-            alert('false');
-            var fullnavbarView = new app.FullNavbarView();
-            fullnavbarView.render();
-          }
+          var isUserLoggedIn = new app.UserLoggedIn();
+          isUserLoggedIn.fetch({
+            success:function(ev){
+              console.log('success:'+isUserLoggedIn.toJSON().message);
+              if(isUserLoggedIn.toJSON().message){
+                app.userEmail= isUserLoggedIn.toJSON().user.email; 
+                app.uid= isUserLoggedIn.toJSON().user._id; 
+                console.log(app.uid);
+                app.contact= isUserLoggedIn.toJSON().user.contactNumber;
+                app.address= isUserLoggedIn.toJSON().address;
+                app.usr_flag= true;
+
+                var navbarView= new app.NavbarView();
+                navbarView.render();
+                
+              }
+              else{
+                var fullnavbarView= new app.FullNavbarView();
+                fullnavbarView.render();
+              }
+              
+              //that.$el.html( that.tpl());
+
+            },
+            error: function(){
+              alert('error');
+            }
+           
+          });  
           var cartId= window.localStorage.getItem('cartId');
           var cart= new app.CartCollection({id:cartId});
           cart.fetch({
@@ -487,9 +553,7 @@ app.ListSupplierView =Backbone.View.extend({
                 app.total= app.total + data[i].price;
               }
               app.item= i;
-              //alert('total:'+app.total);
-              //alert('item:'+app.item);
-              //if(app.View){app.View.close();}
+              
               that.$el.html( that.tpl({cartDetail: cart.toJSON(), total:app.total, item:app.item}));
             },
             error: function(){
@@ -529,14 +593,13 @@ app.ListSupplierView =Backbone.View.extend({
           if(app.usr_flag){
             var that = this;
             $('.delivey-contact').val(app.contact);
-            //ev.currentTarget.placeOrder();
-            //that.placeOrder();
+            $('.delivey-contact').val(app.address);
             $("#btn-continue-order").hide();
-                $("#btn-place-order").show();
-                $('.d-addr-data').show();
-                $('.d-addr-head').show();
-                $('.action').hide();
-                $('.contact_no').show();
+            $("#btn-place-order").show();
+            $('.d-addr-data').show();
+            $('.d-addr-head').show();
+            $('.action').hide();
+            $('.contact_no').show();
           }else{
             console.log('in continueOrder function');  
             $('#modal-placeorder').modal('show');
@@ -577,6 +640,7 @@ app.ListSupplierView =Backbone.View.extend({
                 var navbarView= new app.NavbarView();
                 navbarView.render();
                 $('.delivey-contact').val(user.attributes.contactNumber);
+                $('.deliveryaddress').val(user.attributes.address);
                 $("#btn-continue-order").hide();
                 $("#btn-place-order").show();
                 $('.d-addr-data').show();
@@ -626,6 +690,7 @@ app.ListSupplierView =Backbone.View.extend({
                   var fullnavbarView= new app.FullNavbarView();
                   fullnavbarView.render();
                   $('.delivey-contact').val(user.attributes.contactNumber);
+                  $('.deliveryaddress').val(user.attributes.address);
                   $("#btn-continue-order").hide();
                   $("#btn-place-order").show();
                   $('.d-addr-data').show();
@@ -657,14 +722,13 @@ app.ListSupplierView =Backbone.View.extend({
         
         placeOrder:function(ev){
           console.log('in placeOrder function');
-          //alert('placeOrder fun');
           var cartId= window.localStorage.getItem('cartId');
           var cart = new app.CartCollection({id:cartId});
           var updateDetails = [];
           $(ev.currentTarget).find('.deliveryaddress').each(function() {
             updateDetails.push({deliveryAddress: $(this).val(), dayId: $(this).attr('id')});
           });
-          //alert('updateDetails');
+
           app.contact= $('.delivey-contact').val();
           cart.save({updateDetails: updateDetails, contact:app.contact,userId:app.uid},{
             success:function(cart){
@@ -712,14 +776,38 @@ app.getOrderView =Backbone.View.extend({
         
         },
         render: function (options){
-          //alert('yes');
+          console.log('in getOrderView');
           var that = this;
-          var fullnavbar = new app.FullNavbarView();
-          fullnavbar.render();
-          $('#usr').show();
-          $('#in').hide();
-          $('#up').hide();
           console.log('id:'+options.id);
+
+          var isUserLoggedIn = new app.UserLoggedIn();
+          isUserLoggedIn.fetch({
+            success:function(ev){
+              console.log('success:'+isUserLoggedIn.toJSON().message);
+              if(isUserLoggedIn.toJSON().message){
+                app.userEmail= isUserLoggedIn.toJSON().user.email; 
+                app.uid= isUserLoggedIn.toJSON().user._id; 
+                console.log(app.uid);
+                app.contact= isUserLoggedIn.toJSON().user.contactNumber;
+                app.address= isUserLoggedIn.toJSON().address;
+                app.usr_flag= true;
+
+                var navbarView= new app.NavbarView();
+                navbarView.render();
+                
+              }
+              else{
+                app.router.navigate('/',{trigger: true});
+              }
+            },
+            error: function(){
+              alert('error');
+            }
+           
+          });  
+
+
+
           that.$el.html( that.tpl());
         }
          
@@ -741,31 +829,44 @@ app.getOrderView =Backbone.View.extend({
         render: function (options){
           //alert('yes');
           var that = this;
-          var fullnavbar = new app.FullNavbarView();
-          fullnavbar.render();
-          $('#usr').show();
-          $('#in').hide();
-          $('#up').hide();
-          console.log('id:'+options.id);          
-
-          var user1 = new app.User({id: options.id});        
-         
-          user1.fetch({
+          console.log('id:'+options.id);   
+          var user= new app.UserLoggedIn();
+          user.fetch({
             success:function(){
-              
-              localStorage.setItem('hash',user1.toJSON().hash);
+              if (user.toJSON().message){
+                var user1 = new app.User({id: options.id});             
+                user1.fetch({
+                  success:function(){
+                    app.usr_flag=true;
+                    app.userEmail= user1.toJSON().email; 
+                      app.uid= user1.toJSON()._id; 
+                      console.log(app.uid);
+                      app.contact= user1.toJSON().contactNumber;
+                      app.address= user1.toJSON().address;
+                      var navbar= new app.NavbarView();
+                      navbar.render();
+                    
+                    localStorage.setItem('hash',user1.toJSON().hash);
 
-              that.$el.html( that.tpl({user:user1.toJSON()}));
+                    that.$el.html( that.tpl({user:user1.toJSON()}));
 
-            },
-            error:function(){
-              alert('error');
+                  },
+                  error:function(){
+                    alert('error');
+                  }
+                });       
+              }
+              else{
+                app.router.navigate('/',{trigger:true});
+              }
             }
           });       
+
+          
           //console.log(this.user.toJSON());          
         },
         editBasicDetail: function(ev){
-          alert('in editBasicDetail');
+          console.log('in editBasicDetail');
           var userInfo = $(ev.currentTarget).serializeObject();
           var userId= window.localStorage.getItem('user_id');
           var user = new app.User({id:userId});
@@ -782,16 +883,16 @@ app.getOrderView =Backbone.View.extend({
           return false;
         },
         editPasswordDetail:function(ev){
-          alert('editPasswordDetail');
-          //var bcrypt = require('bcrypt-nodejs');
+          console.log('editPasswordDetail');
+          
 
           var pswdDetail = $(ev.currentTarget).serializeObject();
 
-          var change_pswd= new app.changePassword({id:window.localStorage.getItem('user_id')});
+          //var change_pswd= new app.changePassword({id:window.localStorage.getItem('user_id')});
+          var change_pswd= new app.changePassword({id:app.uid});
           change_pswd.save(pswdDetail, {
             success: function(user){
-              alert('success');
-              alert('new password:'+user.attributes.password);
+              console.log('success');
               window.location.reload();
 
             },
@@ -848,11 +949,12 @@ app.NavbarView =Backbone.View.extend({
           var userLogout = new app.Logout();
             userLogout.fetch({
             success: function() {
-              app.router.navigate('signin', {trigger: true
-              });
+              console.log('user has been logout');
+              window.location.reload();
+              //app.router.navigate('signin', {trigger: true});
             },
             error: function(model, response) {
-         
+              console.log('logout error');
             }
           });
           return false;

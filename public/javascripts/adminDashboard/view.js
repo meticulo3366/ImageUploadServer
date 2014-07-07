@@ -89,7 +89,7 @@ app.addDabbawalaView =Backbone.View.extend({
         },
         saveDabbawala:function(ev){
           var dabbawalaDetails = $(ev.currentTarget).serializeObject();
-//************************
+
           var dabbawala = new app.addTiffinBoxSupplier();
 
           dabbawala.save(dabbawalaDetails, {

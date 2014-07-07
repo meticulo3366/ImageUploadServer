@@ -80,29 +80,6 @@ cart.deleteToCart = function(req, res, next){
   cart.updateToCart = function(req, res, next){
     console.log('in updateToCart api'+req.params.id);
     console.log(req.body);
-    // Cart.findById(req.params.id,function(err,cart){
-    //   if(err){return next(err);}
-    //   console.log('length'+cart.orderDetails.length);
-    //   if (cart){
-    //     cart.orderDetails.pull({_id:req.params.singlecartid});
-    //     // console.log('deleted:'+cart);
-    //     // return res.json(cart);
-    //     cart.save(function(err,cart){
-    //       if(err){return next(err);}
-    //       if(cart){
-    //         console.log('after delete:'+cart);
-    //         return res.json(cart);
-    //       }
-    //     })
-    //   }
-    //    else {
-    //       return res.json(404, {error: 'page not found!'});
-    //     }
-      
-    // });
-
-
-
 
     Cart.findById(req.params.id, function(err,cart){
       console.log('kk');
