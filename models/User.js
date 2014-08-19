@@ -4,9 +4,8 @@
  */
 
 var bcrypt = require('bcrypt-nodejs')
-  , mongoose = require('mongoose')
-  , Tiffinboxsupplier = require('./TiffinboxSuppliers');
-
+  , mongoose = require('mongoose');
+  
 var userSchema = mongoose.Schema({
   name: {
     first: {
@@ -18,6 +17,7 @@ var userSchema = mongoose.Schema({
     	required: true,
     }  
   },
+  
   salt: {
     type: String,
     required: true,
@@ -32,25 +32,7 @@ var userSchema = mongoose.Schema({
     unique: true,
     required: true,
   },
-   contactNumber: {
-    type: Number
-  },
-  tiffinboxSupplier: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Tiffinboxsupplier'
-  },
-  // address:[{
-  //     vicinity:String,
-  //     city:String,
-  //     state:String,
-  //     zipCode:String
-  //   }],
-  address:{
-      vicinity:String,
-      city:String,
-      state:String,
-      zipCode:String
-    },
+   
   facebook:{
     profileId: String,
     displayName: String,
@@ -62,7 +44,7 @@ var userSchema = mongoose.Schema({
   },
   role: {
     type: String,
-    default: 'consumer',
+    default: 'user',
 
   },
   createdAt: {
@@ -72,17 +54,6 @@ var userSchema = mongoose.Schema({
   updatedAt: {
     type: Date,
     default: new Date(),
-  },
-  confirmationToken: String,
-  confirmationTokenSentAt: {
-    type:Date
-  },
-  confirmationAt: {
-    type: Date
-  },
-  resetPasswordToken: String,
-  resetPasswordTokenSentAt: {
-    type: Date
   },
   signInCount: {
     type: Number,
@@ -140,22 +111,6 @@ userSchema.methods = {
   }
 };
 
-userSchema.post('remove', function(user) {
-
-  if(user.tiffinboxSupplier) {
-    Tiffinboxsupplier.findById(user.tiffinboxSupplier, function(err, tiffinboxSupplier) {
-      if(err) {return err;};
-
-      if(tiffinboxSupplier){
-        tiffinboxSupplier.team.pull(user.id);
-        tiffinboxSupplier.save(function(err) {
-          if(err) { return err;};
-          console.log('Tiffinboxsupplier updated!');
-        });
-      };
-    });
-  };
-});
 
 var User = mongoose.model('User', userSchema);
 

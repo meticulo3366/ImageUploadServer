@@ -15,16 +15,28 @@ var express = require('express')
 , passportConfig = require('./config/passport-config')
 , passport = require('passport')
 , LocalStrategy = require('passport-local').Strategy
+, mongo = require('mongodb')
+, grid =  require('gridfs-stream')
 , User = require('./models/User');
 
 
-// development only
+//development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
-  mongoose.connect(config.development.dbUrl);
+  var db = mongoose.connect(config.development.dbUrl);
+  
 }else{
   mongoose.connect(config.production.dbUrl);
 }
+
+var db = new mongo.Db('db_development', new mongo.Server("127.0.0.1", 27017,{w:'majority'}));
+
+db.open(function (err) {
+  if (err) return handleError(err);
+  app.gfs = grid(db, mongo);
+
+})
+
 
 // all environments
 app.configure(function(){

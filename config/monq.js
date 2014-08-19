@@ -3,9 +3,7 @@
  * 
  */
 
-var config = require('../config/config')
-  , secret = require('../config/secret')
-  , sendgrid = require('sendgrid')(secret.sendgrid.username, secret.sendgrid.password);
+var config = require('../config/config');
 
 
 
@@ -29,27 +27,6 @@ module.exports = function(app) {
       });
   };
 
-  var worker = app.monq.worker(['email']);
-
-  worker.register({
-    email: function(params, cb){
-      try{
-        sendgrid.send({
-          to: params.to,
-          from: config.email.from,
-          subject: params.subject,
-          text: params.message 
-        }, function(err, json) {
-          if (err) { return cb(err)};
-          return cb(null, json); 
-        });
-      } catch (err) {
-        return cb(err);
-      }        
-    }
-  });
-
-  worker.start();
   return app.monq;
 };
   

@@ -9,6 +9,8 @@
     "express": "3.4.7",
     "jade": "*",
     "mongoose": "*",
+    "mongodb": "*",
+    "gridfs-stream": "*",
     "sendgrid": "1.0.0-rc.1.0",
     "passport": "0.2.0",
     "passport-local": "0.1.6",

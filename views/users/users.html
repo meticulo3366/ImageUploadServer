@@ -2,28 +2,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PuneDabbawala.in</title>
+    <title>Image Upload Site</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="stylesheet" href="/stylesheets/test.css">    
-    <link rel="stylesheet" href="/stylesheets/header-color.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-
+    <link rel="stylesheet" href="/stylesheets/test.css"> 
+    <link rel="stylesheet" href="/stylesheets/style.css">    
   </head>
 
   <body>
 
     <div class="navigation"></div>    
     <div class="page"></div>
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 admin-navbar"></div>
-    <div class="admin-content col-xs-12 col-sm-12 col-md-9 col-lg-9 well"></div>
-
     <script type="text/x-template" id="full-navbar-template">
-      <!--nav bar start-->
       <nav class="navbar navbar-default head_color" role="navigation">
         <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
               <span class="sr-only">Toggle navigation</span>
@@ -31,219 +23,83 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <!--<a class="navbar-brand" href="#"><p><img src="/images/TSlogo.png" width="60%" height="20%" style="padding-top: 0px;"></p></a> -->
-
-            <!--img src="/images/TSlogo.png" width="60%" height="20%" style="padding-top: 1px;background-color:#C266E0;
-              opacity:0.7;"-->
-               <a class="navbar-brand" href="#">PuneDabbawala.in</a>
           </div>
 
-          <!--Location_text-->
-            <div class="btn-group locapadding">
-              
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><b> Location</b>
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Pune</a></li>
-                  <li><a href="#">Mumbai</a></li>
-                </ul>
-              
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
            <ul class="nav navbar-nav">
               <li class="active"><a href="#"><p><b>Home</b></p></a></li>
               <li id="up"><a href="#new"><p><b>Sign Up</b></p></a></li>
               <li id="in"><a href="#signin"><p><b>Sign In</b></p></a></li>
-              <li><a href="#feedback"><p><b>Feedback</b></p></a></li>
-              <li><a href="#contactUs"><p><b>Contact Us</b></p></a></li>            
-
            </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
-      <!--nav bar end-->
-    </script>
-
-    <script type="text/x-template" id="navbar-template">
-      <!--nav bar start-->
-      <nav class="navbar navbar-default head_color" role="navigation">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> 
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <!--<a class="navbar-brand" href="#"><p><img src="/images/TSlogo.png" width="60%" height="20%" style="padding-top: 0px;"></p></a> -->
-            <img src="/images/TSlogo.png" width="60%" height="20%" style="padding-top: 1px;background-color:#C266E0;
-              opacity:0.7;">
           </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="#"><p><b>Home</b></p></a></li>
-              <li><a href="#feedback"><p><b>Feedback</b></p></a></li>
-              <li><a href="#contactUs"><p><b>Contact Us</b></p></a></li>
-              <li class="dropdown " style="" id="usr">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi {{userName}}<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#userAccount/{{uid}}">Account</a></li>
-                  <li><a href="#getOrder/{{uid}}">Order</a></li>
-                  <li class="logout"><a><p>Logout</p></a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+        </div>
       </nav>
-      <!--nav bar end-->
     </script>
-
 
 
     <script type="text/x-template" id="landing-template">
-      <div class="home_bg">
-        <div class="container">
-          <div class="row"> <br><br>
-
-                     
-            <br>
-            <div class="col-md-offset-1 col-md-10">
-              <div class="panel_one panel-primary    ">
-                <div class="panel_one-body">
-                <br>
-                <h2 class="center-text ">Order Tiffin/Mess Facility For Home Delivery</h2>
-                <br>
-                  <div class="input-group col-md-7 col-md-offset-3">
-              <h5 class="landingErrorMsg col-sm-10 col-sm-offset-1 text-danger" style="display:none ">Please enter your search query!</h5>
-              <div class="input-group col-sm-10 col-sm-offset-1">                   
-                <input type="text" class="form-control" id="comsumerQuery"  placeholder="Enter Location/Category/Restaurant Name or Meal Type">
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-primary consumerSearch"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
-                </div>
-                <br><br>
-              </div>
-            
-            </div>
-              </div>   <br><br>
-            </div>
-          </div>
-        
-        
-      </div>
-
-    </script>
-     <script type="text/x-template" id="create-user-template">
-      <div class="container">
-        <div class="well col-md-offset-2 col-md-7 signup" align="center">
-          <h3 class="">Sign Up</h3>
-          <hr> 
-          <form class="form-horizontal create-user-form">
-            <div class="form-group">
-              <label class="col-sm-3 control-label">First Name:</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control " id="firstName" name="firstName" placeholder="First Name" required>
-              </div>
-            </div>
-            <div class="form-group">
-            <label class="col-sm-3 control-label">Last Name:</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
-              </div>
-            </div>
-            <div class="form-group"> 
-              <label class="col-sm-3 control-label">Email:</label>
-              <div class="col-sm-9">
-                <input type="email" class="form-control " name="email" placeholder="Email Address" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Password:</label>
-              <div class="col-sm-9"> 
-                <input type="password" class="form-control " id="password" name="password" placeholder="Password" required>  
-              </div>
-            </div>
-            <div class="form-group"> 
-              <label class="col-sm-3 control-label">Confirm Password:</label>
-              <div class="col-sm-9">
-                <input type="password" class="form-control " id="confirm_password" name="confirm_password" placeholder="ConfirPassword" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Contact:</label>
-              <div class="col-sm-9">
-                <input type="tel" class="form-control" id="contact" name="contactNumber" placeholder="Contact Number" required>
-              </div>
-            </div>
-            <div class="form-group ">
-              <label for="" class="col-sm-3 control-label">Address</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="" name="address.vicinity" placeOrder="street or Road" required>
-              </div>  
-            </div>
-            <div class="form-group">
-              <div class="col-sm-9 col-sm-offset-3">
-                <div class="col-sm-4">
-                  <select id="address.city" name="address.city" class="form-control">
-                    <option value="">Select City</option>
-                    <option value="Pune" >Pune</option>
-                  </select>
-                </div>
-                <div class="col-sm-4">
-                  <select id="address.state" name="address.state"  class="form-control">
-                    <option value="" >Select State</option>
-                    <option value="Maharashtra">Maharashtra</option> 
-                  </select>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" class="form-control " id="address.zipCode" name="address.zipCode" placeholder="zip code" required>
-                </div> 
-              </div>
-            </div>  
-            
-            <div class="form-group">
-              <button type="submit" class="btn btn-success ">Sign Up</button>
-            </div>
-          </form>
+      <div class="col-md-6 col-md-offset-3"><br><br><br>
+        <div class="jumbotron">
+          <h1>Hello, Visitor!</h1>
+          <p>This is landing Page</p>     
         </div>
       </div>
-      <!-- <script>
-        var addrLimit=3;
-        var addrCount=2;
-        $('.btnAddAddr').click(function(){
-          console.log('in jquery');
-          if(addrCount <= addrLimit){
-            $(this).parent().append('<div class="col-sm-7 col-sm-offset-3"> 
-                <textarea class="form-control" name="" placeholder="Address " required row="2" cols="60"></textarea>
-              </div>');
-            addrCount+=1;
-            console.log(addrCount);
-          }
-          else{
-            alert('Only 3 Addresses can be inserted');
-          }
-        });
-      </script> -->
+    </script>
+
+    <script type="text/x-template" id="create-user-template">
+      <div class="col-md-offset-3 col-md-6 signup">
+        <h3 class="center-text">Sign Up</h3 align="center">
+        <hr> 
+        <form class="form-horizontal create-user-form">
+          <div class="form-group">
+            <label class="col-sm-3 control-label">First Name:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control " id="firstName" name="firstName" placeholder="First Name" required>
+            </div>
+          </div>
+          <div class="form-group">
+          <label class="col-sm-3 control-label">Last Name:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
+            </div>
+          </div>
+          <div class="form-group"> 
+            <label class="col-sm-3 control-label">Email:</label>
+            <div class="col-sm-9">
+              <input type="email" class="form-control " name="email" placeholder="Email Address" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Password:</label>
+            <div class="col-sm-9"> 
+              <input type="password" class="form-control " id="password" name="password" placeholder="Password" required>  
+            </div>
+          </div>
+          <div class="form-group"> 
+            <label class="col-sm-3 control-label">Confirm Password:</label>
+            <div class="col-sm-9">
+              <input type="password" class="form-control " id="confirm_password" name="confirm_password" placeholder="ConfirPassword" required>
+            </div>
+          </div>
+          
+          
+          <div class="form-group">
+            <div class="col-sm-offset-5">
+              <button type="submit" class="btn btn-success ">Sign Up</button>
+            </div>             
+          </div>
+        </form>
+      </div>
+      <script>
+      </script>
     </script>
 
     <script type="text/x-template" id="login-user-template">
-      <div class="well col-md-offset-2 col-md-8 signin">
-        <form class="form-horizontal login-user-form">
-          <h3 class="center-text">User Login</h3>
-          <hr/>
-          <div class="center-text">
-            <a href="/users/fbauth" class="btn btn-primary">Sign In With Facebook</a> 
-          </div><br>
-          
-          <p class="center-text">OR</p>
+      <div class="col-md-offset-3 col-md-4 signin">
+        <form class="form-horizontal login-user-form" role="form">
+          <h4 class="center-text">User Login</h4>
+          <hr>
 
-          <h5 class="red-text" id="error-message"></h5>
           <div class="form-group"> 
             <label class="col-sm-3 control-label">Email:</label>
             <div class="col-sm-9">
@@ -254,7 +110,7 @@
           <div class="form-group"> 
             <label class="col-sm-3 control-label">Password:</label>
             <div class="col-sm-9">
-              <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
+              <input type="password" class="form-control " name="password" placeholder="Password" required >
             </div>
           </div>
 
@@ -264,1013 +120,27 @@
             </div>
           </div>
           
-          <div class="col-sm-offset-3">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h5>Dont have an account? <a href="#new"><u>Sign Up Here</u></a></h5>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h5>Forgot Password?
-              <a href="/users/user#forgotpassword">
-                <u>Click Here</u>
-              </a>
-            </h5>
-          </div>
-        </form>
-      </div>
-      </center>
-    </script>
-
-    <script type="text/x-template" id="list-template">
-      
-        <div class="row">
-          <div class="col-md-3">
-            <form class="form-horizontal filer-search-form ">
-              <div class="panel-group" id="accordion">
-                
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                        <h4>Category <span class="caret"></h4>
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapseTwo" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <div class="checkbox">
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" value="veg" name="category">Veg
-                          </label>
-                        </div>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" value="nonVeg" name="category">NonVeg
-                          </label>
-                        </div>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" value="gujrati" name="category">Gujrati
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>  
-                  
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                        <h4>Meal Type <span class="caret"></h4>
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapseOne" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" value="lunch" name="mealType">Lunch
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" value="breakfast" name="mealType">Breakfast
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" value="dinner" name="mealType">Dinner
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                        <h4>Order Type <span class="caret"></h4>
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapseThree" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" value="weekly" name="orderType">Weekly
-                        </label>
-                      </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="daily" name="orderType">Daily
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="monthly" name="orderType">Monthly
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-primary pull-left">Search</button>
-              </div>
-            </form>
-          </div>
-        </div>
-          <div class="col-md-9">
-            <div class="">
-              <div class="col-md-2 col-md-offset-2">
-              <input type="checkbox" id="selectAll">select all
-                <!--a href="#mymodel" data-toggle="modal" class="btn btn-primary">Change Location</a-->
-                <div class="modal fade" id="mymodel" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">select location</div>
-                      <div class="modal-body">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Enter Location or Name or Meal Type" id="newComsumerQuery">
-                          <span class="input-group-btn">
-                            <button type="button" class="btn btn-primary newSearch" data-dismiss="modal" >Search</button>
-                          </span>
-                        </div> 
-                      </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div class="form-group">
+            <div class="col-sm-offset-3">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h6>Dont have an account? <a href="#new"><u>Sign Up Here</u></a></h6>
             </div>
-            <div class="col-md-2 col-md-offset-4">
-              <button class="btn btn-primary checkout viewMenu">View Menu</button>
-            </div><br><br><br>
-            <div class="landingSearch">          
-              {{#each tiffinSupplers}}
-                <div class="col-md-4">
-                  <div class="abc img-thumbnail">
-                    <div><img src="../images/a1.jpg" class="img-responsive listOfSupplier_img">
-                    </div>
-                    <div class="center-text">
-                      <h4>{{this.name}}</h4>
-                      {{this.address.vicinity}}
-                      <br>{{this.address.city}}-{{this.address.zipCode}}.<br>{{this.address.state}}.                   
-                    </div>
-                    <div class="lcb">
-                      <input type="checkbox" class="listOfSuppliers" name="listOfSuppliers" value="{{this._id}}">
-                    </div> 
-                  </div>          
-                </div>
-              {{/each}}
-              </div>
-          </div>          
-        </div>
-      <script>
-       $('#selectAll').on('change',function(){
-          
-          if(this.checked) { // check select status
-            $('.listOfSuppliers').each(function() { //loop through each checkbox
-                this.checked = true;  //select all checkboxes with class "checkbox1"  
-          
-                //this.val('Unselect'); 
-                 //$(this).val('uncheck all');          
-            });
-            }else{
-                $('.listOfSuppliers').each(function() { //loop through each checkbox
-                    this.checked = false; //deselect all checkboxes with class "checkbox1" 
-                    $(this).val('Select All');                     
-                });        
-            }
-
-            
-      });
-      </script>
-    </script>
-
-   
-
-    <script type="text/x-template" id="forgotPassword-template">
-        
-        <div class="jumbotron col-md-offset-2 col-sm-8">
-        <form class="form-horizontal forgetPassword-user-form">
-
-          <h2 class="center-text">Reset Password</h2>
-          <hr/>
-
-          <h5>Enter email address registered with the application and we will send you reset password instructions shortly:</h5>
-
-          <div class="form-group">            
-
-              <h5 class="red-text" id="forgot-password-error"></h5>
-              <input type="email" class="form-control " id="email" name="email" placeholder="Email Address">
-          </div>
-          
-          <div class="form-group ">          
-            <button type="submit" class="btn btn-success">Send Instructions</button>          
           </div>
         </form>
       </div>
     </script>
 
-    <script type="text/x-template" id="checkout-template">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#breakfast" data-toggle="tab">Breakfast</a></li>
-              <li><a href="#lunch" data-toggle="tab">Lunch</a></li>
-              <li><a href="#dinner" data-toggle="tab">Dinner</a></li> 
-            </ul>
-          </div>
-        </div>
-        <div class="row">
-            <div class="tab-content">
-              <div class="tab-pane active" id="breakfast">
-                <div class="table-responsive">
-                  <table class="table table-bordered " style='table-layout:fixed'>
-                    <thead>
-                      <tr>
-                        <th>&nbsp;</th>
-                        <th class="center-text"><div class="monOfWeek"></div></th>
-                        <th class="center-text"><div class="tueOfWeek"></div></th>
-                        <th class="center-text"><div class="wedOfWeek"></div></th>
-                        <th class="center-text"><div class="thusOfWeek"></div></th>
-                        <th class="center-text"><div class="friOfWeek"></div></th>
-                        <th class="center-text"><div class="satOfWeek"></div></th>
-                        <th class="center-text"><div class="sunOfWeek"></div></th>
-                      </tr>
-                    </thead>
 
-                    <tbody>
-                    {{#each tiffinSupplers}}
-                        <tr>
-                          <td class="divMenu"><h5>{{this.tiffinboxSupplier.name}}</h5></td>
 
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 0}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 1}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 2}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</td></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 3}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 4}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 5}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'breakfast')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'breakfast' 6}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="breakfast" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>    
-
-                        </tr>
-                    {{/each}}
-                    </tbody>
-                  </table> 
-                </div>
-              </div>
-
-              <div class="tab-pane" id="lunch">                 
-                <div class="table-responsive">
-                  <table class="table table-bordered" style='table-layout:fixed'>
-                    <thead>
-                      <tr>
-                        <th>&nbsp;</th>
-                        <th class="center-text"><div class="monOfWeek"></div></th>
-                        <th class="center-text"><div class="tueOfWeek"></div></th>
-                        <th class="center-text"><div class="wedOfWeek"></div></th>
-                        <th class="center-text"><div class="thusOfWeek"></div></th>
-                        <th class="center-text"><div class="friOfWeek"></div></th>
-                        <th class="center-text"><div class="satOfWeek"></div></th>
-                        <th class="center-text"><div class="sunOfWeek"></div></th>
-                      </tr>
-                    </thead>
-                          
-                    <tbody> 
-                    {{#each tiffinSupplers}}
-                        <tr>
-                          <td class="divMenu"><h5>{{this.tiffinboxSupplier.name}}</h5></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 0}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 1}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 2}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 3}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 4}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 5}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'lunch')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'lunch' 6}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="lunch" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>      
-                        </tr>
-                    {{/each}}
-                    </tbody>
-                  </table> 
-                </div>
-              </div>
-
-              <div class="tab-pane" id="dinner">
-                <div class="table-responsive">
-                  <table class="table table-bordered" style='table-layout:fixed'>
-                    <thead>
-                      <tr>
-                        <th>&nbsp;</th>
-                        <th class="center-text"><div class="monOfWeek"></div></th>
-                        <th class="center-text"><div class="tueOfWeek"></div></th> 
-                        <th class="center-text"><div class="wedOfWeek"></div></th>
-                        <th class="center-text"><div class="thusOfWeek"></div></th>
-                        <th class="center-text"><div class="friOfWeek"></div></th>
-                        <th class="center-text"><div class="satOfWeek"></div></th>
-                        <th class="center-text"><div class="sunOfWeek"></div></th>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                    {{#each tiffinSupplers}}
-                        <tr>
-                          <td class="divMenu"><h5>{{this.tiffinboxSupplier.name}}</h5></td>
-
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 0}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 1}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 2}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 3}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 4}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 5}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>
-                          <td class="divMenu"><div class="">{{#if (isPresent tiffinboxSupplier.mealType 'dinner')}}{{#findMenuDate this.days this.tiffinboxSupplier.menu this.tiffinboxSupplier._id 'dinner' 6}}<form class=''>{{#if (isPresent ../ tiffinboxSupplier.orderType 'daily')}}<input class='pull-right ckMenuId' type='checkbox' id="" value="{{this.menu._id}}" data-date="{{this.date}}" data-mealtype="dinner" data-tiffinsupplier="{{this.ts}}" data-price="{{this.menu.fullPrice}}">{{/if}}</form><p>Menu:{{this.menu.name}}</p><p>Items:<ol>{{#each this.menu.ingredients}}<li>{{this}}</li>{{/each}}</ol></p><p>Price: {{this.menu.fullPrice}}</p>{{/findMenuDate}}{{/if}}</div></td>      
-                          
-                        </tr>
-                    {{/each}}
-                    </tbody>
-                  </table> 
-                </div>     
-              </div>
-              <div id="btnCheckin" style="display:none">   
-                <button class="btn btn-primary addTocart">AddToBasket</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      <script>
-        $('input:checkbox').change(function () {
-          if ($('input[type=checkbox]:checked').length > 0) {
-            $('#btnCheckin').show();
-            $()
-          } 
-          else {
-            $('#btnCheckin').hide();
-          }
-        });
-
-        $( document ).ready(function() {
-          
-          var monOfWeek;
-          var tueOfWeek;
-          var wedOfWeek;
-          var thusOfWeek;
-          var friOfWeek;
-          var satOfWeek;
-          var sunOfWeek;
-         
-          var weekday=new Array("Sun ","Mon ","Tue ","Wed ","Thu ",
-                "Fri ","Sat ");
-          var day1 = new Date();
-          day1.setDate(day1.getDate());
-          week = weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
-          day1.setDate(day1.getDate());
-          monOfWeek = weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
-          day1.setDate(day1.getDate()+1);
-          tueOfWeek = weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
-          day1.setDate(day1.getDate()+1);
-          wedOfWeek = weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
-          day1.setDate(day1.getDate()+1);
-          thusOfWeek = weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
-          day1.setDate(day1.getDate()+1);
-          friOfWeek = weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
-          day1.setDate(day1.getDate()+1);
-          satOfWeek = weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
-          day1.setDate(day1.getDate()+1);
-          sunOfWeek =  weekday[day1.getDay()]+' '+day1.getDate() + '/'+ (day1.getMonth()+1)+'/'+day1.getFullYear();
-          
-
-          $('.week').html(week);
-          $('.monOfWeek').html(monOfWeek);
-          $('.tueOfWeek').html(tueOfWeek);
-          $('.wedOfWeek').html(wedOfWeek);
-          $('.thusOfWeek').html(thusOfWeek);
-          $('.friOfWeek').html(friOfWeek);
-          $('.satOfWeek').html(satOfWeek);
-          $('.sunOfWeek').html(sunOfWeek);
-        });
-        var data= $('.findMenuDetail').data('menuDetail');
-        console.log('menudetail'+data);
-      </script>
-    </script>
-
-    <script type="text/x-template" id="order-detail-template">
-      <div class="table-responsive col-md-10 col-md-offset-1">
-        <form class="cart-detail">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Name of Dabbawala</th>
-                <th>Date</th>
-                <th>Meal Type</th>
-                <th>Category</th>
-                <th>Menu</th>
-                <th>Price</th>
-                <th style="display:none" class="d-addr-head">Delivry Address</th>
-                <th></th>
-              </tr>
-            </thead>
-
-            <tbody>  
-              {{#each cartDetail.orderDetails}}      
-                <tr>
-                  <td><h5>{{this.tiffinboxSupplier.name}}</h5></td>
-                  <td>{{#dateFormate this.date}}{{/dateFormate}}</td>
-                  <td>{{this.mealAt}}</td> 
-                  {{#menuDet this.tiffinboxSupplier.menu this.menuId}}
-                    <td>{{this.category}}</td>
-                    <td><ol>{{#each this.ingredients}}<li>{{this}}</li>{{/each}}</ol></td>
-                    <td>{{this.fullPrice}}<input type="number" name="price" value="{{this.fullPrice}}" style="display:none"></td>
-                  {{/menuDet}}
-                                    
-                  <td style="display:none" class="d-addr-data">{{#if @index}}
-                      
-                      <textarea placeholder="Enter Address" name="deliveryAddress" id="{{this._id}}" class="secondAddr deliveryaddress"></textarea>
-                      {{else}}<textarea placeholder="Enter Address" name="deliveryAddress" id="{{this._id}}" class="firstAddr deliveryaddress"></textarea><br>
-
-                      <input class='pull-left ckMenuId address_cb' type='checkbox' id="" value="">same for all
-                      {{/if}}
-                  </td>
-                  
-                  <td class="action"><button title="Remove Item" type="button" class="btn btn-primary btn-singlecartid" data-singlecartid="{{this._id}}"><span class="glyphicon glyphicon-remove btn-remove center-text"></span></button>
-                  </td>     
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-          <div class="center-text">
-         
-              
-              <div class="form-group contact_no" style="display:none" id="contact_no"> 
-                <label class="col-sm-2 control-label">Contact:</label>
-                <div class="col-sm-3">
-                  <input type="number" class="form-control delivey-contact" name="" placeholder="Contact Number" required>
-                </div>
-              </div>
-            <h2 class="col-sm-offset-3">             
-              <span class="label label-default">Item:{{item}}</span>
-              <span class="label label-default">Total:{{total}}</span>
-            </h2>
-          </div>
-          <h1>
-            <div class="input-group pull-right">
-                <button class="btn btn-primary continueOrder" type="button" id='btn-continue-order'>Continue</button>
-            </div>
-            <div class="input-group pull-right">
-                <button class="btn btn-primary placeOrder" type="submit" id='btn-place-order' style="display:none">Place Order</button>
-            </div>
-          </h1>  
-        </form>
-
-
-                  
-
-
-              <!-- Modal--> 
-              <div class="modal fade" id="modal-placeorder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title" id="myModalLabel">Login to website for ordering</h4>
-                    </div>
-                    <div class="modal-body">
-
-                      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                          <div class="item active">
-                            <div class="signin col-md-12">
-
-                            <div class="center-text">
-                              <a href="/users/fbauth" class="btn btn-primary">Sign In With Google</a> 
-                            </div><br>                            
-                            <div class="center-text">
-                                <a href="/users/fbauth" class="btn btn-primary">Sign In With Facebook</a> 
-                            </div><br>
-                            <p class="center-text"> <span class="badge">OR</span></a></p><br>
-                            <!-- Nav tabs -->
-                              <ul class="nav nav-tabs">
-                                <li class="active"><a href="#s1" data-toggle="tab">Sign In</a></li>
-                                <li><a href="#s2" data-toggle="tab">Sign Up</a></li>
-                              </ul>
-
-                              <!-- Tab panes -->
-                              <div class="tab-content">
-                                <div class="tab-pane active" id="s1">
-                                  <form class="form-horizontal login-user-form">               
-                                    <h5 class="red-text" id="error-message"></h5>
-                                    <div class="form-group"> 
-                                      <label class="col-sm-3 control-label">Email:</label>
-                                      <div class="col-sm-9">
-                                        <input type="email" class="form-control" name="email" placeholder="Email Address" >
-                                      </div>
-                                    </div>
-
-                                    <div class="form-group"> 
-                                      <label class="col-sm-3 control-label">Password:</label>
-                                      <div class="col-sm-9">
-                                        <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
-                                      </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                      <div class="col-sm-offset-3">
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="" class="btn btn-success button-padding">Sign In</button><br>
-                                        <a href="/users/user#forgotpassword">
-                                          Forgot Password?
-                                        </a>                                  
-                                      </div>
-                                    </div>           
-                                  </form>
-                                </div>
-                                <div class="tab-pane" id="s2">
-                                  <form class="form-horizontal create-user-form">               
-                                    <h5 class="red-text" id="error-message"></h5>
-                                    <div class="form-group">
-                                      <label class="col-sm-3 control-label">Name:</label>
-                                      <div class="col-sm-4">
-                                        <input type="text" class="form-control " id="firstName" name="firstName" placeholder="First Name" required>
-                                      </div>&nbsp;&nbsp;
-                                      <div class="col-sm-4">
-                                        <input type="text" class="form-control " id="lastName" name="lastName" placeholder="Last Name" required>
-                                      </div>
-                                    </div>
-
-                                    <div class="form-group"> 
-                                      <label class="col-sm-3 control-label">Email:</label>
-                                      <div class="col-sm-9">
-                                        <input type="email" class="form-control" name="email" placeholder="Email Address" >
-                                      </div>
-                                    </div>
-
-                                    <div class="form-group"> 
-                                      <label class="col-sm-3 control-label">Password:</label>
-                                      <div class="col-sm-9">
-                                        <input type="password" class="form-control " id="password" name="password" placeholder="Password" required >
-                                      </div>
-                                    </div>
-                                    <div class="form-group"> 
-                                      <label class="col-sm-3 control-label">Confirm Password:</label>
-                                      <div class="col-sm-9">
-                                        <input type="password" class="form-control " id="pass" name="confirm_password" placeholder=" Confirm Password" required >
-                                      </div>
-                                    </div>
-                                    <div class="form-group">
-                                      <label class="col-sm-3 control-label">Contact:</label>
-                                      <div class="col-sm-9">
-                                        <input type="tel" class="form-control" id="contact" value='{{user.contactNumber}}' name="contactNumber" placeholder="Contact Number" required>
-                                      </div>
-                                    </div> 
-                                    <div class="form-group ">
-                                      <label for="" class="col-sm-3 control-label">Address</label>
-                                      <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="" name="address.vicinity" placeholder="street or Road" required>
-                                      </div>  
-                                    </div>
-                                    <div class="form-group">
-                                      <div class="col-sm-10 col-sm-offset-2">
-                                        <div class="col-sm-5">
-                                          <select id="address.city" name="address.city" class="form-control">
-                                            <option value="">Select City</option>
-                                            <option value="Pune" >Pune</option>
-                                          </select>
-                                        </div>
-                                        <div class="col-sm-4">
-                                          <select id="address.state" name="address.state"  class="form-control">
-                                            <option value="">Select State</option>
-                                            <option value="Maharashtra">Maharashtra</option> 
-                                          </select>
-                                        </div>
-                                        <div class="col-sm-3">
-                                          <input type="text" class="form-control " id="address.zipCode" name="address.zipCode" required placeholder="zip code">
-                                        </div> 
-                                      </div>
-                                    </div> 
-
-                                    <div class="form-group">
-                                      <div class="col-sm-offset-3">
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="" class="btn btn-success button-padding">Sign Up Now</button>
-                                      </div>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div> 
-
-                            <div class="carousel-caption">
-                              
-                            </div>
-                          </div>                
-                        </div>
-
-                        <!-- Controls 
-                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                          <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                          <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>-->
-                      </div>
-                    </div>
-                   
-
-                   
-
-
-                    <!--
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default result" data-dismiss="modal" value="close">Close</button>
-                      <button type="button" class="btn btn-primary result" id='' value="save" data-dismiss="modal">Save & Continue</button>
-                    </div>
-                    -->
-                  </div>
-                </div>
-              </div>
-
-
-              <!-- Modal -->
-              <div class="modal fade" id="modal-conform-order" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title" id="myModalLabel">Order Confirmation Page</h4>
-                    </div>
-                    <div class="modal-body">
-                      Are u sure to confirm the Order!
-                      <br><br><br>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default result" data-dismiss="modal" value="close">Cancle</button>
-                      <button type="button" class="btn btn-primary result" id='confirm' value="save" data-dismiss="modal">Confirm</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-       
-        </div>
-      </div>
-      <script>
-      //alert('at order tempate');
-          //$('.create-user-form').hide();
-          $(".signup").click(function(){
-            //alert('at signup button');
-          $(".create-user-form").fadeToggle();
-        });
-
-        $('.contact_cb').on('change',function(){
-
-          if (this.checked){
-            $('.second').val($('.first').val());
-          }
-          else{
-            $('.second').val('');
-          }
-          
-        });
-        $('.address_cb').on('change',function(){
-          if (this.checked){
-            $('.secondAddr').val($('.firstAddr').val());
-          }
-          else{
-            $('.secondAddr').val('');
-          }
-        });
-      </script>
-    </script>
-
-    <script type="text/x-template" id="homepage-template">
-      <h2>Home Page!</h2>
-    </script>
-
-    
-    
-    <script type="text/x-template" id="profile-template">
-      <div class="col-md-8 col-md-offset-2">
-        <h2>User Profile Page!</h2>
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="active"><a href="#a1" role="tab" data-toggle="tab">Basic info</a></li>
-          <li><a href="#a2" role="tab" data-toggle="tab">Change passoword</a></li>
-          
-        </ul>
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <div class="tab-pane active" id="a1">
-            <form class="form-horizontal edit-user-basic-form">
-            <div class="form-group">
-              <label class="col-sm-3 control-label">First Name:</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control " value='{{user.name.first}}' id="firstName" name="firstName" placeholder="First Name" required>
-              </div>
-            </div>
-            <div class="form-group">
-            <label class="col-sm-3 control-label">Last Name:</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="lastName" value='{{user.name.last}}' name="lastName" placeholder="Last Name" required>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Contact:</label>
-              <div class="col-sm-9">
-                <input type="tel" class="form-control" id="contact" value='{{user.contactNumber}}' name="contactNumber" placeholder="Contact Number" required>
-              </div>
-            </div>  
-           
-            <div class="form-group ">
-              <label for="" class="col-sm-3 control-label">Address</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="" name="address.vicinity" required placeholder="enter Road.or street" value="{{user.address.vicinity}}">
-              </div>  
-            </div>
-            <div class="form-group">
-              <div class="col-sm-9 col-sm-offset-3">
-                <div class="col-sm-4">
-                  <select id="city" name="address.city" class="form-control">
-                    <option value="">Select City</option>
-                    <option {{#if  (isSelected user.address.city 'Pune')}} selected {{/if}}>Pune</option>
-                  </select>
-                </div>
-                <div class="col-sm-4">
-                  <select id="address.state" name="address.state"  class="form-control">
-                    <option value="" {{#if  (isSelected user.address.state 'Maharashtra')}} selected {{/if}}>Select State</option>
-                    <option>Maharashtra</option> 
-                  </select>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" class="form-control " id="zipCode" name="address.zipCode" required placeholder="zip code" value="{{user.address.zipCode}}">
-                </div> 
-              </div>
-            </div>
-        
-            <div class="form-group">
-              <div class="col-sm-offset-3">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-success ">Update</button>
-                <input type="hidden" name="id" value="{{user._id}}">
-              </div>
-            </div>
-          </form>
-
-          </div>
-          <div class="tab-pane" id="a2">
-            <form class="form-horizontal edit-user-password-form">               
-              <h5 class="red-text" id="error-message"></h5>
-                             
-              <div class="form-group"> 
-                <label class="col-sm-3 control-label">old password:</label>
-                <div class="col-sm-9">
-                  <input type="password" class="form-control" name="oldpswd" placeholder="Current Password" >
-                </div>
-              </div>
-
-              <div class="form-group"> 
-                <label class="col-sm-3 control-label">New Password:</label>
-                <div class="col-sm-9">
-                  <input type="password" class="form-control " id="" name="newpswd" placeholder="New Password" required >
-                </div>
-              </div>
-              <div class="form-group"> 
-                <label class="col-sm-3 control-label"> Confirm Password:</label>
-                <div class="col-sm-9">
-                  <input type="password" class="form-control " id="pass" name="confirmpswd" placeholder=" Repeat Password" required >
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-sm-offset-3">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="" class="btn btn-success button-padding">Update</button>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="tab-pane" id="a3">
-          
-          </div>
-        </div>
-      </div>
-    </script>
-
-    <script type="text/x-template" id="user-order-template">
-      <h2>User Order Page!</h2>
-      <div class="userOrder"></div>
-      <script>
-
-
-        setCal()
-
-        function getTime() {
-        // initialize time-related variables with current time settings
-        var now = new Date()
-        var hour = now.getHours()
-        var minute = now.getMinutes()
-        now = null
-        var ampm = "" 
-
-        // validate hour values and set value of ampm
-        if (hour >= 12) {
-        hour -= 12
-        ampm = "PM"
-        } else
-        ampm = "AM"
-        hour = (hour == 0) ? 12 : hour
-
-        // add zero digit to a one digit minute
-        if (minute < 10)
-        minute = "0" + minute // do not parse this number!
-
-        // return time string
-        return hour + ":" + minute + " " + ampm
-        }
-
-        function leapYear(year) {
-        if (year % 4 == 0) // basic rule
-        return true // is leap year
-        /* else */ // else not needed when statement is "return"
-        return false // is not leap year
-        }
-
-        function getDays(month, year) {
-        // create array to hold number of days in each month
-        var ar = new Array(12)
-        ar[0] = 31 // January
-        ar[1] = (leapYear(year)) ? 29 : 28 // February
-        ar[2] = 31 // March
-        ar[3] = 30 // April
-        ar[4] = 31 // May
-        ar[5] = 30 // June
-        ar[6] = 31 // July
-        ar[7] = 31 // August
-        ar[8] = 30 // September
-        ar[9] = 31 // October
-        ar[10] = 30 // November
-        ar[11] = 31 // December
-
-        // return number of days in the specified month (parameter)
-        return ar[month]
-        }
-
-        function getMonthName(month) {
-        // create array to hold name of each month
-        var ar = new Array(12)
-        ar[0] = "January"
-        ar[1] = "February"
-        ar[2] = "March"
-        ar[3] = "April"
-        ar[4] = "May"
-        ar[5] = "June"
-        ar[6] = "July"
-        ar[7] = "August"
-        ar[8] = "September"
-        ar[9] = "October"
-        ar[10] = "November"
-        ar[11] = "December"
-
-        // return name of specified month (parameter)
-        return ar[month]
-        }
-
-        function setCal() {
-        // standard time attributes
-        var now = new Date()
-        var year = now.getYear()
-        if (year < 1000)
-        year+=1900
-        var month = now.getMonth()
-        var monthName = getMonthName(month)
-        var date = now.getDate()
-        now = null
-
-        // create instance of first day of month, and extract the day on which it occurs
-        var firstDayInstance = new Date(year, month, 1)
-        var firstDay = firstDayInstance.getDay()
-        firstDayInstance = null
-
-        // number of days in current month
-        var days = getDays(month, year)
-
-        // call function to draw calendar
-        drawCal(firstDay + 1, days, date, monthName, year)
-        }
-
-        function drawCal(firstDay, lastDate, date, monthName, year) {
-        // constant table settings
-        var headerHeight = 50 // height of the table's header cell
-        var border = 2 // 3D height of table's border
-        var cellspacing = 4 // width of table's border
-        var headerColor = "midnightblue" // color of table's header
-        var headerSize = "+3" // size of tables header font
-        var colWidth = 60 // width of columns in table
-        var dayCellHeight = 25 // height of cells containing days of the week
-        var dayColor = "darkblue" // color of font representing week days
-        var cellHeight = 40 // height of cells representing dates in the calendar
-        var todayColor = "red" // color specifying today's date in the calendar
-        var timeColor = "purple" // color of font representing current time
-
-        // create basic table structure
-        var text = "" // initialize accumulative variable to empty string
-        text += '<CENTER>'
-        text += '<h2>User Order Page!</h2>'
-        text += '<TABLE BORDER=' + border + ' CELLSPACING=' + cellspacing + '>' // table settings
-        text += '<TH COLSPAN=7 HEIGHT=' + headerHeight + '>' // create table header cell
-        text += '<FONT COLOR="' + headerColor + '" SIZE=' + headerSize + '>' // set font for table header
-        text += monthName + ' ' + year 
-        text += '</FONT>' // close table header's font settings
-        text += '</TH>' // close header cell
-
-        // variables to hold constant settings
-        var openCol = '<TD WIDTH=' + colWidth + ' HEIGHT=' + dayCellHeight + '>'
-        openCol += '<FONT COLOR="' + dayColor + '">'
-        var closeCol = '</FONT></TD>'
-
-        // create array of abbreviated day names
-        var weekDay = new Array(7)
-        weekDay[0] = "Sun"
-        weekDay[1] = "Mon"
-        weekDay[2] = "Tues"
-        weekDay[3] = "Wed"
-        weekDay[4] = "Thu"
-        weekDay[5] = "Fri"
-        weekDay[6] = "Sat"
-
-        // create first row of table to set column width and specify week day
-        text += '<TR ALIGN="center" VALIGN="center">'
-        for (var dayNum = 0; dayNum < 7; ++dayNum) {
-        text += openCol + weekDay[dayNum] + closeCol 
-        }
-        text += '</TR>'
-
-        // declaration and initialization of two variables to help with tables
-        var digit = 1
-        var curCell = 1
-
-        for (var row = 1; row <= Math.ceil((lastDate + firstDay - 1) / 7); ++row) {
-        text += '<TR ALIGN="right" VALIGN="top">'
-        for (var col = 1; col <= 7; ++col) {
-        if (digit > lastDate)
-        break
-        if (curCell < firstDay) {
-        text += '<TD ></TD>';
-        curCell++
-        } else {
-        if (digit == date) { // current cell represent today's date
-        text += '<TD HEIGHT=' + cellHeight + '>'
-        text += '<FONT COLOR="' + todayColor + '">'
-        text += digit
-        text += '</FONT><BR>'
-        text += '<FONT COLOR="' + timeColor + '" SIZE=2>'
-        text += '<CENTER>' + getTime() + '</CENTER>'
-        text += '</FONT>'
-        text += '</TD>'
-        } else
-        text += '<TD HEIGHT=' + cellHeight + '>' + digit + '</TD>'
-        digit++
-        }
-        }
-        text += '</TR>'
-        }
-
-        // close all basic table tags
-        text += '</TABLE>'
-        text += '</CENTER>'
-
-        // print accumulative HTML string
-        //document.write(text) 
-        $('.userOrder').html(text);
-        }
-        </script>
-    </script>
-
-    
-    <script>
-      // $(document).ready(function() {
-      //   $("[href]").each(function() {
-      //     if (this.href == window.location.href) {
-      //       $(this).addClass("active");
-      //     }
-      //   });
-      // });
-    </script>  
     <script src= "/javascripts/lib/jquery.js"></script> 
-    <script src= "/javascripts/lib/handlebars-v1.3.0.js"></script>
+    <script src= "/javascripts/lib/handlebars.js"></script>
     <script src= "/javascripts/lib/underscore.js"></script>
     <script src= "/javascripts/lib/backbone.js"></script>
     <script src= "/javascripts/lib/bootstrap.min.js"></script>
-    <!--<script src= "/javascripts/lib/bootstrapdailog.min.js"></script>-->
-    <script src= "/javascripts/lib/helper.js"></script>
     <script src="/javascripts/backbone_utils.js"></script>
-    <script src="/javascripts/backbone/model.js"></script>
-    <script src="/javascripts/backbone/collections.js"></script>
-    <script src="/javascripts/backbone/view.js"></script>
-    <script src="/javascripts/backbone/collections.js"></script>
-    <script src="/javascripts/backbone/router.js"></script>
-    <script src="/javascripts/backbone/app.js"></script>
+    <script src="/javascripts/registration/model.js"></script>
+    <script src="/javascripts/registration/view.js"></script>
+    <script src="/javascripts/registration/router.js"></script>
+    <script src="/javascripts/registration/app.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   </body>
 </html>

@@ -1,64 +1,89 @@
-express-backbone-boilerplate
-===============
+                             Image Upload Project
 
-## Setting up project on development machine:
 
-Assuming that you have nodejs and mongodb already installed and running, following are the steps for setting up the project:
+Run project by following commands :- 
 
-1. Clone the repository:
-	```
-	$ git clone https://github.com/sqrinfotech/express-backbone-boilerplate.git
-	```
+* npm install
+* node app.js
 
-2. cd to the cloned directory and run following command:
-	```
-	$ npm install
-	```
-   This will install all the dependencies.
 
-3. Now run the server by typing following command :
+Login :- 
 
-	In case you have nodemon installed,
-	```
-	$ nodemon app.js
-	```
-	otherwise,
-	```
-	$ node app.js
-	```
-Server will now start running at port 3000. Finally visit [http://localhost:3000/](http://localhost:3000/).
+In this project, there are two logins
+* login as admin :--
+admin's has created directly by runing the project. So, we just have to login by following username and password.
+Username : --  admin@sqrinfotech.com
+password : -- admin123
 
-##Configuration:
+* login as user :-
+User will have to create his account before login.
 
-1. This boilerplate uses [sendgrid](http://sendgrid.com/) for sending email. Therefore one needs to create sendgrid account(if he already does not have one). Sendgrid credentials needs to be added in `config/secret.js` file:
+                                Landing Page :-
 
-	```
+4800600
 
-	sendgrid: {
-      username: 'SENDGRID_USERNAME',
-      password: 'SENDGRID_PASSWORD'
- 	}
 
-	```
 
-2. To enable facebook authentication, one must first create an app at [Facebook Developers](https://developers.facebook.com/). Detailed steps for creating facebook application and obtaining `App ID` and `App Secret` are explained [here](https://github.com/sqrinfotech/express-backbone-boilerplate/blob/master/create-facebook-application-to-get-appId-and-appSecret.md). `App ID` and `App Secret` thus obtained need to be added in `config/secret.js` file:
 
-  ```
-    facebook: {
-        clientID: 'FACEBOOK_APP_ID',
-        clientSecret: 'FACEBOOK_APP_SECRET',
-        callbackURL: config.development.siteUrl + '/users/fbAuthenticationComplete',
-        passReqToCallback: true
-    }
-  ```
-  
-3. Enter a valid email address in `from` field of `email` object in `config/config.js` file.
-    
-  ```
-    email: {
-        from: 'EMAIL_ADDRESS',
-        /**
-        * Other fields
-        */
-      }
-  ```
+
+
+
+
+
+                                SignUp Page :-
+
+                                      00
+                                       
+                                       
+                                 Login Page:--
+                                       
+-3200400
+
+
+
+
+Adding Image into database :-
+
+After Login, user can upload the image by clicking into upload image button and save it by clicking into save button.
+Here, image will be saved into database after converting into binary form.
+
+
+-2203450
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Displaying Images from database :-
+
+After Login, admin can do the following things:-
+* Can view the unapproved as well as approved image.
+* Can approve the image by clicking into link "Click here to approve image"
+* Can reject the image by clicking into link "Click here to reject image"
+
+
+-2438400
+
+
+
+

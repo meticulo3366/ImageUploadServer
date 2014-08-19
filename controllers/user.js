@@ -3,24 +3,19 @@
  */
 
 var mongoose = require('mongoose')
+  , MongoDb = require("mongodb")
   , passport = require('passport')
   , util = require('../utils')
   , bcrypt = require('bcrypt-nodejs')
   , config = require('../config/config')
-  , TiffinSupplier = require('../models/TiffinboxSuppliers')
   , User = require('../models/User');
 
 
 module.exports = function(app) {
-  
   var user = {};
 
     user.create = function(req, res, next){
-      console.log('in create user function');
-      console.log(req.query.dabbawalaId);
-    var isTiffinSupplierMember= false;
     var user = new User(req.body);
-    //user.set('name', req.body.firstName + ' ' + req.body.lastName);
     user.set('fullname', req.body.firstName + ' ' + req.body.lastName);
     user.set('password', req.body.password);
 
@@ -31,40 +26,10 @@ module.exports = function(app) {
     user.confirmationTokenSentAt = new Date();
     
     user.loginIps.push(req.ip);
-    //user.address.push({vicinity:req.body.vicinity,city:req.body.city,state:req.body.state,zipCode:req.body.zipCode});
-
-    if(req.query.dabbawalaId){
-        console.log('tiffinboxSupplier id is'+ req.query.dabbawalaId);
-        isTiffinSupplierMember= true;
-        user.tiffinboxSupplier= req.query.dabbawalaId;
-    }
 
     user.save(function(err, user){
     if (err) { return next(err)};
       if(user){
-        if(isTiffinSupplierMember){
-          TiffinSupplier.findById(req.query.dabbawalaId,
-            function(err,tiffinboxSupplier){
-              tiffinboxSupplier.team.push(user._id);
-              tiffinboxSupplier.save(function(err,tiffinboxSupplier){
-                console.log('dabbawala updated with team'+tiffinboxSupplier.team);
-                  // Store
-                  //localStorage.setItem("tiffinboxSupplierId", tiffinboxSupplier._id)
-                  // Retrieve localStorage.getItem(tiffinboxSupplierId);
-            });
-          });
-        }
-
-        var params = {
-          to: user.email,
-          message: config.email.message.buildConfirmationMessage(user.email, user.confirmationToken),
-          subject: config.email.subject.confirmationEmail
-        };
-        app.monq.sendEmail(params, function(err){
-          if(err) { return next(err);};
-        });
-
-        req.flash('info', {msg: config.messages.confirmationMailSent});
         return res.json(user);
       }
       else {
@@ -74,104 +39,8 @@ module.exports = function(app) {
     });
   };
 
-  user.search= function (req, res, next){
-    console.log('in search api user');
-    console.log(req.params.id);
-    if(req.params.id){
-    User.findById(req.params.id, 
-      function(err,user){
-        if(!err){
-          console.log(user);
-          return res.json(user);
-        } else {
-          return next(err);
-        }
-      });
-    }  
-  };
-
-  user.update = function (req, res, next){
-    console.log('in update api user');
-    console.log(req.body);
-    if(req.params.id){
-      User.findById(req.params.id, function(err,user){
-        if(err){return next(err);}
-        if(user){
-          //user.set('password', req.body.password);
-          user.set('fullname', req.body.firstName + ' ' + req.body.lastName);
-          user.loginIps.push(req.ip);
-          user.contactNumber= req.body.contactNumber;
-          user.address= req.body.address;
-          // console.log('length:'+user.address.length);
-          // for (var i = 0;i< user.address.length;i++){
-          //   user.address[i].push(req.body.address);
-          // }
-          // user.address.push({vicinity:req.body.vicinity,city:req.body.city,state:req.body.state,zipCode:req.body.zipCode});
-          // user.updatedAt = new Date();
-
-          user.save(function(err,user){
-            if(err){return next(err);}
-            if(user){
-              console.log(user);
-              return res.json(user);
-            }
-            else{
-               return res.status(500).json({error: 'Unable to update user!'});  
-            }
-          }); 
-        }         
-      });
-    }  
-  };
-
-  user.changePassword= function(req, res, next){
-    console.log('in changePassword api'+req.params.id);
-    User.findById(req.params.id, function(err, user){
-      if (err){ return next(err);}
-      if (user){
-        console.log(user);
-        console.log('old pswd'+req.body.oldpswd);
-        var pswd_match= bcrypt.compareSync(req.body.oldpswd, user.hash);
-        console.log('result:'+pswd_match);
-        if(pswd_match){
-          console.log(req.body.newpswd);
-          user.set('password', req.body.newpswd);
-          user.save(function(err, user){
-            if(err){ return next(err);}
-            if(user){
-              console.log('password changed successfully');
-              return res.json(user);
-            }
-          })
-
-        }
-      }
-    });
-  };
-
-  user.delete = function (req, res, next){
-    console.log('in delete user api'+req.params.id);
-    if(req.params.id){
-      console.log("ok");
-      User.findById(
-        req.params.id,
-        function(err,user){
-          if(!err){
-            console.log(user);
-            
-            if(user){
-              user.remove();
-              res.json(user);
-            }
-          }
-      });
-    }  
-  };
-
   user.userLoggedIn= function(req, res, next){
-    console.log('in userLoggedIn api');
     if(req.user) {
-      console.log('logged');
       return res.json({message: true, user: req.user});
     } else {
       return res.json({message: false});
@@ -206,7 +75,6 @@ module.exports = function(app) {
   };
 
   user.authenticate = function(req, res, next){
-    //console.log(req);
     passport.authenticate('local', function(err, user, info) {
       if (err) { return next(err)};
 
@@ -225,102 +93,10 @@ module.exports = function(app) {
     })(req, res, next);
   };
 
-
-  user.startFbAuthentication = function(req, res, next){
-    passport.authenticate('facebook', {
-      scope:['email', 'read_stream', 'publish_actions'],
-      profileFields: ['email', 'picture']
-    })(req, res, next);
-  };
-
-  user.onFbAuthenticationComplete = function(req, res, next){
-    passport.authenticate('facebook', function(err, user, info) {
-      if (err) { return next(err);}
-      if (!user) {
-        return res.status(500).json({error: 'User not found!'});
-      }
-      return req.logIn(user, function(err) {
-        if (err) { return next(err);}
-
-        if(info != null) {
-          return res.redirect(info.redirectTo);
-        }        
-      });
-    })(req, res, next);
-  };
-
   user.logout = function(req, res){
     req.logout();
     req.flash('info', {msg: config.messages.signOut});
     return res.json({msg: config.messages.signOut});
-  };
-
-  user.forgotPassword = function(req, res, next) {
-     var query = {email: req.body.email};
-     User.findOne(query, function (err, user) {
-      if (err) {next(err); }
-      if (user) {
-        var resetToken = util.getRandomToken();
-        
-        user.resetPasswordToken = resetToken;
-        user.resetPasswordTokenSentAt = user.updatedAt = new Date();
-
-        user.save(function(err){
-          if(err) { return next(err)};
-
-          var params = {
-            to: user.email,
-            message: config.email.message.buildResetPasswordMessage(user.email, user.resetPasswordToken),
-            subject: config.email.subject.resetPasswordEmail
-          };
-          app.monq.sendEmail(params, function(err){
-            if(err) { return next(err);}
-          });
-          return res.json({msg: config.messages.resetPswdMailSent});
-        });      
-      } else {
-        return res.status(500).json({error: config.messages.emailNotRegistered});
-      };
-    });
-  };
-
-  user.renderResetPasswordPage = function(req, res, next) {
-    var query = {
-      email: req.query.email,
-      resetPasswordToken: req.query.token
-    };
-
-    User.findOne(query, function (err, user) {
-      if(err) { return next(err)};
-
-      if(user) {
-        req.flash('info', [req.query.token, req.query.email])
-        return res.redirect('/users/resetPasswordPage?token='+user.resetPasswordToken+'&email=' + user.email);
-      } else {
-        return res.status(500).json({error: config.messages.invalidTokenEmail});
-      };
-    });
-  };
-
-  user.resetPassword = function(req, res, next) {
-    var newPassword = req.body.newPassword
-    , query = {email: req.body.email, resetPasswordToken: req.body.token};
-
-    User.findOne(query, function (err, user) {
-        if (user) {
-          user.set('password', newPassword);
-          user.resetPasswordToken = null;
-          user.updatedAt = new Date();
-
-          user.save(function(err){
-            if(err) { next(err); }
-            req.flash(req.flash('info', {msg: config.messages.pswdResetSuccessfully}));
-            return res.redirect('/users/user#signin');
-          });
-        } else{
-          return res.status(500).json({error: config.messages.invalidTokenEmail});
-        };
-    });
   };
   return user;
 };

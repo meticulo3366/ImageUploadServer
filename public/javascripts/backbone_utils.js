@@ -1,5 +1,5 @@
 $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
-  options.url = 'http://localhost:3000' + options.url;
+  options.url = 'http://127.0.0.1:3000' + options.url;
 });
 
 $.fn.serializeObject = function() {

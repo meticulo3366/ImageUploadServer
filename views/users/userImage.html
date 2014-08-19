@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tital of the web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/test.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">    
+  </head>
+
+  <body>
+
+    <div class="navigation"></div>    
+    <div class="page"></div>
+
+    <script type="text/x-template" id="navbar-template">
+      <!--nav bar start-->
+      <nav class="navbar navbar-default head_color" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> 
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="#"><p><b>Home</b></p></a></li>
+              <li class="logout"><a><p>Logout</p></a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </script>
+
+
+    <script type="text/x-template" id="images-list-template">
+
+      <div class="col-md-offset-3 col-md-4 signin">
+        <h3 class="center-text">Uplaod your new image</h3>
+        <hr/>
+
+        <form class="form-horizontal upload-picture-form" data-remote="true" enctype="multipart/form-data">
+
+          <div class="form-group">
+            <label class="col-md-4 control-label " >Uplaod Image:</label>
+            <div class="col-sm-5">  
+              <label class="uploadImageBtn">Upload Image
+                <input style="display: none;" class="input-file firstuploadImage" id="uploadImage" name="imageUrl" type="file">
+              </label>
+            </div>
+
+            <div class="col-sm-2">
+              <img id="uploadImageDisplay" class=" img-responsive">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-3">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-success ">Save Image</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <div style="font-weight:bold;color:green;" id="error-message" class="center-text">
+      </div>
+      
+    </script>
+
+
+    <script src= "/javascripts/lib/jquery.js"></script> 
+    <script src= "/javascripts/lib/handlebars.js"></script>
+    <script src= "/javascripts/lib/underscore.js"></script>
+    <script src= "/javascripts/lib/backbone.js"></script>
+    <script src= "/javascripts/lib/bootstrap.min.js"></script>
+    <script src="/javascripts/backbone_utils.js"></script>
+    <script src="/javascripts/image/model.js"></script>
+    <script src="/javascripts/image/collections.js"></script>
+    <script src="/javascripts/image/view.js"></script>
+    <script src="/javascripts/image/router.js"></script>
+    <script src="/javascripts/image/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Upload Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/test.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">    
+  </head>
+
+  <body>
+
+    <div class="navigation"></div>    
+    <div class="page"></div>
+
+    <script type="text/x-template" id="navbar-template">
+      <!--nav bar start-->
+      <nav class="navbar navbar-default head_color" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> 
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="#"><p><b>Home</b></p></a></li>
+              <li class="logout"><a><p>Logout</p></a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </script>
+
+
+    <script type="text/x-template" id="all-images-template">
+      <div id="maincontent" class="trippage my-images">
+        <div class="container">
+          <div class="panel panel-default well-size">
+            <div class="panel-body">
+              <div class="all-images">
+                <ul class="nav nav-pills nav-justified">
+                  <li id="in-progress" class="type"><a class="aa image-type" data-type="inProgress">Images To Be Approved</a></li>
+                  <li id="appr" class="type"><a class="image-type" data-type="approved">Approved Images</a></li>
+                </ul><br/>
+
+                <div id="inProgress">
+                  {{#imagesExist image "In Progress"}}
+                    <h4 class="center-text">In-Progress Images : </h4>
+                      {{#imagesList this.images "In Progress"}}
+                        <div class="col-sm-4">
+                          <img id="imgDisplay" src="{{this.image.img.data}}" class="img-responsive" style="width:280px; height:210px;">
+                          <a class="approve-img" href="#" data-imgid="{{this.image._id}}">Click here to approve image</a><br/>
+                          <a class="reject-img" href="#" data-imgid="{{this.image._id}}">Click here to reject image</a>
+                        </div>
+                      {{/imagesList}}
+                  {{else}}
+                    <h3 class="center-text">No In Progress Images exist</h3>
+                  {{/imagesExist}}
+                </div>
+
+                <div id="approved">
+                  {{#imagesExist image "Approved"}}
+                    <h4 class="center-text">Approved Images : </h4><hr/>
+                      {{#imagesList this.images "Approved"}}
+                        <div class="col-sm-4">
+                          <img id="imgDisplay" src="{{this.image.img.data}}" class="img-responsive" style="width:280px; height:210px;">
+                        </div>
+                      {{/imagesList}}
+                  {{else}}
+                    <h3 class="center-text">No Approved Images exist</h3>
+                  {{/imagesExist}}
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        $(document).ready(function(){
+          $('#in-progress').addClass('active');
+          $('#approved').hide();
+        });
+
+        $('.image-type').on('click', function(){
+          var selected = $(this).data('type');
+          if(selected == "inProgress"){
+            $('#approved').hide();
+            $('#inProgress').show();
+            $('.type').removeClass('active');
+            $('#in-progress').addClass('active');      
+          };
+
+          if(selected == "approved"){
+            $('.type').removeClass('active');
+            $('#approved').show();
+            $('#appr').addClass('active');
+            $('#inProgress').hide();
+          };
+        });
+
+      </script>
+    </script>
+
+    
+    <script src= "/javascripts/lib/jquery.js"></script> 
+    <script src= "/javascripts/lib/handlebars.js"></script>
+    <script src= "/javascripts/lib/underscore.js"></script>
+    <script src= "/javascripts/lib/backbone.js"></script>
+    <script src= "/javascripts/lib/bootstrap.min.js"></script>
+    <script src="/javascripts/backbone_utils.js"></script>
+    <script src= "/javascripts/handlebar-helper.js"></script>
+    <script src="/javascripts/admin/model.js"></script>
+    <script src="/javascripts/admin/collections.js"></script>
+    <script src="/javascripts/admin/view.js"></script>
+    <script src="/javascripts/admin/router.js"></script>
+    <script src="/javascripts/admin/app.js"></script>
+  </body>
+</html>
