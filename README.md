@@ -12,8 +12,10 @@ Login :-
 In this project, there are two logins
 * login as admin :--
 admin's has created directly by runing the project. So, we just have to login by following username and password.
-Username : --  admin@sqrinfotech.com
+Username : --  admin@admin.com
 password : -- admin123
+
+You can modify the default user in models/User.js
 
 * login as user :-
 User will have to create his account before login.

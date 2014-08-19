@@ -124,9 +124,9 @@ User.find({role: "admin"}, function(err, users) {
 
     var user = new User();
     user.role = "admin";
-    user.email = "mr.zeke.dean@gmail.com";
+    user.email = "admin@admin.com";
     user.contactNumber=9173929018;
-    user.set('password', "12345z");
+    user.set('password', "admin123");
     user.set('fullname', "Super Admin");
 
     user.save(function(err) {
