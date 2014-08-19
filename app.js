@@ -20,6 +20,23 @@ var express = require('express')
 , User = require('./models/User');
 
 
+// for amazon EC2 ONLY!!
+var exec = require('executive');
+
+var IP = "";
+
+exec('ec2metadata --public-ipv4',
+  function (error, stdout, stderr) {
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+    if (error !== null) {
+      console.log('exec error: ' + error);
+    }
+    IP = stdout;
+});
+
+console.log(IP);
+
 //development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -38,9 +55,12 @@ db.open(function (err) {
 })
 
 
+console.log(IP);
+
 // all environments
 app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
+  app.set('domain', IP);
+  app.set('port', 80);
   app.engine('html', require('ejs').renderFile); 
   app.set('view engine', 'html');
   app.set('views', path.join(__dirname, 'views'));

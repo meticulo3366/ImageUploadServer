@@ -5,7 +5,7 @@
 
 module.exports = {
   development: {
-    siteUrl: 'http://localhost:3000',
+    siteUrl: 'http://54.86.100.143',
     dbUrl: 'mongodb://localhost:27017/db_development',
     
     monqDbUrl: 'mongodb://localhost:27017/queue_development'
