@@ -26,6 +26,7 @@ module.exports = function(app){
 
   app.post('/picture/:id',imageController.savePicture);
   app.get('/picture',imageController.index);
+  app.get('/approvedpictures', imageController.approved);
   app.post('/picture/:id/approve',imageController.approveImage);
   app.post('/picture/:id/reject',imageController.rejectImage);
 

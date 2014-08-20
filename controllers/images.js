@@ -80,6 +80,19 @@ module.exports = function(app) {
     });
   };
 
+  image.approved = function(req,res,next){
+	Image
+	.find({})
+        .where('status').equals('Approved')
+	.exec( function(err,images){
+	      if (err){
+	        throw err;
+	      } else{
+	        res.json(images);
+	      };
+	});
+  };
+
   image.index = function(req, res, next){
 
     Image.find({},function(err,images){
