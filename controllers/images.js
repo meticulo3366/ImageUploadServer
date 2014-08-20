@@ -10,27 +10,30 @@ module.exports = function(app) {
   var image = {};
 
   image.savePicture = function(req, res, next){
-	console.log(req);
-	console.log(req.params);
     User.findById(req.params.id, function(err, user){
 	
       if(err){return next(err); };
         
       if(user) {
-        //var filePath = "/home/ubuntu/IMAGES/"+req.params.id+".jpg";
-        //fs.writeFile(filePath, new Buffer(req.body.data, "base64").toString(), function(err) {});
 
+	//create image object
         image = new Image();
         image.member = req.params.id;
         image.img.data = req.body.data;
-        //image.img.data = filePath;
+        image.path = 'images/'+image._id+'.jpg';
         image.img.contentType = req.body.contentType;
-
-        image.save(function(err, image){
+	image.msg = req.body.msg || 'I love Solar Strand';
+        image.save(function(err, image2){
           if (err) { return next(err)};
 
-          if(image){
-            return res.json(image);
+          if(image2){
+		        var buff = new Buffer(image2.img.data.replace(/^data:image2\/(png|gif|jpeg);base64,/,''), 'base64');
+			var imageNAME = '/home/ubuntu/ImageUploadServer/public/images/'+image2._id+'.jpg';
+	                fs.writeFile(imageNAME, buff, function (err) {
+			    if (err) { return next(err);
+			    }else{console.log(imageNAME);}
+			});
+            return res.json(image2);
           }
           else {
             return res.status(500).json({error: 'Unable to add image!'});
@@ -84,6 +87,7 @@ module.exports = function(app) {
 	Image
 	.find({})
         .where('status').equals('Approved')
+	.select('path msg')
 	.exec( function(err,images){
 	      if (err){
 	        throw err;

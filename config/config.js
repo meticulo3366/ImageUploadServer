@@ -6,12 +6,12 @@
 module.exports = {
   development: {
     siteUrl: 'http://54.86.100.143',
-    dbUrl: 'mongodb://localhost:27017/db_development',
+    dbUrl: 'mongodb://localhost:27017/solarstrand',
     
     monqDbUrl: 'mongodb://localhost:27017/queue_development'
   },
   production: {
-    dbUrl: 'mongodb://localhost/db_production',
+    dbUrl: 'mongodb://localhost/solarstrand',
     monqDbUrl: 'mongodb://localhost/queue_production'
   },
   
